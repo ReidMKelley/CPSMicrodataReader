@@ -39,14 +39,14 @@ if (StartYear <= EndYear) {
 
 FileSourcePrefix = "https://thedataweb.rm.census.gov/pub/cps/basic/"
 FilePrefixVals = DataFileLocVal(FileDateNum)
-FileNameFinal = sapply(1:Diff, function(x) str_c())
+
 FileSourcePaths = sapply(1:Diff, function(x) str_c(FileSourcePrefix, FilePrefixVals[,x], FileDateName[,x], "pub.zip"))
 FileDestinationPath = sapply(1:Diff, function(x) str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", FileDateName[,x], "pub.zip"))
 FileDownloads = sapply(1:Diff, function(x) sapply(1:12, function(y) download.file(url = FileSourcePaths[y,x], destfile = FileDestinationPath[y,x])))
 
-FileCleanup = list.files(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE)
+FileCleanup = setdiff(list.files(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE), dir(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE))
 RemovedFiles = file.remove(FileCleanup)
-FileExtraction = sapply(1:Diff, function(x) sapply(1:12, function(y) unzip(FileDestinationPath[y,x], exdir = "Z:/Reid/CPSMicrodataReading/MicrodataStorage")))
+FileExtraction = sapply(1:Diff, function(x) sapply(1:12, function(y) unzip(FileDestinationPath[y,x], exdir = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage")))
 ExtractedFiles = sapply(1:Diff, function(x) str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/", FileDateName[,x], "pub.dat"))
 
 
@@ -74,13 +74,17 @@ ExtractedFiles = sapply(1:Diff, function(x) str_c("C:/Users/Kelley_R/Documents/C
 #   DataOut[[j]] = CPSMicrodataReader(FileIn = FileInVal, DataDictionaryIn = DataDictionary)
 # }
 # names(DataOut) = FileDateName
-# 
-# 
-# 
-# .rs.restartR()
+#
 
 ArchiveDirectoryName = str_replace(str_replace(str_trunc(as.character(Sys.time()), width = 16, side = "right", ellipsis = ""), pattern = " ", replacement = "_"), pattern = ":", replacement = "")
-D0 = dir.create(path = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/Archive/", ArchiveDirectoryName))
-D1 = dir.create(path = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/Archive/", ArchiveDirectoryName))
+ArchiveExtractedDirectory = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/Archive/", ArchiveDirectoryName)
+D0 = dir.create(path = ArchiveExtractedDirectory)
+ArchiveZipDirectory = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/Archive/", ArchiveDirectoryName)
+D1 = dir.create(path = ArchiveZipDirectory)
+D01 = file.move(ExtractedFiles, ArchiveExtractedDirectory)
+D11 = sapply(1:Diff, function(x) file.move(FileDestinationPath[,x], ArchiveZipDirectory))
+
+cat("\014")
 toc()
 
+.rs.restartR()
