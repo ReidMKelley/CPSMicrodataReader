@@ -67,13 +67,13 @@ DataDictionaryLocVal = function(MonthNumberIn) {
   PrefixList = c(199401, 199404, 199506, 199509, 199801, 200301, 200405, 200508, 200701, 200901, 201001, 201205, 201301, 201401, 201404, 201501, 201701)
   PrefixStrn = c("cpsbjan94.dct", "cpsbapr94.dct", "cpsbjun95.dct", "cpsbsep95.dct", "cpsbjan98.dct", "cpsbjan03.dct", "cpsbmay04.dct", "cpsbaug05.dct", "cpsbjan07.dct", "cpsbjan09.dct", "cpsbjan10.dct", "cpsbmay12.dct", "cpsbjan13.dct", "cpsbjan2014.dct", "cpsbapr2014.dct", "cpsbjan2015.dct", "cpsbjan2017.dct")
   CD = matrix(0, nrow = dim(MonthNumberIn)[1], ncol = dim(MonthNumberIn)[2])
-  for (j in 1:16) {
+  for (j in 1:17) {
     CC = sapply(1:dim(MonthNumberIn)[2], function(x) between(MonthNumberIn[,x], PrefixValu[j], PrefixValu[j+1] - 0.1))
     CD1 = sapply(1:dim(MonthNumberIn)[2], function(y) replace(CC[,y], which(CC[,y] == TRUE), PrefixList[j]))
     CD = CD + CD1
   }
   XX = sapply(1:dim(MonthNumberIn)[2], function(x) as.character(CD[,x]))
-  for (j in 1:16) {
+  for (j in 1:17) {
     YY = sapply(1:dim(MonthNumberIn)[2], function(z) str_replace(XX[,z], pattern = as.character(PrefixList[j]), replacement = PrefixStrn[j]))
     XX = YY
   }
@@ -81,4 +81,11 @@ DataDictionaryLocVal = function(MonthNumberIn) {
   return(XX)
 }
 
-
+FileDownloader = function(FileURL, FileDest) {
+  if((!is.na(FileURL))&&(!is.na(FileDest))) {
+    FileOut = download.file(url = FileURL, destfile = FileDest)
+  } else {
+    FileOut = NA
+  }
+  return(FileOut)
+}
