@@ -89,3 +89,23 @@ FileDownloader = function(FileURL, FileDest) {
   }
   return(FileOut)
 }
+
+
+FileUnziper = function(FileToUnzip, ExtractedFileDest) {
+  if((!is.na(FileToUnzip))&&(!is.na(ExtractedFileDest))) {
+    FileOut = unzip(zipfile = FileToUnzip, exdir = ExtractedFileDest)
+  } else {
+    FileOut = NA
+  }
+  return(FileOut)
+}
+  
+  
+FileMover = function(FileToMove, DestinationOfFile) {
+  if((!is.na(FileToMove))&&(!is.na(DestinationOfFile))) {
+    FileOut = file.move(files = FileToMove, DestinationOfFile)
+  } else {
+    FileOut = NA
+  }
+  return(FileOut)
+}

@@ -14,7 +14,7 @@ tic()
 StartMonth = 1
 StartYear = 2014
 
-EndMonth = 12
+EndMonth = 6
 EndYear = 2015
 Diff = EndYear - StartYear + 1
 MonthsNum = matrix(data = 1:12, nrow = 12, ncol = Diff)
@@ -47,16 +47,17 @@ FileSourcePaths = sapply(1:Diff, function(x) str_c(FileSourcePrefix, FilePrefixV
 DictionarySourcePaths = str_c(DictionarySourcePrefix, DictionaryPrefixVals)
 FileDestinationPath = sapply(1:Diff, function(x) str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", FileDateName[,x], "pub.zip"))
 DictionaryDestPath = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", DictionaryPrefixVals)
+DictionaryUniqueURL = unique(as.vector(DictionarySourcePaths))
 DictionaryUniquePath = unique(as.vector(DictionaryDestPath))
-FileDownloads = sapply(1:Diff, function(x) sapply(1:12, function(y) download.file(url = FileSourcePaths[y,x], destfile = FileDestinationPath[y,x])))
+FileDownloads = sapply(1:Diff, function(x) sapply(1:12, function(y) FileDownloader(FileURL = FileSourcePaths[y,x], FileDest = FileDestinationPath[y,x])))
 
 
 FileCleanup = setdiff(list.files(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE), dir(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE))
 RemovedFiles = file.remove(FileCleanup)
 
 
-DictionaryDownloads = download.file(url = unique(as.vector(DictionarySourcePaths)), destfile = DictionaryUniquePath)
-FileExtraction = sapply(1:Diff, function(x) sapply(1:12, function(y) unzip(FileDestinationPath[y,x], exdir = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage")))
+DictionaryDownloads = sapply(seq_along(DictionaryUniqueURL), function(x) FileDownloader(FileURL = DictionaryUniqueURL[x], FileDest = DictionaryUniquePath[x]))
+FileExtraction = sapply(1:Diff, function(x) sapply(1:12, function(y) FileUnziper(FileToUnzip = FileDestinationPath[y,x], ExtractedFileDest = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage")))
 ExtractedFiles = sapply(1:Diff, function(x) str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/", FileDateName[,x], "pub.dat"))
 
 
@@ -87,9 +88,10 @@ ArchiveExtractedDirectory = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStora
 D0 = dir.create(path = ArchiveExtractedDirectory)
 ArchiveZipDirectory = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/Archive/", ArchiveDirectoryName)
 D1 = dir.create(path = ArchiveZipDirectory)
-D01 = file.move(ExtractedFiles, ArchiveExtractedDirectory)
-D11 = sapply(1:Diff, function(x) file.move(FileDestinationPath[,x], ArchiveZipDirectory))
-D12 = file.move(DictionaryUniquePath, ArchiveZipDirectory)
+D01 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  ExtractedFiles[y, x], DestinationOfFile = ArchiveExtractedDirectory)))
+D11 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  FileDestinationPath[y, x], DestinationOfFile = ArchiveZipDirectory)))
+D12 = sapply(seq_along(DictionaryUniquePath), function(x) FileMover(FileToMove =  DictionaryUniquePath[x], DestinationOfFile = ArchiveZipDirectory))
+
 
 cat("\014")
 toc()
