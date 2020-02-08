@@ -19,7 +19,7 @@ DataDictionaryIn$ColName = as.character(DataDictionaryIn$ColName)
 DataDictionaryIn$colClasses = as.character(DataDictionaryIn$colClasses)  
 DataDictionaries[[1]] = DataDictionaryIn
 UnchangingVariables = DataDictionaryIn$ColName
-Testing = "A"
+
 
 
 for (j in 2:15) {
