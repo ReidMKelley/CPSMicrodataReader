@@ -38,8 +38,15 @@ for (j in 2:16) {
 
 ChangingVariables = lapply(1:16, function(x) setdiff(DataDictionaries[[x]]$ColName, UnchangingVariables))
 ImportantVariables = read_csv(file = "C:/Users/Kelley_R/Desktop/CPS Microdata Record Layouts/Book1.csv", col_names = FALSE)
-ImportantVariables = ImportantVariables$X1
+ImportantVariables = str_to_lower(ImportantVariables$X1)
+
 
 names(DataDictionaries) = PrefixName
 names(ChangingVariables) = PrefixName
+Test = ls()
+T1 = setdiff(Test, c("DataDictionaries", "ImportantVariables", "UnchangingVariables", "ChangingVariables"))
+rm(list = T1)
+rm(T1)
 cat("\014")
+
+
