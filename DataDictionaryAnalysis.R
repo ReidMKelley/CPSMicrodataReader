@@ -44,9 +44,20 @@ ImportantVariables = str_to_lower(ImportantVariables$X1)
 names(DataDictionaries) = PrefixName
 names(ChangingVariables) = PrefixName
 Test = ls()
-T1 = setdiff(Test, c("DataDictionaries", "ImportantVariables", "UnchangingVariables", "ChangingVariables"))
+VariableCheck = tibble(PrefixName)
+T1 = setdiff(Test, c("DataDictionaries", "ImportantVariables", "UnchangingVariables", "ChangingVariables", "VariableCheck"))
 rm(list = T1)
-rm(T1)
+rm(Test, T1)
 cat("\014")
 
+
+
+for (j in 1:16) {
+  if (any(str_detect(DataDictionaries[[j]]$ColName, "prunedur"))) {
+    VariableCheck[j, 2] = TRUE
+  } else {
+    VariableCheck[j, 2] = FALSE
+  }
+}
+rm(j)
 
