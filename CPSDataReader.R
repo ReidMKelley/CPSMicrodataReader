@@ -49,14 +49,19 @@ if (StartYear <= EndYear) {
 
 
 # May want to revert to the old source for this while in testing/development, as it seems to download faster and the old links won't deactiviate till June 2020. Will need to adjust for final use.
-FileSourcePrefix = str_c("https://www2.census.gov/programs-surveys/cps/datasets/", Years, "/basic/")
+# FileSourcePrefix = str_c("https://www2.census.gov/programs-surveys/cps/datasets/", Years, "/basic/")
+# FileSourcePaths = sapply(1:Diff, function(x) str_c(FileSourcePrefix[x], FileDateName[,x], "pub.zip"))
+
+# This is the code for the old source files for the microdata
+FileSourcePrefix = "http://thedataweb.rm.census.gov/pub/cps/basic/"
+FilePrefixVals = DataFileLocVal(FileDateNum)
+FileSourcePaths = sapply(1:Diff, function(x)  str_c(FileSourcePrefix, FilePrefixVals[,x], FileDateName[,x], "pub.zip"))
+
 
 DictionarySourcePrefix = "https://data.nber.org/data/progs/cps-basic/"
 DictionaryPrefixVals = DataDictionaryLocVal(FileDateNum)
-
-
-FileSourcePaths = sapply(1:Diff, function(x) str_c(FileSourcePrefix[x], FileDateName[,x], "pub.zip"))
 DictionarySourcePaths = str_c(DictionarySourcePrefix, DictionaryPrefixVals)
+
 FileDestinationPath = sapply(1:Diff, function(x) str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", IDVal[,x], FileDateName[,x], "pub.zip"))
 DictionaryDestPath = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", DictionaryPrefixVals)
 DictionaryUniqueURL = unique(as.vector(DictionarySourcePaths))
