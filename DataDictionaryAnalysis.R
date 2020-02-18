@@ -51,13 +51,25 @@ rm(Test, T1)
 cat("\014")
 
 
+# 
+# for (j in 1:16) {
+#   if (any(str_detect(DataDictionaries[[j]]$ColName, "prunedur"))) {
+#     VariableCheck[j, 2] = TRUE
+#   } else {
+#     VariableCheck[j, 2] = FALSE
+#   }
+# }
+# rm(j)
 
-for (j in 1:16) {
-  if (any(str_detect(DataDictionaries[[j]]$ColName, "prunedur"))) {
-    VariableCheck[j, 2] = TRUE
-  } else {
-    VariableCheck[j, 2] = FALSE
+OtherVariables = c("hehousut", "hrintsta", "hrhtype", "hrlonglk", "gereg", "gestfips", "gediv", "gestabb", "gtcbsast", "gtmetsta", "gtcbsasz", "prtfage", "pthr", "ptot", "prchld")
+for (k in 1:length(OtherVariables)) {
+  for (j in 1:16) {
+    if (any(str_detect(DataDictionaries[[j]]$ColName, OtherVariables[k]))) {
+      VariableCheck[j, k+1] = TRUE
+    } else {
+      VariableCheck[j, k+1] = FALSE
+    }
   }
 }
-rm(j)
-
+colnames(VariableCheck) = c("DictionaryName", OtherVariables)
+rm(j, k)
