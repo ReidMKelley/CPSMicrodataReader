@@ -6,7 +6,6 @@ library("StataDCTutils")
 library("readstata13")
 library("tidyverse")
 library("filesstrings")
-library("rlist")
 setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
 
 source("CPSDataReaderFunctions.R")
