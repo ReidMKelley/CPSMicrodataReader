@@ -10,24 +10,22 @@ CPSMicrodataReader = function(FileIn, DataDictionaryIn) {
     A[[AA[x]]] = DecimalImputation(A[[AA[x]]], DataDictionaryIn$Decimals[AA[x]])
   }
   
-  
-  # Adjusting the variables that have important factors to provide useful labels
-  A$hehousut = factor(A$hehousut, levels = 0:12, labels = c("OTHER UNIT", "HOUSE, APARTMENT, FLAT", "HU IN NONTRANSIENT HOTEL, MOTEL, ETC.", "HU PERMANENT IN TRANSIENT HOTEL, MOTEL", "HU IN ROOMING HOUSE", "MOBILE HOME OR TRAILER W/NO PERM. ROOM ADDED", "MOBILE HOME OR TRAILER W/1 OR MORE PERM. ROOMS ADDED", "HU NOT SPECIFIED ABOVE", "QUARTERS NOT HU IN ROOMING OR BRDING HS", "UNIT NOT PERM. IN TRANSIENT HOTL, MOTL", "UNOCCUPIED TENT SITE OR TRLR SITE", "STUDENT QUARTERS IN COLLEGE DORM", "OTHER UNIT NOT SPECIFIED ABOVE"))
-  A$hrintsta = factor(A$hrintsta, levels = 1:4, labels = c("INTERVIEW", "TYPE A NON-INTERVIEW", "TYPE B NON-INTERVIEW", "TYPE C NON-INTERVIEW"))
-  A$hrhtype = factor(A$hrhtype, levels = 0:10, labels = c("NON-INTERVIEW HOUSEHOLD", "HUSBAND/WIFE PRIMARY FAMILY (NEITHER AF)", "HUSB/WIFE PRIM. FAMILY (EITHER/BOTH AF)", "UNMARRIED CIVILIAN MALE-PRIM. FAM HHLDER", "UNMARRIED CIV. FEMALE-PRIM FAM HHLDER", "PRIMARY FAMILY HHLDER-RP IN AF, UNMAR.", "CIVILIAN MALE PRIMARY INDIVIDUAL", "CIVILIAN FEMALE PRIMARY INDIVIDUAL", "PRIMARY INDIVIDUAL HHLD-RP IN AF", "GROUP QUARTERS WITH FAMILY", "GROUP QUARTERS WITHOUT FAMILY"))
-  A$hrlonglk = factor(A$hrlonglk, levels = c(0,2,3), labels = c("MIS 1 OR REPLACEMENT HH (NO LINK)", "MIS 2-4 OR MIS 6-8", "MIS 5"))
-  A$gereg = factor(A$gereg, levels = 1:4, labels = c("NORTHEAST", "MIDWEST (FORMERLY NORTH CENTRAL)", "SOUTH", "WEST"))
-  A$gestfips = factor(A$gestfips)
-  A$gediv = factor(A$gediv, levels = 1:9, labels = c("NEW ENGLAND", "MIDDLE ATLANTIC", "EAST NORTH CENTRAL", "WEST NORTH CENTRAL", "SOUTH ATLANTIC", "EAST SOUTH CENTRAL", "WEST SOUTH CENTRAL", "MOUNTAIN", "PACIFIC"))
-  A$gestabb = factor(A$gestfips, levels = c(1,2,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,45,46,47,48,49,50,51,53,54,55,56), labels = c(state.abb[1:8],"DC",state.abb[9:50]))
-  DataDictionaryIn[388,] = c(NA, NA, "gestabb", NA, "State Abbreviation", NA, "character", NA)
-    A$gtcbsast = factor(A$gtcbsast, levels = 1:4, labels = c("PRINCIPAL CITY", "BALANCE", "NONMETROPOLITAN", "NOT IDENTIFIED"))
-  A$gtmetsta = factor(A$gtmetsta, levels = 1:3, labels = c("METROPOLITAN", "NONMETROPOLITAN", "NOT IDENTIFIED"))
-  A$gtcbsasz = factor(A$gtcbsasz, levels = c(0,2:7), labels = c("NOT IDENTIFIED OR NONMETROPOLITAN", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  A$prtfage = factor(A$prtfage, levels = 0:1, labels = c("NO TOP CODE", "TOP CODED VALUE FOR AGE"))
-  A$pthr = factor(A$pthr, levels = 0:1, labels = c("NOT TOPCODED", "TOPCODED"))
-  A$ptot = factor(A$ptot, levels = 0:1, labels = c("NOT TOPCODED", "TOPCODED"))
-  A$prchld = factor(A$prchld, levels = -1:15, labels = c("NIU (Not a parent)", "No own children under 18 years of age", "All own children 0- 2 years of age", "All own children 3- 5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0- 2 and 3- 5 years of age (none 6-17)", "Own children 0- 2 and 6-13 years of age (none 3- 5 or 14-17)", "Own children 0- 2 and 14-17 years of age (none 3-13)", "Own children 3- 5 and 6-13 years of age (none 0- 2 or 14-17)", "Own children 3- 5 and 14-17 years of age (none 0- 2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0- 5)", "Own children 0- 2, 3- 5, and 6-13 years of age (none 14-17)", "Own children 0- 2, 3- 5, and 14-17 years of age (none 6-13)", "Own children 0- 2, 6-13, and 14-17 years of age (none 3- 5)", "Own children 3- 5, 6-13, and 14-17 years of age (none 0- 2)", "Own children from all age groups"))
+  # 
+  # # Adjusting the variables that have important factors to provide useful labels
+  # A$hehousut = factor(A$hehousut, levels = 0:12, labels = c("OTHER UNIT", "HOUSE, APARTMENT, FLAT", "HU IN NONTRANSIENT HOTEL, MOTEL, ETC.", "HU PERMANENT IN TRANSIENT HOTEL, MOTEL", "HU IN ROOMING HOUSE", "MOBILE HOME OR TRAILER W/NO PERM. ROOM ADDED", "MOBILE HOME OR TRAILER W/1 OR MORE PERM. ROOMS ADDED", "HU NOT SPECIFIED ABOVE", "QUARTERS NOT HU IN ROOMING OR BRDING HS", "UNIT NOT PERM. IN TRANSIENT HOTL, MOTL", "UNOCCUPIED TENT SITE OR TRLR SITE", "STUDENT QUARTERS IN COLLEGE DORM", "OTHER UNIT NOT SPECIFIED ABOVE"))
+  # A$hrintsta = factor(A$hrintsta, levels = 1:4, labels = c("INTERVIEW", "TYPE A NON-INTERVIEW", "TYPE B NON-INTERVIEW", "TYPE C NON-INTERVIEW"))
+  # A$hrhtype = factor(A$hrhtype, levels = 0:10, labels = c("NON-INTERVIEW HOUSEHOLD", "HUSBAND/WIFE PRIMARY FAMILY (NEITHER AF)", "HUSB/WIFE PRIM. FAMILY (EITHER/BOTH AF)", "UNMARRIED CIVILIAN MALE-PRIM. FAM HHLDER", "UNMARRIED CIV. FEMALE-PRIM FAM HHLDER", "PRIMARY FAMILY HHLDER-RP IN AF, UNMAR.", "CIVILIAN MALE PRIMARY INDIVIDUAL", "CIVILIAN FEMALE PRIMARY INDIVIDUAL", "PRIMARY INDIVIDUAL HHLD-RP IN AF", "GROUP QUARTERS WITH FAMILY", "GROUP QUARTERS WITHOUT FAMILY"))
+  # A$hrlonglk = factor(A$hrlonglk, levels = c(0,2,3), labels = c("MIS 1 OR REPLACEMENT HH (NO LINK)", "MIS 2-4 OR MIS 6-8", "MIS 5"))
+  # A$gereg = factor(A$gereg, levels = 1:4, labels = c("NORTHEAST", "MIDWEST (FORMERLY NORTH CENTRAL)", "SOUTH", "WEST"))
+  # A$gestfips = factor(A$gestfips)
+  # A$gediv = factor(A$gediv, levels = 1:9, labels = c("NEW ENGLAND", "MIDDLE ATLANTIC", "EAST NORTH CENTRAL", "WEST NORTH CENTRAL", "SOUTH ATLANTIC", "EAST SOUTH CENTRAL", "WEST SOUTH CENTRAL", "MOUNTAIN", "PACIFIC"))
+  # A$gtcbsast = factor(A$gtcbsast, levels = 1:4, labels = c("PRINCIPAL CITY", "BALANCE", "NONMETROPOLITAN", "NOT IDENTIFIED"))
+  # A$gtmetsta = factor(A$gtmetsta, levels = 1:3, labels = c("METROPOLITAN", "NONMETROPOLITAN", "NOT IDENTIFIED"))
+  # A$gtcbsasz = factor(A$gtcbsasz, levels = c(0,2:7), labels = c("NOT IDENTIFIED OR NONMETROPOLITAN", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
+  # A$prtfage = factor(A$prtfage, levels = 0:1, labels = c("NO TOP CODE", "TOP CODED VALUE FOR AGE"))
+  # A$pthr = factor(A$pthr, levels = 0:1, labels = c("NOT TOPCODED", "TOPCODED"))
+  # A$ptot = factor(A$ptot, levels = 0:1, labels = c("NOT TOPCODED", "TOPCODED"))
+  # A$prchld = factor(A$prchld, levels = -1:15, labels = c("NIU (Not a parent)", "No own children under 18 years of age", "All own children 0- 2 years of age", "All own children 3- 5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0- 2 and 3- 5 years of age (none 6-17)", "Own children 0- 2 and 6-13 years of age (none 3- 5 or 14-17)", "Own children 0- 2 and 14-17 years of age (none 3-13)", "Own children 3- 5 and 6-13 years of age (none 0- 2 or 14-17)", "Own children 3- 5 and 14-17 years of age (none 0- 2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0- 5)", "Own children 0- 2, 3- 5, and 6-13 years of age (none 14-17)", "Own children 0- 2, 3- 5, and 14-17 years of age (none 6-13)", "Own children 0- 2, 6-13, and 14-17 years of age (none 3- 5)", "Own children 3- 5, 6-13, and 14-17 years of age (none 0- 2)", "Own children from all age groups"))
   DataOut =  A
   return(DataOut)
   
@@ -44,6 +42,7 @@ DecimalImputation = function(DataColIn, DecimalValueIn) {
 }
 
 DataFileLocVal = function(MonthNumberIn) {
+  source("CPSMicrodataParsingFunctions.R", local = TRUE)
   PrefixValu = c(199401, 199404, 199506, 199509, 199801, 200301, 200405, 200508, 200701, 200901, 201001, 201205, 201301, 201401, 201501, 201706, 1000000)
   PrefixList = c(199401, 199404, 199506, 199509, 199801, 200301, 200405, 200508, 200701, 200901, 201001, 201205, 201301, 201401, 201501, 201701)
   PrefixStrn = c("199401-199403/", "199404-199505/", "199506-199508/", "199509-199712/", "199801-/", "200301-/", "200405-/", "200508-/", "200701-/", "200901-/", "201001-/", "201205-/", "201301-/", "201401-/", "201501-/", "201701-/")

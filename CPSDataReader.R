@@ -6,16 +6,19 @@ library("StataDCTutils")
 library("readstata13")
 library("tidyverse")
 library("filesstrings")
+library("rlist")
 setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
+
 source("CPSDataReaderFunctions.R")
 
 
-tic()
-StartMonth = 8
-StartYear = 2014
 
-EndMonth = 10
-EndYear = 2015
+tic()
+StartMonth = 1
+StartYear = 1994
+
+EndMonth = 1
+EndYear = 1994
 Diff = EndYear - StartYear + 1
 MonthsNum = matrix(data = 1:12, nrow = 12, ncol = Diff)
 "https://www2.census.gov/programs-surveys/cps/datasets/2016/basic/dec16pub.zip"
@@ -82,13 +85,13 @@ DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName 
 
 
 
-# DataDictionary = dct.parser(dct = "Z:/Reid/CPSMicrodataReading/cpsbjan2015.dct")
-# DataDictionary$ColName = as.character(DataDictionary$ColName)
-# DataDictionary$VarLabel = as.character(DataDictionary$VarLabel)
-# DataDictionary$colClasses = str_replace_all(DataDictionary$colClasses,"raw", "integer")
-# DataDictionary$EndPos = DataDictionary$StartPos + DataDictionary$ColWidth - 1
-# 
-# Test0 = CPSMicrodataReader(FileIn = "Z:/Reid/CPSMicrodataReading/jan15pub.dat", DataDictionaryIn = DataDictionary)
+DataDictionary = dct.parser(dct = DictionaryDestPath[1])
+DataDictionary$ColName = as.character(DataDictionary$ColName)
+DataDictionary$VarLabel = as.character(DataDictionary$VarLabel)
+DataDictionary$colClasses = str_replace_all(DataDictionary$colClasses,"raw", "integer")
+DataDictionary$EndPos = DataDictionary$StartPos + DataDictionary$ColWidth - 1
+
+Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/jan94pub.cps", DataDictionaryIn = DataDictionary)
 # FileInName = FileSourcePaths[1,1]
 # Test1 = CPSMicrodataReader(FileInName, DataDictionary)
 #
