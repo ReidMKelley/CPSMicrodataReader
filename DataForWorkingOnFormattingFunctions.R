@@ -8,7 +8,7 @@ library("tidyverse")
 library("filesstrings")
 setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
 
-AOriginalData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataJan1994.rds")
+AOriginalData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataSep1995.rds")
 BFormattedData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataJan2015Formatted.rds")
 
 

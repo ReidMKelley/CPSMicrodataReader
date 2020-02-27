@@ -85,12 +85,16 @@ DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName 
 
 
 DataDictionary = dct.parser(dct = DictionaryDestPath[1])
+
 DataDictionary$ColName = as.character(DataDictionary$ColName)
 DataDictionary$VarLabel = as.character(DataDictionary$VarLabel)
 DataDictionary$colClasses = str_replace_all(DataDictionary$colClasses,"raw", "integer")
 DataDictionary$EndPos = DataDictionary$StartPos + DataDictionary$ColWidth - 1
 
-Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/jan94pub.cps", DataDictionaryIn = DataDictionary)
+Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/sep95pub.cps", DataDictionaryIn = DataDictionary)
+
+
+
 # FileInName = FileSourcePaths[1,1]
 # Test1 = CPSMicrodataReader(FileInName, DataDictionary)
 #
