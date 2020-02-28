@@ -8,10 +8,11 @@ library("tidyverse")
 library("filesstrings")
 setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
 
-AOriginalData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataSep1995.rds")
-BFormattedData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataJan2015Formatted.rds")
+AA = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataSep1995.rds")
+FormattedData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/0CPSExampleDataJan2015Formatted.rds")
 
 
 cat("\014")
 
 .rs.restartR()
+
