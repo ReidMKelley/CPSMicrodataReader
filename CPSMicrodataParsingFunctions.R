@@ -21,7 +21,7 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
   AA$hetelhhd = factor(AA$hetelhhd, levels = c(-1, 1, 2), labels = c(NA, "Telephone present in house", "Telephone not present in the house"))
   AA$hetelavl = factor(AA$hetelavl, levels = c(-1, 1, 2), labels = c(NA, "Telephone elsewhere available for household to use", "Telephone not available eslewhere for household to use"))
   AA$hephoneo = factor(AA$hephoneo, levels = c(-1, 1, 2), labels = c(NA, "Telephone interview acceptable", "Telephone interview not acceptable"))
-  AA$hufaminc = factor(AA$hufaminc, levels = C(-1, 1:12), labels = c(NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
+  AA$hufaminc = factor(AA$hufaminc, levels = c(-1, 1:14), labels = c(NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
                                                                     "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
                                                                     "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 or more"))
   AA$hutypea = factor(AA$hutypea, levels = c(-1, 1:4), labels = c(NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
@@ -37,13 +37,18 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
                                                                 "Group quarter with family", "Group quarters without family"))
   AA$hrmis[AA$hrmis == -1] = NA
   AA$hrmonth[AA$hrmonth == -1] = NA
-  AA$hryear[AA$hrear == -1] = NA
+  AA$hryear[AA$hyear == -1] = NA
   AA$hryear = 1900 + AA$hryear
   AA$hrlonglk = factor(AA$hrlonglk, levels = c(-1, 0, 2, 3), labels = c(NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
-  
+  AA$hrsample[AA$hrsample == "-1"] = NA
+  AA$hrsample = str_trunc(AA$hrsample, width = 2, side = "left", ellipsis = "")
+  AA$hrsersuf[is.na(AA$hrsersuf)] = -1
+  AA$hrsersuf = str_trunc(str_c("0", match(as.character(AA$hrsersuf), c("-1", LETTERS[1:26]))-1), width = 2, side = "left", ellipsis = "")
+  AA$hrhhid2 = str_c(AA$hrsample, AA$hrsersuf, AA$huhhnum)
+  AA = AA %>% select(1:23, hrhhid2,everything())
 }
 
 
-X = sort(unique(AA$hufinal))
-XX = sort(c(X, 0, 24, 200, 210))
-View(XX)
+# X = sort(unique(AA$hufinal))
+# XX = sort(c(X, 0, 24, 200, 210))
+# View(XX)
