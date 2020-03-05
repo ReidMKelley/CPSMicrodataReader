@@ -123,8 +123,133 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
   AA$puslfprx = factor(AA$puslfprx, levels = c(-1, 1:3), labels = c(NA, "Labor Force Info collected by self", "Labor Force info collected by proxy", "Labor Force info collected by both self and proxy"))
   AA$pemlr = factor(AA$pemlr, levels = c(-1, 1:7), labels = c(NA, "Employed-At work", "Employed-Absent", "Unemployed-On layoff", "Unemployed-Looking", "Not in Labor Force-Retired", "Not in Labor Force-Disabled", "Not in labor force-Other"))
   AA$puwk = factor(AA$puwk, levels = c(-1,1:5), labels = c(NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
+  AA$pubus1 = factor(AA$pubus1, levels = c(-1, 1, 2), labels = c(NA, "Person did unpaid work on family business/farm", "Person did not do unpaid work on family business/farm"))
+  AA$pubus2ot = factor(AA$pubus2ot, levels = c(-1, 1, 2), labels = c(NA, "Person received payments or profits from the family business", "Person did not receive payments or profits from the family business"))
   
-   
+  # This removes several check variables about family business that have limited use for researcher. This removes 4 columns from AA; there are 78 columns prior to the first one here.
+  AA = select(AA, -c(pubusck1, pubusck2, pubusck3, pubusck4))
+  
+  AA$puretot = factor(AA$puretot, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported retired last month and is retired now", "No, person who was reported retired last month is not retired now", "Person was not retired last month"))
+  AA$pudis = factor(AA$pudis, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported disabled last month and is disabled now", "No, person who was reported disabled last month is not disabled now", "Person was not disabled last month"))
+  AA$peret1 = factor(AA$peret1, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported retired last month wants a job (full or part-time)", "No, person who was reported retired last month does not want a job", "Person who was reported retired last month has a job now"))
+  AA$pudis1 = factor(AA$pudis1, levels = c(-1, 1, 2), labels = c(NA, "Yes, person's disability prevents person from working in the next 6 months", "No, person's disability does not prevent person from accepting work in the next 6 months"))
+  AA$pudis2 = factor(AA$pudis2, levels = c(-1, 1, 2), labels = c(NA, "Yes, person has a disability that prevents person from working", "No, person does not have a disability that prevents person from working"))
+  AA$puabsot = factor(AA$puabsot, levels = c(-1, 1:5), labels = c(NA, "Yes, person had a full/part-time job last week", "No, person didn't have a full/part-time job last week", "Person was retired last week", "Person was disabled last week", "Person was unable to work last week"))
+  AA$pulay = factor(AA$pulay, levels = c(-1, 1:5), labels = c(NA, "Yes, person is on layoff from a job", "No, person is not on layoff from a job", "Person is retired", "Person is disabled", "Person is unable to work"))
+  AA$peabsrsn = factor(AA$peabsrsn, levels = c(-1, 1:9), labels = c(NA, "On layoff", "Slack work/Business conditions", "Vacation/Personal days", "Own illness/Injury/Medical problems", "Child care problems", "Other family/Personal obligation", "Maternity/Paternity leave", "Labor dispute"))
+  AA$peabspdo = factor(AA$peabspdo, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pemjot = factor(AA$pemjot, levels = c(NA, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pemjnum = factor(AA$pemjnum, levels = c(-1, 2:4), labels = c(NA, "2 jobs", "3 jobs", "4 or more jobs"))
+  AA$pehrusl1[AA$pehrusl1 == -1] = NA
+  AA$pehrusl2[AA$pehrusl2 == -1] = NA
+  AA$pehrftpt = factor(AA$pehrftpt, levels = c(-1, 1:3), labels = c(NA, "Yes", "No", "Hours vary"))
+  AA$pehruslt[AA$pehruslt == -1] = NA
+  AA$pehrwant = factor(AA$pehrwant, levels = c(-1, 1:3), labels = c(NA, "Yes", "No", "Regular hours are Full-time"))
+  AA$pehrrsn1 = factor(AA$pehrrsn1, levels = c(-1, 1:10), labels = c(NA, "Slack work/Business conditions", "Could only find Part-time work", "Seasonal work", "Child care problems", "Other family/Personal obligation", "Health/Medical limitations", "School/Training", "Retired/Social security limit on earnings", "Full-time workweek is less than 35 hrs", "Other - Specify"))
+  AA$pehrrsn2 = factor(AA$pehrrsn2, levels = c(-1, 1:7), labels = c(NA, "Child care problems", "Other family/Personal obligations", "Health/Medical limitations", "School/Training", "Retired/Social Security limit on earnings", "Full-Time workweek less than 35 hours", "Other - Specify"))
+  AA$pehrrsn3 = factor(AA$pehrrsn3, levels = c(-1, 1:13), labels = c(NA, "Slack work/Business conditions", "Seasonal work", "Job started or ended during week", "Vacation/Personal day", "Own illnes/Injury/Medical appointment", "Holiday (Legal or Religious)", "Child care problems", "Other family/Personal obligations", "Labor dispute", "Weather affected job", "School/training", "Civic/Military duty", "Other reason"))
+  AA$puhroff1 = factor(AA$puhroff1, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$puhroff2[AA$puhroff2 == -1] = NA
+  AA$puhrot1 = factor(AA$puhrot1, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$puhrot2[AA$puhrot2 == -1] = NA
+  AA$pehract1[AA$pehract1 == -1] = NA
+  AA$pehract2[AA$pehract2 == -1] = NA
+  AA$pehractt[AA$pehractt == -1] = NA
+  AA$pehravl = factor(AA$pehravl, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pulbhsec[AA$pulbhsec == -1] = NA
+  
+  # This removes several check variables about hours that have limited use for researcher. This removes 8 columns from AA; there are 106 columns prior to the first one here (after earlier removal).
+  AA = select(AA, -c(puhrck1, puhrck2, puhrck3, puhrck4, puhrck5, puhrck6, puhrck7, puhrck12))
+  
+  AA$pulaydt = factor(AA$pulaydt, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pulay6m = factor(AA$pulay6m, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pelayavl = factor(AA$pelayavl, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pulayavr = factor(AA$pulayavr, levels = c(-1, 1:3), labels = c(NA, "Own temporary illness", "Going to school", "Other"))
+  AA$pelaylk = factor(AA$pelaylk, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pelaydur[AA$pelaydur == -1] = NA
+  AA$pelayfto = factor(AA$pelayfto, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  
+  # This removes several check variables about layoffs that have limited use of researcher. This removes 3 columns from AA; there are 113 columns prior to the first one here (after earlier removal).
+  AA = select(AA, -c(pulayck1, pulayck2, pulayck3))
+  
+  AA$pulk = factor(AA$pulk, levels = c(-1, 1:5), labels = c(NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
+  AA$pelkm1 = factor(AA$pelkm1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                 "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                 "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkm2 = factor(AA$pulkm2, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                 "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                 "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm3 = factor(AA$pulkm3, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm4 = factor(AA$pulkm4, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm5 = factor(AA$pulkm5, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm6 = factor(AA$pulkm6, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                 "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                 "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  AA$pulkps1 = factor(AA$pulkps1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                   "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                   "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkps2 = factor(AA$pulkps2, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps3 = factor(AA$pulkps3, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps4 = factor(AA$pulkps4, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps5 = factor(AA$pulkps5, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps6 = factor(AA$pulkps6, levels = c(-1, 1:12, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  AA$pelkavl = factor(AA$pelkavl, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pulkavr = factor(AA$pulkavr, levels = c(-1, 1:4), labels = c(NA, "Waiting for new job to begin", "Own temporary illness", "Going to school", "Other - Specify"))
+  AA$pelkll1o = factor(AA$pelkll1o, levels = c(-1, 1:4), labels = c(NA, "Working", "School", "Left military service", "Something else"))
+  AA$pelkll2o = factor(AA$pelkll2o, levels = c(-1, 1:3), labels = c(NA, "Lost job", "Quit job", "Temporary job ended"))
+  AA$pelklwo = factor(AA$pelklwo, levels = c(-1, 1:3), labels = c(NA, "Last worked within the last 12 months", "Last worked more than 12 months ago", "Never worked previously"))
+  AA$pelkdur[AA$pelkdur == -1] = NA
+  AA$pelkfto = factor(AA$pelkfto, levels = c(-1, 1:3), labels = c(NA, "Yes", "No", "Doesn't matter"))
+  AA$pedwwnto = factor(AA$pedwwnto, levels = c(-1, 1:5), labels = c(NA, "Yes, or maybe, it depends", "No", "Retired", "Disabled", "Unable to work"))
+  AA$pedwrsn = factor(AA$pedwrsn, levels = c(-1, 1:11), labels = c(NA, "Believes no work available in area of expertise", "Couldn't find any work", "Lacks necessary schooling/training", "Employers think too young or too old",
+                                                                   "Other types of discrimination", "Can't arrange child care", "Family responsibilities", "In school or other training", "Ill-health, physcial disability",
+                                                                   "Transportation problems", "Other - Specify"))
+  
+  AA$pedwlko = factor(AA$pedwlko, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pedwwk = factor(AA$pedwwk, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pedw4wk = factor(AA$pedw4wk, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pedwlkwk = factor(AA$pedwlkwk, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pedwavl = factor(AA$pedwavl, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pedwavr = factor(AA$pedwavr, levels = c(-1, 1:3), labels = c(NA, "Own temporary illness", "Going to school", "Other"))
+  
+  
   
 }
 
