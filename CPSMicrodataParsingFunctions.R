@@ -169,7 +169,7 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
   AA$pelaydur[AA$pelaydur == -1] = NA
   AA$pelayfto = factor(AA$pelayfto, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   
-  # This removes several check variables about layoffs that have limited use of researcher. This removes 3 columns from AA; there are 113 columns prior to the first one here (after earlier removal).
+  # This removes several check variables about layoffs that have limited use for researcher. This removes 3 columns from AA; there are 113 columns prior to the first one here (after earlier removal).
   AA = select(AA, -c(pulayck1, pulayck2, pulayck3))
   
   AA$pulk = factor(AA$pulk, levels = c(-1, 1:5), labels = c(NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
@@ -249,8 +249,67 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
   AA$pedwavl = factor(AA$pedwavl, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   AA$pedwavr = factor(AA$pedwavr, levels = c(-1, 1:3), labels = c(NA, "Own temporary illness", "Going to school", "Other"))
   
+  # This removes several check variables about labor force types that have limited use for researcher. This removes 5 columns from AA; there are 147 columns prior to the first one here (after earlier removal).
+  AA = select(AA, -c(pudwck1, pudwck2, pudwck3, pudwck4, pudwck5))
+  
+  AA$pejhwko = factor(AA$pejhwko, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pujhdp1o = factor(AA$pujhdp1o, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$pejhrsn = factor(AA$pejhrsn, levels = c(-1, 1:8), labels = c(NA, "Personal/Family (Including Pregnancy)", "Return to school", "Health", "Retirement or old age", "Temp, Seasonal or intermittent job complete", "Slack work/business conditions", "Unsatisfactory work arrangements (Hrs, pay, etc.)", "Other - specify"))
+  AA$pejhwant = factor(AA$pejhwant, levels = c(-1, 1, 2), labels = c(NA, "Yes, or it depends", "No"))
+  
+  # This removes check variables about rotation groups that have limited use for researcher. This removes 2 columns from AA; there are 151 columns prior to the first one here (after earlier removal).
+  AA = select(AA, -c(pujhck1, pujhck2))
+  
+  AA$prabsrea = factor(AA$prabsrea, levels = c(-1, 1:40), labels = c(NA, "FT paid-Vacation", "FT paid-Own illness", "FT paid-Child care problems", "FT paid-Other family/Personal oblig.",
+                                                                     "FT paid-Maternity/Paternity leave", "FT paid-Labor dispute", "FT paid-Weather affected job", "FT paid-School/Training", "FT paid-Civic/Military duty",
+                                                                     "FT paid-Other", "FT unpaid-Vacation", "FT unpaid-Own illness", "FT unpaid-Child care problems", "FT unpaid-Other fam/Personal obligation",
+                                                                     "FT unpaid-Maternity/Paternity leave", "FT unpaid-Labor dispute", "FT unpaid-Weather affected job", "FT unpaid-School/Training", "FT unpaid-Civic/Military duty",
+                                                                     "FT unpaid-Other", "PT paid-Vacation", "PT paid-Own illness", "PT paid-Child care problems", "PT paid-Other family/Personal oblig.",
+                                                                     "PT paid-Maternity/Paternity leave", "PT paid-Labor dispute", "PT paid-Weather affected job", "PT paid-School/Training", "PT paid-Civic/Military duty",
+                                                                     "PT paid-Other", "PT unpaid-Vacation", "PT unpaid-Own illness", "PT unpaid-Child care problems", "PT unpaid-Other fam/Personal obligation",
+                                                                     "PT unpaid-Maternity/Paternity leave", "PT unpaid-Labor dispute", "PT unpaid-Weather affected job", "PT unpaid-School/Training", "PT unpaid-Civic/Military duty",
+                                                                     "PT unpaid-Other"))
+  AA$prcivlf = factor(AA$prcivlf, levels = c(-1, 1, 2), labels = c(NA, "In Civilian Labor Force", "Not in Civilian Labor Force"))
+  AA$prdisc = factor(AA$prdisc, levels = c(-1, 1:3), labels = c(NA, "Discouraged worker", "Conditionally interested", "Not available"))
+  AA$premphrs = factor(AA$premphrs, levels = -1:22, labels = c(A, "Unemployed and NILF", "W/job, Not at work-Illness", "W/job, not at work-Vacation", "W/job, not at work-Weather affected job",
+                                                               "W/job, not at work-Labor dispute", "W/job, not at work-Child care problems", "W/job, not at work-Fam/Pers obligation", "W/job, not at work-Maternity/Paternity", "W/job, not at work-School/Training",
+                                                               "W/job, not at work-Civic/Military duty", "W/job, not at work-Does not work in bus", "W/job, not at work-Other", "At work- 1-4 hrs", "At work- 5-14 hrs",
+                                                               "At work- 15-21 hrs", "At work- 22-29 hrs", "At work- 30-34 hrs", "At work- 35-39 hrs", "At work- 40 hrs",
+                                                               "At work- 41-47 hrs", "At work- 48 hrs", "At work- 49-59 hrs", "At work- 60 hrs or more"))
+  AA$prempnot = factor(AA$prempnot, levels = c(-1, 1:4), labels = c(NA, "Employed", "Unemployed", "Not in the Labor Force (NILF)-discouraged", "Not in the Labor Force (NILF)-other"))
+  AA$prexplf = factor(AA$prexplf, levels = c(-1, 1, 2), labels = c(NA, "Employed", "Unemployed"))
+  AA$prftlf = factor(AA$prftlf, levels = c(-1, 1, 2), labels = c(NA, "Full Time Labor Force", "Part Time Labor Force"))
+  AA$prhrusl = factor(AA$prhrusl, levels = c(-1, 1:8), labels = c(NA, "0-20 hrs", "21-34 hrs", "35-39 hrs", "40 hrs", "41-49 hrs", "50 or more hrs", "Varies-Full Time", "Varies-Part Time"))
+  AA$prjobsea = factor(AA$prjobsea, levels = c(-1, 1:5), labels = c(NA, "Looked last 4 weeks - Not worked", "Looked last 4 weeks - Worked", "Looked last 4 weeks - Layoff", "Unavailable job seekers", "No recent job search"))
+  AA$prpthrs = factor(AA$prpthrs, levels = -1:12, labels = c(NA, "Usually FT, PT for Noneconomic reasons", "Usu.FT, PT econ reasons; 1-4 hrs", "Usu.FT, PT econ reasons; 5-14 hrs", "Usu.FT, PT econ reasons; 15-29 hrs",
+                                                             "Usu.FT, PT econ reasons; 30-34 hrs", "Usu.PT, econ reasons; 1-4 hrs", "Usu.PT, econ reasons; 5-14 hrs", "Usu.PT, econ reasons 15-29 hrs", "Usu.PT, econ reasons 30-34 hrs",
+                                                             "Usu.PT, non-econ reasons; 1-4 hrs", "Usu.PT, non-econ reasons; 5-14 hrs", "Usu.PT, non-econ reasons; 15-29 hrs", "Usu.PT, non-econ reasons; 30-34 hrs"))
+  AA$prptrea = factor(AA$prptrea, levels = c(-1, 1:23), labels = c(NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", "Usu. FT-Vacation/Personal day",
+                                                                   "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute",
+                                                                   "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions",
+                                                                   "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Labor dispute", "Usu. PT-Weather affected job", 
+                                                                   "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
+  AA$prunedur[AA$prunedur == -1] = NA
+  AA$prusftpt = factor(AA$prusftpt, levels = c(-1, 1:3), labels = c(NA, "Full Time", "Part Time", "Status unknown"))
+  AA$pruntype = factor(AA$pruntype, levels = c(-1, 1:6), labels = c(NA, "Job loser/On layoff", "Other job loser", "Temportary job ended", "Job leaver", "Re-entrant", "New-entrant"))
+  AA$prwksch = factor(AA$prwksch, levels = -1:4, labels = c(NA, "Not in Labor Force", "At work", "With job, not at work", "Unemployed, seeks FT", "Unemployed, seeks PT"))
+  AA$prwkstat = factor(AA$prwkstat, levels = c(-1, 1:12), labels = c(NA, "Not in Labor Force", "FT hours (35+), usually FT", "PT for economic reasons, usually FT", "PT for non-economic reasons, usually FT",
+                                                                     "Not at work, usually FT", "PT hrs, usually PT for economic reasons", "PT hrs, usually PT for non-economic reasons", "FT hours, usually PT for economic reasons", "FT hours, usually PT for non-economic reasons", 
+                                                                     "Not at work, usually Part-Time", "Unemployed FT", "Unemployed PT"))
+  AA$prwntjob = factor(AA$prwntjob, levels = c(-1, 1, 2), labels = c(NA, "Want a job", "Other Not in the Labor Force (NILF)"))
   
   
+  # This removes check variables about ppl Not in the Labor Force that have limited use for researcher. This removes 3 columns from AA; there are 168 columns prior to the first one here (after earlier removal). 
+  AA = select(AA, -c(pujhck3, pujhck4, pujhck5))
+  
+  AA$puiodp1 = factor(AA$puiodp1, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$puiodp2 = factor(AA$puiodp2, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$puiodp3 = factor(AA$puiodp3, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peio1cow = factor(AA$peio1cow, levels = c(-1, 1:8), labels = c(NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
+  AA$puio1mfg = factor(AA$puio1mfg, levels = c(-1, 1:4), labels = c(NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
+  AA$peio1icd[AA$peio1icd == -1] = NA
+  AA$peio2cow = factor(AA$peio2cow, levels = c(-1, 1:11), labels = c(NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Unknown", "Government, Level unknown", "Self-employed, incorporation status unknown"))
+  AA$puio2mfg = factor(AA$puio2mfg, levels = c(-1, 1:4), labels = c(NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
 }
 
 
