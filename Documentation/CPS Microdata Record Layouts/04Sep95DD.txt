@@ -2646,7 +2646,7 @@ PEIO1ICD     3     INDUSTRY CODE FOR PRIMARY JOB       (436 - 438)
 
                    VALID ENTRIES
 
-                   0   MIN VALUE
+                   0   MIN VALUEAA
                    999 MAX VALUE
 
 PEIO1OCD     3     OCCUPATION CODE FOR PRIMARY JOB.    (439 - 441)
@@ -2828,7 +2828,7 @@ PRDTCOW1     2     DETAILED CLASS OF WORKER RECODE - JOB 1 (468 - 469)
                    8   NONAG, WS, GOVT, STATE
                    9   NONAG, WS, GOVT, LOCAL
                    10  NONAG, SELF-EMPLOYED
-                             11  NONAG, UNPAID
+                   11  NONAG, UNPAID
 
 
 PRDTCOW2     2     DETAILED CLASS OF WORKER RECODE - JOB 2 (470 - 471)
@@ -2860,52 +2860,61 @@ PRDTIND1     2     DETAILED INDUSTRY RECODE - JOB 1           (472 - 473)
                    3   MINING
                    4   CONSTRUCTION
                    5   MFG-LUMBER & WOOD PRODS, EX FURNITURE
+
                    6   MFG-FURNITURE & FIXTURES
                    7   MFG-STONE, CLAY, CONCRETE, GLASS PRODS
                    8   MFG-PRIMARY METALS
                    9   MFG-FABRICATED METALS
                    10  MFG-NOT SPECIFIED METAL INDUSTRIES
+
                    11  MFG-MACHINERY, EX ELECTRICAL
                    12  MFG-ELECTRICAL MACHINERY, EQUIP SUPPLIES
                    13  MFG-MOTOR VEHICLES & EQUIP
                    14  MFG-AIRCRAFT & PARTS
-                             15  MFG-OTHER TRANSPORTATION EQUIPMENT
+                   15  MFG-OTHER TRANSPORTATION EQUIPMENT
+
                    16  MFG-PROFESSIONAL & PHOTO EQUIP, WATCHES
                    17  MFG-TOYS, AMUSEMENT & SPORTING GOODS
                    18  MFG-MISC & NEC MFG INDUSTRIES
                    19  MFG-FOOD & KINDRED PRODS
+	 	   20  MFG-TOBACCO PRODS
 
-PRDTIND1 (CONTINUED)   20 MFG-TOBACCO PRODS
                    21  MFG-TEXTILE MILL PRODS
-                             22  MFG-APPAREL & OTHER FINISHED TEXTILE PR
+                   22  MFG-APPAREL & OTHER FINISHED TEXTILE PR
                    23  MFG-PAPER & ALLIED PRODUCTS
                    24  MFG-PRINTING, PUBLISHING & ALLIED INDS
                    25  MFG-CHEMICALS & ALLIED PRODS
+
                    26  MFG-PETROLEUM & COAL PRODS
                    27  MFG-RUBBER & MISC PLASTIC PRODS
                    28  MFG-LEATHER & LEATHER PRODS
                    29  TRANSPORTATION
                    30  COMMUNICATIONS
+
                    31  UTILITIES & SANITARY SERVICES
                    32  WHOLESALE TRADE
                    33  EATING AND DRINKING PLACES
                    34  OTHER RETAIL TRADE
                    35  BANKING AND OTHER FINANCE
+
                    36  INSURANCE AND REAL ESTATE
                    37  PRIVATE HOUSEHOLD SERVICES
                    38  BUSINESS SERVICES
                    39  AUTOMOBILE AND REPAIR SERVICES
                    40  PERSONAL SERV EXC PRIVATE HOUSEHOLDS
+
                    41  ENTERTAINMENT & RECREATION SERVICES
                    42  HOSPITALS
                    43  HEALTH SERVICES, EXC. HOSPITALS
                    44  EDUCATIONAL SERVICES
-                             45  SOCIAL SERVICES
-                             46  OTHER PROFESSIONAL SERVICES
+                   45  SOCIAL SERVICES
+
+                   46  OTHER PROFESSIONAL SERVICES
                    47  FORESTRY & FISHERIES
                    48  JUSTICE, PUBLIC ORDER & SAFETY
                    49  ADMIN OF HUMAN RESOURCE PROGRAMS
                    50  NATIONAL SECURITY & INTERNAL AFFAIRS
+
                    51  OTHER PUBLIC ADMINISTRATION
                    52  ARMED FORCES
 
@@ -2982,47 +2991,55 @@ PRDTOCC1     2     DETAILED OCCUPATION RECODE - JOB 1      (476 - 477)
                    3   MANAGEMENT RELATED OCCUPATIONS
                    4   ENGINEERS
                    5   MATHEMATICAL AND COMPUTER SCIENTISTS
+
                    6   NATURAL SCIENTISTS
                    7   HEALTH DIAGNOSING OCCUPATIONS
                    8   HEALTH ASSESSMENT AND TREATMENT OCCUPATIONS
                    9   TEACHERS, COLLEGE AND UNIVERSITY
                    10  TEACHERS, EXCEPT COLLEGE AND UNIVERSITY
+
                    11  LAWYERS AND JUDGES
                    12  OTHER PROFESSIONAL SPECIALTY OCCUPATIONS
                    13  HEALTH TECHNOLOGISTS AND TECHNICIANS
                    14  ENGINEERING AND SCIENCE TECHNICIANS
                    15  TECHNICIANS, EXCEPT HEALTH, ENGINEERING, AND SCIENCE
+
                    16  SUPERVISORS AND PROPRIETORS, SALES OCCUPATIONS
                    17  SALES REPs, FINANCE AND BUSINESS SERVICES
-
-PRDTOCC1 (CONTINUED)   18 SALES REPs, COMMODITIES, EXCEPT RETAIL
+		   18  SALES REPs, COMMODITIES, EXCEPT RETAIL
                    19  SALES WORKERS, RETAIL & PERSONAL SERVICES
                    20  SALES RELATED OCCUPATIONS
+
                    21  SUPERVISORS, ADMINISTRATIVE SUPPORT
                    22  COMPUTER EQUIPTMENT OPERATORS
                    23  SECRETARIES, STENOGRAPHERS, AND TYPISTS
                    24  FINANCIAL RECORDS PROCESSING
                    25  MAIL AND MESSAGE DISTRIBUTION
+
                    26  OTHER ADMIN. SUPPORT, INCLUDING CLERICAL
                    27  PRIVATE HOUSEHOLD SERVICE OCCUPATIONS
                    28  PROTECTIVE SERVICE
                    29  FOOD SERVICE
                    30  HEALTH SERVICE
+
                    31  CLEANING AND BUILDING SERVICE
                    32  PERSONAL SERVICE
                    33  MECHANICS AND REPAIRERS
-                                 34 CONSTRUCTION TRADES
-                                 35 OTHER PRECISION PRODUCTION, CRAFT, AND REPAIR
+                   34  CONSTRUCTION TRADES
+                   35  OTHER PRECISION PRODUCTION, CRAFT, AND REPAIR
+
                    36  MACHINE OPERATORS, AND TENDERS, EXCEPT PRECISION
                    37  FABRICATORS, ASSEMBLERS, INSPECTORS, SAMPLERS
                    38  MOTOT VEHICLE OPERATORS
-                                 39 OTHER TRANSPORTATION AND MATERIAL MOVING OCCUPATIONS
+                   39  OTHER TRANSPORTATION AND MATERIAL MOVING OCCUPATIONS
                    40  CONSTRUCTION LABORERS
+
                    41  FREIGHT, STOCK, & MATERIALS HANDLERS
                    42  OTHER HANDLERS, EQUIPT. CLEANERS, HELPERS, LABORERS
                    43  FARM OPERATORS AND MANAGERS
                    44  FARM WORKERS AND RELATED OCCUPATIONS
                    45  FORESTRY AND FISHING OCCUPATIONS
+
                    46  ARMED FORCES
 
 PRDTOCC2     2     DETAILED OCCUPATION RECODE          (478 - 479)

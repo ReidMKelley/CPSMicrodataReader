@@ -308,8 +308,63 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
   AA$peio1cow = factor(AA$peio1cow, levels = c(-1, 1:8), labels = c(NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
   AA$puio1mfg = factor(AA$puio1mfg, levels = c(-1, 1:4), labels = c(NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
   AA$peio1icd[AA$peio1icd == -1] = NA
+  AA$peio1ocd[AA$peio1ocd == -1] = NA
   AA$peio2cow = factor(AA$peio2cow, levels = c(-1, 1:11), labels = c(NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Unknown", "Government, Level unknown", "Self-employed, incorporation status unknown"))
   AA$puio2mfg = factor(AA$puio2mfg, levels = c(-1, 1:4), labels = c(NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
+  AA$peio2icd[AA$peio2icd == -1] = NA 
+  AA$peio2ocd[AA$peio2ocd == -1] = NA
+  
+  # This removes check variables about O&I that have limited use for researcher. This removes 3 columns from AA; there are 179 columns prior to the first one here (after earlier removal).
+  AA = select(AA, -c(puiock1, puiock2, puiock3))
+  AA$prioelg = factor(AA$prioelg, levels = -1:1, labels = c(NA, "Not eligible for edit", "Eligible for edit"))
+  AA$pragna = factor(AA$pragna, levels = c(-1, 1, 2), labels = c(NA, "Agricultural", "Non-agricultural"))
+  AA$prcow1 = factor(AA$prcow1, levels = c(-1, 1:6), labels = c(NA, "Federal Govt", "State Govt", "Local Govt", "Private (Incl. Self-employed Incorp.)", "Self-employed unincorp.", "Without Pay"))
+  AA$prcow2 = factor(AA$prcow2, levels = c(-1, 1:6), labels = c(NA, "Federal Govt", "State Govt", "Local Govt", "Private (Incl. Self-employed Incorp.)", "Self-employed unincorp.", "Without Pay"))
+  AA$prcowpg = factor(AA$prcowpg, levels = c(-1, 1, 2), labels = c(NA, "Private", "Government"))
+  AA$prdtcow1 = factor(AA$prdtcow1, levels = c(-1, 1:11), labels = c(NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local", "Nonag, Self-employed", "Nonag, unpaid"))
+  AA$prdtcow2 = factor(AA$prdtcow2, levels = c(-1, 1:11), labels = c(NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local", "Nonag, Self-employed", "Nonag, unpaid"))
+  AA$prdtind1 = factor(AA$prdtind1, levels = c(-1, 1:52), labels = c(NA, "Goods producing-Agricultural services", "Goods producing-Other Agricultural", "Mining", "Construction", "Mfg-Lumber & Wood prods, excluding Furniture",
+                                                                     "Mfg-Furniture & Fixtures", "Mfg-Stone, clay, concrete, Glass prods", "Mfg-Primary metals", "Mfg-Fabricated metals", "Mfg-Not specified metal industries",
+                                                                     "Mfg-Machinery, excluding electrical", "Mfg-Electrical machinery, equipment supplies", "Mfg-Motor vehicles & equipment", "Mfg-aircraft & parts", "Mfg-Other transportation equipment",
+                                                                     "Mfg-Professional & photo equipment, watches", "Mfg-Toys, amusement, & sporting goods", "Mfg-Miscellanious & NEC Mfg industries", "Mfg-Food & kindred products", "Mfg-Tobacco products",
+                                                                     "Mfg-Textile mill products", "Mfg-Apparel & other finished textile PR", "Mfg-Paper & allied products", "Mfg-Printing, publishing & allied industries", "Mfg-Chemicals & allied products",
+                                                                     "Mfg-Petroleum & coal products", "Mfg-Rubber & Miscellanious plastic products", "Mfg-Leather & leather products", "Transportation", "Communications",
+                                                                     "Utilities & Sanitary services", "Wholesale trade", "Eating and drinking places", "Other retail trade", "Banking and other finance",
+                                                                     "Insurance and Real estate", "Private household services", "Business services", "Automobile and repair services", "Personal services excluding private households",
+                                                                     "Entertainment & recreation services", "Hospitals", "Health services, excluding hospitals", "Educational services", "Social services",
+                                                                     "Other professional services", "Forestry & fisheries", "Justice, public order, & safety", "Admin of human resource programs", "National Security & Internal Affairs",
+                                                                     "Other Public Administration", "Armed Forces"))
+  AA$prdtind2 = factor(AA$prdtind2, levels = c(-1, 1:52), labels = c(NA, "Goods producing-Agricultural services", "Goods producing-Other Agricultural", "Mining", "Construction", "Mfg-Lumber & Wood prods, excluding Furniture",
+                                                                     "Mfg-Furniture & Fixtures", "Mfg-Stone, clay, concrete, Glass prods", "Mfg-Primary metals", "Mfg-Fabricated metals", "Mfg-Not specified metal industries",
+                                                                     "Mfg-Machinery, excluding electrical", "Mfg-Electrical machinery, equipment supplies", "Mfg-Motor vehicles & equipment", "Mfg-aircraft & parts", "Mfg-Other transportation equipment",
+                                                                     "Mfg-Professional & photo equipment, watches", "Mfg-Toys, amusement, & sporting goods", "Mfg-Miscellanious & NEC Mfg industries", "Mfg-Food & kindred products", "Mfg-Tobacco products",
+                                                                     "Mfg-Textile mill products", "Mfg-Apparel & other finished textile PR", "Mfg-Paper & allied products", "Mfg-Printing, publishing & allied industries", "Mfg-Chemicals & allied products",
+                                                                     "Mfg-Petroleum & coal products", "Mfg-Rubber & Miscellanious plastic products", "Mfg-Leather & leather products", "Transportation", "Communications",
+                                                                     "Utilities & Sanitary services", "Wholesale trade", "Eating and drinking places", "Other retail trade", "Banking and other finance",
+                                                                     "Insurance and Real estate", "Private household services", "Business services", "Automobile and repair services", "Personal services excluding private households",
+                                                                     "Entertainment & recreation services", "Hospitals", "Health services, excluding hospitals", "Educational services", "Social services",
+                                                                     "Other professional services", "Forestry & fisheries", "Justice, public order, & safety", "Admin of human resource programs", "National Security & Internal Affairs",
+                                                                     "Other Public Administration", "Armed Forces"))
+  AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-1, 1:46), labels = c(NA, "Officials & Administrators, Public Admin.", "Other executive, Admin. & Managerial", "Management related occupations", "Engineers", "Mathematical and Computer Scientists",
+                                                                     "Natural Scientists", "Health diagnosing occupations", "Health assessment and treatment occupations", "Teachers, College and University", "Teachers, except College and University",
+                                                                     "Lawyers and judges", "Other professional specialty occupations", "Health technologists and technicians", "Engineering and Science technicians", "Technicians, except Health, Engineering, and Science",
+                                                                     "Supervisors and proprietors, sales occupations", "Sales reps, finance and business services", "Sales reps, Commodities, except Retail", "Sales workers, Retail & personal services", "Sales related occupations",
+                                                                     "Supervisors, Administrative support", "Computer equipment operators", "Secretaries, stenographers, and typists", "Financial records processing", "Mail and message distribution",
+                                                                     "Other Admin. support, including Clerical", "Private household service occupations", "Protective service", "Food service", "Health service",
+                                                                     "Cleaning and building service", "Personal service", "Mechanics and repairers", "Construction trades", "Other precision production, craft, and repair",
+                                                                     "Machine operator, and tenders, except precision", "Fabricators, assemblers, inspectors, samplers", "Motor vehicle operators", "Other transportation and material moving occupations", "Construction laborers",
+                                                                     "Freight, Stock, & Materials Handlers", "Other handlers, Equipment cleaners, Helpers, Laborers", "Farm Operators and Managers", "Farm workers and related occupations", "Forestry and Fishing occupations",
+                                                                     "Armed Forces"))
+  AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-1, 1:46), labels = c(NA, "Officials & Administrators, Public Admin.", "Other executive, Admin. & Managerial", "Management related occupations", "Engineers", "Mathematical and Computer Scientists",
+                                                                     "Natural Scientists", "Health diagnosing occupations", "Health assessment and treatment occupations", "Teachers, College and University", "Teachers, except College and University",
+                                                                     "Lawyers and judges", "Other professional specialty occupations", "Health technologists and technicians", "Engineering and Science technicians", "Technicians, except Health, Engineering, and Science",
+                                                                     "Supervisors and proprietors, sales occupations", "Sales reps, finance and business services", "Sales reps, Commodities, except Retail", "Sales workers, Retail & personal services", "Sales related occupations",
+                                                                     "Supervisors, Administrative support", "Computer equipment operators", "Secretaries, stenographers, and typists", "Financial records processing", "Mail and message distribution",
+                                                                     "Other Admin. support, including Clerical", "Private household service occupations", "Protective service", "Food service", "Health service",
+                                                                     "Cleaning and building service", "Personal service", "Mechanics and repairers", "Construction trades", "Other precision production, craft, and repair",
+                                                                     "Machine operator, and tenders, except precision", "Fabricators, assemblers, inspectors, samplers", "Motor vehicle operators", "Other transportation and material moving occupations", "Construction laborers",
+                                                                     "Freight, Stock, & Materials Handlers", "Other handlers, Equipment cleaners, Helpers, Laborers", "Farm Operators and Managers", "Farm workers and related occupations", "Forestry and Fishing occupations",
+                                                                     "Armed Forces"))
 }
 
 
