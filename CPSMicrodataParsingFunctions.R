@@ -119,6 +119,7 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
   }
   
   
+  
   # These functions format the Personal Information Labor Force section
   AA$puslfprx = factor(AA$puslfprx, levels = c(-1, 1:3), labels = c(NA, "Labor Force Info collected by self", "Labor Force info collected by proxy", "Labor Force info collected by both self and proxy"))
   AA$pemlr = factor(AA$pemlr, levels = c(-1, 1:7), labels = c(NA, "Employed-At work", "Employed-Absent", "Unemployed-On layoff", "Unemployed-Looking", "Not in Labor Force-Retired", "Not in Labor Force-Disabled", "Not in labor force-Other"))
@@ -365,6 +366,109 @@ ParserJanuary1994 = function(AA, DictionaryIn) {
                                                                      "Machine operator, and tenders, except precision", "Fabricators, assemblers, inspectors, samplers", "Motor vehicle operators", "Other transportation and material moving occupations", "Construction laborers",
                                                                      "Freight, Stock, & Materials Handlers", "Other handlers, Equipment cleaners, Helpers, Laborers", "Farm Operators and Managers", "Farm workers and related occupations", "Forestry and Fishing occupations",
                                                                      "Armed Forces"))
+  AA$premp = factor(AA$premp, levels = c(-1, 1), labels = c(NA, "Employed persons (Excluding farm & private households)"))
+  AA$prmjind1 = factor(AA$prmind1, levels = c(-1, 1:23), labels = c(NA, "Agriculture", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable Goods",
+                                                                    "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
+                                                                    "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
+                                                                    "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
+                                                                    "Forestry and Fisheries", "Public Administration", "Armed Forces"))
+  AA$prmjind2 = factor(AA$prmind2, levels = c(-1, 1:23), labels = c(NA, "Agriculture", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable Goods",
+                                                                    "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
+                                                                    "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
+                                                                    "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
+                                                                    "Forestry and Fisheries", "Public Administration", "Armed Forces"))
+  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-1,1:14), labels = c(NA, "Executive, Administrative, & Managerial occupations", "Professional specialty occupations", "Technicians and related support occupations", "Sales occupations", "Administrative support occupations, including Clerical",
+                                                                    "Private Household occupations", "Protective service occupations", "Service occupations, except Protective & HHLD", "Precision production, Craft & Repair occupations", "Machine operators, Assemblers, & Inspectors",
+                                                                    "Transportation and Material moving occupations", "Handlers, Equipment cleaners, Helpers, Laborers", "Farming, Forestry, and Fishing occupations", "Armed Forces"))
+  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-1,1:14), labels = c(NA, "Executive, Administrative, & Managerial occupations", "Professional specialty occupations", "Technicians and related support occupations", "Sales occupations", "Administrative support occupations, including Clerical",
+                                                                    "Private Household occupations", "Protective service occupations", "Service occupations, except Protective & HHLD", "Precision production, Craft & Repair occupations", "Machine operators, Assemblers, & Inspectors",
+                                                                    "Transportation and Material moving occupations", "Handlers, Equipment cleaners, Helpers, Laborers", "Farming, Forestry, and Fishing occupations", "Armed Forces"))
+  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-1, 1:4), labels = c(NA, "Managerial & Professional, Technical, Sales & Support occupations", "Service occupations", "Production, Craft, Repair, Operators", "Farming, Forestry, and Fishing occupations"))
+  AA$prnagpws = factor(AA$prnagpws, levels = c(-1, 1), labels = c(NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
+  AA$prnagws = factor(AA$prnagws, levels = c(-1, 1), labels = c(NA, "Non-Ag Wage & Salary workers"))
+  AA$prsjmj = factor(AA$prsjmj, levels = c(-1, 1, 2), labels = c(NA, "Single jobholder", "Multiple jobholder"))
+  AA$prerelg = factor(AA$prerelg, levels = -1:1, labels = c(NA, "Not eligible for edit", "Eligible for edit"))
+  AA$peernuot = factor(AA$peernuot, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AApeernper = factor(AA$peernper, levels = c(-1, 1:7), labels = c(NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
+  AA$peernrt = factor(AA$peernrt, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peernhry = factor(AA$peernhry, levels = c(-1, 1, 2), labels = c(NA, "Hourly workers", "Nonhourly workers"))
+  AA$puernh1c[AA$puernh1c == -1] = NA
+  AA$peernh2[AA$peernh2 == -1] = NA
+  AA$peernh1o[AA$peernh1o == -1] = NA
+  AA$prernhly[AA$prernhly == -1] = NA
+  AA$pthr = factor(AA$pthr, levels = -1:1, labels = c(NA, "Not topcoded", "Topcoded"))
+  AA$peernhro[AA$peernhro == -1] = NA
+  AA$prernwa[AA$prernwa == -1] = NA
+  AA$ptwk = factor(AA$ptwk, levels = -1:1, labels = c(NA, "Not topcoded", "Topcoded"))
+  AA$peernvr1 = factor(AA$peernvr1, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peernvr3 = factor(AA$peernvr3, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peern[AA$peern == -1] = NA
+  AA$puern2[AA$puern2 == -1] = NA
+  AA$ptot = factor(AA$ptot, levels = -1:1, labels = c(NA, "Not topcoded", "Topcoded"))
+  AA$puernvr4 = factor(AA$puernvr4, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peernwkp[AA$peernwkp == -1] = NA
+  AA$peernlab = factor(AA$peernlab, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peerncov = factor(AA$peerncov, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$penlfjh = factor(AA$penlfjh, levels = c(-1, 1:3), labels = c(NA, "Within the last 12 months", "More than 12 months ago", "Never worked"))
+  AA$penlfret = factor(AA$penlfret, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$penlfact = factor(AA$penlfact, levels = c(-1, 1:6), labels = c(NA, "Disabled", "Ill", "In School", "Taking care of house or family", "In retirement", "Something else/other"))
+  
+  # This removes check variables about NILF that have limited use for researcher. This removes 2 columns from AA; there are 224 columns prior to the first one here (after earlier removal).
+  AA = select(AA, -c(punlfck1, punlfck2))
+  
+  AA$peschenr = factor(AA$peschenr, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  AA$peschft = factor(AA$peschft, levels = c(-1, 1, 2), labels = c(NA, "Full-Time", "Part-Time"))
+  AA$peschlvl = factor(AA$peschlvl, levels = c(-1, 1, 2), labels = c(NA, "High school", "College or University"))
+  AA$prnlfsch = factor(AA$prnlfsch, levels = c(-1, 1, 2), labels = c(NA, "In school", "Not in school"))
+  AA$pwfmwgt[AA$pwfmwgt == -1] = NA
+  AA$pwlgwgt[AA$pwlgwgt == -1] = NA
+  AA$pworwgt[AA$pworwgt == -1] = NA
+  AA$pwsswgt[AA$pwsswgt == -1] = NA
+  AA$pwvetwgt[AA$pwvetwgt == -1] = NA
+  
+  
+  
+  # These functions format the Allocation Flags section
+  AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$prhernal = factor(AA$prhernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtenure = factor(AA$hxtenure, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtelhhd = factor(AA$hxtelhhd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtelavl = factor(AA$hxtelavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxphoneo = factor(AA$hxphoneo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxinusyr = factor(AA$pxinusyr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrrp = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxparent = factor(AA$pxparent, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxage = factor(AA$pxage, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmaritl = factor(AA$pxmaritl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxspouse = factor(AA$pxspouse, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxsex = factor(AA$pxsex, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafwhen = factor(AA$pxafwhen, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafnow = factor(AA$pxafnow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxeduca = factor(AA$pxeduca, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrace = factor(AA$pxrace, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxnatvty = factor(AA$pxnatvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmntvty = factor(AA$pxmntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxfntvty = factor(AA$pxfntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxorigin = factor(AA$pxorigin, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmlr = factor(AA$pxmlr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxret1 = factor(AA$pxret1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxabsrsn = factor(AA$pxabsrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxabspdo = factor(AA$pxabspdo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmjot = factor(AA$pxmjot, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmjnum = factor(AA$pxmjnum, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrusl1 = factor(AA$pxhrusl1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrusl2 = factor(AA$pxhrusl2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrftpt = factor(AA$pxhrftpt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhruslt = factor(AA$pxhruslt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrwant = factor(AA$pxhrwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrrsn1 = factor(AA$pxhrrsn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrrsn2 = factor(AA$pxhrrsn2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhract1 = factor(AA$pxhract1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhract2 = factor(AA$pxhract2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhractt = factor(AA$pxhractt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrrsn3 = factor(AA$pxhrrsn3, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrrp = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
 }
 
 
