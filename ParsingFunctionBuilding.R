@@ -1,11 +1,11 @@
-ParserSeptember1995 = function(AA, DictionaryIn) {
+ParserJanuary1998 = function(AA, DictionaryIn) {
   
   
   
   # These functions format the Household Information section
   AA$hrhhid[AA$hrhhid == -1] = NA
-  AA$huinttyp = factor(AA$huinttyp, levels = -1:2, labels = c(NA, "Noninterview/Indeterminate", "Personal", "Telephone"))
-  AA$huprscnt[AA$huprscnt == -1] = NA
+  AA$hrmonth[AA$hrmonth == -1] = NA
+  AA$hryear4[AA$hryear4 == -1] = NA
   AA$hurespli[AA$hurespli == -1] = NA
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-1, 0, 1, 2, 5, 24, 115, 200, 201, 202, 203, 204, 205, 210, 216, 217, 218, 219, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 240, 241, 242, 243, 244, 245, 246, 247, 248),
@@ -26,8 +26,8 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$hetelavl = factor(AA$hetelavl, levels = c(-1, 1, 2), labels = c(NA, "Telephone elsewhere available for household to use", "Telephone not available eslewhere for household to use"))
   AA$hephoneo = factor(AA$hephoneo, levels = c(-1, 1, 2), labels = c(NA, "Telephone interview acceptable", "Telephone interview not acceptable"))
   AA$hufaminc = factor(AA$hufaminc, levels = c(-1, 1:14), labels = c(NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
-                                                                    "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
-                                                                    "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 or more"))
+                                                                     "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
+                                                                     "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 or more"))
   AA$hutypea = factor(AA$hutypea, levels = c(-1, 1:4), labels = c(NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
   AA$hutypb = factor(AA$hutypb, levels = c(-1, 1:9), labels = c(NA, "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", "Unfit or to be demolished", 
                                                                 "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
@@ -40,11 +40,8 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
                                                                 "Unmarried civ. female-Prim. fam HHLDer", "Primary family HHLDer-RP in AF, Unmar.", "Civilian male primary individual", "Civilian female primary individual", "Primary individual HHLD-RP in AF",
                                                                 "Group quarter with family", "Group quarters without family"))
   AA$hrmis[AA$hrmis == -1] = NA
-  AA$hrmonth[AA$hrmonth == -1] = NA
-  AA$hryear[AA$hryear == -1] = NA
-  AA =add_column(AA, hryear4 = 1900 + AA$hryear)
-  AA = AA %>% select(1:22, hryear4, everything())
-  AA = select(AA, -hryear)
+  AA$huinttyp = factor(AA$huinttyp, levels = -1:2, labels = c(NA, "Noninterview/Indeterminate", "Personal", "Telephone"))
+  AA$huprscnt[AA$huprscnt == -1] = NA
   AA$hrlonglk = factor(AA$hrlonglk, levels = c(-1, 0, 2, 3), labels = c(NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
   
   # These set up the hrhhid2 variable for longitudinal linking
@@ -139,8 +136,8 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$puabsot = factor(AA$puabsot, levels = c(-1, 1:5), labels = c(NA, "Yes, person had a full/part-time job last week", "No, person didn't have a full/part-time job last week", "Person was retired last week", "Person was disabled last week", "Person was unable to work last week"))
   AA$pulay = factor(AA$pulay, levels = c(-1, 1:5), labels = c(NA, "Yes, person is on layoff from a job", "No, person is not on layoff from a job", "Person is retired", "Person is disabled", "Person is unable to work"))
   AA$peabsrsn = factor(AA$peabsrsn, levels = c(-1, 1:14), labels = c(NA, "On layoff", "Slack work/Business conditions", "Waiting for a new job to begin", "Vacation/Personal days", "Own illness/Injury/Medical problems", 
-                                                                    "Child care problems", "Other family/Personal obligation", "Maternity/Paternity leave", "Labor dispute", "Weather affected job", 
-                                                                    "School/Training", "Civic/Military Duty", "Does not work in the business", "Other (Specify)"))
+                                                                     "Child care problems", "Other family/Personal obligation", "Maternity/Paternity leave", "Labor dispute", "Weather affected job", 
+                                                                     "School/Training", "Civic/Military Duty", "Does not work in the business", "Other (Specify)"))
   
   
   AA$peabspdo = factor(AA$peabspdo, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
@@ -183,8 +180,8 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
                                                                  "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                  "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkm2 = factor(AA$pulkm2, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                 "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                 "Looked at ads", "Attended job training programs/courses", "Other passive"))
+                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm3 = factor(AA$pulkm3, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
@@ -199,23 +196,23 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                 "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                 "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+                                                                   "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                   "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                     "Looked at ads", "Attended job training programs/courses", "Other passive"))
+                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   AA$pulkps1 = factor(AA$pulkps1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
                                                                    "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
@@ -373,15 +370,15 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
                                                                      "Armed Forces"))
   AA$premp = factor(AA$premp, levels = c(-1, 1), labels = c(NA, "Employed persons (Excluding farm & private households)"))
   AA$prmjind1 = factor(AA$prmjind1, levels = c(-1, 1:23), labels = c(NA, "Agriculture", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable Goods",
-                                                                    "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
-                                                                    "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
-                                                                    "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
-                                                                    "Forestry and Fisheries", "Public Administration", "Armed Forces"))
+                                                                     "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
+                                                                     "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
+                                                                     "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
+                                                                     "Forestry and Fisheries", "Public Administration", "Armed Forces"))
   AA$prmjind2 = factor(AA$prmjind2, levels = c(-1, 1:23), labels = c(NA, "Agriculture", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable Goods",
-                                                                    "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
-                                                                    "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
-                                                                    "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
-                                                                    "Forestry and Fisheries", "Public Administration", "Armed Forces"))
+                                                                     "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
+                                                                     "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
+                                                                     "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
+                                                                     "Forestry and Fisheries", "Public Administration", "Armed Forces"))
   AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-1,1:14), labels = c(NA, "Executive, Administrative, & Managerial occupations", "Professional specialty occupations", "Technicians and related support occupations", "Sales occupations", "Administrative support occupations, including Clerical",
                                                                     "Private Household occupations", "Protective service occupations", "Service occupations, except Protective & HHLD", "Precision production, Craft & Repair occupations", "Machine operators, Assemblers, & Inspectors",
                                                                     "Transportation and Material moving occupations", "Handlers, Equipment cleaners, Helpers, Laborers", "Farming, Forestry, and Fishing occupations", "Armed Forces"))
@@ -405,12 +402,9 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$peernhro[AA$peernhro == -1] = NA
   AA$prernwa[AA$prernwa == -1] = NA
   AA$ptwk = factor(AA$ptwk, levels = -1:1, labels = c(NA, "Not topcoded", "Topcoded"))
-  AA$peernvr1 = factor(AA$peernvr1, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
-  AA$peernvr3 = factor(AA$peernvr3, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   AA$peern[AA$peern == -1] = NA
   AA$puern2[AA$puern2 == -1] = NA
   AA$ptot = factor(AA$ptot, levels = -1:1, labels = c(NA, "Not topcoded", "Topcoded"))
-  AA$puernvr4 = factor(AA$puernvr4, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   AA$peernwkp[AA$peernwkp == -1] = NA
   AA$peernlab = factor(AA$peernlab, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   AA$peerncov = factor(AA$peerncov, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
@@ -430,7 +424,8 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pworwgt[AA$pworwgt == -1] = NA
   AA$pwsswgt[AA$pwsswgt == -1] = NA
   AA$pwvetwgt[AA$pwvetwgt == -1] = NA
-  
+  # prchld
+  # prnmchld
   
   
   # These functions format the Allocation Flags section
@@ -506,8 +501,6 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pxernh1o = factor(AA$pxernh1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernhro = factor(AA$pxernhro, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxern = factor(AA$pxern, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernvr1 = factor(AA$pxernvr1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernvr3 = factor(AA$pxernvr3, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernwkp = factor(AA$pxernwkp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernrt = factor(AA$pxernrt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernhry = factor(AA$pxernhry, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -520,6 +513,25 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pxschenr = factor(AA$pxschenr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschft = factor(AA$pxschft, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$qstnum
+  AA$occurnum
+  AA$pedipged
+  AA$pehgcomp
+  AA$pecyc
+  AA$pegrprof
+  AA$pegr6cor
+  AA$pems123
+  AA$pxdipged
+  AA$pxhgcomp
+  AA$pxcyc
+  AA$pxgrprof
+  AA$pxgr6cor
+  AA$pxms123
+  AA$pwcmpwgt
+  
+  
   
   return(AA)
 }
