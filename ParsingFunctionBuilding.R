@@ -121,7 +121,7 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA = select(AA, -c(pubusck1, pubusck2, pubusck3, pubusck4))
   
   AA$puretot = factor(AA$puretot, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes, person who was reported retired last month and is retired now", "No, person who was reported retired last month is not retired now", "Person was not retired last month"))
-  AA$pudis = factor(AA$pudis, levels = c(-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes, person who was reported disabled last month and is disabled now", "No, person who was reported disabled last month is not disabled now", "Person was not disabled last month"))
+  AA$pudis = factor(AA$pudis, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes, person who was reported disabled last month and is disabled now", "No, person who was reported disabled last month is not disabled now", "Person was not disabled last month"))
   AA$peret1 = factor(AA$peret1, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported retired last month wants a job (full or part-time)", "No, person who was reported retired last month does not want a job", "Person who was reported retired last month has a job now"))
   AA$pudis1 = factor(AA$pudis1, levels = c(-1, 1, 2), labels = c(NA, "Yes, person's disability prevents person from working in the next 6 months", "No, person's disability does not prevent person from accepting work in the next 6 months"))
   AA$pudis2 = factor(AA$pudis2, levels = c(-1, 1, 2), labels = c(NA, "Yes, person has a disability that prevents person from working", "No, person does not have a disability that prevents person from working"))
