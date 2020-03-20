@@ -80,8 +80,8 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$pupelig = factor(AA$pupelig, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Eligible for interview", "Labor force fully complete", "Missing labor force data for person", "(Not used)", "Assigned if age is blank", "Armed forces member", "Under 15 years old", "Not a HH member", "Deleted", "Deceased", "End of list", "After end of list"))
   AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
   AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, "Line Num of parent")))
-  AA$prtage = factor(AA$prtage, levels = -3:90, labels = c("Refused", "Don't Know", NA, str_c(0:89, " years old"), "90+ years old"))
-  AA$prtfage = factor(AA$prtfage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
+  AA$peage = factor(AA$peage, levels = -3:90, labels = c("Refused", "Don't Know", NA, str_c(0:89, " years old"), "90+ years old"))
+  AA$ptage = factor(AA$ptage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
   AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", "Separated", "Never married"))
   AA$pespouse[AA$pespouse == -1] = NA
   AA$pesex = factor(AA$pesex, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Male", "Female"))
@@ -305,7 +305,7 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$puio1mfg = factor(AA$puio1mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
   AA$peio1icd[AA$peio1icd == -1] = NA
   AA$peio1ocd[AA$peio1ocd == -1] = NA
-  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Unknown", "Government, Level unknown", "Self-employed, incorporation status unknown"))
+  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
   AA$puio2mfg = factor(AA$puio2mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
   AA$peio2icd[AA$peio2icd == -1] = NA 
   AA$peio2ocd[AA$peio2ocd == -1] = NA
@@ -387,18 +387,18 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AApeernper = factor(AA$peernper, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
   AA$peernrt = factor(AA$peernrt, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$peernhry = factor(AA$peernhry, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hourly workers", "Nonhourly workers"))
-  AA$puernh1c[AA$puernh1c == -1] = NA
-  AA$peernh2[AA$peernh2 == -1] = NA
-  AA$peernh1o[AA$peernh1o == -1] = NA
-  AA$prernhly[AA$prernhly == -1] = NA
+  AA$puernh1c[AA$puernh1c <= -1] = NA
+  AA$peernh2[AA$peernh2 <= -1] = NA
+  AA$peernh1o[AA$peernh1o <= -1] = NA
+  AA$prernhly[AA$prernhly <= -1] = NA
   AA$pthr = factor(AA$pthr, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
-  AA$peernhro[AA$peernhro == -1] = NA
-  AA$prernwa[AA$prernwa == -1] = NA
+  AA$peernhro[AA$peernhro <= -1] = NA
+  AA$prernwa[AA$prernwa <= -1] = NA
   AA$ptwk = factor(AA$ptwk, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
-  AA$peern[AA$peern == -1] = NA
-  AA$puern2[AA$puern2 == -1] = NA
+  AA$peern[AA$peern <= -1] = NA
+  AA$puern2[AA$puern2 <= -1] = NA
   AA$ptot = factor(AA$ptot, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
-  AA$peernwkp[AA$peernwkp == -1] = NA
+  AA$peernwkp[AA$peernwkp <= -1] = NA
   AA$peernlab = factor(AA$peernlab, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$peerncov = factor(AA$peerncov, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$penlfjh = factor(AA$penlfjh, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Within the last 12 months", "More than 12 months ago", "Never worked"))
@@ -412,14 +412,21 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$peschft = factor(AA$peschft, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Full-Time", "Part-Time"))
   AA$peschlvl = factor(AA$peschlvl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "High school", "College or University"))
   AA$prnlfsch = factor(AA$prnlfsch, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "In school", "Not in school"))
-  AA$pwfmwgt[AA$pwfmwgt == -1] = NA
-  AA$pwlgwgt[AA$pwlgwgt == -1] = NA
-  AA$pworwgt[AA$pworwgt == -1] = NA
-  AA$pwsswgt[AA$pwsswgt == -1] = NA
-  AA$pwvetwgt[AA$pwvetwgt == -1] = NA
-  AA$prchld
-  AA$prnmchld
-  
+  AA$pwfmwgt[AA$pwfmwgt <= -1] = NA
+  AA$pwlgwgt[AA$pwlgwgt <= -1] = NA
+  AA$pworwgt[AA$pworwgt <= -1] = NA
+  AA$pwsswgt[AA$pwsswgt <= -1] = NA
+  AA$pwvetwgt[AA$pwvetwgt <= -1] = NA
+  if ((AA$hryear4[1] == 1998) | ((AA$hryear4[1] == 1999)&(AA$hrmonth < 11))) {
+    AA = select(AA, -c(prchld, prnmchld))
+  } else {
+    AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
+                                                                "All own children 3-5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0-2 and 3-5 years of age (none 6-17)", "Own children 0-2 and 6-13 years of age (none 3-5 or 14-17)",
+                                                                "Own children 0-2 and 14-17 years of yage (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)",
+                                                                "Own children 0-2, 3-5, and 14-17 years of age (none 6-13)", "Own children 0-2, 6-13, and 14-17 years of age (none 3-5)", "Own children 3-5, 6-13, and 14-17 years of age (none 0-2)", "Own children from all age groups"))
+    AA$prnmchld[ AA$prnmchld <= -1] = NA
+  }
+    
   
   # These functions format the Allocation Flags section
   AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -508,12 +515,12 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
   
-  AA$qstnum
-  AA$occurnum
-  AA$pedipged
-  AA$pehgcomp
-  AA$pecyc
-  AA$pegrprof
+  AA$qstnum[AA$qstnum <= -1] = NA
+  AA$occurnum[AA$occurnum <= -1] = NA
+  AA$pedipged = factor(AA$pedipged, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Graduation from high school", "GED or other equivalent"))
+  AA$pehgcomp = factor(AA$pehgcomp, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1st grade", "1st, 2nd, 3rd, or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade, NO DIPLOMA"))
+  AA$pecyc = factor(AA$pecyc, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1 year (includes 0 years completed)", "The first, or Freshman year", "The second, or Sophmore year", "The third, or Junior year", "Four or more years"))
+  AA$pegrprof = factor(AA$pegrprof,levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Yes", "No"))
   AA$pegr6cor
   AA$pems123
   AA$pxdipged

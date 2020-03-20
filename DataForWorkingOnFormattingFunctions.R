@@ -11,11 +11,11 @@ setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
 source("ParsingFunctionBuilding.R")
 Dictionary = dct.parser(dct = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/cpsbjan98.dct")
 AA = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataJan1998.rds")
+BB = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataDec1999.rds")
 FormattedData = readRDS("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/0CPSExampleDataJan2015Formatted.rds")
 
-BB = ParserJanuary1998(AA, DictionaryIn = Dictionary)
+A1 = ParserJanuary1998(AA, DictionaryIn = Dictionary)
+B1 = ParserJanuary1998(BB, DictionaryIn = Dictionary)
+cat("\014")
 
-# cat("\014")
-
-.rs.restartR()
 

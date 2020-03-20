@@ -1,8 +1,8 @@
 CPSMicrodataReader = function(FileIn, DataDictionaryIn) {
   
-  DataDictionaryIn$EndPos = DataDictionaryIn$StartPos + DataDictionaryIn$ColWidth - 1
   
-  A = read_fwf(file = FileIn, fwf_positions(DataDictionaryIn$StartPos, end = DataDictionaryIn$EndPos, col_names = DataDictionaryIn$ColName))
+  Colspec = str_flatten(str_replace_all(str_trunc(DataDictionary$colClasses, 1, side = "right", ellipsis = ""), "n", "d"))
+  A = read_fwf(file = FileIn, fwf_positions(DataDictionaryIn$StartPos, end = DataDictionaryIn$EndPos, col_names = DataDictionaryIn$ColName), col_types = Colspec)
   
 # Decimal Imputation for those columns that need it.
   AA = which(!is.na(DataDictionaryIn$Decimals))

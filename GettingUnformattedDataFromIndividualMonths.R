@@ -20,3 +20,4 @@ Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataSto
 
 
 DataOut = saveRDS(Test0, file = "C:/Users/Kelley_R/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataJan1998.rds")
+print("Complete")
