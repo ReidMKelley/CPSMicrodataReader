@@ -417,7 +417,7 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$pworwgt[AA$pworwgt <= -1] = NA
   AA$pwsswgt[AA$pwsswgt <= -1] = NA
   AA$pwvetwgt[AA$pwvetwgt <= -1] = NA
-  if ((AA$hryear4[1] == 1998) | ((AA$hryear4[1] == 1999)&(AA$hrmonth < 11))) {
+  if ((AA$hryear4[1] == 1998) | ((AA$hryear4[1] == 1999)&(AA$hrmonth[1] < 11))) {
     AA = select(AA, -c(prchld, prnmchld))
   } else {
     AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
@@ -520,16 +520,17 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$pedipged = factor(AA$pedipged, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Graduation from high school", "GED or other equivalent"))
   AA$pehgcomp = factor(AA$pehgcomp, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1st grade", "1st, 2nd, 3rd, or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade, NO DIPLOMA"))
   AA$pecyc = factor(AA$pecyc, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1 year (includes 0 years completed)", "The first, or Freshman year", "The second, or Sophmore year", "The third, or Junior year", "Four or more years"))
-  AA$pegrprof = factor(AA$pegrprof,levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Yes", "No"))
-  AA$pegr6cor
-  AA$pems123
-  AA$pxdipged
-  AA$pxhgcomp
-  AA$pxcyc
-  AA$pxgrprof
-  AA$pxgr6cor
-  AA$pxms123
-  AA$pwcmpwgt
+  AA$pegrprof = factor(AA$pegrprof, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Yes", "No"))
+  AA$pegr6cor = factor(AA$pegr6cor, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Yes", "No"))
+  AA$pems123 = factor(AA$pegr6cor, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't know", "Not in Universe", "1 year program", "2 year program", "3 year program (or longer)"))
+  # These variables remain uncertain as to their options
+  # AA$pxdipged
+  # AA$pxhgcomp
+  # AA$pxcyc
+  # AA$pxgrprof
+  # AA$pxgr6cor
+  # AA$pxms123
+  AA$pwcmpwgt[AA$pwcmpwgt <= -1] = NA
   
   
   
