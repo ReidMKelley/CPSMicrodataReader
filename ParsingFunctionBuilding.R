@@ -1,4 +1,4 @@
-ParserJanuary1998 = function(AA, DictionaryIn) {
+ParserJanuary2003 = function(AA, DictionaryIn) {
   
   
   
@@ -25,9 +25,17 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$hetelhhd = factor(AA$hetelhhd, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone present in house", "Telephone not present in the house"))
   AA$hetelavl = factor(AA$hetelavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone elsewhere available for household to use", "Telephone not available eslewhere for household to use"))
   AA$hephoneo = factor(AA$hephoneo, levels = c(-3:2), labels = c("Refused", "Don't Know", NA, "Unknown", "Telephone interview acceptable", "Telephone interview not acceptable"))
-  AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
-                                                                     "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
-                                                                     "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 or more"))
+  if ((AA$hryear4[1] == 2003)|(AA$hrmonth[1] < 10)) {
+    AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
+                                                                          "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
+                                                                          "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 or more"))
+  } else {
+    AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
+                                                                          "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
+                                                                          "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 to 99,999",
+                                                                          "100,000 to 149,999", "150,000 or more"))
+  }
+
   AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
   AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", "Unfit or to be demolished", 
                                                                 "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
@@ -89,15 +97,15 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$peafwhen = factor(AA$peafwhen, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Vietnam Era (8/64-4/75)", "Korean War (6/50-1/55)", "World War II (9/40-7/47)", "World War I (4/17-11/18)", "Other service (All other persiods)", "Nonveteran"))
   AA$peafnow = factor(AA$peafnow, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Currently in Armed Forces", "Not currently in Armed Forces"))
   AA$peeduca = factor(AA$peeduca, levels = c(-3:-1, 31:46), labels = c("Refused", "Don't Know", NA, "Less than 1st grade", "1st, 2nd, 3rd or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade no diploma", "High school grad-diploma or equivalent (GED)", "Some college but no degree", "Associate degree-Occupational/Vocational", "Associate degree-Academic program", "Bachelor's degree (Ex: BA, AB, BS)", "Master's degree (Ex: MA, MS, MEng, MEd, MSW)", "Professional School Deg (Ex: MD, DDS, DVM)", "Doctorate degree (Ex: PhD, EdD)"))
-  AA$perace = factor(AA$perace, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "White", "Black", "American Indian, Aleut, Eskimo", "Asian or Pacific Islander"))
-  AA$prorigin = factor(AA$prorigin,  levels = c(-3:-1, 1:10), labels = c("Refused", "Don't Know", NA, "Mexican American", "Chicano", "Mexican (Mexicano)", "Puerto Rican", "Cuban", "Central or South American", "Other Spanish", "All other", "Don't know", "NA"))
+  AA$prdtrace = factor(AA$prdtrace, levels = c(-3:-1, 1:21), labels = c("Refused", "Don't Know", NA, "White Only", "Black Only", "American Indian, Alaskan Native Only", "Asian Only", "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-Hawaiian", "Black-AI", "Black-Asian", "Black-HP", "AI-Asian", "Asian-HP", "W-B-AI", "W-B-A", "W-AI-A", "W-A-HP", "W-B-AI-A", "2 or 3 Races", "4 or 5 Races"))
+  AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican American", "Puerto Rican", "Cuban", "Central/South American", "Other Spanish"))
   AA$puchinhh = factor(AA$puchinhh, levels = c(-3:-1, 1:7, 9), labels = c("Refused", "Don't Know", NA, "Person added", "Person added - URE", "Person undeleted", "Person died", "Deleted for reason other than death", "Person joined Armed Forces", "Person no longer in AF", "Change in demographic information"))
   AA$purelflg = factor(AA$purelflg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not owner or related to owner of business", "Owner of business or related to owner of business"))
   AA$pulineno[AA$pulineno == -1] = NA
   AA$prfamnum = factor(AA$prfamnum, levels = -3:19, labels = c("Refused", "Don't Know", NA, "Not a family member", "Primary family member only", "Subfamily No. 2 member", "Subfamily No. 3 member", "Subfamily No. 4 member", "Subfamily No. 5 member", "Subfamily No. 6 member", "Subfamily No. 7 member", "Subfamily No. 8 member", "Subfamily No. 9 member", "Subfamily No. 10 member", "Subfamily No. 11 member", "Subfamily No. 12 member", "Subfamily No. 13 member", "Subfamily No. 14 member", "Subfamily No. 15 member", "Subfamily No. 16 member", "Subfamily No. 17 member", "Subfamily No. 18 member", "Subfamily No. 19 member"))
   AA$prfamrel = factor(AA$prfamrel, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not a family member", "Reference person", "Spouse", "Child", "Other relative (Primary Family & Unrel)"))
   AA$prfamtyp = factor(AA$prfamtyp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Primary family", "Primary individual", "Related subfamily", "Unrelated subfamily", "Secondary individual"))
-  AA$prhspnon = factor(AA$prhspnon, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hispanic", "Non-Hispanic"))
+  AA$pehspnon = factor(AA$pehspnon, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hispanic", "Non-Hispanic"))
   AA$prmarsta = factor(AA$prmarsta, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Married, civilian spouse present", "Married, Armed Forces spouse present", "Married, Spouse absent (Exc. Separated)", "Widowed", "Divorced", "Separated", "Never married"))
   AA$prpertyp = factor(AA$prpertyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Child household member", "Adult civilian household member", "Adult armed forces household member"))
   AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, "Person born in United States", "Person born in Puerto Rico", "Person born in U.S. Outlying Area", str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), "Person born Abroad, country not known"))
