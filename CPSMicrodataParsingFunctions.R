@@ -293,7 +293,7 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$prptrea = factor(AA$prptrea, levels = c(-1, 1:23), labels = c(NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", "Usu. FT-Vacation/Personal day",
                                                                    "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute",
                                                                    "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions",
-                                                                   "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Labor dispute", "Usu. PT-Weather affected job", 
+                                                                   "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", 
                                                                    "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
   AA$prunedur[AA$prunedur == -1] = NA
   AA$prusftpt = factor(AA$prusftpt, levels = c(-1, 1:3), labels = c(NA, "Full Time", "Part Time", "Status unknown"))
@@ -807,10 +807,11 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
                                                              "Usu.FT, PT econ reasons; 30-34 hrs", "Usu.PT, econ reasons; 1-4 hrs", "Usu.PT, econ reasons; 5-14 hrs", "Usu.PT, econ reasons 15-29 hrs", "Usu.PT, econ reasons 30-34 hrs",
                                                              "Usu.PT, non-econ reasons; 1-4 hrs", "Usu.PT, non-econ reasons; 5-14 hrs", "Usu.PT, non-econ reasons; 15-29 hrs", "Usu.PT, non-econ reasons; 30-34 hrs"))
   AA$prptrea = factor(AA$prptrea, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", "Usu. FT-Vacation/Personal day",
-                                                                      "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute",
-                                                                      "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions",
-                                                                      "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Labor dispute", "Usu. PT-Weather affected job", 
-                                                                      "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
+                                                                   "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute",
+                                                                   "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions",
+                                                                   "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", 
+                                                                   "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
+  
   AA$prunedur[AA$prunedur == -1] = NA
   AA$prusftpt = factor(AA$prusftpt, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Full Time", "Part Time", "Status unknown"))
   AA$pruntype = factor(AA$pruntype, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Job loser/On layoff", "Other job loser", "Temportary job ended", "Job leaver", "Re-entrant", "New-entrant"))

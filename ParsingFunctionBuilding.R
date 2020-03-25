@@ -262,7 +262,7 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   # This removes check variables about rotation groups that have limited use for researcher. This removes 2 columns from AA; there are 151 columns prior to the first one here (after earlier removal).
   AA = select(AA, -c(pujhck1, pujhck2))
   
-  AA$prabsrea = factor(AA$prabsrea, levels = c(-3:-1, 1:40), labels = c("Refused", "Don't Know",NA, "FT paid-Vacation", "FT paid-Own illness", "FT paid-Child care problems", "FT paid-Other family/Personal oblig.",
+  AA$prabsrea = factor(AA$prabsrea, levels = c(-3:-1, 1:40), labels = c("Refused", "Don't Know", NA, "FT paid-Vacation", "FT paid-Own illness", "FT paid-Child care problems", "FT paid-Other family/Personal oblig.",
                                                                      "FT paid-Maternity/Paternity leave", "FT paid-Labor dispute", "FT paid-Weather affected job", "FT paid-School/Training", "FT paid-Civic/Military duty",
                                                                      "FT paid-Other", "FT unpaid-Vacation", "FT unpaid-Own illness", "FT unpaid-Child care problems", "FT unpaid-Other fam/Personal obligation",
                                                                      "FT unpaid-Maternity/Paternity leave", "FT unpaid-Labor dispute", "FT unpaid-Weather affected job", "FT unpaid-School/Training", "FT unpaid-Civic/Military duty",
@@ -291,7 +291,7 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$prptrea = factor(AA$prptrea, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", "Usu. FT-Vacation/Personal day",
                                                                    "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute",
                                                                    "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions",
-                                                                   "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Labor dispute", "Usu. PT-Weather affected job", 
+                                                                   "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", 
                                                                    "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
   AA$prunedur[AA$prunedur == -1] = NA
   AA$prusftpt = factor(AA$prusftpt, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Full Time", "Part Time", "Status unknown"))
@@ -311,15 +311,12 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$puiodp3 = factor(AA$puiodp3, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$peio1cow = factor(AA$peio1cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
   AA$puio1mfg = factor(AA$puio1mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
-  AA$peio1icd[AA$peio1icd == -1] = NA
-  AA$peio1ocd[AA$peio1ocd == -1] = NA
   AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
   AA$puio2mfg = factor(AA$puio2mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
-  AA$peio2icd[AA$peio2icd == -1] = NA 
-  AA$peio2ocd[AA$peio2ocd == -1] = NA
   
   # This removes check variables about O&I that have limited use for researcher. This removes 3 columns from AA; there are 179 columns prior to the first one here (after earlier removal).
   AA = select(AA, -c(puiock1, puiock2, puiock3))
+  
   AA$prioelg = factor(AA$prioelg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not eligible for edit", "Eligible for edit"))
   AA$pragna = factor(AA$pragna, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Agricultural", "Non-agricultural"))
   AA$prcow1 = factor(AA$prcow1, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Federal Govt", "State Govt", "Local Govt", "Private (Incl. Self-employed Incorp.)", "Self-employed unincorp.", "Without Pay"))
@@ -544,3 +541,9 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   
   return(AA)
 }
+
+
+AA$peio1icd[AA$peio1icd == -1] = NA
+AA$peio1ocd[AA$peio1ocd == -1] = NA
+AA$peio2icd[AA$peio2icd == -1] = NA 
+AA$peio2ocd[AA$peio2ocd == -1] = NA
