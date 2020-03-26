@@ -66,9 +66,17 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$gereg = factor(AA$gereg, levels = c(-1, 1:4), labels = c(NA, "Northeast", "Midwest", "South", "West"))
   AA$gestcen = factor(AA$gestcen, levels = c(-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c(NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
   AA$gestfips[AA$gestfips == -1] = NA
-  AA$gecmsa = factor(AA$gecmsa, levels = c(-1, 0, 7:97), labels = c(NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
-  AA$gemsa = factor(AA$gemsa, levels = c(-1, 0, 80:9360), labels = c(NA, "Not identified or nonmetropolitan", str_c(80:9360, " Specific MSA Code")))
-  AA$geco = factor(AA$geco, levels = -1:810, labels = c(NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  AA$gecmsanum = AA$gecmsa
+  AA$gecmsa = factor(AA$gecmsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
+  AA$gecmsanum[AA$gecmsanum <= -1] = NA
+  AA$gemsanum = AA$gemsa
+  AA$gemsa = factor(AA$gemsa, levels = c(-3:-1, 0, 80:9360), labels = c("Refused", "Don't Know", NA, "Not identified or nonmetropolitan", str_c(80:9360, " Specific MSA Code")))
+  AA$gemsanum[AA$gemsanum <= -1] = NA
+  AA$geconum = AA$geco
+  AA$geco = factor(AA$geco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  AA$geconum[AA$geconum <= -1] = NA
+  AA = AA %>% select(1:38, gecmsanum, gemsanum, geconum, everything())
+  
   AA$gemsast = factor(AA$gemsast, levels = c(-1, 1:4), labels = c(NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
   AA$gemetsta = factor(AA$gemetsta, levels = c(-1, 1:3), labels = c(NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
   AA$geindvcc = factor(AA$geindvcc, levels = -1:4, labels = c(NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
@@ -589,9 +597,17 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   AA$gereg = factor(AA$gereg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Northeast", "Midwest", "South", "West"))
   AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c("Refused", "Don't Know", NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
   AA$gestfips[AA$gestfips == -1] = NA
+  AA$gecmsanum = AA$gecmsa
   AA$gecmsa = factor(AA$gecmsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
+  AA$gecmsanum[AA$gecmsanum <= -1] = NA
+  AA$gemsanum = AA$gemsa
   AA$gemsa = factor(AA$gemsa, levels = c(-3:-1, 0, 80:9360), labels = c("Refused", "Don't Know", NA, "Not identified or nonmetropolitan", str_c(80:9360, " Specific MSA Code")))
+  AA$gemsanum[AA$gemsanum <= -1] = NA
+  AA$geconum = AA$geco
   AA$geco = factor(AA$geco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  AA$geconum[AA$geconum <= -1] = NA
+  AA = AA %>% select(1:38, gecmsanum, gemsanum, geconum, everything())
+  
   AA$gemsast = factor(AA$gemsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
   AA$gemetsta = factor(AA$gemetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
   AA$geindvcc = factor(AA$geindvcc, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
@@ -949,7 +965,7 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
   } else {
     AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
                                                                 "All own children 3-5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0-2 and 3-5 years of age (none 6-17)", "Own children 0-2 and 6-13 years of age (none 3-5 or 14-17)",
-                                                                "Own children 0-2 and 14-17 years of yage (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)",
+                                                                "Own children 0-2 and 14-17 years of age (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)",
                                                                 "Own children 0-2, 3-5, and 14-17 years of age (none 6-13)", "Own children 0-2, 6-13, and 14-17 years of age (none 3-5)", "Own children 3-5, 6-13, and 14-17 years of age (none 0-2)", "Own children from all age groups"))
     AA$prnmchld[ AA$prnmchld <= -1] = NA
   }

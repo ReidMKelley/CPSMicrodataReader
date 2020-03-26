@@ -71,10 +71,20 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$gereg = factor(AA$gereg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Northeast", "Midwest", "South", "West"))
   AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c("Refused", "Don't Know", NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
   AA$gestfips[AA$gestfips == -1] = NA
+  AA$gecmsanum = AA$gecmsa
   AA$gecmsa = factor(AA$gecmsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
+  AA$gecmsanum[AA$gecmsanum <= -1] = NA
+  AA$gemsanum = AA$gemsa
   AA$gemsa = factor(AA$gemsa, levels = c(-3:-1, 0, 80:9360), labels = c("Refused", "Don't Know", NA, "Not identified or nonmetropolitan", str_c(80:9360, " Specific MSA Code")))
+  AA$gemsanum[AA$gemsanum <= -1] = NA
+  AA$geconum = AA$geco
   AA$geco = factor(AA$geco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  AA$geconum[AA$geconum <= -1] = NA
+  AA = AA %>% select(1:38, gecmsanum, gemsanum, geconum, everything())
+  
   AA$gemsast = factor(AA$gemsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
+  
+  
   AA$gemetsta = factor(AA$gemetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
   AA$geindvcc = factor(AA$geindvcc, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
   AA$gemsasz = factor(AA$gemsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
@@ -324,72 +334,64 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$prcowpg = factor(AA$prcowpg, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Private", "Government"))
   AA$prdtcow1 = factor(AA$prdtcow1, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local", "Nonag, Self-employed", "Nonag, unpaid"))
   AA$prdtcow2 = factor(AA$prdtcow2, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local", "Nonag, Self-employed", "Nonag, unpaid"))
-  AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, "Goods producing-Agricultural services", "Goods producing-Other Agricultural", "Mining", "Construction", "Mfg-Lumber & Wood prods, excluding Furniture",
-                                                                     "Mfg-Furniture & Fixtures", "Mfg-Stone, clay, concrete, Glass prods", "Mfg-Primary metals", "Mfg-Fabricated metals", "Mfg-Not specified metal industries",
-                                                                     "Mfg-Machinery, excluding electrical", "Mfg-Electrical machinery, equipment supplies", "Mfg-Motor vehicles & equipment", "Mfg-aircraft & parts", "Mfg-Other transportation equipment",
-                                                                     "Mfg-Professional & photo equipment, watches", "Mfg-Toys, amusement, & sporting goods", "Mfg-Miscellanious & NEC Mfg industries", "Mfg-Food & kindred products", "Mfg-Tobacco products",
-                                                                     "Mfg-Textile mill products", "Mfg-Apparel & other finished textile PR", "Mfg-Paper & allied products", "Mfg-Printing, publishing & allied industries", "Mfg-Chemicals & allied products",
-                                                                     "Mfg-Petroleum & coal products", "Mfg-Rubber & Miscellanious plastic products", "Mfg-Leather & leather products", "Transportation", "Communications",
-                                                                     "Utilities & Sanitary services", "Wholesale trade", "Eating and drinking places", "Other retail trade", "Banking and other finance",
-                                                                     "Insurance and Real estate", "Private household services", "Business services", "Automobile and repair services", "Personal services excluding private households",
-                                                                     "Entertainment & recreation services", "Hospitals", "Health services, excluding hospitals", "Educational services", "Social services",
-                                                                     "Other professional services", "Forestry & fisheries", "Justice, public order, & safety", "Admin of human resource programs", "National Security & Internal Affairs",
-                                                                     "Other Public Administration", "Armed Forces"))
-  AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, "Goods producing-Agricultural services", "Goods producing-Other Agricultural", "Mining", "Construction", "Mfg-Lumber & Wood prods, excluding Furniture",
-                                                                     "Mfg-Furniture & Fixtures", "Mfg-Stone, clay, concrete, Glass prods", "Mfg-Primary metals", "Mfg-Fabricated metals", "Mfg-Not specified metal industries",
-                                                                     "Mfg-Machinery, excluding electrical", "Mfg-Electrical machinery, equipment supplies", "Mfg-Motor vehicles & equipment", "Mfg-aircraft & parts", "Mfg-Other transportation equipment",
-                                                                     "Mfg-Professional & photo equipment, watches", "Mfg-Toys, amusement, & sporting goods", "Mfg-Miscellanious & NEC Mfg industries", "Mfg-Food & kindred products", "Mfg-Tobacco products",
-                                                                     "Mfg-Textile mill products", "Mfg-Apparel & other finished textile PR", "Mfg-Paper & allied products", "Mfg-Printing, publishing & allied industries", "Mfg-Chemicals & allied products",
-                                                                     "Mfg-Petroleum & coal products", "Mfg-Rubber & Miscellanious plastic products", "Mfg-Leather & leather products", "Transportation", "Communications",
-                                                                     "Utilities & Sanitary services", "Wholesale trade", "Eating and drinking places", "Other retail trade", "Banking and other finance",
-                                                                     "Insurance and Real estate", "Private household services", "Business services", "Automobile and repair services", "Personal services excluding private households",
-                                                                     "Entertainment & recreation services", "Hospitals", "Health services, excluding hospitals", "Educational services", "Social services",
-                                                                     "Other professional services", "Forestry & fisheries", "Justice, public order, & safety", "Admin of human resource programs", "National Security & Internal Affairs",
-                                                                     "Other Public Administration", "Armed Forces"))
-  AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:46), labels = c("Refused", "Don't Know", NA, "Officials & Administrators, Public Admin.", "Other executive, Admin. & Managerial", "Management related occupations", "Engineers", "Mathematical and Computer Scientists",
-                                                                     "Natural Scientists", "Health diagnosing occupations", "Health assessment and treatment occupations", "Teachers, College and University", "Teachers, except College and University",
-                                                                     "Lawyers and judges", "Other professional specialty occupations", "Health technologists and technicians", "Engineering and Science technicians", "Technicians, except Health, Engineering, and Science",
-                                                                     "Supervisors and proprietors, sales occupations", "Sales reps, finance and business services", "Sales reps, Commodities, except Retail", "Sales workers, Retail & personal services", "Sales related occupations",
-                                                                     "Supervisors, Administrative support", "Computer equipment operators", "Secretaries, stenographers, and typists", "Financial records processing", "Mail and message distribution",
-                                                                     "Other Admin. support, including Clerical", "Private household service occupations", "Protective service", "Food service", "Health service",
-                                                                     "Cleaning and building service", "Personal service", "Mechanics and repairers", "Construction trades", "Other precision production, craft, and repair",
-                                                                     "Machine operator, and tenders, except precision", "Fabricators, assemblers, inspectors, samplers", "Motor vehicle operators", "Other transportation and material moving occupations", "Construction laborers",
-                                                                     "Freight, Stock, & Materials Handlers", "Other handlers, Equipment cleaners, Helpers, Laborers", "Farm Operators and Managers", "Farm workers and related occupations", "Forestry and Fishing occupations",
-                                                                     "Armed Forces"))
-  AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:46), labels = c("Refused", "Don't Know", NA, "Officials & Administrators, Public Admin.", "Other executive, Admin. & Managerial", "Management related occupations", "Engineers", "Mathematical and Computer Scientists",
-                                                                     "Natural Scientists", "Health diagnosing occupations", "Health assessment and treatment occupations", "Teachers, College and University", "Teachers, except College and University",
-                                                                     "Lawyers and judges", "Other professional specialty occupations", "Health technologists and technicians", "Engineering and Science technicians", "Technicians, except Health, Engineering, and Science",
-                                                                     "Supervisors and proprietors, sales occupations", "Sales reps, finance and business services", "Sales reps, Commodities, except Retail", "Sales workers, Retail & personal services", "Sales related occupations",
-                                                                     "Supervisors, Administrative support", "Computer equipment operators", "Secretaries, stenographers, and typists", "Financial records processing", "Mail and message distribution",
-                                                                     "Other Admin. support, including Clerical", "Private household service occupations", "Protective service", "Food service", "Health service",
-                                                                     "Cleaning and building service", "Personal service", "Mechanics and repairers", "Construction trades", "Other precision production, craft, and repair",
-                                                                     "Machine operator, and tenders, except precision", "Fabricators, assemblers, inspectors, samplers", "Motor vehicle operators", "Other transportation and material moving occupations", "Construction laborers",
-                                                                     "Freight, Stock, & Materials Handlers", "Other handlers, Equipment cleaners, Helpers, Laborers", "Farm Operators and Managers", "Farm workers and related occupations", "Forestry and Fishing occupations",
-                                                                     "Armed Forces"))
+  
+  AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
+                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
+                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products",
+                                                                        "Textile, apparel, and leather manufacturing", "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products",
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)",
+                                                                        "Motion picture and sound recording industries", "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services",
+                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service",
+                                                                        "Professional and technical services", "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services",
+                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation",
+                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", "Private households",
+                                                                        "Public administration", "Armed forces"))
+
+  AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
+                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
+                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products",
+                                                                        "Textile, apparel, and leather manufacturing", "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products",
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)",
+                                                                        "Motion picture and sound recording industries", "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services",
+                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service",
+                                                                        "Professional and technical services", "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services",
+                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation",
+                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", "Private households",
+                                                                        "Public administration", "Armed forces"))
+  
+  AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", "Architecture and engineering occupations", "Life, physical, and social science occupations",
+                                                                        "Community and social service occupations", "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", "Healthcare practitioner and technical occupations",
+                                                                        "Healthcare support occupations", "Protective service occupations", "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations",
+                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations",
+                                                                        "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
+  
+  AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", "Architecture and engineering occupations", "Life, physical, and social science occupations",
+                                                                        "Community and social service occupations", "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", "Healthcare practitioner and technical occupations",
+                                                                        "Healthcare support occupations", "Protective service occupations", "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations",
+                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations",
+                                                                        "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
   AA$premp = factor(AA$premp, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Employed persons (Excluding farm & private households)"))
-  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Agriculture", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable Goods",
-                                                                     "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
-                                                                     "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
-                                                                     "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
-                                                                     "Forestry and Fisheries", "Public Administration", "Armed Forces"))
-  AA$prmjind2 = factor(AA$prmjind2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Agriculture", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable Goods",
-                                                                     "Transportation", "Communications", "Utilities and Sanitary services", "Wholesale trade", "Retail trade",
-                                                                     "Finance, Insurance, and Real Estate", "Private Households", "Business, auto and repair services", "Personal services, excluding private households", "Entertainment and recreation services",
-                                                                     "Hospitals", "Medical services, excluding Hospitals", "Educational services", "Social services", "Other professional services",
-                                                                     "Forestry and Fisheries", "Public Administration", "Armed Forces"))
-  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:14), labels = c("Refused", "Don't Know", NA, "Executive, Administrative, & Managerial occupations", "Professional specialty occupations", "Technicians and related support occupations", "Sales occupations", "Administrative support occupations, including Clerical",
-                                                                    "Private Household occupations", "Protective service occupations", "Service occupations, except Protective & HHLD", "Precision production, Craft & Repair occupations", "Machine operators, Assemblers, & Inspectors",
-                                                                    "Transportation and Material moving occupations", "Handlers, Equipment cleaners, Helpers, Laborers", "Farming, Forestry, and Fishing occupations", "Armed Forces"))
-  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:14), labels = c("Refused", "Don't Know", NA, "Executive, Administrative, & Managerial occupations", "Professional specialty occupations", "Technicians and related support occupations", "Sales occupations", "Administrative support occupations, including Clerical",
-                                                                    "Private Household occupations", "Protective service occupations", "Service occupations, except Protective & HHLD", "Precision production, Craft & Repair occupations", "Machine operators, Assemblers, & Inspectors",
-                                                                    "Transportation and Material moving occupations", "Handlers, Equipment cleaners, Helpers, Laborers", "Farming, Forestry, and Fishing occupations", "Armed Forces"))
-  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Managerial & Professional, Technical, Sales & Support occupations", "Service occupations", "Production, Craft, Repair, Operators", "Farming, Forestry, and Fishing occupations"))
+  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade",
+                                                                        "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services",
+                                                                        "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
+  AA$prmjind2 = factor(AA$prmjind2, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade",
+                                                                        "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services",
+                                                                        "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
+  
+  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", "Sales and related occupations", "Office and administrative support occupations",
+                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
+  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", "Sales and related occupations", "Office and administrative support occupations",
+                                                                       "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
+  
+  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", "Arned Forces"))
+  
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   AA$prnagws = factor(AA$prnagws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Wage & Salary workers"))
   AA$prsjmj = factor(AA$prsjmj, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Single jobholder", "Multiple jobholder"))
   AA$prerelg = factor(AA$prerelg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not eligible for edit", "Eligible for edit"))
   AA$peernuot = factor(AA$peernuot, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AApeernper = factor(AA$peernper, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
+  
   AA$peernrt = factor(AA$peernrt, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$peernhry = factor(AA$peernhry, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hourly workers", "Nonhourly workers"))
   AA$puernh1c[AA$puernh1c <= -1] = NA
@@ -422,16 +424,11 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$pworwgt[AA$pworwgt <= -1] = NA
   AA$pwsswgt[AA$pwsswgt <= -1] = NA
   AA$pwvetwgt[AA$pwvetwgt <= -1] = NA
-  if ((AA$hryear4[1] == 1998) | ((AA$hryear4[1] == 1999)&(AA$hrmonth[1] < 11))) {
-    AA = select(AA, -c(prchld, prnmchld))
-  } else {
-    AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
+  AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
                                                                 "All own children 3-5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0-2 and 3-5 years of age (none 6-17)", "Own children 0-2 and 6-13 years of age (none 3-5 or 14-17)",
-                                                                "Own children 0-2 and 14-17 years of yage (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)",
+                                                                "Own children 0-2 and 14-17 years of age (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)",
                                                                 "Own children 0-2, 3-5, and 14-17 years of age (none 6-13)", "Own children 0-2, 6-13, and 14-17 years of age (none 3-5)", "Own children 3-5, 6-13, and 14-17 years of age (none 0-2)", "Own children from all age groups"))
-    AA$prnmchld[ AA$prnmchld <= -1] = NA
-  }
-    
+  AA$prnmchld[ AA$prnmchld <= -1] = NA
   
   # These functions format the Allocation Flags section
   AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -450,11 +447,11 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$pxafwhen = factor(AA$pxafwhen, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxafnow = factor(AA$pxafnow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxeduca = factor(AA$pxeduca, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxrace = factor(AA$pxrace, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrace1 = factor(AA$pxrace1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxnatvty = factor(AA$pxnatvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxmntvty = factor(AA$pxmntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxfntvty = factor(AA$pxfntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxorigin = factor(AA$pxorigin, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhspnon = factor(AA$pxhspnon, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxmlr = factor(AA$pxmlr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxret1 = factor(AA$pxret1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxabsrsn = factor(AA$pxabsrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -537,13 +534,21 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   # AA$pxms123
   AA$pwcmpwgt[AA$pwcmpwgt <= -1] = NA
   
+  AA$peio1icd[AA$peio1icd == -1] = NA
+  AA$peio1ocd[AA$peio1ocd == -1] = NA
+  AA$peio2icd[AA$peio2icd == -1] = NA 
+  AA$peio2ocd[AA$peio2ocd == -1] = NA
   
+  AA$primind1 = factor(AA$primind1, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods",
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
+                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", "Educational services", "Health care and social services", "Arts, entertainment, and recreation",
+                                                                        "Accomodation and food services", "Private households", "Other services, except private households", "Public administration", "Armed Forces"))
   
+  AA$primind2 = factor(AA$primind2, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods",
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
+                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", "Educational services", "Health care and social services", "Arts, entertainment, and recreation",
+                                                                        "Accomodation and food services", "Private households", "Other services, except private households", "Public administration", "Armed Forces"))
   return(AA)
 }
 
 
-AA$peio1icd[AA$peio1icd == -1] = NA
-AA$peio1ocd[AA$peio1ocd == -1] = NA
-AA$peio2icd[AA$peio2icd == -1] = NA 
-AA$peio2ocd[AA$peio2ocd == -1] = NA
