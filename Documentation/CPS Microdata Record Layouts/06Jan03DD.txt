@@ -2847,51 +2847,61 @@ PRDTIND1     2     DETAILED INDUSTRY RECODE - JOB 1           (472 - 473)
                    3   Mining                          
                    4   Construction                        
                    5   Nonmetallic mineral product manufacturing             
+
                    6   Primary metals and fabricated metal products               
                    7   Machinery  manufacturing                    
                    8   Computer and electronic product manufacturing              
                    9   Electrical equipment, appliance manufacturing              
                    10  Transportation equipment manufacturing                
+
                    11  Wood products                       
                    12  Furniture and fixtures manufacturing                     
                    13  Miscellaneous and not specified manufacturing              
                    14  Food manufacturing                  
                    15  Beverage and tobacco products                    
+
                    16  Textile, apparel, and leather manufacturing                
                    17  Paper and printing                     
                    18  Petroleum and coal products manufacturing             
-PRDTIND1 (CONTINUED)   19 Chemical manufacturing                   
+		   19  Chemical manufacturing                   
                    20  Plastics and rubber products                
+
                    21  Wholesale trade                     
                    22  Retail trade                    
                    23  Transportation and warehousing                   
                    24  Utilities                       
                    25  Publishing industries (except internet)                    
+
                    26  Motion picture and sound recording industries              
                    27  Broadcasting (except internet)                       
                    28  Internet publishing and broadcasting                      
                    29  Telecommunications                  
                    30  Internet service providers and data processing services    
+
                    31  Other information services                  
                    32  Finance                         
                    33  Insurance                           
                    34  Real estate                            
                    35  Rental and leasing services                 
+
                    36  Professional and  technical services                  
                    37  Management of companies and enterprises                  
                    38  Administrative and support services              
                    39  Waste management and remediation services                     
                    40  Educational services                   
+
                    41  Hospitals                          
                    42  Health care services, except hospitals           
                    43  Social assistance                      
                    44  Arts, entertainment, and recreation              
                    45  Accommodation                       
+
                    46  Food services and drinking places                     
                    47  Repair and maintenance                 
                    48  Personal and laundry services                    
                    49  Membership associations and organizations             
                    50  Private households                               
+
                    51  Public administration                                           
                    52  Armed forces                        
                                  
@@ -2961,6 +2971,7 @@ PRDTIND2 (CONTINUED)   39 Waste management and remediation services
                    50  Private households                               
                    51  Public administration                                           
                    52  Armed forces    
+
    
 PRDTOCC1     2     DETAILED OCCUPATION RECODE - JOB 1      (476 - 477)
 
@@ -2973,23 +2984,27 @@ PRDTOCC1     2     DETAILED OCCUPATION RECODE - JOB 1      (476 - 477)
                    3   Computer and mathematical science occupations         
                    4   Architecture and engineering occupations                   
                    5   Life, physical, and social science occupations        
+
                    6   Community and social service occupations              
                    7   Legal occupations                           
                    8   Education, training, and library occupations               
                    9   Arts, design, entertainment, sports, and media
                          occupations                               
                    10  Healthcare practitioner and technical occupations          
+
                    11  Healthcare support occupations                        
                    12  Protective service occupations                        
                    13  Food preparation and serving related occupations      
                    14  Building and grounds cleaning and maintenance         
                             occupations                                 
                    15  Personal care and service occupations                      
-PRDTOCC1 (CONTINUED)   16 Sales and related occupations                      
+
+PRDTOCC1 (CONT)    16  Sales and related occupations                      
                    17  Office and administrative support occupations         
                    18  Farming, fishing, and forestry occupations                 
                    19  Construction and extraction occupations                    
                    20  Installation, maintenance, and repair occupations          
+
                    21  Production occupations                      
                    22  Transportation and material moving occupations        
                    23  Armed Forces                    
