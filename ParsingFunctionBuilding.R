@@ -1,4 +1,4 @@
-ParserJanuary2003 = function(AA, DictionaryIn) {
+ParserMay2004 = function(AA) {
   
   
   
@@ -51,14 +51,8 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$huinttyp = factor(AA$huinttyp, levels = -3:2, labels = c("Refused", "Don't Know", NA, "Noninterview/Indeterminate", "Personal", "Telephone"))
   AA$huprscnt[AA$huprscnt == -1] = NA
   AA$hrlonglk = factor(AA$hrlonglk, levels = c(-3:-1, 0, 2, 3), labels = c("Refused", "Don't Know", NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
-  
-  # These set up the hrhhid2 variable for longitudinal linking
-  AA$hrsample[AA$hrsample == "-1"] = NA
-  AA$hrsample = str_trunc(AA$hrsample, width = 2, side = "left", ellipsis = "")
-  AA$hrsersuf[is.na(AA$hrsersuf)] = -1
-  AA$hrsersuf = str_trunc(str_c("0", match(as.character(AA$hrsersuf), c("-1", LETTERS[1:26]))-1), width = 2, side = "left", ellipsis = "")
-  AA$hrhhid2 = str_c(AA$hrsample, AA$hrsersuf, AA$huhhnum)
-  AA = AA %>% select(1:23, hrhhid2,everything())
+  AA$hrhhid2[AA$hrhhid2 = "-1"] = NA
+
   
   AA$hubus = factor(AA$hubus, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Someone in HH has a business/farm", "No one in HH has a business/farm"))
   AA$hubusl1[AA$hubusl1 <= -1] = NA
@@ -71,28 +65,25 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$gereg = factor(AA$gereg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Northeast", "Midwest", "South", "West"))
   AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c("Refused", "Don't Know", NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
   AA$gestfips[AA$gestfips == -1] = NA
-  AA$gecmsanum = AA$gecmsa
-  AA$gecmsa = factor(AA$gecmsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
-  AA$gecmsanum[AA$gecmsanum <= -1] = NA
-  AA$gemsanum = AA$gemsa
-  AA$gemsa = factor(AA$gemsa, levels = c(-3:-1, 0, 80:9360), labels = c("Refused", "Don't Know", NA, "Not identified or nonmetropolitan", str_c(80:9360, " Specific MSA Code")))
-  AA$gemsanum[AA$gemsanum <= -1] = NA
-  AA$geconum = AA$geco
-  AA$geco = factor(AA$geco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
-  AA$geconum[AA$geconum <= -1] = NA
-  AA = AA %>% select(1:38, gecmsanum, gemsanum, geconum, everything())
-  
-  AA$gemsast = factor(AA$gemsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
   
   
-  AA$gemetsta = factor(AA$gemetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
-  AA$geindvcc = factor(AA$geindvcc, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
-  AA$gemsasz = factor(AA$gemsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  AA$gecmsasz = factor(AA$gecmsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  AA$hulensec[AA$hulensec <= -1] = NA
+  AA$gtcbsanum = AA$gtcbsa
+  AA$gtcbsa = factor(AA$gtcbsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
+  AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
+  AA$gtconum = AA$gtco
+  AA$gtco = factor(AA$gtco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  AA$gtconum[AA$gtconum <= -1] = NA
+  AA$gtcsanum = AA$gtcsa
+  AA$gtcsa = factor(AA$gtcsa, c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA,))
+  AA$gtcsanum[AA$gtcsanum <= -1] = NA
+  AA = AA %>% select(1:34, gtcsa, gtcbsanum, gtconum, gtcsanum, everything())
   
+  AA$gtcbsast = factor(AA$gtcbsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
+  AA$gtmetsta = factor(AA$gtmetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
+  AA$gtindvpc = factor(AA$gtindvpc, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
+  AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
   
-  
+
   # These functions format the Personal Information Demographic section
   AA$proldrrp = factor(AA$proldrrp, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Ref pers with other relatives in HH", "Ref pers with no other relatives in HH", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other relative", "Foster child", "Non-rel of Ref Per w/own rels in HH", "Partner/Roommate", "Non-rel of ref per w/no own rels in HH"))
   AA$pupelig = factor(AA$pupelig, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Eligible for interview", "Labor force fully complete", "Missing labor force data for person", "(Not used)", "Assigned if age is blank", "Armed forces member", "Under 15 years old", "Not a HH member", "Deleted", "Deceased", "End of list", "After end of list"))
