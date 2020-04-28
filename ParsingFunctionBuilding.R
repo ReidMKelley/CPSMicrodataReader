@@ -25,16 +25,10 @@ ParserMay2004 = function(AA) {
   AA$hetelhhd = factor(AA$hetelhhd, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone present in house", "Telephone not present in the house"))
   AA$hetelavl = factor(AA$hetelavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone elsewhere available for household to use", "Telephone not available eslewhere for household to use"))
   AA$hephoneo = factor(AA$hephoneo, levels = c(-3:2), labels = c("Refused", "Don't Know", NA, "Unknown", "Telephone interview acceptable", "Telephone interview not acceptable"))
-  if ((AA$hryear4[1] == 2003)|(AA$hrmonth[1] < 10)) {
-    AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
-                                                                          "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
-                                                                          "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 or more"))
-  } else {
-    AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
-                                                                          "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
-                                                                          "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 to 99,999",
-                                                                          "100,000 to 149,999", "150,000 or more"))
-  }
+  AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
+                                                                        "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
+                                                                        "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 to 99,999",
+                                                                        "100,000 to 149,999", "150,000 or more"))
 
   AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
   AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", "Unfit or to be demolished", 
@@ -51,7 +45,7 @@ ParserMay2004 = function(AA) {
   AA$huinttyp = factor(AA$huinttyp, levels = -3:2, labels = c("Refused", "Don't Know", NA, "Noninterview/Indeterminate", "Personal", "Telephone"))
   AA$huprscnt[AA$huprscnt == -1] = NA
   AA$hrlonglk = factor(AA$hrlonglk, levels = c(-3:-1, 0, 2, 3), labels = c("Refused", "Don't Know", NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
-  AA$hrhhid2[AA$hrhhid2 = "-1"] = NA
+  AA$hrhhid2[AA$hrhhid2 == "-1"] = NA
 
   
   AA$hubus = factor(AA$hubus, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Someone in HH has a business/farm", "No one in HH has a business/farm"))
@@ -295,7 +289,6 @@ ParserMay2004 = function(AA) {
                                                                    "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", 
                                                                    "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
   AA$prunedur[AA$prunedur == -1] = NA
-  AA$prusftpt = factor(AA$prusftpt, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Full Time", "Part Time", "Status unknown"))
   AA$pruntype = factor(AA$pruntype, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Job loser/On layoff", "Other job loser", "Temportary job ended", "Job leaver", "Re-entrant", "New-entrant"))
   AA$prwksch = factor(AA$prwksch, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "At work", "With job, not at work", "Unemployed, seeks FT", "Unemployed, seeks PT"))
   AA$prwkstat = factor(AA$prwkstat, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "FT hours (35+), usually FT", "PT for economic reasons, usually FT", "PT for non-economic reasons, usually FT",
