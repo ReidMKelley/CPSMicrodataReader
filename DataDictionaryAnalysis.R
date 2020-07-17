@@ -30,61 +30,62 @@ DataDictionaryIn$EndPos = DataDictionaryIn$StartPos + DataDictionaryIn$ColWidth 
 
 DataDictionaries[[1]] = DataDictionaryIn
 UnchangingVariables = DataDictionaryIn$ColName
-# WB = createWorkbook(type = "xlsx")
-# AA = createSheet(WB, sheetName = PrefixName[1])
-# BB = addDataFrame(DataDictionaryIn, AA, showNA = TRUE, characterNA = "NA")
+WB = createWorkbook(type = "xlsx")
+AA = createSheet(WB, sheetName = PrefixName[1])
+BB = addDataFrame(DataDictionaryIn, AA, showNA = TRUE, characterNA = "NA")
 
 
 for (j in 2:16) {
   DataDictionaryIn = dct.parser(dct = DataDictionaryPrefix[j])
   DataDictionaryIn$ColName = as.character(DataDictionaryIn$ColName)
-  # DataDictionaryIn$colClasses = as.character(DataDictionaryIn$colClasses)
+  DataDictionaryIn$colClasses = as.character(DataDictionaryIn$colClasses)
   DataDictionaryIn$VarLabel = as.character(DataDictionaryIn$VarLabel)
   DataDictionaryIn$colClasses = str_replace_all(DataDictionaryIn$colClasses,"raw", "integer")
   DataDictionaryIn$EndPos = DataDictionaryIn$StartPos + DataDictionaryIn$ColWidth - 1
-  # AA = createSheet(WB, sheetName = PrefixName[j])
-  # BB = addDataFrame(DataDictionaryIn, AA, showNA = TRUE, characterNA = "NA")
+  AA = createSheet(WB, sheetName = PrefixName[j])
+  BB = addDataFrame(DataDictionaryIn, AA, showNA = TRUE, characterNA = "NA")
   
   
   DataDictionaries[[j]] = DataDictionaryIn
   UnchangingVariables = intersect(DataDictionaryIn$ColName, UnchangingVariables)
 }
 
-CC = saveWorkbook(WB, "C:/Users/Kelley_R/Desktop/CPSMicrodataReader/DataDictionaryFilesfromStata.xlsx")
-ChangingVariables = lapply(1:16, function(x) setdiff(DataDictionaries[[x]]$ColName, UnchangingVariables))
-ImportantVariables = read_csv(file = "C:/Users/Kelley_R/Desktop/CPS Microdata Record Layouts/Book1.csv", col_names = FALSE)
-ImportantVariables = str_to_lower(ImportantVariables$X1)
-
-
-names(DataDictionaries) = PrefixName
-names(ChangingVariables) = PrefixName
-Test = ls()
-VariableCheck = tibble(PrefixName)
-T1 = setdiff(Test, c("DataDictionaries", "ImportantVariables", "UnchangingVariables", "ChangingVariables", "VariableCheck"))
-rm(list = T1)
-rm(Test, T1)
-cat("\014")
-
-
+CC = saveWorkbook(WB, "C:/Users/Kelley_R/Desktop/CPSMicrodataReader/DataDictionaryFilesfromStata2.xlsx")
+# ChangingVariables = lapply(1:16, function(x) setdiff(DataDictionaries[[x]]$ColName, UnchangingVariables))
+# ImportantVariables = read_csv(file = "C:/Users/Kelley_R/Desktop/CPS Microdata Record Layouts/Book1.csv", col_names = FALSE)
+# ImportantVariables = str_to_lower(ImportantVariables$X1)
 # 
-# for (j in 1:16) {
-#   if (any(str_detect(DataDictionaries[[j]]$ColName, "prunedur"))) {
-#     VariableCheck[j, 2] = TRUE
-#   } else {
-#     VariableCheck[j, 2] = FALSE
+# 
+# names(DataDictionaries) = PrefixName
+# names(ChangingVariables) = PrefixName
+# Test = ls()
+# VariableCheck = tibble(PrefixName)
+# T1 = setdiff(Test, c("DataDictionaries", "ImportantVariables", "UnchangingVariables", "ChangingVariables", "VariableCheck"))
+# rm(list = T1)
+# rm(Test, T1)
+# cat("\014")
+# 
+# 
+# # 
+# # for (j in 1:16) {
+# #   if (any(str_detect(DataDictionaries[[j]]$ColName, "prunedur"))) {
+# #     VariableCheck[j, 2] = TRUE
+# #   } else {
+# #     VariableCheck[j, 2] = FALSE
+# #   }
+# # }
+# # rm(j)
+# 
+# OtherVariables = c("hehousut", "hrintsta", "hrhtype", "hrlonglk", "gereg", "gestfips", "gediv", "gtcbsast", "gtmetsta", "gtcbsasz", "prtfage", "pthr", "ptot", "prchld")
+# for (k in 1:length(OtherVariables)) {
+#   for (j in 1:16) {
+#     if (any(str_detect(DataDictionaries[[j]]$ColName, OtherVariables[k]))) {
+#       VariableCheck[j, k+1] = TRUE
+#     } else {
+#       VariableCheck[j, k+1] = FALSE
+#     }
 #   }
 # }
-# rm(j)
+# colnames(VariableCheck) = c("DictionaryName", OtherVariables)
+# rm(j, k)
 
-OtherVariables = c("hehousut", "hrintsta", "hrhtype", "hrlonglk", "gereg", "gestfips", "gediv", "gtcbsast", "gtmetsta", "gtcbsasz", "prtfage", "pthr", "ptot", "prchld")
-for (k in 1:length(OtherVariables)) {
-  for (j in 1:16) {
-    if (any(str_detect(DataDictionaries[[j]]$ColName, OtherVariables[k]))) {
-      VariableCheck[j, k+1] = TRUE
-    } else {
-      VariableCheck[j, k+1] = FALSE
-    }
-  }
-}
-colnames(VariableCheck) = c("DictionaryName", OtherVariables)
-rm(j, k)
