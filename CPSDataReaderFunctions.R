@@ -42,7 +42,7 @@ DecimalImputation = function(DataColIn, DecimalValueIn) {
 }
 
 DataFileLocVal = function(MonthNumberIn) {
-  source("CPSMicrodataParsingFunctions.R", local = TRUE)
+
   PrefixValu = c(199401, 199404, 199506, 199509, 199801, 200301, 200405, 200508, 200701, 200901, 201001, 201205, 201301, 201401, 201501, 201706, 1000000)
   PrefixList = c(199401, 199404, 199506, 199509, 199801, 200301, 200405, 200508, 200701, 200901, 201001, 201205, 201301, 201401, 201501, 201701)
   PrefixStrn = c("199401-199403/", "199404-199505/", "199506-199508/", "199509-199712/", "199801-/", "200301-/", "200405-/", "200508-/", "200701-/", "200901-/", "201001-/", "201205-/", "201301-/", "201401-/", "201501-/", "201701-/")
@@ -80,7 +80,7 @@ DataDictionaryLocVal = function(MonthNumberIn) {
   return(XX)
 }
 
-FileDownloader = function(FileURL, FileDest) {
+FileDownloaderFunction = function(FileURL, FileDest) {
   if((!is.na(FileURL))&&(!is.na(FileDest))) {
     FileOut = download.file(url = FileURL, destfile = FileDest)
   } else {
