@@ -82,7 +82,7 @@ DataDictionaryLocVal = function(MonthNumberIn) {
 
 FileDownloaderFunction = function(FileURL, FileDest) {
   if((!is.na(FileURL))&&(!is.na(FileDest))) {
-    FileOut = download.file(url = FileURL, destfile = FileDest)
+    FileOut = try(suppressWarnings(download.file(url = FileURL, destfile = FileDest)), silent = TRUE)
   } else {
     FileOut = NA
   }

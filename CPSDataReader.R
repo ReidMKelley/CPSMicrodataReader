@@ -2,8 +2,7 @@ rm(list = ls())
 
 cat("\014")
 library("tictoc")
-library("StataDCTutils")
-library("readstata13")
+library("xlsx")
 library("tidyverse")
 library("filesstrings")
 setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
@@ -13,15 +12,18 @@ source("CPSDataReaderFunctions.R")
 
 
 tic()
-StartMonth = 1
-StartYear = 1994
+StartMonth = 9
+StartYear = 1995
 
-EndMonth = 1
-EndYear = 1994
+EndMonth = 7
+EndYear = 2020
 Diff = EndYear - StartYear + 1
 MonthsNum = matrix(data = 1:12, nrow = 12, ncol = Diff)
-"https://www2.census.gov/programs-surveys/cps/datasets/2016/basic/dec16pub.zip"
 
+ArchiveLocation = "C:/Users/Kelley_R/Desktop/CPS Microdata Storage/"
+
+
+# This section confirms that the Ending dates are valid given the starting dates. If it fails, an error is returned to show ther user that there is a problem.
 if (StartYear <= EndYear) {
   if ((StartYear == EndYear)&&(StartMonth <= EndMonth)) {
     MonthsNum[,1] = c(rep(NA,StartMonth - 1), StartMonth:EndMonth, rep(NA,12 - EndMonth))
@@ -29,7 +31,7 @@ if (StartYear <= EndYear) {
     MonthsNum[,1] = c(rep(NA,StartMonth - 1), StartMonth:12)
     MonthsNum[,Diff] = c(1:EndMonth, rep(NA,12 - EndMonth))
   } else {
-    stop("EndMonth value is less than StartMonth Value in first year. Correct before proceeding.")
+    stop("EndMonth value is less than StartMonth Value in first year. Correct before proceeding.\n\n")
   }
   MonthsName = sapply(1:Diff, function(x) month.abb[MonthsNum[,x]])
   Years = StartYear:EndYear
@@ -46,77 +48,67 @@ if (StartYear <= EndYear) {
   
   
 } else {
-  stop("EndYear value is less than StartYear value. Correct before proceeding.")
+  stop("EndYear value is less than StartYear value. Correct before proceeding.\n\n")
 }
 
 
-# May want to revert to the old source for this while in testing/development, as it seems to download faster and the old links won't deactiviate till June 2020. Will need to adjust for final use.
-# FileSourcePrefix = str_c("https://www2.census.gov/programs-surveys/cps/datasets/", Years, "/basic/")
-# FileSourcePaths = sapply(1:Diff, function(x) str_c(FileSourcePrefix[x], FileDateName[,x], "pub.zip"))
+# This is the code to get the Microdata files from the Census Bureau archive. They will be sent to the archive location specified above.  
+FileSourcePrefix = str_c("https://www2.census.gov/programs-surveys/cps/datasets/", Years, "/basic/")
+FileSourcePaths = as.vector(sapply(1:Diff, function(x)  str_c(FileSourcePrefix[x], FileDateName[,x], "pub.zip")))
+FileDestinationPath = as.vector(sapply(1:Diff, function(x) str_c(ArchiveLocation, IDVal[,x], FileDateName[,x], "pub.zip")))
+FileCheck = list.files(ArchiveLocation, full.names = TRUE)
+FilesToDownload = setdiff(FileDestinationPath, FileCheck)
+FilesToDownload = FilesToDownload[!is.na(FilesToDownload)]
+FileSourcing = FileSourcePaths[sapply(seq_along(FilesToDownload), function (x) which(as.vector(FileDestinationPath) == FilesToDownload[x]))]
+DownloadActual = sapply(seq_along(FilesToDownload), function (x) FileDownloaderFunction(FileURL = FileSourcing[x], FileDest = FilesToDownload[x]))
 
-# This is the code for the old source files for the microdata
-FileSourcePrefix = "http://thedataweb.rm.census.gov/pub/cps/basic/"
-FilePrefixVals = DataFileLocVal(FileDateNum)
-FileSourcePaths = sapply(1:Diff, function(x)  str_c(FileSourcePrefix, FilePrefixVals[,x], FileDateName[,x], "pub.zip"))
-
-
-DictionarySourcePrefix = "https://data.nber.org/data/progs/cps-basic/"
-DictionaryPrefixVals = DataDictionaryLocVal(FileDateNum)
-DictionarySourcePaths = str_c(DictionarySourcePrefix, DictionaryPrefixVals)
-
-FileDestinationPath = sapply(1:Diff, function(x) str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", IDVal[,x], FileDateName[,x], "pub.zip"))
-DictionaryDestPath = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/", DictionaryPrefixVals)
-DictionaryUniqueURL = unique(as.vector(DictionarySourcePaths))
-DictionaryUniquePath = unique(as.vector(DictionaryDestPath))
-FileDownloads = sapply(1:Diff, function(x) sapply(1:12, function(y) FileDownloader(FileURL = FileSourcePaths[y,x], FileDest = FileDestinationPath[y,x])))
+# DataDictionaries = loadWorkbook("C:/Users/Kelley_R/Desktop/CPSMicrodataReader/DataDictionaryFilesFinalCopy.xlsx")
+# X = getSheets(DataDictionaries)
 
 
-FileCleanup = setdiff(list.files(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE), dir(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE))
-RemovedFiles = file.remove(FileCleanup)
-
-
-DictionaryDownloads = sapply(seq_along(DictionaryUniqueURL), function(x) FileDownloader(FileURL = DictionaryUniqueURL[x], FileDest = DictionaryUniquePath[x]))
-FileExtraction = sapply(1:Diff, function(x) sapply(1:12, function(y) FileUnziper(FileToUnzip = FileDestinationPath[y,x], ExtractedFileDest = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage")))
-ExtractedFiles = sapply(1:Diff, function(x) str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/", IDVal[,x], FileDateName[,x], "pub.dat"))
-FileRenaming = sapply(1:Diff, function(x) file.rename(from = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/", FileDateName[,x], "pub.dat"), to = ExtractedFiles[,x]))
-
-DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles), DataDictionary = as.vector(DictionaryDestPath))
+# FileCleanup = setdiff(list.files(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE), dir(path = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage", full.names = TRUE))
+# RemovedFiles = file.remove(FileCleanup)
 
 
 
-DataDictionary = dct.parser(dct = DictionaryDestPath[1])
 
-DataDictionary$ColName = as.character(DataDictionary$ColName)
-DataDictionary$VarLabel = as.character(DataDictionary$VarLabel)
-DataDictionary$colClasses = str_replace_all(DataDictionary$colClasses,"raw", "integer")
-DataDictionary$EndPos = DataDictionary$StartPos + DataDictionary$ColWidth - 1
-
-Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/sep95pub.cps", DataDictionaryIn = DataDictionary)
-
-
-
-# FileInName = FileSourcePaths[1,1]
-# Test1 = CPSMicrodataReader(FileInName, DataDictionary)
-#
-# DataOut = list()
+# FileExtraction = sapply(1:Diff, function(x) sapply(1:12, function(y) FileUnziper(FileToUnzip = FileDestinationPath[y,x], ExtractedFileDest = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage")))
+# ExtractedFiles = sapply(1:Diff, function(x) str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/", IDVal[,x], FileDateName[,x], "pub.dat"))
+# FileRenaming = sapply(1:Diff, function(x) file.rename(from = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/", FileDateName[,x], "pub.dat"), to = ExtractedFiles[,x]))
 # 
-# for (j in 1:12) {
-#   FileInVal = ExtractedFiles[j, 1]
-#   DataOut[[j]] = CPSMicrodataReader(FileIn = FileInVal, DataDictionaryIn = DataDictionary)# }
-# names(DataOut) = FileDateName
+# DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles))
+# # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles), DataDictionary = as.vector(DictionaryDestPath))
 
-
-ArchiveDirectoryName = str_replace(str_replace(str_trunc(as.character(Sys.time()), width = 16, side = "right", ellipsis = ""), pattern = " ", replacement = "_"), pattern = ":", replacement = "")
-ArchiveExtractedDirectory = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/Archive/", ArchiveDirectoryName)
-D0 = dir.create(path = ArchiveExtractedDirectory)
-ArchiveZipDirectory = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/Archive/", ArchiveDirectoryName)
-D1 = dir.create(path = ArchiveZipDirectory)
-D01 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  ExtractedFiles[y, x], DestinationOfFile = ArchiveExtractedDirectory)))
-D11 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  FileDestinationPath[y, x], DestinationOfFile = ArchiveZipDirectory)))
-D12 = sapply(seq_along(DictionaryUniquePath), function(x) FileMover(FileToMove =  DictionaryUniquePath[x], DestinationOfFile = ArchiveZipDirectory))
-
+# 
+# 
+# 
+# 
+# Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/sep95pub.cps", DataDictionaryIn = DataDictionary)
+# 
+# 
+# 
+# # FileInName = FileSourcePaths[1,1]
+# # Test1 = CPSMicrodataReader(FileInName, DataDictionary)
+# #
+# # DataOut = list()
+# # 
+# # for (j in 1:12) {
+# #   FileInVal = ExtractedFiles[j, 1]
+# #   DataOut[[j]] = CPSMicrodataReader(FileIn = FileInVal, DataDictionaryIn = DataDictionary)# }
+# # names(DataOut) = FileDateName
+# 
+# 
+# ArchiveDirectoryName = str_replace(str_replace(str_trunc(as.character(Sys.time()), width = 16, side = "right", ellipsis = ""), pattern = " ", replacement = "_"), pattern = ":", replacement = "")
+# ArchiveExtractedDirectory = str_c("C:/Users/Kelley_R/Documents/CPSMicrodataStorage/Archive/", ArchiveDirectoryName)
+# D0 = dir.create(path = ArchiveExtractedDirectory)
+# ArchiveZipDirectory = str_c("Z:/Reid/CPSMicrodataReading/MicrodataStorage/Archive/", ArchiveDirectoryName)
+# D1 = dir.create(path = ArchiveZipDirectory)
+# D01 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  ExtractedFiles[y, x], DestinationOfFile = ArchiveExtractedDirectory)))
+# D11 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  FileDestinationPath[y, x], DestinationOfFile = ArchiveZipDirectory)))
+# D12 = sapply(seq_along(DictionaryUniquePath), function(x) FileMover(FileToMove =  DictionaryUniquePath[x], DestinationOfFile = ArchiveZipDirectory))
+# 
 
 cat("\014")
 toc()
 
-.rs.restartR()
+# .rs.restartR()
