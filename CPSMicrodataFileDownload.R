@@ -1,3 +1,10 @@
+# This script is designed to download all of the CPS Microdata files from the Census Bureau website.
+# The files are placed in an archive from which they can be repeatedly called and used without needing to redownload the file.
+# This minimizes download time, which is important since the Census website is rather slow to download, for reasons unknown.
+# The actual Microdata files are all .dat files, and they are compressed into .zip files; other scripts will handle unzipping and merging the data.
+
+
+
 # Cleaning the Work Environment
 rm(list = ls())
 cat("\014")
