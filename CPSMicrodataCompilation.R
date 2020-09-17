@@ -12,9 +12,9 @@ source("CPSDataReaderFunctions.R")
 # These four variables need to be filled in with appropriate values for the starting and ending months before running the script.
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
 StartMonth = 1
-StartYear = 1999
+StartYear = 1998
 EndMonth = 12
-EndYear = 2000
+EndYear = 2002
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
 # These files are downloaded as zipped files from the Census website. Having a fixed archive allows for easy additions as months pass without requiring extra downloads.
@@ -42,9 +42,9 @@ if (StartYear <= EndYear) {
 # by 1 for each month. The IDMax gives the largest value for the selected set. Currently the largest possible IDMax value is 299; this will change as months pass.
 
 # The points variables are for putting together the sequence of numbers. The initial point is set at September 1995. The StartPoint and EndPoint values are scaled off this.
-InitialPoint = 12*1995 + 9
-StartPoint = 12*StartYear + StartMonth - InitialPoint + 1
-EndPoint = 12*EndYear + EndMonth - InitialPoint + 1
+InitialPoint = 12*1995 + 8
+StartPoint = 12*StartYear + StartMonth - InitialPoint
+EndPoint = 12*EndYear + EndMonth - InitialPoint
 IDMax = max(100, EndPoint)
 # This gives a vector of all the points selected. It allows for choosing a start point later than September 1995. 
 # It is inserted into the various name part vectors to select only the ones that match the chosen start and end dates.

@@ -1,3 +1,15 @@
+DictionaryConnector = function(EndMonth, EndYear) {
+  EndPoint = max(12*EndYear + EndMonth - (12*2020 + 8),0)
+  DictionaryNum = c(rep(1,28),rep(2,60),rep(3,16),rep(4,15),rep(5,17),rep(6,24),rep(7,12),rep(8,28),rep(9,8),rep(10,12),rep(11,12),rep(12,24),rep(13,36),rep(14,8+EndPoint))
+  IDs = 1:(300+EndPoint)
+  ConnectorOut = tibble(IDs, DictionaryNum)
+  return(ConnectorOut)
+}
+  
+  
+
+
+
 CPSMicrodataReader = function(FileIn, DataDictionaryIn) {
   
   

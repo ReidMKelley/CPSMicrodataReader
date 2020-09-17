@@ -22,7 +22,7 @@ source("CPSDataReaderFunctions.R")
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
 StartMonth = 9
 StartYear = 1995
-EndMonth = 7
+EndMonth = 8
 EndYear = 2020
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
