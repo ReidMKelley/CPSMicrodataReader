@@ -1,300 +1,300 @@
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/001sep95pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/002oct95pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/003nov95pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/004dec95pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/005jan96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/006feb96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/007mar96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/008apr96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/009may96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/010jun96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/011jul96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/012aug96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/013sep96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/014oct96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/015nov96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/016dec96pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/017jan97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/018feb97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/019mar97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/020apr97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/021may97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/022jun97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/023jul97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/024aug97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/025sep97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/026oct97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/027nov97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/028dec97pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/029jan98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/030feb98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/031mar98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/032apr98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/033may98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/034jun98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/035jul98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/036aug98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/037sep98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/038oct98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/039nov98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/040dec98pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/041jan99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/042feb99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/043mar99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/044apr99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/045may99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/046jun99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/047jul99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/048aug99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/049sep99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/050oct99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/051nov99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/052dec99pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/053jan00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/054feb00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/055mar00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/056apr00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/057may00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/058jun00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/059jul00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/060aug00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/061sep00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/062oct00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/063nov00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/064dec00pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/065jan01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/066feb01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/067mar01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/068apr01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/069may01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/070jun01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/071jul01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/072aug01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/073sep01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/074oct01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/075nov01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/076dec01pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/077jan02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/078feb02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/079mar02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/080apr02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/081may02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/082jun02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/083jul02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/084aug02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/085sep02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/086oct02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/087nov02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/088dec02pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/089jan03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/090feb03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/091mar03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/092apr03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/093may03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/094jun03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/095jul03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/096aug03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/097sep03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/098oct03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/099nov03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/100dec03pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/101jan04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/102feb04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/103mar04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/104apr04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/105may04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/106jun04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/107jul04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/108aug04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/109sep04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/110oct04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/111nov04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/112dec04pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/113jan05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/114feb05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/115mar05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/116apr05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/117may05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/118jun05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/119jul05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/120aug05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/121sep05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/122oct05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/123nov05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/124dec05pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/125jan06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/126feb06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/127mar06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/128apr06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/129may06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/130jun06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/131jul06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/132aug06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/133sep06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/134oct06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/135nov06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/136dec06pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/137jan07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/138feb07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/139mar07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/140apr07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/141may07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/142jun07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/143jul07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/144aug07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/145sep07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/146oct07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/147nov07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/148dec07pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/149jan08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/150feb08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/151mar08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/152apr08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/153may08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/154jun08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/155jul08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/156aug08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/157sep08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/158oct08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/159nov08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/160dec08pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/161jan09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/162feb09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/163mar09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/164apr09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/165may09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/166jun09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/167jul09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/168aug09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/169sep09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/170oct09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/171nov09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/172dec09pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/173jan10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/174feb10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/175mar10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/176apr10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/177may10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/178jun10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/179jul10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/180aug10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/181sep10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/182oct10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/183nov10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/184dec10pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/185jan11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/186feb11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/187mar11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/188apr11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/189may11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/190jun11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/191jul11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/192aug11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/193sep11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/194oct11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/195nov11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/196dec11pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/197jan12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/198feb12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/199mar12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/200apr12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/201may12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/202jun12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/203jul12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/204aug12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/205sep12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/206oct12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/207nov12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/208dec12pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/209jan13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/210feb13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/211mar13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/212apr13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/213may13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/214jun13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/215jul13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/216aug13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/217sep13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/218oct13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/219nov13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/220dec13pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/221jan14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/222feb14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/223mar14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/224apr14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/225may14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/226jun14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/227jul14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/228aug14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/229sep14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/230oct14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/231nov14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/232dec14pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/233jan15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/234feb15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/235mar15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/236apr15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/237may15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/238jun15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/239jul15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/240aug15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/241sep15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/242oct15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/243nov15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/244dec15pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/245jan16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/246feb16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/247mar16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/248apr16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/249may16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/250jun16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/251jul16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/252aug16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/253sep16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/254oct16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/255nov16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/256dec16pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/257jan17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/258feb17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/259mar17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/260apr17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/261may17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/262jun17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/263jul17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/264aug17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/265sep17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/266oct17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/267nov17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/268dec17pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/269jan18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/270feb18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/271mar18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/272apr18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/273may18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/274jun18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/275jul18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/276aug18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/277sep18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/278oct18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/279nov18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/280dec18pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/281jan19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/282feb19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/283mar19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/284apr19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/285may19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/286jun19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/287jul19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/288aug19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/289sep19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/290oct19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/291nov19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/292dec19pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/293jan20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/294feb20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/295mar20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/296apr20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/297may20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/298jun20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/299jul20pub.zip
-C:/Users/Kelley_R/Desktop/CPS Microdata Storage/300aug20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/001sep95pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/002oct95pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/003nov95pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/004dec95pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/005jan96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/006feb96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/007mar96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/008apr96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/009may96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/010jun96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/011jul96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/012aug96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/013sep96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/014oct96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/015nov96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/016dec96pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/017jan97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/018feb97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/019mar97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/020apr97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/021may97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/022jun97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/023jul97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/024aug97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/025sep97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/026oct97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/027nov97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/028dec97pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/029jan98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/030feb98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/031mar98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/032apr98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/033may98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/034jun98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/035jul98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/036aug98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/037sep98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/038oct98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/039nov98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/040dec98pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/041jan99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/042feb99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/043mar99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/044apr99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/045may99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/046jun99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/047jul99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/048aug99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/049sep99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/050oct99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/051nov99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/052dec99pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/053jan00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/054feb00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/055mar00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/056apr00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/057may00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/058jun00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/059jul00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/060aug00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/061sep00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/062oct00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/063nov00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/064dec00pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/065jan01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/066feb01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/067mar01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/068apr01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/069may01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/070jun01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/071jul01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/072aug01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/073sep01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/074oct01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/075nov01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/076dec01pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/077jan02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/078feb02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/079mar02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/080apr02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/081may02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/082jun02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/083jul02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/084aug02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/085sep02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/086oct02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/087nov02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/088dec02pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/089jan03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/090feb03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/091mar03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/092apr03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/093may03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/094jun03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/095jul03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/096aug03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/097sep03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/098oct03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/099nov03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/100dec03pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/101jan04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/102feb04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/103mar04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/104apr04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/105may04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/106jun04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/107jul04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/108aug04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/109sep04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/110oct04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/111nov04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/112dec04pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/113jan05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/114feb05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/115mar05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/116apr05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/117may05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/118jun05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/119jul05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/120aug05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/121sep05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/122oct05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/123nov05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/124dec05pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/125jan06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/126feb06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/127mar06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/128apr06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/129may06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/130jun06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/131jul06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/132aug06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/133sep06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/134oct06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/135nov06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/136dec06pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/137jan07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/138feb07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/139mar07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/140apr07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/141may07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/142jun07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/143jul07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/144aug07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/145sep07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/146oct07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/147nov07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/148dec07pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/149jan08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/150feb08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/151mar08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/152apr08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/153may08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/154jun08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/155jul08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/156aug08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/157sep08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/158oct08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/159nov08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/160dec08pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/161jan09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/162feb09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/163mar09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/164apr09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/165may09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/166jun09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/167jul09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/168aug09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/169sep09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/170oct09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/171nov09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/172dec09pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/173jan10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/174feb10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/175mar10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/176apr10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/177may10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/178jun10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/179jul10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/180aug10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/181sep10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/182oct10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/183nov10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/184dec10pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/185jan11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/186feb11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/187mar11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/188apr11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/189may11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/190jun11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/191jul11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/192aug11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/193sep11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/194oct11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/195nov11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/196dec11pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/197jan12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/198feb12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/199mar12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/200apr12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/201may12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/202jun12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/203jul12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/204aug12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/205sep12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/206oct12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/207nov12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/208dec12pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/209jan13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/210feb13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/211mar13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/212apr13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/213may13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/214jun13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/215jul13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/216aug13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/217sep13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/218oct13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/219nov13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/220dec13pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/221jan14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/222feb14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/223mar14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/224apr14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/225may14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/226jun14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/227jul14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/228aug14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/229sep14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/230oct14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/231nov14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/232dec14pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/233jan15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/234feb15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/235mar15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/236apr15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/237may15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/238jun15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/239jul15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/240aug15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/241sep15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/242oct15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/243nov15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/244dec15pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/245jan16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/246feb16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/247mar16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/248apr16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/249may16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/250jun16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/251jul16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/252aug16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/253sep16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/254oct16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/255nov16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/256dec16pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/257jan17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/258feb17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/259mar17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/260apr17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/261may17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/262jun17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/263jul17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/264aug17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/265sep17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/266oct17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/267nov17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/268dec17pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/269jan18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/270feb18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/271mar18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/272apr18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/273may18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/274jun18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/275jul18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/276aug18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/277sep18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/278oct18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/279nov18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/280dec18pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/281jan19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/282feb19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/283mar19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/284apr19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/285may19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/286jun19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/287jul19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/288aug19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/289sep19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/290oct19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/291nov19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/292dec19pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/293jan20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/294feb20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/295mar20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/296apr20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/297may20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/298jun20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/299jul20pub.zip
+C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/300aug20pub.zip

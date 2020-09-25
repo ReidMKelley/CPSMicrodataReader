@@ -13,7 +13,7 @@ cat("\014")
 library("tictoc")
 library("xlsx")
 library("tidyverse")
-setwd("C:/Users/Kelley_R/Desktop/CPSMicrodataReader")
+setwd("C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader")
 source("CPSDataReaderFunctions.R")
 
 
@@ -28,7 +28,7 @@ EndYear = 2020
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
 # These files are downloaded as zipped files from the Census website. Having a fixed archive allows for easy additions as months pass without requiring extra downloads.
 
-ArchiveLocation = "C:/Users/Kelley_R/Desktop/CPS Microdata Storage/"
+ArchiveLocation = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/"
 
 
 
