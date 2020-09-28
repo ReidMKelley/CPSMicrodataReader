@@ -1,8 +1,21 @@
+
+# This function is set up to create a tibble that connects the ID number for the microdata file with the appropriate Dictionary number and name for it.
+# The entire function will need to be updated whenever a new DataDicitonary is released.
 DictionaryConnector = function(EndMonthVal, EndYearVal) {
+  # EndPoint is used to select the ending value of the sequence. It is set so that if the chosen enddate is before August 2020, the tibble populates out to August 2020.
+  # If the enddate is after August 2020, it extends the sequence out to that point.
   EndPoint = max(12*EndYear + EndMonth - (12*2020 + 8),0)
-  DictionaryNum = c(rep(1,28),rep(2,60),rep(3,16),rep(4,15),rep(5,17),rep(6,24),rep(7,12),rep(8,28),rep(9,8),rep(10,12),rep(11,12),rep(12,24),rep(13,36),rep(14,8+EndPoint))
+  
+  # The IDs are the 3-digit numbers that uniquely identify each month of microdata from September 1995 onwards. 
   IDs = 1:(300+EndPoint)
-  ConnectorOut = tibble(IDs, DictionaryNum)
+  
+  # DictionaryNum and DictionaryNames give the number and name of the appropriate data dictionary for the corresponding month given by the row ID value. 
+  # EndPoint is used in selecting the length of the last set of repitions, hence the updating needs.
+  DictionaryNum = c(rep(1,28),rep(2,60),rep(3,16),rep(4,15),rep(5,17),rep(6,24),rep(7,12),rep(8,28),rep(9,8),rep(10,12),rep(11,12),rep(12,24),rep(13,36),rep(14,8+EndPoint))
+  DictionaryNames = c(rep("Sep95",28),rep("Jan98",60),rep("Jan03",16),rep("May04",15),rep("Aug05",17),rep("Jan07",24),rep("Jan09",12),rep("Jan10",28),rep("May12",8),rep("Jan13",12),rep("Jan14",12),rep("Jan15",24),rep("Jan17",36),rep("Jan20",8+EndPoint))
+  
+  # This groups everything and outputs the info to the main script in a Tibble.
+  ConnectorOut = tibble(IDs, DictionaryNum, DictionaryNames)
   return(ConnectorOut)
 }
   
@@ -22,22 +35,6 @@ CPSMicrodataReader = function(FileIn, DataDictionaryIn) {
     A[[AA[x]]] = DecimalImputation(A[[AA[x]]], DataDictionaryIn$Decimals[AA[x]])
   }
   
-  # 
-  # # Adjusting the variables that have important factors to provide useful labels
-  # A$hehousut = factor(A$hehousut, levels = 0:12, labels = c("OTHER UNIT", "HOUSE, APARTMENT, FLAT", "HU IN NONTRANSIENT HOTEL, MOTEL, ETC.", "HU PERMANENT IN TRANSIENT HOTEL, MOTEL", "HU IN ROOMING HOUSE", "MOBILE HOME OR TRAILER W/NO PERM. ROOM ADDED", "MOBILE HOME OR TRAILER W/1 OR MORE PERM. ROOMS ADDED", "HU NOT SPECIFIED ABOVE", "QUARTERS NOT HU IN ROOMING OR BRDING HS", "UNIT NOT PERM. IN TRANSIENT HOTL, MOTL", "UNOCCUPIED TENT SITE OR TRLR SITE", "STUDENT QUARTERS IN COLLEGE DORM", "OTHER UNIT NOT SPECIFIED ABOVE"))
-  # A$hrintsta = factor(A$hrintsta, levels = 1:4, labels = c("INTERVIEW", "TYPE A NON-INTERVIEW", "TYPE B NON-INTERVIEW", "TYPE C NON-INTERVIEW"))
-  # A$hrhtype = factor(A$hrhtype, levels = 0:10, labels = c("NON-INTERVIEW HOUSEHOLD", "HUSBAND/WIFE PRIMARY FAMILY (NEITHER AF)", "HUSB/WIFE PRIM. FAMILY (EITHER/BOTH AF)", "UNMARRIED CIVILIAN MALE-PRIM. FAM HHLDER", "UNMARRIED CIV. FEMALE-PRIM FAM HHLDER", "PRIMARY FAMILY HHLDER-RP IN AF, UNMAR.", "CIVILIAN MALE PRIMARY INDIVIDUAL", "CIVILIAN FEMALE PRIMARY INDIVIDUAL", "PRIMARY INDIVIDUAL HHLD-RP IN AF", "GROUP QUARTERS WITH FAMILY", "GROUP QUARTERS WITHOUT FAMILY"))
-  # A$hrlonglk = factor(A$hrlonglk, levels = c(0,2,3), labels = c("MIS 1 OR REPLACEMENT HH (NO LINK)", "MIS 2-4 OR MIS 6-8", "MIS 5"))
-  # A$gereg = factor(A$gereg, levels = 1:4, labels = c("NORTHEAST", "MIDWEST (FORMERLY NORTH CENTRAL)", "SOUTH", "WEST"))
-  # A$gestfips = factor(A$gestfips)
-  # A$gediv = factor(A$gediv, levels = 1:9, labels = c("NEW ENGLAND", "MIDDLE ATLANTIC", "EAST NORTH CENTRAL", "WEST NORTH CENTRAL", "SOUTH ATLANTIC", "EAST SOUTH CENTRAL", "WEST SOUTH CENTRAL", "MOUNTAIN", "PACIFIC"))
-  # A$gtcbsast = factor(A$gtcbsast, levels = 1:4, labels = c("PRINCIPAL CITY", "BALANCE", "NONMETROPOLITAN", "NOT IDENTIFIED"))
-  # A$gtmetsta = factor(A$gtmetsta, levels = 1:3, labels = c("METROPOLITAN", "NONMETROPOLITAN", "NOT IDENTIFIED"))
-  # A$gtcbsasz = factor(A$gtcbsasz, levels = c(0,2:7), labels = c("NOT IDENTIFIED OR NONMETROPOLITAN", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  # A$prtfage = factor(A$prtfage, levels = 0:1, labels = c("NO TOP CODE", "TOP CODED VALUE FOR AGE"))
-  # A$pthr = factor(A$pthr, levels = 0:1, labels = c("NOT TOPCODED", "TOPCODED"))
-  # A$ptot = factor(A$ptot, levels = 0:1, labels = c("NOT TOPCODED", "TOPCODED"))
-  # A$prchld = factor(A$prchld, levels = -1:15, labels = c("NIU (Not a parent)", "No own children under 18 years of age", "All own children 0- 2 years of age", "All own children 3- 5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0- 2 and 3- 5 years of age (none 6-17)", "Own children 0- 2 and 6-13 years of age (none 3- 5 or 14-17)", "Own children 0- 2 and 14-17 years of age (none 3-13)", "Own children 3- 5 and 6-13 years of age (none 0- 2 or 14-17)", "Own children 3- 5 and 14-17 years of age (none 0- 2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0- 5)", "Own children 0- 2, 3- 5, and 6-13 years of age (none 14-17)", "Own children 0- 2, 3- 5, and 14-17 years of age (none 6-13)", "Own children 0- 2, 6-13, and 14-17 years of age (none 3- 5)", "Own children 3- 5, 6-13, and 14-17 years of age (none 0- 2)", "Own children from all age groups"))
   DataOut =  A
   return(DataOut)
   

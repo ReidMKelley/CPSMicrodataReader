@@ -95,11 +95,14 @@ FilesNeeded = DataSourceFileStrings$FileString[which(sapply(seq_along(DataSource
 DictionaryToFileConnection = DictionaryConnector(EndMonthVal = EndMonth, EndYearVal = EndYear)
 DictionaryToFileConnection = DictionaryToFileConnection[IDPoints,]
 
-DictionariesNeeded = unique(DictionaryToFileConnection$DictionaryNum)
-DictionaryFiles = list()
-for (j in 1:length(DictionariesNeeded)) {
-  DictionaryFiles[[j]] = read.xlsx(file = DictionaryExcelWkbk, sheetIndex = DictionariesNeeded[j], colIndex = 1:12)
+DictionariesNeeded = tibble(Nums = unique(DictionaryToFileConnection$DictionaryNum), Names = unique(DictionaryToFileConnection$DictionaryNames))
+DictionaryFiles = vector(mode = "list", length = length(DictionariesNeeded$Nums))
+names(DictionaryFiles) = DictionariesNeeded$Names
+for (j in 1:length(DictionariesNeeded$Nums)) {
+  DictionaryFiles[[j]] = read.xlsx(file = DictionaryExcelWkbk, sheetIndex = DictionariesNeeded$Nums[j], colIndex = 1:14, colClasses = c())
 }
+
+
 rm(j)
 
 
@@ -109,7 +112,8 @@ ExtractedFileSuffixes = str_trunc(ExtractedFiles, 4, side = "left", ellipsis = "
 ExtractedFileRename = str_c(UnzippedFileStorage, "/", FileDateName, ExtractedFileSuffixes)
 FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 
-
+# 
+# DataIn = read_fwf()
 
 # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles))
 # # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles), DataDictionary = as.vector(DictionaryDestPath))
@@ -142,8 +146,8 @@ FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 # D11 = sapply(1:Diff, function(x) sapply(1:12, function(y) FileMover(FileToMove =  FileDestinationPath[y, x], DestinationOfFile = ArchiveZipDirectory)))
 # D12 = sapply(seq_along(DictionaryUniquePath), function(x) FileMover(FileToMove =  DictionaryUniquePath[x], DestinationOfFile = ArchiveZipDirectory))
 # 
-FileCleanup = file.remove(ExtractedFileRename)
+# FileCleanup = file.remove(ExtractedFileRename)
 cat("\014")
 toc()
 
-# .rs.restartR()
+.rs.restartR()
