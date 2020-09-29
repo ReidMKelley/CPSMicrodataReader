@@ -25,8 +25,8 @@ DictionaryConnector = function(EndMonthVal, EndYearVal) {
 
 CPSMicrodataReader = function(FileIn, DataDictionaryIn) {
   
-  
-  Colspec = str_flatten(str_replace_all(str_trunc(DataDictionary$colClasses, 1, side = "right", ellipsis = ""), "n", "d"))
+  DataDictionaryIn = filter(DataDictionaryIn, Adjustment != "Add")
+  Colspec = str_flatten(str_replace_all(str_trunc(DataDictionaryIn$colClasses, 1, side = "right", ellipsis = ""), "n", "d"))
   A = read_fwf(file = FileIn, fwf_positions(DataDictionaryIn$StartPos, end = DataDictionaryIn$EndPos, col_names = DataDictionaryIn$ColName), col_types = Colspec)
   
 # Decimal Imputation for those columns that need it.

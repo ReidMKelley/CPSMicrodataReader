@@ -11,10 +11,10 @@ source("CPSDataReaderFunctions.R")
 
 # These four variables need to be filled in with appropriate values for the starting and ending months before running the script.
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
-StartMonth = 9
-StartYear = 1995
-EndMonth = 12
-EndYear = 1995
+StartMonth = 1
+StartYear = 2005
+EndMonth = 1
+EndYear = 2005
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
 # These files are downloaded as zipped files from the Census website. Having a fixed archive allows for easy additions as months pass without requiring extra downloads.
@@ -98,8 +98,11 @@ DictionaryToFileConnection = DictionaryToFileConnection[IDPoints,]
 DictionariesNeeded = tibble(Nums = unique(DictionaryToFileConnection$DictionaryNum), Names = unique(DictionaryToFileConnection$DictionaryNames))
 DictionaryFiles = vector(mode = "list", length = length(DictionariesNeeded$Nums))
 names(DictionaryFiles) = DictionariesNeeded$Names
+
+ColTypes = c("numeric", "character", "numeric", "character", "numeric", "character", "numeric", "character", "numeric", "character", "numeric", "numeric", "numeric", "character")
 for (j in 1:length(DictionariesNeeded$Nums)) {
-  DictionaryFiles[[j]] = read.xlsx(file = DictionaryExcelWkbk, sheetIndex = DictionariesNeeded$Nums[j], colIndex = 1:14, colClasses = c())
+  DictionaryFiles[[j]] = read.xlsx(file = DictionaryExcelWkbk, sheetIndex = DictionariesNeeded$Nums[j], colIndex = 1:14, colClasses = ColTypes)
+  DictionaryFiles[[j]] = filter(DictionaryFiles[[j]], !is.na(ColName))
 }
 
 
@@ -112,8 +115,15 @@ ExtractedFileSuffixes = str_trunc(ExtractedFiles, 4, side = "left", ellipsis = "
 ExtractedFileRename = str_c(UnzippedFileStorage, "/", FileDateName, ExtractedFileSuffixes)
 FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 
-# 
-# DataIn = read_fwf()
+# # This section is specifically set up for my parsing function building. It should be removed after I am finished. 
+Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/001sep95.cps", DataDictionaryIn = DictionaryFiles$Sep95)
+saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataSep1995.rds")
+
+
+
+# DataOut = saveRDS(Test0, file =
+
+
 
 # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles))
 # # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles), DataDictionary = as.vector(DictionaryDestPath))
@@ -122,7 +132,7 @@ FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 # 
 # 
 # 
-# Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/sep95pub.cps", DataDictionaryIn = DataDictionary)
+# Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/Documents/CPSMicrodataStorage/001sep95pub.cps", DataDictionaryIn = DataDictionary)
 # 
 # 
 # 

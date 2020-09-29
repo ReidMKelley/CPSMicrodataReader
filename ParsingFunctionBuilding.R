@@ -1,5 +1,24 @@
 ParserSeptember1995 = function(AA, DictionaryIn) {
   
+  # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
+  AA = select(DataIn, -all_of(filter(DictionaryIn, Adjustment == "Remove")$ColName))
+  
+  # These format properly the three variables that go into forming the HRHHID2 variable.
+  AA$hrsample[AA$hrsample == "-1"] = NA
+  AA$hrsample = str_trunc(AA$hrsample, width = 2, side = "left", ellipsis = "")
+  AA$hrsersuf[is.na(AA$hrsersuf)] = -1
+  AA$hrsersuf = str_trunc(str_c("0", match(as.character(AA$hrsersuf), c("-1", LETTERS[1:26]))-1), width = 2, side = "left", ellipsis = "")
+  # This adds the variables that the Dictionary says to add, properly applying the formulas to create them.
+  AA = tibble(AA, hryear4 = 1900 + AA$hryear, hrhhid2 = str_c(AA$hrsample, AA$hrsersuf, AA$huhhnum), gecmsanum = AA$gecmsa, gemsanum = AA$gemsa, geconum = AA$geco)
+  # This removes all of the variables that are labelled "Delete" in the dataset. 
+  AA = select(AA, -all_of(filter(DictionaryIn, Adjustment == "Delete")$ColName))
+  # This reorders all of the remaining variables to match the Dictionary Order
+  AA = select(AA, filter(filter(DictionaryIn, Adjustment != "Remove"), Adjustment != "Delete")$ColName)
+  
+  
+  
+  
+  
   
   
   # These functions format the Household Information section
@@ -17,7 +36,6 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
                                  "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", "Outside segment",
                                  "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 1980", "Unused serial no./listing sheet line",
                                  "Other - Specify"))
-  AA$huspnish = factor(AA$huspnish, levels = c(-1, 1), labels = c(NA, "Spanish only language spoken"))
   AA$hetenure = factor(AA$hetenure, levels = c(-1, 1:3), labels = c(NA, "Owned or being bought by a HH member", "Rented for cash", "Occupied without payment of cash rent"))
   AA$hehousut = factor(AA$hehousut, levels = -1:12, labels = c(NA, "Other unit", "House, apartment, flat", "HU in nontransient hotel, motel, etc.", "HU permanent in transient hotel, motel",
                                                                "HU in rooming house", "Mobile home or trailer w/no perm. room added", "Mobile home or trailer w/1 or more perm. rooms added", "HU not specified above", "Quarters not HU in rooming or brding HS",
@@ -41,19 +59,9 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
                                                                 "Group quarter with family", "Group quarters without family"))
   AA$hrmis[AA$hrmis == -1] = NA
   AA$hrmonth[AA$hrmonth == -1] = NA
-  AA$hryear[AA$hryear == -1] = NA
-  AA =add_column(AA, hryear4 = 1900 + AA$hryear)
-  AA = AA %>% select(1:22, hryear4, everything())
-  AA = select(AA, -hryear)
+  AA$hryear4[AA$hryear4 == -1] = NA
   AA$hrlonglk = factor(AA$hrlonglk, levels = c(-1, 0, 2, 3), labels = c(NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
   
-  # These set up the hrhhid2 variable for longitudinal linking
-  AA$hrsample[AA$hrsample == "-1"] = NA
-  AA$hrsample = str_trunc(AA$hrsample, width = 2, side = "left", ellipsis = "")
-  AA$hrsersuf[is.na(AA$hrsersuf)] = -1
-  AA$hrsersuf = str_trunc(str_c("0", match(as.character(AA$hrsersuf), c("-1", LETTERS[1:26]))-1), width = 2, side = "left", ellipsis = "")
-  AA$hrhhid2 = str_c(AA$hrsample, AA$hrsersuf, AA$huhhnum)
-  AA = AA %>% select(1:23, hrhhid2,everything())
   
   AA$hubus = factor(AA$hubus, levels = c(-1, 1, 2), labels = c(NA, "Someone in HH has a business/farm", "No one in HH has a business/farm"))
   AA$hubusl1[AA$hubusl1 == -1] = NA
@@ -66,29 +74,22 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$gereg = factor(AA$gereg, levels = c(-1, 1:4), labels = c(NA, "Northeast", "Midwest", "South", "West"))
   AA$gestcen = factor(AA$gestcen, levels = c(-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c(NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
   AA$gestfips[AA$gestfips == -1] = NA
-  AA$gecmsanum = AA$gecmsa
   AA$gecmsa = factor(AA$gecmsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
-  AA$gecmsanum[AA$gecmsanum <= -1] = NA
-  AA$gemsanum = AA$gemsa
   AA$gemsa = factor(AA$gemsa, levels = c(-3:-1, 0, 80:9360), labels = c("Refused", "Don't Know", NA, "Not identified or nonmetropolitan", str_c(80:9360, " Specific MSA Code")))
-  AA$gemsanum[AA$gemsanum <= -1] = NA
-  AA$geconum = AA$geco
   AA$geco = factor(AA$geco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  AA$gecmsanum[AA$gecmsanum <= -1] = NA
+  AA$gemsanum[AA$gemsanum <= -1] = NA
   AA$geconum[AA$geconum <= -1] = NA
-  AA = AA %>% select(1:38, gecmsanum, gemsanum, geconum, everything())
+
   
   AA$gemsast = factor(AA$gemsast, levels = c(-1, 1:4), labels = c(NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
   AA$gemetsta = factor(AA$gemetsta, levels = c(-1, 1:3), labels = c(NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
   AA$geindvcc = factor(AA$geindvcc, levels = -1:4, labels = c(NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
   AA$gemsasz = factor(AA$gemsasz, levels = c(-1, 0, 2:7), labels = c(NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  AA$gecmsasz = factor(AA$gecmsasz, levels = c(-1, 0, 2:7), labels = c(NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  AA$hulensec[AA$hulensec == -1] = NA
   
   
   
   # These functions format the Personal Information Demographic section
-  AA$proldrrp = factor(AA$proldrrp, levels = c(-1, 1:12), labels = c(NA, "Ref pers with other relatives in HH", "Ref pers with no other relatives in HH", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other relative", "Foster child", "Non-rel of Ref Per w/own rels in HH", "Partner/Roommate", "Non-rel of ref per w/no own rels in HH"))
-  AA$pupelig = factor(AA$pupelig, levels = c(-1, 1:12), labels = c(NA, "Eligible for interview", "Labor force fully complete", "Missing labor force data for person", "(Not used)", "Assigned if age is blank", "Armed forces member", "Under 15 years old", "Not a HH member", "Deleted", "Deceased", "End of list", "After end of list"))
   AA$perrp = factor(AA$perrp, levels = c(-1, 1:18), labels = c(NA, "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
   AA$peparent = factor(AA$peparent, levels = c(-1, 1:99), labels = c("No parent", str_c(1:99, "Line Num of parent")))
   AA$peage = factor(AA$peage, levels = -1:90, labels = c(NA, str_c(0:89, " years old"), "90+ years old"))
@@ -103,7 +104,7 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$perace = factor(AA$perace, levels = c(-1, 1:5), labels = c(NA, "White", "Black", "American Indian, Aleut, Eskimo", "Asian or Pacific Islander", "Other - Specify"))
   AA$prorigin = factor(AA$prorigin,  levels = c(-1, 1:10), labels = c(NA, "Mexican American", "Chicano", "Mexican (Mexicano)", "Puerto Rican", "Cuban", "Central or South American", "Other Spanish", "All other", "Don't know", "NA"))
   AA$puchinhh = factor(AA$puchinhh, levels = c(-1, 1:7, 9), labels = c(NA, "Person added", "Person added - URE", "Person undeleted", "Person died", "Deleted for reason other than death", "Person joined Armed Forces", "Person no longer in AF", "Change in demographic information"))
-  AA$purelflg = factor(AA$purelflg, levels = -1:1, labels = c(NA, "Not owner or related to owner of business", "Owner of business or related to owner of business"))
+
   AA$pulineno[AA$pulineno == -1] = NA
   AA$prfamnum = factor(AA$prfamnum, levels = -1:19, labels = c(NA, "Not a family member", "Primary family member only", "Subfamily No. 2 member", "Subfamily No. 3 member", "Subfamily No. 4 member", "Subfamily No. 5 member", "Subfamily No. 6 member", "Subfamily No. 7 member", "Subfamily No. 8 member", "Subfamily No. 9 member", "Subfamily No. 10 member", "Subfamily No. 11 member", "Subfamily No. 12 member", "Subfamily No. 13 member", "Subfamily No. 14 member", "Subfamily No. 15 member", "Subfamily No. 16 member", "Subfamily No. 17 member", "Subfamily No. 18 member", "Subfamily No. 19 member"))
   AA$prfamrel = factor(AA$prfamrel, levels = -1:4, labels = c(NA, "Not a family member", "Reference person", "Spouse", "Child", "Other relative (Primary Family & Unrel)"))
@@ -136,9 +137,7 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pubus1 = factor(AA$pubus1, levels = c(-1, 1, 2), labels = c(NA, "Person did unpaid work on family business/farm", "Person did not do unpaid work on family business/farm"))
   AA$pubus2ot = factor(AA$pubus2ot, levels = c(-1, 1, 2), labels = c(NA, "Person received payments or profits from the family business", "Person did not receive payments or profits from the family business"))
   
-  # This removes several check variables about family business that have limited use for researcher. This removes 4 columns from AA; there are 78 columns prior to the first one here.
-  AA = select(AA, -c(pubusck1, pubusck2, pubusck3, pubusck4))
-  
+
   AA$puretot = factor(AA$puretot, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported retired last month and is retired now", "No, person who was reported retired last month is not retired now", "Person was not retired last month"))
   AA$pudis = factor(AA$pudis, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported disabled last month and is disabled now", "No, person who was reported disabled last month is not disabled now", "Person was not disabled last month"))
   AA$peret1 = factor(AA$peret1, levels = c(-1, 1:3), labels = c(NA, "Yes, person who was reported retired last month wants a job (full or part-time)", "No, person who was reported retired last month does not want a job", "Person who was reported retired last month has a job now"))
@@ -170,10 +169,6 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pehract2[AA$pehract2 == -1] = NA
   AA$pehractt[AA$pehractt == -1] = NA
   AA$pehravl = factor(AA$pehravl, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
-  AA$pulbhsec[AA$pulbhsec == -1] = NA
-  
-  # This removes several check variables about hours that have limited use for researcher. This removes 8 columns from AA; there are 106 columns prior to the first one here (after earlier removal).
-  AA = select(AA, -c(puhrck1, puhrck2, puhrck3, puhrck4, puhrck5, puhrck6, puhrck7, puhrck12))
   
   AA$pulaydt = factor(AA$pulaydt, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   AA$pulay6m = factor(AA$pulay6m, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
@@ -182,9 +177,6 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pelaylk = factor(AA$pelaylk, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   AA$pelaydur[AA$pelaydur == -1] = NA
   AA$pelayfto = factor(AA$pelayfto, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
-  
-  # This removes several check variables about layoffs that have limited use for researcher. This removes 3 columns from AA; there are 113 columns prior to the first one here (after earlier removal).
-  AA = select(AA, -c(pulayck1, pulayck2, pulayck3))
   
   AA$pulk = factor(AA$pulk, levels = c(-1, 1:5), labels = c(NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
   AA$pelkm1 = factor(AA$pelkm1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
@@ -205,7 +197,7 @@ ParserSeptember1995 = function(AA, DictionaryIn) {
   AA$pulkm6 = factor(AA$pulkm6, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  
+  # I STOPPED HERE 9-29 
   AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
                                                                    "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                    "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
