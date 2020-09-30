@@ -6,7 +6,7 @@ library("xlsx")
 library("tidyverse")
 setwd("C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader")
 
-DictionaryExcelWkbk = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/DataDictionaryFilesFinalCopy.xlsx"
+DictionaryExcelWkbk = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/DataDictionaries/DataDictionaryFilesFinalCopy.xlsx"
 ColTypes = c("numeric", "character", "numeric", "character", "numeric", "character", "numeric", "character", "numeric", "character", "numeric", "numeric", "numeric", "character")
 DictionaryIn = read.xlsx(file = DictionaryExcelWkbk, sheetIndex = 1, colIndex = 1:14, colClasses = ColTypes)
 DictionaryIn = filter(DictionaryIn, !is.na(ColName))
