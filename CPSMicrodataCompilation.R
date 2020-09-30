@@ -25,7 +25,7 @@ UnzippedFileStorage = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS
 
 # This gives the full FilePath of the the ExcelWorkbook file that contains the Data Dictionary files as Excel Sheets.
 # This needs to be set by the user for the program to work properly.
-DictionaryExcelWkbk = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/DataDictionaryFilesFinalCopy.xlsx"
+DictionaryExcelWkbk = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/DataDictionaries/DataDictionaryFilesFinalCopy.xlsx"
 
 
 
