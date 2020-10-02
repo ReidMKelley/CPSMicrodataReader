@@ -1082,7 +1082,7 @@ ParserJanuary1998 = function(AA, DictionaryIn) {
 }
 
 
-ParserJanuary2003 = function(AA, DictionaryIn) {
+ParserJanuary2003 = function(DataIn, DictionaryIn) {
   
   
   
@@ -1181,7 +1181,7 @@ ParserJanuary2003 = function(AA, DictionaryIn) {
   AA$proldrrp = factor(AA$proldrrp, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Ref pers with other relatives in HH", "Ref pers with no other relatives in HH", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other relative", "Foster child", "Non-rel of Ref Per w/own rels in HH", "Partner/Roommate", "Non-rel of ref per w/no own rels in HH"))
   AA$pupelig = factor(AA$pupelig, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Eligible for interview", "Labor force fully complete", "Missing labor force data for person", "(Not used)", "Assigned if age is blank", "Armed forces member", "Under 15 years old", "Not a HH member", "Deleted", "Deceased", "End of list", "After end of list"))
   AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
-  AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, "Line Num of parent")))
+  AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
   AA$peage = factor(AA$peage, levels = -3:90, labels = c("Refused", "Don't Know", NA, str_c(0:89, " years old"), "90+ years old"))
   AA$ptage = factor(AA$ptage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
   AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", "Separated", "Never married"))
