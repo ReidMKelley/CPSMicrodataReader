@@ -12,10 +12,10 @@ source("ParsingFunctionBuilding.R")
 
 # These four variables need to be filled in with appropriate values for the starting and ending months before running the script.
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
-StartMonth = 1
-StartYear = 1998
-EndMonth = 1
-EndYear = 1998
+StartMonth = 9
+StartYear = 1995
+EndMonth = 9
+EndYear = 1995
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
 # These files are downloaded as zipped files from the Census website. Having a fixed archive allows for easy additions as months pass without requiring extra downloads.
@@ -102,7 +102,7 @@ names(DictionaryFiles) = DictionariesNeeded$Names
 
 ColTypes = c("numeric", "character", "numeric", "character", "numeric", "character", "numeric", "character", "numeric", "character", "numeric", "numeric", "numeric", "character")
 for (j in 1:length(DictionariesNeeded$Nums)) {
-  DictionaryFiles[[j]] = read.xlsx(file = DictionaryExcelWkbk, sheetIndex = DictionariesNeeded$Nums[j], colIndex = 1:14, colClasses = ColTypes)
+  DictionaryFiles[[j]] = read.xlsx(file = DictionaryExcelWkbk, sheetName = DictionariesNeeded$Names[j], colIndex = 1:14, colClasses = ColTypes)
   DictionaryFiles[[j]] = filter(DictionaryFiles[[j]], !is.na(ColName))
 }
 

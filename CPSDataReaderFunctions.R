@@ -12,7 +12,7 @@ DictionaryConnector = function(EndMonthVal, EndYearVal) {
   # DictionaryNum and DictionaryNames give the number and name of the appropriate data dictionary for the corresponding month given by the row ID value. 
   # EndPoint is used in selecting the length of the last set of repitions, hence the updating needs.
   DictionaryNum = c(rep(1,28),rep(2,60),rep(3,16),rep(4,15),rep(5,17),rep(6,24),rep(7,12),rep(8,28),rep(9,8),rep(10,12),rep(11,12),rep(12,24),rep(13,36),rep(14,8+EndPoint))
-  DictionaryNames = c(rep("Sep95",28),rep("Jan98",60),rep("Jan03",16),rep("May04",15),rep("Aug05",17),rep("Jan07",24),rep("Jan09",12),rep("Jan10",28),rep("May12",8),rep("Jan13",12),rep("Jan14",12),rep("Jan15",24),rep("Jan17",36),rep("Jan20",8+EndPoint))
+  DictionaryNames = c(rep("Sep95Dictionary",28),rep("Jan98Dictionary",60),rep("Jan03Dictionary",16),rep("May04Dictionary",15),rep("Aug05Dictionary",17),rep("Jan07Dictionary",24),rep("Jan09Dictionary",12),rep("Jan10Dictionary",28),rep("May12Dictionary",8),rep("Jan13Dictionary",12),rep("Jan14Dictionary",12),rep("Jan15Dictionary",24),rep("Jan17Dictionary",36),rep("Jan20Dictionary",8+EndPoint))
   
   # This groups everything and outputs the info to the main script in a Tibble.
   ConnectorOut = tibble(IDs, DictionaryNum, DictionaryNames)
