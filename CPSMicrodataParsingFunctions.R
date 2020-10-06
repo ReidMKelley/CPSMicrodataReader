@@ -432,7 +432,7 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$prsjmj = factor(AA$prsjmj, levels = c(-1, 1, 2), labels = c(NA, "Single jobholder", "Multiple jobholder"))
   AA$prerelg = factor(AA$prerelg, levels = -1:1, labels = c(NA, "Not eligible for edit", "Eligible for edit"))
   AA$peernuot = factor(AA$peernuot, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
-  AApeernper = factor(AA$peernper, levels = c(-1, 1:7), labels = c(NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
+  AA$peernper = factor(AA$peernper, levels = c(-1, 1:7), labels = c(NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
   AA$peernrt = factor(AA$peernrt, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
   
   
@@ -1020,7 +1020,7 @@ ParserJanuary1998 = function(DataIn, DataDictionaryIn) {
   AA$prsjmj = factor(AA$prsjmj, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Single jobholder", "Multiple jobholder"))
   AA$prerelg = factor(AA$prerelg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not eligible for edit", "Eligible for edit"))
   AA$peernuot = factor(AA$peernuot, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
-  AApeernper = factor(AA$peernper, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
+  AA$peernper = factor(AA$peernper, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
   AA$peernrt = factor(AA$peernrt, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   
   

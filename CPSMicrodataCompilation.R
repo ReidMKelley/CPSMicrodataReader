@@ -12,10 +12,10 @@ source("ParsingFunctionBuilding.R")
 
 # These four variables need to be filled in with appropriate values for the starting and ending months before running the script.
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
-StartMonth = 9
-StartYear = 1995
-EndMonth = 9
-EndYear = 1995
+StartMonth = 1
+StartYear = 2003
+EndMonth = 1
+EndYear = 2003
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
 # These files are downloaded as zipped files from the Census website. Having a fixed archive allows for easy additions as months pass without requiring extra downloads.
@@ -117,16 +117,13 @@ ExtractedFileRename = str_c(UnzippedFileStorage, "/", FileDateName, ExtractedFil
 FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 
 # # This section is specifically set up for my parsing function building. It should be removed after I am finished. 
-Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/029jan98.cps", DataDictionaryIn = DictionaryFiles$Jan98)
-Test1 = ParserJanuary1998(DataIn = Test0, DataDictionaryIn = DictionaryFiles$Jan98)
-saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedJan1998.rds")
-saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedJan1998.rds")
+Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/089jan03.cps", DataDictionaryIn = DictionaryFiles$Jan03Dictionary)
+Test1 = ParserJanuary2003(DataIn = Test0, DataDictionaryIn = DictionaryFiles$Jan03Dictionary)
+saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedJan2003.rds")
+saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedJan2003.rds")
 
 
-# DataOut = saveRDS(Test0, file =
 
-DataIn = Test0 
-DataDictionaryIn = DictionaryFiles$Jan98
 
 # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles))
 # # DictionaryMonthConnection = tibble(OrderNumber = as.vector(IDVal), FileDateName = as.vector(FileDateName), FileDateNum = as.vector(FileDateNum), FileLocation = as.vector(ExtractedFiles), DataDictionary = as.vector(DictionaryDestPath))
