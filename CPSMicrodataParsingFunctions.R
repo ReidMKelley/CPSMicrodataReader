@@ -135,13 +135,20 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   # Need to look more into the allocation flag issue for this following variable
   AA$prcitflg[AA$prcitflg == -1] = NA
   if (AA$hryear4[1] == 1995) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -1:13, labels = c("Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1995"))
+    AA$prinusyr = factor(AA$prinusyr, levels = -1:13, labels = c("Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", 
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1995"))
   } else if (AA$hryear4[1] == 1996) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -1:14, labels = c("Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1996"))
+    AA$prinusyr = factor(AA$prinusyr, levels = -1:14, labels = c("Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", 
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1996"))
   } else if (AA$hryear4[1] == 1997) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -1:14, labels = c("Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1997"))
-  } else if (AA$hryear4[1] == 1998) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -1:15, labels = c("Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1998"))
+    AA$prinusyr = factor(AA$prinusyr, levels = -1:14, labels = c("Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", 
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1997"))
   }
   
   
@@ -732,7 +739,10 @@ ParserJanuary1998 = function(DataIn, DataDictionaryIn) {
   
   # Need to look more into the allocation flag issue for this following variable
   AA$prcitflg[AA$prcitflg == -1] = NA
-  AA$prinusyr = factor(AA$prinusyr, levels = -3:14, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1997"))
+  AA$prinusyr = factor(AA$prinusyr, levels = -3:14, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
+                                                               "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", 
+                                                               "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                               "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1997"))
   
   
   
@@ -1361,7 +1371,20 @@ ParserJanuary2003 = function(DataIn, DataDictionaryIn) {
   
   # Need to look more into the allocation flag issue for this following variable
   AA$prcitflg[AA$prcitflg == -1] = NA
-  AA$prinusyr = factor(AA$prinusyr, levels = -3:14, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1997"))
+  if (AA$hryear4[1] == 2003) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:17, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", 
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995",
+                                                                 "Immigrant entered in 1996-1997", "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2003"))
+  } else if (AA$hryear4[1] == 2004) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", 
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995",
+                                                                 "Immigrant entered in 1996-1997", "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2004"))
+  }
+  
   
   
   # These functions format the Personal Information Labor Force section

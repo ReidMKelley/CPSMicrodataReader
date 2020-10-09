@@ -81,23 +81,24 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   AA$gtco = factor(AA$gtco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
   
   
-  AA$gtcsa = factor(AA$gtcsa, c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA,))
-  AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
-  AA$gtconum[AA$gtconum <= -1] = NA
-  AA$gtcsanum[AA$gtcsanum <= -1] = NA
   AA$gtcbsast = factor(AA$gtcbsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
-
-  
   AA$gtmetsta = factor(AA$gtmetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
   AA$gtindvpc = factor(AA$gtindvpc, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
   AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
+  AA$gtcsa = factor(AA$gtcsa, c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA,))
   
+  
+  AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
+  AA$gtconum[AA$gtconum <= -1] = NA
+  AA$gtcsanum[AA$gtcsanum <= -1] = NA
+  
+
   
   # These functions format the Personal Information Demographic section
   AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
-  AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, "Line Num of parent")))
+  AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
   AA$peage = factor(AA$peage, levels = -3:90, labels = c("Refused", "Don't Know", NA, str_c(0:89, " years old"), "90+ years old"))
-  AA$ptage = factor(AA$ptage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
+  AA$prtfage = factor(AA$ptage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
   AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", "Separated", "Never married"))
   
   
@@ -110,7 +111,7 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   AA$peeduca = factor(AA$peeduca, levels = c(-3:-1, 31:46), labels = c("Refused", "Don't Know", NA, "Less than 1st grade", "1st, 2nd, 3rd or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade no diploma", "High school grad-diploma or equivalent (GED)", "Some college but no degree", "Associate degree-Occupational/Vocational", "Associate degree-Academic program", "Bachelor's degree (Ex: BA, AB, BS)", "Master's degree (Ex: MA, MS, MEng, MEd, MSW)", "Professional School Deg (Ex: MD, DDS, DVM)", "Doctorate degree (Ex: PhD, EdD)"))
   AA$prdtrace = factor(AA$prdtrace, levels = c(-3:-1, 1:21), labels = c("Refused", "Don't Know", NA, "White Only", "Black Only", "American Indian, Alaskan Native Only", "Asian Only", "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-Hawaiian", "Black-AI", "Black-Asian", "Black-HP", "AI-Asian", "Asian-HP", "W-B-AI", "W-B-A", "W-AI-A", "W-A-HP", "W-B-AI-A", "2 or 3 Races", "4 or 5 Races"))
-  AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican American", "Puerto Rican", "Cuban", "Central/South American", "Other Spanish"))
+  AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican", "Puerto Rican", "Cuban", "Central/South American", "Other Spanish"))
   AA$puchinhh = factor(AA$puchinhh, levels = c(-3:-1, 1:7, 9), labels = c("Refused", "Don't Know", NA, "Person added", "Person added - URE", "Person undeleted", "Person died", "Deleted for reason other than death", "Person joined Armed Forces", "Person no longer in AF", "Change in demographic information"))
   AA$pulineno[AA$pulineno == -1] = NA
   
@@ -131,8 +132,21 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   # Need to look more into the allocation flag issue for this following variable
   AA$prcitflg[AA$prcitflg == -1] = NA
-  AA$prinusyr = factor(AA$prinusyr, levels = -3:14, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1997"))
+  if (AA$hryear4 == 2004) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969",
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995",
+                                                                 "Immigrant entered in 1996-1997", "Immigrant entered in 1988-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2004"))  
+  } else if (AA$hryear4 == 2005) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
+                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969",
+                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995",
+                                                                 "Immigrant entered in 1996-1997", "Immigrant entered in 1988-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))  
+  }
   
+  # STOPPED HERE ON 10-9-2020
   
   
   # These functions format the Personal Information Labor Force section
