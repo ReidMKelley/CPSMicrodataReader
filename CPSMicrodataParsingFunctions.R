@@ -212,64 +212,64 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   
   AA$pulk = factor(AA$pulk, levels = c(-1, 1:5), labels = c(NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
   AA$pelkm1 = factor(AA$pelkm1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                 "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                 "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                  "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkm2 = factor(AA$pulkm2, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm3 = factor(AA$pulkm3, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm4 = factor(AA$pulkm4, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkm5 = factor(AA$pulkm5, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm6 = factor(AA$pulkm6, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                     "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                     "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                      "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                   "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                   "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                    "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps1 = factor(AA$pulkps1, levels = c(-1, 1:13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                   "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                   "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                    "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkps2 = factor(AA$pulkps2, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkps3 = factor(AA$pulkps3, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps4 = factor(AA$pulkps4, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps5 = factor(AA$pulkps5, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps6 = factor(AA$pulkps6, levels = c(-1, 1:11, 13), labels = c(NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                       "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                       "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
@@ -806,64 +806,64 @@ ParserJanuary1998 = function(DataIn, DataDictionaryIn) {
   AA$pelayfto = factor(AA$pelayfto, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$pulk = factor(AA$pulk, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
   AA$pelkm1 = factor(AA$pelkm1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                    "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                    "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                     "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkm2 = factor(AA$pulkm2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm3 = factor(AA$pulkm3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkm4 = factor(AA$pulkm4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm5 = factor(AA$pulkm5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm6 = factor(AA$pulkm6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                      "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                       "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps1 = factor(AA$pulkps1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                      "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                       "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   
   
   AA$pulkps2 = factor(AA$pulkps2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps3 = factor(AA$pulkps3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps4 = factor(AA$pulkps4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps5 = factor(AA$pulkps5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps6 = factor(AA$pulkps6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
@@ -1204,6 +1204,10 @@ ParserJanuary1998 = function(DataIn, DataDictionaryIn) {
   AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
   
+  
+  
+  
+  
   AA$qstnum[AA$qstnum <= -1] = NA
   AA$occurnum[AA$occurnum <= -1] = NA
   AA$pedipged = factor(AA$pedipged, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Graduation from high school", "GED or other equivalent"))
@@ -1240,9 +1244,6 @@ ParserJanuary2003 = function(DataIn, DataDictionaryIn) {
   AA = select(AA, -all_of(filter(DataDictionaryIn, Adjustment == "Delete")$ColName))
   # This reorders all of the remaining variables to match the Dictionary Order
   AA = select(AA, filter(filter(DataDictionaryIn, Adjustment != "Remove"), Adjustment != "Delete")$ColName)
-  
-  
-  
   
   
   
@@ -1447,64 +1448,64 @@ ParserJanuary2003 = function(DataIn, DataDictionaryIn) {
   AA$pelayfto = factor(AA$pelayfto, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$pulk = factor(AA$pulk, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
   AA$pelkm1 = factor(AA$pelkm1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                    "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                    "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                     "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkm2 = factor(AA$pulkm2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm3 = factor(AA$pulkm3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkm4 = factor(AA$pulkm4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm5 = factor(AA$pulkm5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkm6 = factor(AA$pulkm6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                        "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                         "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                      "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                       "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
   AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps1 = factor(AA$pulkps1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                      "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                       "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
   
   
   AA$pulkps2 = factor(AA$pulkps2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps3 = factor(AA$pulkps3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps4 = factor(AA$pulkps4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps5 = factor(AA$pulkps5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps6 = factor(AA$pulkps6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
+                                                                          "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
                                                                           "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
@@ -1814,6 +1815,8 @@ ParserJanuary2003 = function(DataIn, DataDictionaryIn) {
   AA$pxschenr = factor(AA$pxschenr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschft = factor(AA$pxschft, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
   
   
   

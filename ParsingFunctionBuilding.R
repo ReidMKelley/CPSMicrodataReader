@@ -146,7 +146,6 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
                                                                  "Immigrant entered in 1996-1997", "Immigrant entered in 1988-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))  
   }
   
-  # STOPPED HERE ON 10-9-2020
   
   
   # These functions format the Personal Information Labor Force section
@@ -209,66 +208,66 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   AA$pulk = factor(AA$pulk, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
-  AA$pelkm1 = factor(AA$pelkm1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                    "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                    "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
-  AA$pulkm2 = factor(AA$pulkm2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkm3 = factor(AA$pulkm3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkm4 = factor(AA$pulkm4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pelkm1 = factor(AA$pelkm1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                    "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                    "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkm2 = factor(AA$pulkm2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm3 = factor(AA$pulkm3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm4 = factor(AA$pulkm4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
-  AA$pulkm5 = factor(AA$pulkm5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkm6 = factor(AA$pulkm6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                        "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                        "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                      "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
-  AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm5 = factor(AA$pulkm5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm6 = factor(AA$pulkm6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                      "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                      "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
-  AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkps1 = factor(AA$pulkps1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                      "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                      "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
-  AA$pulkps2 = factor(AA$pulkps2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), llabels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                           "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                           "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps1 = factor(AA$pulkps1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                      "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                      "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkps2 = factor(AA$pulkps2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
   
   
-  AA$pulkps3 = factor(AA$pulkps3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkps4 = factor(AA$pulkps4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkps5 = factor(AA$pulkps5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkps6 = factor(AA$pulkps6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", "Contacted friends or relatives",
-                                                                          "Contacted school/univrsity empl center", "Sent out resumes/filled out application", "Checked union/professional registers", "Placed or answered ads", "Other active",
-                                                                          "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps3 = factor(AA$pulkps3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps4 = factor(AA$pulkps4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps5 = factor(AA$pulkps5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps6 = factor(AA$pulkps6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pelkavl = factor(AA$pelkavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   
   
@@ -281,8 +280,9 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   AA$pelkfto = factor(AA$pelkfto, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Doesn't matter"))
   AA$pedwwnto = factor(AA$pedwwnto, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes, or maybe, it depends", "No", "Retired", "Disabled", "Unable to work"))
-  AA$pedwrsn = factor(AA$pedwrsn, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Believes no work available in area of expertise", "Couldn't find any work", "Lacks necessary schooling/training", "Employers think too young or too old", "Other types of discrimination",
-                                                                      "Can't arrange child care", "Family responsibilities", "In school or other training", "Ill-health, physcial disability", "Transportation problems", "Other - Specify"))
+  AA$pedwrsn = factor(AA$pedwrsn, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Believes no work available in area of expertise", "Couldn't find any work", "Lacks necessary schooling/training", 
+                                                                      "Employers think too young or too old", "Other types of discrimination", "Can't arrange child care", "Family responsibilities", 
+                                                                      "In school or other training", "Ill-health, physcial disability", "Transportation problems", "Other - Specify"))
   AA$pedwlko = factor(AA$pedwlko, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$pedwwk = factor(AA$pedwwk, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   
@@ -295,25 +295,27 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   AA$pujhdp1o = factor(AA$pujhdp1o, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
-  AA$pejhrsn = factor(AA$pejhrsn, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Personal/Family (Including Pregnancy)", "Return to school", "Health", "Retirement or old age", "Temp, Seasonal or intermittent job complete", "Slack work/business conditions", "Unsatisfactory work arrangements (Hrs, pay, etc.)", "Other - specify"))
+  AA$pejhrsn = factor(AA$pejhrsn, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Personal/Family (Including Pregnancy)", "Return to school", "Health", "Retirement or old age", 
+                                                                     "Temp, Seasonal or intermittent job complete", "Slack work/business conditions", "Unsatisfactory work arrangements (Hrs, pay, etc.)", "Other - specify"))
   AA$pejhwant = factor(AA$pejhwant, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes, or it depends", "No"))
-  AA$prabsrea = factor(AA$prabsrea, levels = c(-3:-1, 1:40), labels = c("Refused", "Don't Know", NA, "FT paid-Vacation", "FT paid-Own illness", "FT paid-Child care problems", "FT paid-Other family/Personal oblig.",
-                                                                        "FT paid-Maternity/Paternity leave", "FT paid-Labor dispute", "FT paid-Weather affected job", "FT paid-School/Training", "FT paid-Civic/Military duty",
-                                                                        "FT paid-Other", "FT unpaid-Vacation", "FT unpaid-Own illness", "FT unpaid-Child care problems", "FT unpaid-Other fam/Personal obligation",
-                                                                        "FT unpaid-Maternity/Paternity leave", "FT unpaid-Labor dispute", "FT unpaid-Weather affected job", "FT unpaid-School/Training", "FT unpaid-Civic/Military duty",
-                                                                        "FT unpaid-Other", "PT paid-Vacation", "PT paid-Own illness", "PT paid-Child care problems", "PT paid-Other family/Personal oblig.",
-                                                                        "PT paid-Maternity/Paternity leave", "PT paid-Labor dispute", "PT paid-Weather affected job", "PT paid-School/Training", "PT paid-Civic/Military duty",
-                                                                        "PT paid-Other", "PT unpaid-Vacation", "PT unpaid-Own illness", "PT unpaid-Child care problems", "PT unpaid-Other fam/Personal obligation",
-                                                                        "PT unpaid-Maternity/Paternity leave", "PT unpaid-Labor dispute", "PT unpaid-Weather affected job", "PT unpaid-School/Training", "PT unpaid-Civic/Military duty",
-                                                                        "PT unpaid-Other"))
+  AA$prabsrea = factor(AA$prabsrea, levels = c(-3:-1, 1:40), labels = c("Refused", "Don't Know", NA, 
+                                                                        "FT paid-Vacation", "FT paid-Own illness", "FT paid-Child care problems", "FT paid-Other family/Personal oblig.", "FT paid-Maternity/Paternity leave", 
+                                                                        "FT paid-Labor dispute", "FT paid-Weather affected job", "FT paid-School/Training", "FT paid-Civic/Military duty", "FT paid-Other", "FT unpaid-Vacation", 
+                                                                        "FT unpaid-Own illness", "FT unpaid-Child care problems", "FT unpaid-Other fam/Personal obligation", "FT unpaid-Maternity/Paternity leave", 
+                                                                        "FT unpaid-Labor dispute", "FT unpaid-Weather affected job", "FT unpaid-School/Training", "FT unpaid-Civic/Military duty", "FT unpaid-Other", 
+                                                                        "PT paid-Vacation", "PT paid-Own illness", "PT paid-Child care problems", "PT paid-Other family/Personal oblig.", "PT paid-Maternity/Paternity leave", 
+                                                                        "PT paid-Labor dispute", "PT paid-Weather affected job", "PT paid-School/Training", "PT paid-Civic/Military duty", "PT paid-Other", "PT unpaid-Vacation", 
+                                                                        "PT unpaid-Own illness", "PT unpaid-Child care problems", "PT unpaid-Other fam/Personal obligation", "PT unpaid-Maternity/Paternity leave", 
+                                                                        "PT unpaid-Labor dispute", "PT unpaid-Weather affected job", "PT unpaid-School/Training", "PT unpaid-Civic/Military duty", "PT unpaid-Other"))
   AA$prcivlf = factor(AA$prcivlf, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "In Civilian Labor Force", "Not in Civilian Labor Force"))
   
+  # Stopping here for lunch break
   
   AA$prdisc = factor(AA$prdisc, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Discouraged worker", "Conditionally interested", "Not available"))
   AA$premphrs = factor(AA$premphrs, levels = -3:22, labels = c("Refused", "Don't Know", NA, "Unemployed and NILF", "W/job, Not at work-Illness", "W/job, not at work-Vacation", "W/job, not at work-Weather affected job",
-                                                               "W/job, not at work-Labor dispute", "W/job, not at work-Child care problems", "W/job, not at work-Fam/Pers obligation", "W/job, not at work-Maternity/Paternity", "W/job, not at work-School/Training",
-                                                               "W/job, not at work-Civic/Military duty", "W/job, not at work-Does not work in bus", "W/job, not at work-Other", "At work- 1-4 hrs", "At work- 5-14 hrs",
-                                                               "At work- 15-21 hrs", "At work- 22-29 hrs", "At work- 30-34 hrs", "At work- 35-39 hrs", "At work- 40 hrs",
+                                                               "W/job, not at work-Labor dispute", "W/job, not at work-Child care problems", "W/job, not at work-Fam/Pers obligation", "W/job, not at work-Maternity/Paternity", 
+                                                               "W/job, not at work-School/Training", "W/job, not at work-Civic/Military duty", "W/job, not at work-Does not work in bus", "W/job, not at work-Other", 
+                                                               "At work- 1-4 hrs", "At work- 5-14 hrs", "At work- 15-21 hrs", "At work- 22-29 hrs", "At work- 30-34 hrs", "At work- 35-39 hrs", "At work- 40 hrs",
                                                                "At work- 41-47 hrs", "At work- 48 hrs", "At work- 49-59 hrs", "At work- 60 hrs or more"))
   AA$prempnot = factor(AA$prempnot, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Employed", "Unemployed", "Not in the Labor Force (NILF)-discouraged", "Not in the Labor Force (NILF)-other"))
   AA$prexplf = factor(AA$prexplf, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Employed", "Unemployed"))
@@ -321,35 +323,43 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   AA$prhrusl = factor(AA$prhrusl, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "0-20 hrs", "21-34 hrs", "35-39 hrs", "40 hrs", "41-49 hrs", "50 or more hrs", "Varies-Full Time", "Varies-Part Time"))
-  AA$prjobsea = factor(AA$prjobsea, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Looked last 4 weeks - Not worked", "Looked last 4 weeks - Worked", "Looked last 4 weeks - Layoff", "Unavailable job seekers", "No recent job search"))
-  AA$prpthrs = factor(AA$prpthrs, levels = -3:12, labels = c("Refused", "Don't Know", NA, "Usually FT, PT for Noneconomic reasons", "Usu.FT, PT econ reasons; 1-4 hrs", "Usu.FT, PT econ reasons; 5-14 hrs", "Usu.FT, PT econ reasons; 15-29 hrs",
-                                                             "Usu.FT, PT econ reasons; 30-34 hrs", "Usu.PT, econ reasons; 1-4 hrs", "Usu.PT, econ reasons; 5-14 hrs", "Usu.PT, econ reasons 15-29 hrs", "Usu.PT, econ reasons 30-34 hrs",
-                                                             "Usu.PT, non-econ reasons; 1-4 hrs", "Usu.PT, non-econ reasons; 5-14 hrs", "Usu.PT, non-econ reasons; 15-29 hrs", "Usu.PT, non-econ reasons; 30-34 hrs"))
-  AA$prptrea = factor(AA$prptrea, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", "Usu. FT-Vacation/Personal day",
-                                                                      "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute",
-                                                                      "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions",
-                                                                      "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", 
-                                                                      "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
+  AA$prjobsea = factor(AA$prjobsea, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Looked last 4 weeks - Not worked", "Looked last 4 weeks - Worked", 
+                                                                       "Looked last 4 weeks - Layoff", "Unavailable job seekers", "No recent job search"))
+  AA$prpthrs = factor(AA$prpthrs, levels = -3:12, labels = c("Refused", "Don't Know", NA, "Usually FT, PT for Noneconomic reasons", "Usu.FT, PT econ reasons; 1-4 hrs", "Usu.FT, PT econ reasons; 5-14 hrs", 
+                                                             "Usu.FT, PT econ reasons; 15-29 hrs", "Usu.FT, PT econ reasons; 30-34 hrs", "Usu.PT, econ reasons; 1-4 hrs", "Usu.PT, econ reasons; 5-14 hrs", 
+                                                             "Usu.PT, econ reasons 15-29 hrs", "Usu.PT, econ reasons 30-34 hrs", "Usu.PT, non-econ reasons; 1-4 hrs", "Usu.PT, non-econ reasons; 5-14 hrs", 
+                                                             "Usu.PT, non-econ reasons; 15-29 hrs", "Usu.PT, non-econ reasons; 30-34 hrs"))
+  AA$prptrea = factor(AA$prptrea, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", 
+                                                                      "Usu. FT-Vacation/Personal day", "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", 
+                                                                      "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute", "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", 
+                                                                      "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions", "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", 
+                                                                      "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", 
+                                                                      "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
   AA$prunedur[AA$prunedur == -1] = NA
   
   
   AA$pruntype = factor(AA$pruntype, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Job loser/On layoff", "Other job loser", "Temportary job ended", "Job leaver", "Re-entrant", "New-entrant"))
   AA$prwksch = factor(AA$prwksch, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "At work", "With job, not at work", "Unemployed, seeks FT", "Unemployed, seeks PT"))
-  AA$prwkstat = factor(AA$prwkstat, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "FT hours (35+), usually FT", "PT for economic reasons, usually FT", "PT for non-economic reasons, usually FT",
-                                                                        "Not at work, usually FT", "PT hrs, usually PT for economic reasons", "PT hrs, usually PT for non-economic reasons", "FT hours, usually PT for economic reasons", "FT hours, usually PT for non-economic reasons", 
+  AA$prwkstat = factor(AA$prwkstat, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "FT hours (35+), usually FT", "PT for economic reasons, usually FT", 
+                                                                        "PT for non-economic reasons, usually FT", "Not at work, usually FT", "PT hrs, usually PT for economic reasons", 
+                                                                        "PT hrs, usually PT for non-economic reasons", "FT hours, usually PT for economic reasons", "FT hours, usually PT for non-economic reasons", 
                                                                         "Not at work, usually Part-Time", "Unemployed FT", "Unemployed PT"))
   AA$prwntjob = factor(AA$prwntjob, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Want a job", "Other Not in the Labor Force (NILF)"))
+  # PUJHCK3-PUJHCK5 would be here, but were removed at start.
   AA$puiodp1 = factor(AA$puiodp1, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   
   
   AA$puiodp2 = factor(AA$puiodp2, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$puiodp3 = factor(AA$puiodp3, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
-  AA$peio1cow = factor(AA$peio1cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
+  AA$peio1cow = factor(AA$peio1cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", 
+                                                                       "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
   AA$puio1mfg = factor(AA$puio1mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
-  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
+  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", 
+                                                                       "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Government, level unknown", "Self-employed, Incorporation status unknown"))
   
   
   AA$puio2mfg = factor(AA$puio2mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
+  # PUIOCK1-PUIOCK3 would be here, but were removed at start. 
   AA$prioelg = factor(AA$prioelg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not eligible for edit", "Eligible for edit"))
   AA$pragna = factor(AA$pragna, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Agricultural", "Non-agricultural"))
   AA$prcow1 = factor(AA$prcow1, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Federal Govt", "State Govt", "Local Govt", "Private (Incl. Self-employed Incorp.)", "Self-employed unincorp.", "Without Pay"))
@@ -357,56 +367,78 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   AA$prcowpg = factor(AA$prcowpg, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Private", "Government"))
-  AA$prdtcow1 = factor(AA$prdtcow1, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local", "Nonag, Self-employed", "Nonag, unpaid"))
-  AA$prdtcow2 = factor(AA$prdtcow2, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local", "Nonag, Self-employed", "Nonag, unpaid"))
-  AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
-                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
-                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products",
-                                                                        "Textile, apparel, and leather manufacturing", "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products",
-                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)",
-                                                                        "Motion picture and sound recording industries", "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services",
-                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service",
-                                                                        "Professional and technical services", "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services",
-                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation",
-                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", "Private households",
-                                                                        "Public administration", "Armed forces"))
-  AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
-                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
-                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products",
-                                                                        "Textile, apparel, and leather manufacturing", "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products",
-                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)",
-                                                                        "Motion picture and sound recording industries", "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services",
-                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service",
-                                                                        "Professional and technical services", "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services",
-                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation",
-                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", "Private households",
-                                                                        "Public administration", "Armed forces"))
+  AA$prdtcow1 = factor(AA$prdtcow1, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", 
+                                                                        "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local",
+                                                                        "Nonag, Self-employed", "Nonag, unpaid"))
+  AA$prdtcow2 = factor(AA$prdtcow2, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid",
+                                                                        "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local",
+                                                                        "Nonag, Self-employed", "Nonag, unpaid"))
+  AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
+                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", 
+                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", "Wood products", "Furniture and fixtures manufacturing", 
+                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
+                                                                        "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products", "Wholesale trade", 
+                                                                        "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
+                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services", 
+                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
+                                                                        "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services", 
+                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation", 
+                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", 
+                                                                        "Private households", "Public administration", "Armed forces"))
+  AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
+                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", 
+                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", "Wood products", "Furniture and fixtures manufacturing", 
+                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
+                                                                        "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products", "Wholesale trade", 
+                                                                        "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
+                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services", 
+                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
+                                                                        "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services", 
+                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation", 
+                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", 
+                                                                        "Private households", "Public administration", "Armed forces"))
   
 
-  AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", "Architecture and engineering occupations", "Life, physical, and social science occupations",
-                                                                        "Community and social service occupations", "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", "Healthcare practitioner and technical occupations",
-                                                                        "Healthcare support occupations", "Protective service occupations", "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations",
-                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations",
-                                                                        "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
-  AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", "Architecture and engineering occupations", "Life, physical, and social science occupations",
-                                                                        "Community and social service occupations", "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", "Healthcare practitioner and technical occupations",
-                                                                        "Healthcare support occupations", "Protective service occupations", "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations",
-                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations",
-                                                                        "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
+  AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", 
+                                                                        "Architecture and engineering occupations", "Life, physical, and social science occupations", "Community and social service occupations", 
+                                                                        "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", 
+                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", "Protective service occupations", 
+                                                                        "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                        "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Transportation and material moving occupations", "Armed Forces"))
+  AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", 
+                                                                        "Architecture and engineering occupations", "Life, physical, and social science occupations", "Community and social service occupations", 
+                                                                        "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", 
+                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", "Protective service occupations", 
+                                                                        "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                        "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Transportation and material moving occupations", "Armed Forces"))
   AA$premp = factor(AA$premp, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Employed persons (Excluding farm & private households)"))
-  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade",
-                                                                        "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services",
+  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade", 
+                                                                        "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services", 
                                                                         "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
   AA$prmjind2 = factor(AA$prmjind2, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade",
                                                                         "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services",
                                                                         "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
   
   
-  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", "Sales and related occupations", "Office and administrative support occupations",
-                                                                       "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
-  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", "Sales and related occupations", "Office and administrative support occupations",
-                                                                       "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
-  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", "Arned Forces"))
+  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", 
+                                                                       "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                       "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", 
+                                                                       "Transportation and material moving occupations", "Armed Forces"))
+  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), llabels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                        "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Transportation and material moving occupations", "Armed Forces"))
+  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
+                                                                       "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
+                                                                       "Arned Forces"))
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   AA$prnagws = factor(AA$prnagws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Wage & Salary workers"))
   
@@ -425,14 +457,20 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   AA$prernhly[AA$prernhly <= -1] = NA
   
   
+  # PTHR tells us if all the hourly pay variables (so puernh1c, peernh2, peernh1o, prernhly) are topcoded to preserve respondent anonymity) 
   AA$pthr = factor(AA$pthr, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
+  # PEERNHRO gives us the usual weekly hours. Used along with the hourly pay prernhly to determine whether to topcode hourly pay variables.
   AA$peernhro[AA$peernhro <= -1] = NA
+  # PRERNWA is the weekly earnings recode.
   AA$prernwa[AA$prernwa <= -1] = NA
+  # PTWK tells us if PRERNWA and any other weekly pay variables are topcoded to preserve respondent anonymity. 
   AA$ptwk = factor(AA$ptwk, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
+  # PEERN and PUERN2 calculate the amount the person earned in overtime in the reference week.
   AA$peern[AA$peern <= -1] = NA
   
   
   AA$puern2[AA$puern2 <= -1] = NA
+  # PTOT tells if the overtime variables peern and puern2 were topcoded to preserve respondent anonymity.
   AA$ptot = factor(AA$ptot, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
   AA$peernwkp[AA$peernwkp <= -1] = NA
   AA$peernlab = factor(AA$peernlab, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
@@ -443,28 +481,46 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   AA$penlfret = factor(AA$penlfret, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   AA$penlfact = factor(AA$penlfact, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Disabled", "Ill", "In School", "Taking care of house or family", "In retirement", "Something else/other"))
   AA$peschenr = factor(AA$peschenr, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PUNLFCK1-PUNLFCK2 would be here, but were removed at start.
   AA$peschft = factor(AA$peschft, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Full-Time", "Part-Time"))
   
   
   AA$peschlvl = factor(AA$peschlvl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "High school", "College or University"))
   AA$prnlfsch = factor(AA$prnlfsch, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "In school", "Not in school"))
+  # PWFMWGT is the family weighting variable. It is used only to tally family characteristics.
   AA$pwfmwgt[AA$pwfmwgt <= -1] = NA
+  # PWLGWGT is the longitudinal weighting variable. It is only found on adult records that are matched from month to month, and is used for analyzing gross labor market flows only.
   AA$pwlgwgt[AA$pwlgwgt <= -1] = NA
+  # PWORWGT is the outgoing rotation weight. It is only found on respondents in the 4th or 8th month in sample. It is used only for tallying info that is collected in those months. 
+  # These include earnings data, 2nd job Occupation and Industry data, and Detailed Not it Labor Force data.
   AA$pworwgt[AA$pworwgt <= -1] = NA
   
-  
+  # PWSSWGT is the second-stage or "final weight". It is used in most calculations, and is controlled to independent estimates of population levels for 1) states, 2) origin, sex, and age; and 3) age, race, and sex. 
+  # See the appropriate Cnesus Bureau Technical Papers for details on this procedure.
   AA$pwsswgt[AA$pwsswgt <= -1] = NA
+  # PWVETWGT is the Veterans wieght. It is used to tally data on veterans and is controlled to an independent estimate of the number of veterans that is supplied by the VA.
   AA$pwvetwgt[AA$pwvetwgt <= -1] = NA
+  # PRCHLD tells whether the respondent has minor children residing in the household with them.
   AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
-                                                              "All own children 3-5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", "Own children 0-2 and 3-5 years of age (none 6-17)", "Own children 0-2 and 6-13 years of age (none 3-5 or 14-17)",
-                                                              "Own children 0-2 and 14-17 years of age (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)",
-                                                              "Own children 0-2, 3-5, and 14-17 years of age (none 6-13)", "Own children 0-2, 6-13, and 14-17 years of age (none 3-5)", "Own children 3-5, 6-13, and 14-17 years of age (none 0-2)", "Own children from all age groups"))
+                                                              "All own children 3-5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", 
+                                                              "Own children 0-2 and 3-5 years of age (none 6-17)", "Own children 0-2 and 6-13 years of age (none 3-5 or 14-17)", 
+                                                              "Own children 0-2 and 14-17 years of age (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", 
+                                                              "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", 
+                                                              "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)", "Own children 0-2, 3-5, and 14-17 years of age (none 6-13)", 
+                                                              "Own children 0-2, 6-13, and 14-17 years of age (none 3-5)", "Own children 3-5, 6-13, and 14-17 years of age (none 0-2)", "Own children from all age groups"))
+  # PRNMCHLD tells the number of minor children living in the household with the respondent.
   AA$prnmchld[ AA$prnmchld <= -1] = NA
   
   
   
   # These functions format the Allocation Flags section
+  # Each allocation flag variable tells whether the related variable has some element that was allocated to fill in a missing record. 
+  # With a few exceptions, the allocation flag has the same name as the original variable, just with the second letter switched from a U or an E or an R to an X. E.G. HXTENURE is the flag for HETENURE. 
+  # Exceptions will be specifically commented on.
+  
+  # PRWERNAL is the allocation flag for PRERNWA.
   AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  # PRHERNAL is the allocation flag for PRERNHLY.
   AA$prhernal = factor(AA$prhernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$hxtenure = factor(AA$hxtenure, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$hxtelhhd = factor(AA$hxtelhhd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -583,32 +639,64 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   
+  # This is a last section mainly related to some additional education questions. The section was added at the end starting in January 1998.
   
+  # QSTNUM provides a unique household identifier that is valid only within the specific month selected.
   AA$qstnum[AA$qstnum <= -1] = NA
+  # OCCURNUM provides a unique person identifier within the household. It is valid only within the specific month selected.
   AA$occurnum[AA$occurnum <= -1] = NA
+  # PEDIPGED asks how the respondent got their high school diploma - by graduation from high school or by completing a GED. Only asked of those people whose highest education level was "High School or equivalent".
+  # That is, those with PEEDUCA = 39.
+  # (CHECK THIS)
   AA$pedipged = factor(AA$pedipged, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Graduation from high school", "GED or other equivalent"))
-  AA$pehgcomp = factor(AA$pehgcomp, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1st grade", "1st, 2nd, 3rd, or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade, NO DIPLOMA"))
-  AA$pecyc = factor(AA$pecyc, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1 year (includes 0 years completed)", "The first, or Freshman year", "The second, or Sophmore year", "The third, or Junior year", "Four or more years"))
+  # PEHGCOMP asks what the highest level of schooling the person completed before receiving their GED. Only asked of people with PEDIPGED = 2.
+  AA$pehgcomp = factor(AA$pehgcomp, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1st grade", "1st, 2nd, 3rd, or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", 
+                                                                       "10th grade", "11th grade", "12th grade, NO DIPLOMA"))
+  # PECYC asks how many years of college did the person complete. It is only asked of those whose highest education  level was "Some college but no degree" or an "Associate Degree". That is, PEEDUCA = 40-42.
+  AA$pecyc = factor(AA$pecyc, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1 year (includes 0 years completed)", "The first, or Freshman year", "The second, or Sophmore year", 
+                                                                 "The third, or Junior year", "Four or more years"))
   
+  
+  # PEGRPROF, PEGR6COR, and PEMS123 would be here but were removed at the start.
+  # The next three variables are allocation flags for the three variables above.
   AA$pxdipged = factor(AA$pxdipged, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhgcomp = factor(AA$pxhgcomp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxcyc = factor(AA$pxcyc, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  #  PXGRPROF, PXGR6COR, and PXMS123 would be here but were removed at the start.
+  
+  # PWCMPWGT is the Composited Final Weight. It is used in producing BLS labor force statistics and is only available for those in the Civilian Noninstitutional Population 16+.
+  # See the appropriate Cnesus Bureau Technical Papers for details on this variable.
   AA$pwcmpwgt[AA$pwcmpwgt <= -1] = NA
+  
+  # This provides the most detailed industry code for the person's primary job. The four digit code (insert leading 0s as necessary) connects to specific industries in the 2002 Census Industry coding. 
+  # These are aggregated into the 52 detailed groups and 14 major groups that are used in the various above industry variables.
   AA$peio1icd[AA$peio1icd == -1] = NA
-  
-  
+  # This provides the most detailed occupation code for the respondent's primary job. The four digit code (insert leading 0s as necessary) connects to specific occupations in the 2002 Census Occupation coding. 
+  # These are aggregated into the 23 detailed groups and 11 major groups that are used in the various above occupation variables. 
   AA$peio1ocd[AA$peio1ocd == -1] = NA
+  # This provides the most detailed industry code for the person's second job. The four digit code (insert leading 0s as necessary) connects to specific industries in the 2002 Census Industry coding. 
+  # These are aggregated into the 52 detailed groups and 14 major groups that are used in the various above industry variables.
   AA$peio2icd[AA$peio2icd == -1] = NA 
+  # This provides the most detailed occupation code for the respondent's second job. The four digit code (insert leading 0s as necessary) connects to specific occupations in the 2002 Census Occupation coding. 
+  # These are aggregated into the 23 detailed groups and 11 major groups that are used in the various above occupation variables.
   AA$peio2ocd[AA$peio2ocd == -1] = NA
-  AA$primind1 = factor(AA$primind1, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods",
-                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
-                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", "Educational services", "Health care and social services", "Arts, entertainment, and recreation",
-                                                                        "Accomodation and food services", "Private households", "Other services, except private households", "Public administration", "Armed Forces"))
-  AA$primind2 = factor(AA$primind2, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods",
-                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
-                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", "Educational services", "Health care and social services", "Arts, entertainment, and recreation",
-                                                                        "Accomodation and food services", "Private households", "Other services, except private households", "Public administration", "Armed Forces"))
   
+  # Actually connecting the specific industry and occupational codes to their titles is a task that will have to wait for later.
   
+  # These two variables provide intermediate level industry grouping for the respondent's primary and second jobs, respoectively. These are 22 industry groups here.
+  AA$primind1 = factor(AA$primind1, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods", 
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
+                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", 
+                                                                        "Educational services", "Health care and social services", "Arts, entertainment, and recreation", "Accomodation and food services", "Private households", 
+                                                                        "Other services, except private households", "Public administration", "Armed Forces"))
+  AA$primind2 = factor(AA$primind2, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods", 
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
+                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", 
+                                                                        "Educational services", "Health care and social services", "Arts, entertainment, and recreation", "Accomodation and food services", "Private households", 
+                                                                        "Other services, except private households", "Public administration", "Armed Forces"))
+  
+  # This returns the dataset back to the main script, ending the function.
   return(AA)
 }
