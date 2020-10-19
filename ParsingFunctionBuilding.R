@@ -14,10 +14,14 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   # These functions format the Household Information section
+  # HRHHID gives the household ID number. Can be used for longitudinal linking
   AA$hrhhid[AA$hrhhid == -1] = NA
+  # These two give the month and year of the repspondent's interview. Should be the same across all months.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
+  # HURRESPLI gives the line number of the current respondent within the household. (So the first respondent in the household is 1, the second is 2, etc. It resets with each new household.)
   AA$hurespli[AA$hurespli <= -1] = NA
+  # HUFINAL provides info on how the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200, 201, 202, 203, 204, 205, 210, 216, 217, 218, 219, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 240, 241, 242, 243, 244, 245, 246, 247, 248),
                       labels = c("Refused", "Don't Know", NA, "New interview - Not contacted", "Fully complete CATI interview", "Partially completed CATI interview", "Labor force complete, Supplement incomplete - CATI", "HH occupied entirely by Armed Forces members",
@@ -30,40 +34,58 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
                                  "Other - Specify"))
   
   
+  # HETENURE tells about the household's relation to the ownership of the property
   AA$hetenure = factor(AA$hetenure, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Owned or being bought by a HH member", "Rented for cash", "Occupied without payment of cash rent"))
+  # HEHOUSUT tells the type of the housing that the household is living in.
   AA$hehousut = factor(AA$hehousut, levels = -3:12, labels = c("Refused", "Don't Know", NA, "Other unit", "House, apartment, flat", "HU in nontransient hotel, motel, etc.", "HU permanent in transient hotel, motel",
                                                                "HU in rooming house", "Mobile home or trailer w/no perm. room added", "Mobile home or trailer w/1 or more perm. rooms added", "HU not specified above", "Quarters not HU in rooming or brding HS",
                                                                "Unit not perm. in transient hotl, motl", "Uoccupied tent site or trlr site", "Student quarters in college dorm", "Other unit not specified above"))
+  # HETELHHD tells whether the household has a telephone at the house.
   AA$hetelhhd = factor(AA$hetelhhd, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone present in house", "Telephone not present in the house"))
+  # HETELAVL tells whether people who don't have telephones available at home (that is, HETELHHD = 2) have a phone elsewhere that they can use to answer the future months of the survey.
   AA$hetelavl = factor(AA$hetelavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone elsewhere available for household to use", "Telephone not available eslewhere for household to use"))
+  # HEPHONEO tells whether the respondent is okay  with having telephone interviews for the future months of CPS interviewing. 
   AA$hephoneo = factor(AA$hephoneo, levels = c(-3:2), labels = c("Refused", "Don't Know", NA, "Unknown", "Telephone interview acceptable", "Telephone interview not acceptable"))
-  
-  
+ 
+   
+  # HUFAMINC breaks the family income into one of a number of brackets
   AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
                                                                         "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
                                                                         "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 to 99,999",
                                                                         "100,000 to 149,999", "150,000 or more"))
+  # These three variables provide more detail on why there was a nonresponse for this household. If these are not NA, then the households should have lots of other signs of nonresponse.
   AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
   AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", "Unfit or to be demolished", 
                                                                    "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
   AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:6,8:9), labels = c("Refused", "Don't Know", NA, "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage",
                                                                        "Merged", "Condemned", "Unused line of listing sheet", "Other - Specify"))
+  # This is the Household Weight. It is used for tallying houshold characteristics.
   AA$hwhhwgt[AA$hwhhwgt == -1] = NA
   
   
+  # This provides the Interview Status of the Household. It should match with the hutypea-hutypc variables.
   AA$hrintsta = factor(AA$hrintsta, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Interview", "Type A Non-interview", "Type B Non-interview", "Type C Non-interview"))
+  # This provides the number of people living in the household.
   AA$hrnumhou[AA$hrnumhou == -1] = NA
+  # This provides the household type, detailing the relationships between the component families.
   AA$hrhtype = factor(AA$hrhtype, levels = c(-3:10), labels = c("Refused", "Don't Know", NA, "Non-interview household", "Husband/Wife primary family (Neither AF)", "Husb/wife prim. family (Either/both AF)", "Unmarried civilian male-Prim. fam HHLDer",
                                                                 "Unmarried civ. female-Prim. fam HHLDer", "Primary family HHLDer-RP in AF, Unmar.", "Civilian male primary individual", "Civilian female primary individual", "Primary individual HHLD-RP in AF",
                                                                 "Group quarter with family", "Group quarters without family"))
+  # HRMIS gives the month in sample for the household. This is a number from 1 to 8.
   AA$hrmis[AA$hrmis == -1] = NA
+  # HUINTTYP tells about how the interview was conducted, that is by telephone of in-person.
   AA$huinttyp = factor(AA$huinttyp, levels = -3:2, labels = c("Refused", "Don't Know", NA, "Noninterview/Indeterminate", "Personal", "Telephone"))
   
   
+  # HUPRSCNT gives the number of attempted contacts of the household.
   AA$huprscnt[AA$huprscnt == -1] = NA
+  # HRLONLK tells whether the record will have a longitudinal link to a previous record. 
   AA$hrlonglk = factor(AA$hrlonglk, levels = c(-3:-1, 0, 2, 3), labels = c("Refused", "Don't Know", NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
+  # HRHHID2 is the second portion of the household ID used in making longitudinal connections.
   AA$hrhhid2[AA$hrhhid2 == "-1"] = NA
+  # HUBUS tells if anyone in the household owns a business.
   AA$hubus = factor(AA$hubus, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Someone in HH has a business/farm", "No one in HH has a business/farm"))
+  # HUBUSL1 through HUBUSL4 list the line numbers, corresponding to the hurespli value, of the respondents in the household that own businesses.
   AA$hubusl1[AA$hubusl1 <= -1] = NA
   
   
@@ -74,20 +96,30 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   
   
   # These functions format the Geographic Information section
+  # GEREG is the Census Region for the respondent houshold.
   AA$gereg = factor(AA$gereg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Northeast", "Midwest", "South", "West"))
+  # GESTCEN gives the State Postal Abbreviation for the household's state. 
   AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c("Refused", "Don't Know", NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
+  # GESTFIPS gives the two digit State FIPS code for the household's state. 
   AA$gestfips[AA$gestfips == -1] = NA
-  AA$gtcbsa = factor(AA$gtcbsa, levels = c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(7:97, " Specific CMSA Code")))
+  # GTCBSA gives a five digit Core-based Statistical Area code that can be linked with the appropriate Metropolitan or Micropolitan Statistical Area for the respondent.
+  AA$gtcbsa = factor(AA$gtcbsa, levels = c(-3:-1, 0, 00460:79600), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(00460:79600, " Specific CBSA Code")))
+  # GTCO gives a state-specific three digit county code for the houshold's county. Most housholds will have "not-identified" here to preserve anonymity.
   AA$gtco = factor(AA$gtco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
   
   
+  # This tells where the household lives within the CBSA. 
   AA$gtcbsast = factor(AA$gtcbsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
+  # This tells whether the household is in a Metropolitan Statistical Area.
   AA$gtmetsta = factor(AA$gtmetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
-  AA$gtindvpc = factor(AA$gtindvpc, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:4, " Specific central city code")))
+  # This gives the code for a specific central city in the Metropolitan Statistical Area the household resides in.
+  AA$gtindvpc = factor(AA$gtindvpc, levels = -3:7, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:7, " Specific central city code")))
+  # This gives the size of the Metropolitan Statistical Area that the household resides in.
   AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
-  AA$gtcsa = factor(AA$gtcsa, c(-3:-1, 0, 7:97), labels = c("Refused", "Don't Know", NA,))
+  # GTCSA gives the Combined Statistical Area if the household happens to live in one.:
+  AA$gtcsa = factor(AA$gtcsa, c(-3:-1, 0, 118:720), levels = c("Refused", "Don't Know", NA, str_c(118:720, " Specific CBSA Code")))
   
-  
+  # These three variables keep the original codes for gtcbsa, gtco, and gtcsa as numerics.
   AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
   AA$gtconum[AA$gtconum <= -1] = NA
   AA$gtcsanum[AA$gtcsanum <= -1] = NA
