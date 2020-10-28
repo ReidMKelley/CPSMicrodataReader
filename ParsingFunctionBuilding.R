@@ -1,11 +1,11 @@
-ParserMay2004 = function(AA, DataDictionaryIn) {
+ParserMay2004 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
   
 
   # This adds the variables that the Dictionary says to add, properly applying the formulas to create them.
-  AA = tibble(AA, gtcbsanum = AA$gtcbsa, gtconum = AA$gtco)
+  AA = tibble(AA, gtcbsanum = AA$gtcbsa, gtcsanum = AA$gtcsa, gtconum = AA$gtco)
   # This removes all of the variables that are labelled "Delete" in the dataset. 
   AA = select(AA, -all_of(filter(DataDictionaryIn, Adjustment == "Delete")$ColName))
   # This reorders all of the remaining variables to match the Dictionary Order
@@ -118,7 +118,7 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   # This gives the size of the Metropolitan Statistical Area that the household resides in.
   AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
   # GTCSA gives the Combined Statistical Area if the household happens to live in one.:
-  AA$gtcsa = factor(AA$gtcsa, c(-3:-1, 0, 118:720), levels = c("Refused", "Don't Know", NA, str_c(118:720, " Specific CBSA Code")))
+  AA$gtcsa = factor(AA$gtcsa, levels = c(-3:-1, 0, 118:720), labels =  c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(118:720, " Specific CBSA Code")))
   
   # These three variables keep the original codes for gtcbsa, gtco, and gtcsa as numerics.
   AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
@@ -353,7 +353,7 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
                                                                           "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
                                                                           "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
-  AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), llabels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+  AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
                                                                            "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
                                                                            "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
   AA$pulkps1 = factor(AA$pulkps1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
@@ -386,7 +386,7 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   # PELKLL1O tells what the respondent was doing before they started looking for work. It is only asked of those who are unemployed and looking for work (pelkavl = 1-2)
   AA$pelkll1o = factor(AA$pelkll1o, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Working", "School", "Left military service", "Something else"))
   # PELKLL2O tells how the respondent was separated from their previous job. It is only asked of those who are unemployed and reported working prior to their unemployment (pelkll1o = 1, 3).
-  $pelkll2o = factor(AA$pelkll2o, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Lost job", "Quit job", "Temporary job ended"))
+  AA$pelkll2o = factor(AA$pelkll2o, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Lost job", "Quit job", "Temporary job ended"))
   # PELKLWO tells when the respondent last worked. Only asked of those who are unemployed and looking for work (pelkll1o = 1-4).
   AA$pelklwo = factor(AA$pelklwo, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Last worked within the last 12 months", "Last worked more than 12 months ago", "Never worked previously"))
   # PELKDUR tells how long the respondent has been searching for work in weeks. Only asked of those who are unemployed and looking for work (pelklwo = 1-3).
@@ -507,8 +507,8 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
   # PUIO1MFG gives the respondent's answer to the question of whether the business of their 1st job's employer is mainly manufacturing, trade, or another industry.
   AA$puio1mfg = factor(AA$puio1mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
   # PEIO2COW tells the class of worker for the respondent's second job. It reports data only for those with multiple jobs (pemjot = 1). If the respondent's first job was "Self-employed, unincorporated" (peio1cow = 7) then this should have a response every month. Otherwise, it will only have a response in the Outgoing Rotation Group. 
-  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", 
-                                                                       "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Government, level unknown", "Self-employed, Incorporation status unknown"))
+  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", 
+                                                                       "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Unknown", "Government, level unknown", "Self-employed, Incorporation status unknown"))
   
   
   # PUIO2MFG gives the respondent's answer to the question of whether the business of their 2nd job's employer is mainly manufacturing, trade, or another industry.
@@ -602,7 +602,7 @@ ParserMay2004 = function(AA, DataDictionaryIn) {
                                                                        "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", 
                                                                        "Transportation and material moving occupations", "Armed Forces"))
   # PRMJOCC2 tells the major occupation group for the respondent's 2nd job. (There are 11 major occupation groups.)
-  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), llabels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", 
+  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", 
                                                                         "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
                                                                         "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", 
                                                                         "Transportation and material moving occupations", "Armed Forces"))
