@@ -1,4 +1,4 @@
-ParserMay2004 = function(DataIn, DataDictionaryIn) {
+ParserAugust2005 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -24,12 +24,15 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # HUSPNISH would be here, but was removed at start.
   # HUFINAL provides info on how the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200, 201, 202, 203, 204, 205, 210, 216, 217, 218, 219, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 240, 241, 242, 243, 244, 245, 246, 247, 248),
-                      labels = c("Refused", "Don't Know", NA, "New interview - Not contacted", "Fully complete CATI interview", "Partially completed CATI interview", "Labor force complete, Supplement incomplete - CATI", "HH occupied entirely by Armed Forces members",
-                                 "Partial interview with callback panned - CATI", "New interview - Contacted", "CAPI Complete", "Callback needed", "Sufficient partial - Precloseout",
-                                 "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", "CAPI complete reinterview", "No one home", "Temporarily absent",
-                                 "Refused", "Other occupied - Specify", "Armed Forces occupied or under age 14", "Temp. occupied w/persons with URE", "Vacant regular",
-                                 "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site",
+                      levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200:205, 210, 216:219, 224:233, 240:248),
+                      labels = c("Refused", "Don't Know", NA, 
+                                 "New interview - Not contacted", "Fully complete CATI interview", "Partially completed CATI interview", 
+                                 "Labor force complete, Supplement incomplete - CATI", "HH occupied entirely by Armed Forces members", 
+                                 "Partial interview with callback panned - CATI", "New interview - Contacted", "CAPI Complete", "Callback needed", 
+                                 "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
+                                 "CAPI complete reinterview", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", "Armed Forces occupied or under age 14", 
+                                 "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", 
+                                 "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site",
                                  "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", "Outside segment",
                                  "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 1980", "Unused serial no./listing sheet line",
                                  "Other - Specify"))
@@ -38,9 +41,11 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # HETENURE tells about the household's relation to the ownership of the property
   AA$hetenure = factor(AA$hetenure, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Owned or being bought by a HH member", "Rented for cash", "Occupied without payment of cash rent"))
   # HEHOUSUT tells the type of the housing that the household is living in.
-  AA$hehousut = factor(AA$hehousut, levels = -3:12, labels = c("Refused", "Don't Know", NA, "Other unit", "House, apartment, flat", "HU in nontransient hotel, motel, etc.", "HU permanent in transient hotel, motel",
-                                                               "HU in rooming house", "Mobile home or trailer w/no perm. room added", "Mobile home or trailer w/1 or more perm. rooms added", "HU not specified above", "Quarters not HU in rooming or brding HS",
-                                                               "Unit not perm. in transient hotl, motl", "Uoccupied tent site or trlr site", "Student quarters in college dorm", "Other unit not specified above"))
+  AA$hehousut = factor(AA$hehousut, levels = -3:12, labels = c("Refused", "Don't Know", NA, 
+                                                               "Other unit", "House, apartment, flat", "HU in nontransient hotel, motel, etc.", "HU permanent in transient hotel, motel",
+                                                               "HU in rooming house", "Mobile home or trailer w/no perm. room added", "Mobile home or trailer w/1 or more perm. rooms added", 
+                                                               "HU not specified above", "Quarters not HU in rooming or brding HS", "Unit not perm. in transient hotl, motl", 
+                                                               "Uoccupied tent site or trlr site", "Student quarters in college dorm", "Other unit not specified above"))
   # HETELHHD tells whether the household has a telephone at the house.
   AA$hetelhhd = factor(AA$hetelhhd, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone present in house", "Telephone not present in the house"))
   # HETELAVL tells whether people who don't have telephones available at home (that is, HETELHHD = 2) have a phone elsewhere that they can use to answer the future months of the survey.
@@ -56,9 +61,12 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
                                                                         "100,000 to 149,999", "150,000 or more"))
   # These three variables provide more detail on why there was a nonresponse for this household. If these are not NA, then the households should have lots of other signs of nonresponse.
   AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
-  AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", "Unfit or to be demolished", 
-                                                                   "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
-  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:6,8:9), labels = c("Refused", "Don't Know", NA, "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage",
+  AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                   "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", 
+                                                                   "Unfit or to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                                                   "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
+  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:6,8:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage",
                                                                        "Merged", "Condemned", "Unused line of listing sheet", "Other - Specify"))
   # This is the Household Weight. It is used for tallying houshold characteristics.
   AA$hwhhwgt[AA$hwhhwgt == -1] = NA
@@ -69,8 +77,11 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # This provides the number of people living in the household.
   AA$hrnumhou[AA$hrnumhou == -1] = NA
   # This provides the household type, detailing the relationships between the component families.
-  AA$hrhtype = factor(AA$hrhtype, levels = c(-3:10), labels = c("Refused", "Don't Know", NA, "Non-interview household", "Husband/Wife primary family (Neither AF)", "Husb/wife prim. family (Either/both AF)", "Unmarried civilian male-Prim. fam HHLDer",
-                                                                "Unmarried civ. female-Prim. fam HHLDer", "Primary family HHLDer-RP in AF, Unmar.", "Civilian male primary individual", "Civilian female primary individual", "Primary individual HHLD-RP in AF",
+  AA$hrhtype = factor(AA$hrhtype, levels = c(-3:10), labels = c("Refused", "Don't Know", NA, 
+                                                                "Non-interview household", "Husband/Wife primary family (Neither AF)", "Husb/wife prim. family (Either/both AF)", 
+                                                                "Unmarried civilian male-Prim. fam HHLDer", "Unmarried civ. female-Prim. fam HHLDer", 
+                                                                "Primary family HHLDer-RP in AF, Unmar.", "Civilian male primary individual", 
+                                                                "Civilian female primary individual", "Primary individual HHLD-RP in AF",
                                                                 "Group quarter with family", "Group quarters without family"))
   # HRMIS gives the month in sample for the household. This is a number from 1 to 8.
   AA$hrmis[AA$hrmis == -1] = NA
@@ -86,10 +97,10 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   AA$hrhhid2[AA$hrhhid2 == "-1"] = NA
   # HUBUS tells if anyone in the household owns a business.
   AA$hubus = factor(AA$hubus, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Someone in HH has a business/farm", "No one in HH has a business/farm"))
+  
+  
   # HUBUSL1 through HUBUSL4 list the line numbers, corresponding to the pulineno value, of the respondents in the household that own businesses.
   AA$hubusl1[AA$hubusl1 <= -1] = NA
-  
-  
   AA$hubusl2[AA$hubusl2 <= -1] = NA
   AA$hubusl3[AA$hubusl3 <= -1] = NA
   AA$hubusl4[AA$hubusl4 <= -1] = NA
@@ -116,9 +127,12 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # This gives the code for a specific central city in the Metropolitan Statistical Area the household resides in.
   AA$gtindvpc = factor(AA$gtindvpc, levels = -3:7, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:7, " Specific central city code")))
   # This gives the size of the Metropolitan Statistical Area that the household resides in.
-  AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
+  AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, 
+                                                                          "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", 
+                                                                          "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
   # GTCSA gives the Combined Statistical Area if the household happens to live in one.:
   AA$gtcsa = factor(AA$gtcsa, levels = c(-3:-1, 0, 118:720), labels =  c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(118:720, " Specific CBSA Code")))
+  
   
   # These three variables keep the original codes for gtcbsa, gtco, and gtcsa as numerics.
   AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
@@ -129,16 +143,27 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   
   # These functions format the Personal Information Demographic section
   # PROLDRRP and PUPELIG would be here, but were removed at start.
+  
   # PERRP gives the relationship of the respondent to the reference person. (The Reference Person is the one answering the survey for the household.)
-  AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
+  AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, 
+                                                                  "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", 
+                                                                  "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", 
+                                                                  "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", 
+                                                                  "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", 
+                                                                  "Roomer/Boarder w/out Rels."))
+  
   # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
   AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
-  # PEAGE gives the age of the respondent. It is topcoded for people who are 90+ to preserve respondent confidentiality.
-  AA$peage = factor(AA$peage, levels = -3:90, labels = c("Refused", "Don't Know", NA, str_c(0:89, " years old"), "90+ years old"))
+  
+  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, with this version. 
+  # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PEAGE gives the respondent's age. 
+  # For anyone who is from 80-84 years old, PEAGE codes as 80. For anyone who is 85+ years old, PEAGE codes as 85.
+  AA$peage = factor(AA$peage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
   # This is a flag that says whether peage is topcoded.
   AA$prtfage = factor(AA$prtfage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
   # This provides the respondent's marital status, including whether the spouse is present.
-  AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", "Separated", "Never married"))
+  AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", 
+                                                                       "Separated", "Never married"))
   
   
   # PESPOUSE connects the individual respondent with the line number (as recorded by pulineno) of their parent.
@@ -146,66 +171,115 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # This tells the sex of the respondent.
   AA$pesex = factor(AA$pesex, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Male", "Female"))
   # This tells if the respondent reported ever serving in the Armed Forces.
-  AA$puafever = factor(AA$puafever, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Served in the Armed Forces at some point", "Never served in the Armed Forces"))
+  AA$peafever = factor(AA$peafever, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Served in the Armed Forces at some point", "Never served in the Armed Forces"))
   # For those who answered yes to having seerved in the armed forces (puafever = 1), this tells when they served.
-  AA$peafwhen = factor(AA$peafwhen, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Vietnam Era (8/64-4/75)", "Korean War (6/50-1/55)", "World War II (9/40-7/47)", "World War I (4/17-11/18)", "Other service (All other persiods)", "Nonveteran"))
+  # PEAFWHEN used to be here, but it's replaced but PEAFWHN1-4 at end of the Parser.
+  # AA$peafwhen = factor(AA$peafwhen, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Vietnam Era (8/64-4/75)", "Korean War (6/50-1/55)", "World War II (9/40-7/47)", "World War I (4/17-11/18)", "Other service (All other persiods)", "Nonveteran"))
   # This tells if the respondent is currently serving in the armed forces. 
   AA$peafnow = factor(AA$peafnow, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Currently in Armed Forces", "Not currently in Armed Forces"))
   
   
   # This tells the highest level of education the respondent has received.
-  AA$peeduca = factor(AA$peeduca, levels = c(-3:-1, 31:46), labels = c("Refused", "Don't Know", NA, "Less than 1st grade", "1st, 2nd, 3rd or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade no diploma", "High school grad-diploma or equivalent (GED)", "Some college but no degree", "Associate degree-Occupational/Vocational", "Associate degree-Academic program", "Bachelor's degree (Ex: BA, AB, BS)", "Master's degree (Ex: MA, MS, MEng, MEd, MSW)", "Professional School Deg (Ex: MD, DDS, DVM)", "Doctorate degree (Ex: PhD, EdD)"))
+  AA$peeduca = factor(AA$peeduca, levels = c(-3:-1, 31:46), labels = c("Refused", "Don't Know", NA, "Less than 1st grade", "1st, 2nd, 3rd or 4th grade", "5th or 6th grade", 
+                                                                       "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade no diploma", 
+                                                                       "High school grad-diploma or equivalent (GED)", "Some college but no degree", 
+                                                                       "Associate degree-Occupational/Vocational", "Associate degree-Academic program", 
+                                                                       "Bachelor's degree (Ex: BA, AB, BS)", "Master's degree (Ex: MA, MS, MEng, MEd, MSW)", 
+                                                                       "Professional School Deg (Ex: MD, DDS, DVM)", "Doctorate degree (Ex: PhD, EdD)"))
+  
   # This tells the detailed race of the respondent. The options for this variable have changed significantly over the years from 1995 onwards, so check with more detailed documentation.
-  AA$prdtrace = factor(AA$prdtrace, levels = c(-3:-1, 1:21), labels = c("Refused", "Don't Know", NA, "White Only", "Black Only", "American Indian, Alaskan Native Only", "Asian Only", "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-Hawaiian", "Black-AI", "Black-Asian", "Black-HP", "AI-Asian", "Asian-HP", "W-B-AI", "W-B-A", "W-AI-A", "W-A-HP", "W-B-AI-A", "2 or 3 Races", "4 or 5 Races"))
+  AA$ptdtrace = factor(AA$ptdtrace, levels = c(-3:-1, 1:21), labels = c("Refused", "Don't Know", NA, 
+                                                                        "White Only", "Black Only", "American Indian, Alaskan Native Only", "Asian Only", 
+                                                                        "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-Hawaiian", "Black-AI", 
+                                                                        "Black-Asian", "Black-HP", "AI-Asian", "Asian-HP", "W-B-AI", "W-B-A", "W-AI-A", "W-A-HP", "W-B-AI-A", 
+                                                                        "2 or 3 Races", "4 or 5 Races"))
+  
   # This tells the detailed hispanic ethnicity of the respondent. Only valid for those who state Hispanic ethnicity (pehspnon = 1). he options for this variable have changed significantly over the years from 1995 onwards, so check with more detailed documentation.
   AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican", "Puerto Rican", "Cuban", "Central/South American", "Other Spanish"))
   # This describes any changes in the household composition due to the respondent. For example, if the respondent is a new addition to the household, this would be marked here.
-  AA$puchinhh = factor(AA$puchinhh, levels = c(-3:-1, 1:7, 9), labels = c("Refused", "Don't Know", NA, "Person added", "Person added - URE", "Person undeleted", "Person died", "Deleted for reason other than death", "Person joined Armed Forces", "Person no longer in AF", "Change in demographic information"))
+  AA$puchinhh = factor(AA$puchinhh, levels = c(-3:-1, 1:7, 9), labels = c("Refused", "Don't Know", NA, 
+                                                                          "Person added", "Person added - URE", "Person undeleted", "Person died", 
+                                                                          "Deleted for reason other than death", "Person joined Armed Forces", "Person no longer in AF", 
+                                                                          "Change in demographic information"))
   # PURELFLG would be here, but was removed at start.
   # This gives the line number of the respondent whose questions are being answered. It's a value from 1-99, and resets for each household.
   AA$pulineno[AA$pulineno == -1] = NA
   
   
   # This tells which family within the household this respondent is a member of.
-  AA$prfamnum = factor(AA$prfamnum, levels = -3:19, labels = c("Refused", "Don't Know", NA, "Not a family member", "Primary family member only", "Subfamily No. 2 member", "Subfamily No. 3 member", "Subfamily No. 4 member", "Subfamily No. 5 member", "Subfamily No. 6 member", "Subfamily No. 7 member", "Subfamily No. 8 member", "Subfamily No. 9 member", "Subfamily No. 10 member", "Subfamily No. 11 member", "Subfamily No. 12 member", "Subfamily No. 13 member", "Subfamily No. 14 member", "Subfamily No. 15 member", "Subfamily No. 16 member", "Subfamily No. 17 member", "Subfamily No. 18 member", "Subfamily No. 19 member"))
+  AA$prfamnum = factor(AA$prfamnum, levels = -3:19, labels = c("Refused", "Don't Know", NA, 
+                                                               "Not a family member", "Primary family member only", "Subfamily No. 2 member", "Subfamily No. 3 member", 
+                                                               "Subfamily No. 4 member", "Subfamily No. 5 member", "Subfamily No. 6 member", "Subfamily No. 7 member", 
+                                                               "Subfamily No. 8 member", "Subfamily No. 9 member", "Subfamily No. 10 member", "Subfamily No. 11 member", 
+                                                               "Subfamily No. 12 member", "Subfamily No. 13 member", "Subfamily No. 14 member", "Subfamily No. 15 member", 
+                                                               "Subfamily No. 16 member", "Subfamily No. 17 member", "Subfamily No. 18 member", "Subfamily No. 19 member"))
+  
   # This tells the relationship of the respondent to the family, and in particular to the reference person (the reference person is the one answering the questions in the survey).
-  AA$prfamrel = factor(AA$prfamrel, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not a family member", "Reference person", "Spouse", "Child", "Other relative (Primary Family & Unrel)"))
+  AA$prfamrel = factor(AA$prfamrel, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not a family member", "Reference person", "Spouse", "Child", 
+                                                              "Other relative (Primary Family & Unrel)"))
   # This tells the relationship of the current respondent's family to the primary family of the household.
-  AA$prfamtyp = factor(AA$prfamtyp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Primary family", "Primary individual", "Related subfamily", "Unrelated subfamily", "Secondary individual"))
+  AA$prfamtyp = factor(AA$prfamtyp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Primary family", "Primary individual", "Related subfamily", "Unrelated subfamily", "Secondary individual"))
   # This tells whether the respondent identifies as having Hispanic ethnicity.
   AA$pehspnon = factor(AA$pehspnon, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hispanic", "Non-Hispanic"))
   # This provides the respondent's marital status.
-  AA$prmarsta = factor(AA$prmarsta, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Married, civilian spouse present", "Married, Armed Forces spouse present", "Married, Spouse absent (Exc. Separated)", "Widowed", "Divorced", "Separated", "Never married"))
+  AA$prmarsta = factor(AA$prmarsta, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Married, civilian spouse present", "Married, Armed Forces spouse present", 
+                                                                       "Married, Spouse absent (Exc. Separated)", "Widowed", "Divorced", "Separated", "Never married"))
   
   
   # This tells which population group the respondent is part of - civilian, military, or child.
   AA$prpertyp = factor(AA$prpertyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Child household member", "Adult civilian household member", "Adult armed forces household member"))
   # This tells whether the respondent was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, "Person born in United States", "Person born in Puerto Rico", "Person born in U.S. Outlying Area", str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), "Person born Abroad, country not known"))
+  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                            "Person born in United States", "Person born in Puerto Rico", 
+                                                                                            "Person born in U.S. Outlying Area", 
+                                                                                            str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), 
+                                                                                            "Person born Abroad, country not known"))
+  
   # This tells whether the respondent's mother was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, "Person's mother born in United States", "Person's mother born in Puerto Rico", "Person's mother born in U.S. Outlying Area", str_c(100:554, " Person's mother born in Foreign Country or at sea - See Code list"), "Person's mother born Abroad, country not known"))
+  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                            "Person's mother born in United States", "Person's mother born in Puerto Rico", 
+                                                                                            "Person's mother born in U.S. Outlying Area", 
+                                                                                            str_c(100:554, " Person's mother born in Foreign Country or at sea - See Code list"), 
+                                                                                            "Person's mother born Abroad, country not known"))
+  
   # This tells whether the respondent's father was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, "Person's father born in United States", "Person's father born in Puerto Rico", "Person's father born in U.S. Outlying Area", str_c(100:554, " Person's father born in Foreign Country or at sea - See Code list"), "Person's father born Abroad, country not known"))
+  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                            "Person's father born in United States", "Person's father born in Puerto Rico", 
+                                                                                            "Person's father born in U.S. Outlying Area", 
+                                                                                            str_c(100:554, " Person's father born in Foreign Country or at sea - See Code list"), 
+                                                                                            "Person's father born Abroad, country not known"))
+  
   # This describes the citizenship status of the respondent. Its options do not include a option to discuss immigration status (legal or otherwise), only current citizenship status.
-  AA$prcitshp = factor(AA$prcitshp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Native, Born in the United States", "Native, Born in Puerto Rico or U.S. Outlying Area", "Native, Born abroad of American parent or parents", "Foreign born, U.S. citizen by naturalization", "Foreign born, not a citizen of the United States"))
+  AA$prcitshp = factor(AA$prcitshp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Native, Born in the United States", "Native, Born in Puerto Rico or U.S. Outlying Area", 
+                                                                       "Native, Born abroad of American parent or parents", "Foreign born, U.S. citizen by naturalization", 
+                                                                       "Foreign born, not a citizen of the United States"))
   
   
   # CHECK THIS. Need to look more into the allocation flag issue for this following variable.
   # This is an allocation flag for prcitship.
   AA$prcitflg[AA$prcitflg == -1] = NA
   # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
-  if (AA$hryear4[1] == 2004) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
-                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969",
-                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995",
-                                                                 "Immigrant entered in 1996-1997", "Immigrant entered in 1988-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2004"))  
-  } else if (AA$hryear4[1] == 2005) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", 
-                                                                 "Not foreign born", "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", "Immigrant entered in 1965-1969",
-                                                                 "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995",
-                                                                 "Immigrant entered in 1996-1997", "Immigrant entered in 1988-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))  
+  if (AA$hryear4[1] == 2005) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))
+    
+  } else if (AA$hryear4[1] == 2006) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:19, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2006"))  
   }
   
   
@@ -218,9 +292,9 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # PUWK gives the respondent's answer to the question "Last Week, did you do any work for pay or profit?" 
   AA$puwk = factor(AA$puwk, levels = c(-3:-1,1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
   # PUBUS1 gives the respondent's answer to the question "Last week, did you do any unpaid work in the family business or farm?"
-  AA$pubus1 = factor(AA$pubus1, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Person did unpaid work on family business/farm", "Person did not do unpaid work on family business/farm"))
+  AA$pubus1 = factor(AA$pubus1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Person did unpaid work on family business/farm", "Person did not do unpaid work on family business/farm"))
   # PUBUS1 gives the respondent's answer to the question "Do you receive any payments or profits from the business?"
-  AA$pubus2ot = factor(AA$pubus2ot, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Person received payments or profits from the family business", "Person did not receive payments or profits from the family business"))
+  AA$pubus2ot = factor(AA$pubus2ot, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Person received payments or profits from the family business", "Person did not receive payments or profits from the family business"))
   
   
   # PUBUSCK1-PUBUSCK4 would be here, but were removed at start.
@@ -463,7 +537,8 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # PRHRUSL is a recode telling the usual hours worked of the respondent. Only reports data for pemlr = 1-2.
   AA$prhrusl = factor(AA$prhrusl, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "0-20 hrs", "21-34 hrs", "35-39 hrs", "40 hrs", "41-49 hrs", "50 or more hrs", "Varies-Full Time", "Varies-Part Time"))
   # PRJOBSEA is a recode telling the job search status of the respondent. It only reports data for those who are not in the labor force and have said they want a job (prwntjob = 1).
-  AA$prjobsea = factor(AA$prjobsea, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Looked last 4 weeks - Not worked", "Looked last 4 weeks - Worked", 
+  AA$prjobsea = factor(AA$prjobsea, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Looked in last 12 months, since completing previous job", "Looked and worked in the last 4 weeks", 
                                                                        "Looked last 4 weeks - Layoff", "Unavailable job seekers", "No recent job search"))
   # PRPTHRS is a recode that details whether the respondent is part-time for econonmic or non-economic reasons and puts them in an hours bracket. IT only reports data for those with pemlr = 1 and pehractt = 1-34.
   AA$prpthrs = factor(AA$prpthrs, levels = -3:12, labels = c("Refused", "Don't Know", NA, "Usually FT, PT for Noneconomic reasons", "Usu.FT, PT econ reasons; 1-4 hrs", "Usu.FT, PT econ reasons; 5-14 hrs", 
@@ -730,7 +805,7 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   AA$pxmaritl = factor(AA$pxmaritl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxspouse = factor(AA$pxspouse, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxsex = factor(AA$pxsex, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxafwhen = factor(AA$pxafwhen, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafwhn1 = factor(AA$pxafwhn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxafnow = factor(AA$pxafnow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
   
@@ -889,6 +964,52 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
                                                                         "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", 
                                                                         "Educational services", "Health care and social services", "Arts, entertainment, and recreation", "Accomodation and food services", "Private households", 
                                                                         "Other services, except private households", "Public administration", "Armed Forces"))
+  
+  
+  
+  # PEAFWHN1 through PEAFWHN4 provide information about when the respondent served in the military. They only report data for those respondents who had reported serving 
+  # at some point in the armed forces (peafever = 1). PEAFWHN2-PEAFWHN4 are used to report data for those who served in multiple periods.
+  # These replace the variable peafwhen that was used in earlier versions.
+  AA$peafwhn1 = factor(AA$peafwhn1, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  AA$peafwhn2 = factor(AA$peafwhn2, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  AA$peafwhn3 = factor(AA$peafwhn3, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  AA$peafwhn4 = factor(AA$peafwhn4, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  
+  
+  # The following three questions were asked of people from November 2005 to December 2006 to gauge the impact of Hurricane Katrina, which hit in late August 2005.
+  if(((AA$hryear4[1] == 2005)&(AA$hrmonth[1] >= 11))|(AA$hryear4[1] == 2006)) {
+    # HURHHSCRN gives the respndent's answer to the question "Is there anyone living or staying here who had to evacuate, even temporarily, where he or she was living in 
+    # August because of Hurricane Katrina?"
+    AA$hurhhscrn = factor(AA$hurhhscrn, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+    # PURKAT1 gives the respondent's answer to the question "Did [this respondent] have to evacuate, even temporarily, where he or she was living in August because of 
+    # Hurricane Katrina?" It reports data for every respondent in a household that answered "Yes" to the previous question (hurhhscrn = 1).
+    AA$purkat1 = factor(AA$purkat1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+    # PURKAT2 gives the respondent's answer to the question "In August, prior to the Hurricane warning, where was [this respondent] living?" It reports data for every respondent
+    # in the household who reported having to evacuate (purkat1 = 1). It provides a general geographic location for all respondents.
+    AA$purkat2 = factor(AA$purkat2, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA,
+                                                                     "At this current address", "Louisiana (but not at this address)", "Mississippi (but not at this address)",
+                                                                     "Alabama (but not at this address)", "Florida (but not at this address)", "Elsewhere in the United States"))
+  } else if ((AA$hryear4[1] == 2005)&(AA$hrmonth[1] < 11)) {
+    AA = select(AA, -c(hurhhscrn, purkat1, purkat2))
+  }
+
+  
   
   # This returns the dataset back to the main script, ending the function.
   return(AA)

@@ -12,9 +12,9 @@ source("ParsingFunctionBuilding.R")
 
 # These four variables need to be filled in with appropriate values for the starting and ending months before running the script.
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
-StartMonth = 3
+StartMonth = 8
 StartYear = 2005
-EndMonth = 3
+EndMonth = 8
 EndYear = 2005
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
@@ -109,7 +109,7 @@ for (j in 1:length(DictionariesNeeded$Nums)) {
 
 rm(j)
 
-
+tic()
 FileExtraction = sapply(seq_along(FilesNeeded), function(x) FileUnziper(FileToUnzip = FilesNeeded[x], ExtractedFileDest = UnzippedFileStorage))
 ExtractedFiles = list.files(path = UnzippedFileStorage, full.names = TRUE)
 ExtractedFileSuffixes = str_trunc(ExtractedFiles, 4, side = "left", ellipsis = "")
@@ -118,10 +118,10 @@ FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 
 # # This section is specifically set up for my parsing function building. It should be removed after I am finished.
 #  Testing the March data file.
-Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/115Mar05.cps", DataDictionaryIn = DictionaryFiles$May04Dictionary)
-# Test1 = ParserMay2004(DataIn = Test0, DataDictionaryIn = DictionaryFiles$May04Dictionary)
-# saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedMay2004.rds")
-# saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedMay2004.rds")
+Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/120Aug05.cps", DataDictionaryIn = DictionaryFiles$Aug05Dictionary)
+Test1 = ParserAugust2005(DataIn = Test0, DataDictionaryIn = DictionaryFiles$Aug05Dictionary)
+saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedAug2005.rds")
+saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedAug2005.rds")
 
 
 
