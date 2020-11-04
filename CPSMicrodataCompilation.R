@@ -12,10 +12,10 @@ source("ParsingFunctionBuilding.R")
 
 # These four variables need to be filled in with appropriate values for the starting and ending months before running the script.
 # The earliest available month is September 1995. The latest available month is currently August 2020. (As of September 14, 2020.)
-StartMonth = 8
-StartYear = 2005
-EndMonth = 8
-EndYear = 2005
+StartMonth = 1
+StartYear = 2007
+EndMonth = 1
+EndYear = 2007
 
 # The archive location is a directory file that contains the previously downloaded copies of the Microdata. This needs to be filled in before running the script.
 # These files are downloaded as zipped files from the Census website. Having a fixed archive allows for easy additions as months pass without requiring extra downloads.
@@ -118,10 +118,10 @@ FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 
 # # This section is specifically set up for my parsing function building. It should be removed after I am finished.
 #  Testing the March data file.
-Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/120Aug05.cps", DataDictionaryIn = DictionaryFiles$Aug05Dictionary)
-Test1 = ParserAugust2005(DataIn = Test0, DataDictionaryIn = DictionaryFiles$Aug05Dictionary)
-saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedAug2005.rds")
-saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedAug2005.rds")
+Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/137Jan07.dat", DataDictionaryIn = DictionaryFiles$Jan07Dictionary)
+Test1 = ParserJanuary2007(DataIn = Test0, DataDictionaryIn = DictionaryFiles$Jan07Dictionary)
+saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedJan2007.rds")
+saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedJan2007.rds")
 
 
 

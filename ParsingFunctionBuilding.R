@@ -1,4 +1,4 @@
-ParserAugust2005 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -231,29 +231,31 @@ ParserAugust2005 = function(DataIn, DataDictionaryIn) {
   # This tells which population group the respondent is part of - civilian, military, or child.
   AA$prpertyp = factor(AA$prpertyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Child household member", "Adult civilian household member", "Adult armed forces household member"))
   # This tells whether the respondent was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
-                                                                                            "Person born in United States", "Person born in Puerto Rico", 
-                                                                                            "Person born in U.S. Outlying Area", 
-                                                                                            str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), 
-                                                                                            "Person born Abroad, country not known"))
+  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                                    "Person born in United States", "Person born in Guam", "Person born in Puerto Rico", 
+                                                                                                    "Person born in the U.S. Virgin Islands", "Person born in another U.S. Island Area", 
+                                                                                                     str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), 
+                                                                                                    "Person born Abroad, country not known"))
   
   # This tells whether the respondent's mother was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
-                                                                                            "Person's mother born in United States", "Person's mother born in Puerto Rico", 
-                                                                                            "Person's mother born in U.S. Outlying Area", 
-                                                                                            str_c(100:554, " Person's mother born in Foreign Country or at sea - See Code list"), 
-                                                                                            "Person's mother born Abroad, country not known"))
+  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                                    "Person's mother born in United States", "Person's mother born in Guam", 
+                                                                                                    "Person's mother born in Puerto Rico", "Person's mother born in the U.S. Virgin Islands",  
+                                                                                                    "Person's mother born in another U.S. Island Area", 
+                                                                                                     str_c(100:554, " Person's mother born in Foreign Country or at sea - See Code list"), 
+                                                                                                    "Person's mother born Abroad, country not known"))
   
   # This tells whether the respondent's father was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 72, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
-                                                                                            "Person's father born in United States", "Person's father born in Puerto Rico", 
-                                                                                            "Person's father born in U.S. Outlying Area", 
-                                                                                            str_c(100:554, " Person's father born in Foreign Country or at sea - See Code list"), 
-                                                                                            "Person's father born Abroad, country not known"))
+  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                                    "Person's father born in United States", "Person's father born in Guam", 
+                                                                                                    "Person's father born in Puerto Rico", "Person's father born in the U.S. Virgin Islands",  
+                                                                                                    "Person's father born in another U.S. Island Area", 
+                                                                                                    str_c(100:554, " Person's father born in Foreign Country or at sea - See Code list"), 
+                                                                                                    "Person's father born Abroad, country not known"))
   
   # This describes the citizenship status of the respondent. Its options do not include a option to discuss immigration status (legal or otherwise), only current citizenship status.
   AA$prcitshp = factor(AA$prcitshp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
-                                                                       "Native, Born in the United States", "Native, Born in Puerto Rico or U.S. Outlying Area", 
+                                                                       "Native, Born in the United States", "Native, Born in Puerto Rico or Other U.S. Island Area", 
                                                                        "Native, Born abroad of American parent or parents", "Foreign born, U.S. citizen by naturalization", 
                                                                        "Foreign born, not a citizen of the United States"))
   
@@ -262,26 +264,35 @@ ParserAugust2005 = function(DataIn, DataDictionaryIn) {
   # This is an allocation flag for prcitship.
   AA$prcitflg[AA$prcitflg == -1] = NA
   # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
-  if (AA$hryear4[1] == 2005) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))
-    
-  } else if (AA$hryear4[1] == 2006) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:19, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-                                                                 "Immigrant entered in 2004-2006"))  
-  }
-  
+  AA$prinusyr = factor(AA$prinusyr, levels = -3:19, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                               "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                               "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                               "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                               "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                               "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                               "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                               "Immigrant entered in 2004-2007"))
+  # I commented out this portion to save the structure in case I need to use it later.
+  # if (AA$hryear4[1] == 2005) {
+  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))
+  #   
+  # } else if (AA$hryear4[1] == 2006) {
+  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:19, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+  #                                                                "Immigrant entered in 2004-2007"))  
+  # }
+  # 
   
   
   # These functions format the Personal Information Labor Force section
@@ -293,7 +304,7 @@ ParserAugust2005 = function(DataIn, DataDictionaryIn) {
   AA$puwk = factor(AA$puwk, levels = c(-3:-1,1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
   # PUBUS1 gives the respondent's answer to the question "Last week, did you do any unpaid work in the family business or farm?"
   AA$pubus1 = factor(AA$pubus1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Person did unpaid work on family business/farm", "Person did not do unpaid work on family business/farm"))
-  # PUBUS1 gives the respondent's answer to the question "Do you receive any payments or profits from the business?"
+  # PUBUS2OT gives the respondent's answer to the question "Do you receive any payments or profits from the business?"
   AA$pubus2ot = factor(AA$pubus2ot, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Person received payments or profits from the family business", "Person did not receive payments or profits from the family business"))
   
   
@@ -991,24 +1002,34 @@ ParserAugust2005 = function(DataIn, DataDictionaryIn) {
                                                                        "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
                                                                        "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
   
+  # PXAFEVER is an allocation flag for peafever that was added along with the updated peafwhn1-peafwhn4
+  AA$pxafever = factor(AA$pxafever, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  # The following three questions were asked of people from November 2005 to December 2006 to gauge the impact of Hurricane Katrina, which hit in late August 2005.
-  if(((AA$hryear4[1] == 2005)&(AA$hrmonth[1] >= 11))|(AA$hryear4[1] == 2006)) {
-    # HURHHSCRN gives the respndent's answer to the question "Is there anyone living or staying here who had to evacuate, even temporarily, where he or she was living in 
-    # August because of Hurricane Katrina?"
-    AA$hurhhscrn = factor(AA$hurhhscrn, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
-    # PURKAT1 gives the respondent's answer to the question "Did [this respondent] have to evacuate, even temporarily, where he or she was living in August because of 
-    # Hurricane Katrina?" It reports data for every respondent in a household that answered "Yes" to the previous question (hurhhscrn = 1).
-    AA$purkat1 = factor(AA$purkat1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
-    # PURKAT2 gives the respondent's answer to the question "In August, prior to the Hurricane warning, where was [this respondent] living?" It reports data for every respondent
-    # in the household who reported having to evacuate (purkat1 = 1). It provides a general geographic location for all respondents.
-    AA$purkat2 = factor(AA$purkat2, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA,
-                                                                     "At this current address", "Louisiana (but not at this address)", "Mississippi (but not at this address)",
-                                                                     "Alabama (but not at this address)", "Florida (but not at this address)", "Elsewhere in the United States"))
-  } else if ((AA$hryear4[1] == 2005)&(AA$hrmonth[1] < 11)) {
-    AA = select(AA, -c(hurhhscrn, purkat1, purkat2))
-  }
-
+  
+  # The following sectin was added in January 2007 to provide more information on the respondent's family situations.
+  # PELNDAD gives the line number (from pulineno) of the respondent's father, if the father is present in the household. 
+  # "No father present" only means that the respondent's father is not resident in this household.
+  AA$pelndad = factor(AA$pelndad, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No father present", str_c(1:16, " Line num of father")))
+  # PELNMOM gives the line number (from pulineno) of the respondent's mother, if the mother is present in the household.
+  # "No mother present" only means that the respondent's mother is not resident in this household.
+  AA$pelnmom = factor(AA$pelnmom, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No mother present", str_c(1:16, " Line num of mother")))
+  # PEDADTYP tells the nature of the relationship between the respondent and the person described in pelndad as their father. 
+  # It allows for tracking step-parent and adoptive relationships as well as biological ones.
+  AA$pedadtyp = factor(AA$pedadtyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No father present", "Biological", "Step", "Adopted"))
+  # PEMOMTYP tells the nature of the relationship between the respondent and the person described in pelnmom as their mother. 
+  # It allows for tracking step-parent and adoptive relationships as well as biological ones.
+  AA$pemomtyp = factor(AA$pemomtyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No mother present", "Biological", "Step", "Adopted"))
+  # PPECOHAB gives the line number (from pulineno) of the respondent's cohabitating partner, if that person is present in the household. 
+  # Cohabitating partner refers to a romantic partner who is not the respondent's spouse.
+  AA$pecohab = factor(AA$pecohab, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No partner present", str_c(1:16, " Line num of cohabitating partner" )))
+  
+  # The following are allocation flags for the five immediately proceeding variables.
+  AA$pxlndad = factor(AA$pxlndad, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlnmom = factor(AA$pxlnmom, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdadtyp = factor(AA$pxdadtyp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmomtyp = factor(AA$pxmomtyp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxcohab = factor(AA$pxcohab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
   
   
   # This returns the dataset back to the main script, ending the function.
