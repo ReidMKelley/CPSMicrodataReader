@@ -1,4 +1,4 @@
-ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2010 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -24,18 +24,19 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   # HUSPNISH would be here, but was removed at start.
   # HUFINAL provides info on how the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200:205, 210, 216:219, 224:233, 240:248),
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
-                                 "New interview - Not contacted", "Fully complete CATI interview", "Partially completed CATI interview", 
-                                 "Labor force complete, Supplement incomplete - CATI", "HH occupied entirely by Armed Forces members", 
-                                 "Partial interview with callback panned - CATI", "New interview - Contacted", "CAPI Complete", "Callback needed", 
-                                 "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
-                                 "CAPI complete reinterview", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", "Armed Forces occupied or under age 14", 
-                                 "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", 
-                                 "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site",
-                                 "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", "Outside segment",
-                                 "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 1980", "Unused serial no./listing sheet line",
-                                 "Other - Specify"))
+                                 "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
+                                 "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
+                                 "LF complete, supplement DK items incomplete at closeout ASEC only", "HH occupied entirely by Armed Forces members or all under 15 years of age",
+                                 "CAPI Complete", "Callback needed", "Sufficient partial - Precloseout", "Sufficient partial - At closeout", 
+                                 "Labor force complete, - Suppl. incomplete - CAPI", "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", 
+                                 "Other occupied - Specify", "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", 
+                                 "Vacant regular", "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", 
+                                 "Converted to temp business or storage", "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", 
+                                 "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", 
+                                 "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", "Removed during sub-sampling", 
+                                 "Unit already had a chance of selection"))
   
   
   # HETENURE tells about the household's relation to the ownership of the property
@@ -54,13 +55,15 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   AA$hephoneo = factor(AA$hephoneo, levels = c(-3:2), labels = c("Refused", "Don't Know", NA, "Unknown", "Telephone interview acceptable", "Telephone interview not acceptable"))
  
    
-  # HUFAMINC breaks the family income into one of a number of brackets
-  AA$hufaminc = factor(AA$hufaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
+  # HUFAMINC breaks the family income into one of a number of brackets. Caution is urged in using this variable as it has a high allocation rate. See allocation flag.
+  AA$hefaminc = factor(AA$hefaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
                                                                         "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
                                                                         "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 to 99,999",
                                                                         "100,000 to 149,999", "150,000 or more"))
   # These three variables provide more detail on why there was a nonresponse for this household. If these are not NA, then the households should have lots of other signs of nonresponse.
-  AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Other occupied - Specify"))
+  AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, 
+                                                                     "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Language barrier", "Unable to locate",
+                                                                     "Other occupied - Specify"))
   AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
                                                                    "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", 
                                                                    "Unfit or to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
@@ -264,35 +267,39 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   # This is an allocation flag for prcitship.
   AA$prcitflg[AA$prcitflg == -1] = NA
   # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
-  AA$prinusyr = factor(AA$prinusyr, levels = -3:19, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-                                                               "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-                                                               "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-                                                               "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-                                                               "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-                                                               "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-                                                               "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-                                                               "Immigrant entered in 2004-2007"))
-  # I commented out this portion to save the structure in case I need to use it later.
-  # if (AA$hryear4[1] == 2005) {
-  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:18, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2005"))
-  #   
-  # } else if (AA$hryear4[1] == 2006) {
-  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:19, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-  #                                                                "Immigrant entered in 2004-2007"))  
-  # }
-  # 
+  
+  
+  if (AA$hryear4[1] == 2010) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:21, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2010"))
+
+  } else if (AA$hryear4[1] == 2011) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:21, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2011"))
+  } else if (AA$hryear4[1] == 2012) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:22, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2012"))
+  }
+
   
   
   # These functions format the Personal Information Labor Force section
@@ -390,7 +397,13 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   # PELAYLK tells whether the respondent has looked for work in the last 4 weeks despite the fact that they are on temporary layoff from their current job.
   AA$pelaylk = factor(AA$pelaylk, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   # PELAYDUR tells the duration of the temporary layoff that the respondent is currently in. Only asked if the respondent has reported being on temporary layoff.
-  AA$pelaydur[AA$pelaydur <= -1] = NA
+  # Starting in April 2011, this is topcoded at 52 weeks, so a 52 means 52+ weeks on temporary layoff.
+  if((AA$hryear4[1] == 2010)|((AA$hryear4[1] == 2011)&(AA$hrmonth[1] < 4))) {
+    AA$pelaydur = factor(AA$pelaydur, levels = c(-3:-1, 1:260), labels = c("Refused", "Don't Know", NA, str_c(1:260, " weeks on layoff")))
+  } else {
+    AA$pelaydur = factor(AA$pelaydur, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, str_c(1:51, " weeks on layoff"), "52+ weeks on layoff" ))  
+  }
+  
   # PELAYFTO tells whether the job from which the respondent is on temporary layoff from was a full-time job (no means it was part-time). Only asked if the respondent has reported being on temporary layoff.
   AA$pelayfto = factor(AA$pelayfto, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   
@@ -474,8 +487,15 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   AA$pelkll2o = factor(AA$pelkll2o, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Lost job", "Quit job", "Temporary job ended"))
   # PELKLWO tells when the respondent last worked. Only asked of those who are unemployed and looking for work (pelkll1o = 1-4).
   AA$pelklwo = factor(AA$pelklwo, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Last worked within the last 12 months", "Last worked more than 12 months ago", "Never worked previously"))
-  # PELKDUR tells how long the respondent has been searching for work in weeks. Only asked of those who are unemployed and looking for work (pelklwo = 1-3).
-  AA$pelkdur[AA$pelkdur == -1] = NA
+  # PELKDUR tells how long the respondent has been searching for work in weeks. Only asked of those who are unemployed and looking for work (pelklwo = 1-3). 
+  # As of April 2011, this is topcoded at 119 weeks.
+  if((AA$hryear4[1] == 2010)|((AA$hryear4[1] == 2011)&(AA$hrmonth[1] < 4))) {
+    AA$pelkdur = factor(AA$pelkdur, levels = c(-3:-1, 0:999), labels = c("Refused", "Don't Know", NA, str_c(0:999, " weeks searching for employment")))
+  } else {
+    AA$pelkdur = factor(AA$pelkdur, levels = c(-3:-1, 0:119), labels = c("Refused", "Don't Know", NA, str_c(0:118, " weeks searching for employment"), "119+ weeks searching for employment"))  
+  }
+  
+  
   
   
   # PELKFTO tells whether the respondent is looking for full-time work. Only asked for those who have been looking for work for at most 120 weeks (pelkdur = 1-120). 
@@ -565,6 +585,12 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
                                                                       "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
   # PRUNEDUR is a recode for the number of weeks the respondent has been unemployed. It only reports data for pemlr = 3-4.
   AA$prunedur[AA$prunedur == -1] = NA
+  
+  if((AA$hryear4[1] == 2010)|((AA$hryear4[1] == 2011)&(AA$hrmonth[1] < 4))) {
+    AA$prunedur = factor(AA$prunedur, levels = c(-3:-1, 0:999), labels = c("Refused", "Don't Know", NA, str_c(0:999, " weeks searching for employment")))
+  } else {
+    AA$prunedur = factor(AA$prunedur, levels = c(-3:-1, 0:119), labels = c("Refused", "Don't Know", NA, str_c(0:118, " weeks searching for employment"), "119+ weeks searching for employment"))  
+  }
   
   
   # PRUNTYPE is a recode summarizing the reason for the respondent's unemployment. 
@@ -1031,7 +1057,49 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   AA$pxcohab = factor(AA$pxcohab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
   
+  # The following section was added in January 2009 to provide more information on the respondent's disability status.
+  # PEDISEAR gives the respondent's answer to the question "Is [the respondent] deaf or does he have serious difficulty hearing?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisear = factor(AA$pedisear, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent is deaf or has serious hearing difficulty", "No"))
+  # PEDISEYE gives the respondent's answer to the question "Is [the respondent] blind or does he have serious difficulty seeing even when wearing glasses?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pediseye = factor(AA$pediseye, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent is blind or has serious vision difficulty", "No"))
+  # PEDISREM gives the respondent's answer to the question "Because of a physical, mental, or emotional condition, does [the respondent] have serious difficulty concentrating, 
+  # remembering, or making decisions?" It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisrem = factor(AA$pedisrem, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty concentrating, remembering, or making decsions", "No"))
+  # PEDISPHY gives the respondent's answer to the question "Does [the respondent] have serious difficulty walking or climbing stairs?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisphy = factor(AA$pedisphy, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty walking or climbing stairs", "No"))
+  # PEDISDRS gives the respondent's answer to the question "Does [the respondent] have serious difficulty dressing or bathing?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisdrs = factor(AA$pedisdrs, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty dressing or bathing", "No"))
+  # PEDISEAR gives the respondent's answer to the question "Because of a physical, mental, or emotional condition, does [the respondent] have difficulty doing errands alone 
+  # such as visiting a doctor's office or shopping?" It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisout = factor(AA$pedisout, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty doing errands alone", "No"))
+  # PRDISFLG is a recode flag that summarizes the prior six questions. If the respondent answered any of those with a yes, then this has a value of 1. 
+  # If they didn't have any then the flag is valued at 2.
+  AA$prdisflg = factor(AA$prdisflg, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has reported at least one disability via prior questions", "No"))
+  
+  # The following are allocation flags for the seven immediately proceeding variables.
+  AA$pxdisear = factor(AA$pxdisear, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdiseye = factor(AA$pxdiseye, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisrem = factor(AA$pxdisrem, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisphy = factor(AA$pxdisphy, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisdrs = factor(AA$pxdisdrs, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisout = factor(AA$pxdisout, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+
+  # The following is the allocation flag for the HEFAMINC variable, which replaced the HUFAMINC variable from earlier versions.
+  AA$hxfaminc = factor(AA$hxfaminc, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  
+  
+  
+  
   
   # This returns the dataset back to the main script, ending the function.
   return(AA)
 }
+
+
+
