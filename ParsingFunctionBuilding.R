@@ -1,4 +1,4 @@
-ParserJanuary2010 = function(DataIn, DataDictionaryIn) {
+ParserMay2012 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
