@@ -120,8 +120,8 @@ FileRenaming = file.rename(from = ExtractedFiles, to = ExtractedFileRename)
 #  Testing the March data file.
 Test0 = CPSMicrodataReader(FileIn = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UnzippedFiles/173Jan10.dat", DataDictionaryIn = DictionaryFiles$Jan10Dictionary)
 Test1 = ParserJanuary2010(DataIn = Test0, DataDictionaryIn = DictionaryFiles$Jan10Dictionary)
-saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataUnformattedJan2010.rds")
-saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPSMicrodataReader/UsefulData/CPSExampleDataFormattedJan2010.rds")
+saveRDS(Test0, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UsefulData/CPSExampleDataUnformattedJan2010.rds")
+saveRDS(Test1, file = "C:/Users/Kelley_R/OneDrive - US Department of Labor - BLS/Desktop/CPS Microdata Storage/UsefulData/CPSExampleDataFormattedJan2010.rds")
 
 
 
