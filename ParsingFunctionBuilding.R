@@ -1,4 +1,4 @@
-ParserMay2012 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -28,7 +28,7 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
                       labels = c("Refused", "Don't Know", NA, 
                                  "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
                                  "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
-                                 "LF complete, supplement DK items incomplete at closeout ASEC only", "HH occupied entirely by Armed Forces members or all under 15 years of age",
+                                 "LF complete, supplement DK items incomplete at closeout-ASEC only", "HH occupied entirely by Armed Forces members or all under 15 years of age",
                                  "CAPI Complete", "Callback needed", "Sufficient partial - Precloseout", "Sufficient partial - At closeout", 
                                  "Labor force complete, - Suppl. incomplete - CAPI", "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", 
                                  "Other occupied - Specify", "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", 
@@ -68,9 +68,9 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
                                                                    "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", 
                                                                    "Unfit or to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
                                                                    "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
-  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:6,8:9), labels = c("Refused", "Don't Know", NA, 
+  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:4,6,8:9), labels = c("Refused", "Don't Know", NA, 
                                                                        "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage",
-                                                                       "Merged", "Condemned", "Unused line of listing sheet", "Other - Specify"))
+                                                                       "Condemned", "Unused line of listing sheet", "Other - Specify"))
   # This is the Household Weight. It is used for tallying houshold characteristics.
   AA$hwhhwgt[AA$hwhhwgt == -1] = NA
   
@@ -158,11 +158,11 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
   # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
   AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
   
-  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, with this version. 
-  # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PEAGE gives the respondent's age. 
-  # For anyone who is from 80-84 years old, PEAGE codes as 80. For anyone who is 85+ years old, PEAGE codes as 85.
-  AA$peage = factor(AA$peage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
-  # This is a flag that says whether peage is topcoded.
+  # PRTAGE gives the age of the respondent. In the immediately previous versions, this variable was called PEAGE. 
+  # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PRTAGE gives the respondent's age. 
+  # For anyone who is from 80-84 years old, PRTAGE codes as 80. For anyone who is 85+ years old, PRTAGE codes as 85.
+  AA$prtage = factor(AA$prtage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
+  # This is a flag that says whether prtage is topcoded.
   AA$prtfage = factor(AA$prtfage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
   # This provides the respondent's marital status, including whether the spouse is present.
   AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", 
@@ -191,12 +191,14 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
                                                                        "Bachelor's degree (Ex: BA, AB, BS)", "Master's degree (Ex: MA, MS, MEng, MEd, MSW)", 
                                                                        "Professional School Deg (Ex: MD, DDS, DVM)", "Doctorate degree (Ex: PhD, EdD)"))
   
-  # This tells the detailed race of the respondent. The options for this variable have changed significantly over the years from 1995 onwards, so check with more detailed documentation.
-  AA$ptdtrace = factor(AA$ptdtrace, levels = c(-3:-1, 1:21), labels = c("Refused", "Don't Know", NA, 
+  # This tells the detailed race of the respondent. The options for this variable have changed significantly over the years from 1995 onwards, 
+  # so check with more detailed documentation.
+  AA$ptdtrace = factor(AA$ptdtrace, levels = c(-3:-1, 1:26), labels = c("Refused", "Don't Know", NA, 
                                                                         "White Only", "Black Only", "American Indian, Alaskan Native Only", "Asian Only", 
-                                                                        "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-Hawaiian", "Black-AI", 
-                                                                        "Black-Asian", "Black-HP", "AI-Asian", "Asian-HP", "W-B-AI", "W-B-A", "W-AI-A", "W-A-HP", "W-B-AI-A", 
-                                                                        "2 or 3 Races", "4 or 5 Races"))
+                                                                        "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-HP", "Black-AI", 
+                                                                        "Black-Asian", "Black-HP", "AI-Asian",  "AI-HP", "Asian-HP", "W-B-AI", "W-B-A", "W-B-HP", "W-AI-A", 
+                                                                        "W-AI-HP", "W-A-HP", "B-AI-A", "W-B-AI-A", "W-AI-A-HP", "Other 3 Race Combinations", 
+                                                                        "Other 4 and 5 Race Combinations"))
   
   # This tells the detailed hispanic ethnicity of the respondent. Only valid for those who state Hispanic ethnicity (pehspnon = 1). he options for this variable have changed significantly over the years from 1995 onwards, so check with more detailed documentation.
   AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican", "Puerto Rican", "Cuban", "Central/South American", "Other Spanish"))
@@ -648,80 +650,105 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
                                                                         "Nonag, Self-employed", "Nonag, unpaid"))
   # PRDTIND1 tells the detailed industry group for the respondent's 1st job. (There are 52 detailed industry groups.)
   AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
-                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
-                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", 
-                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", "Wood products", "Furniture and fixtures manufacturing", 
-                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
-                                                                        "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products", "Wholesale trade", 
-                                                                        "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
-                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services", 
-                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
-                                                                        "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services", 
-                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation", 
-                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", 
-                                                                        "Private households", "Public administration", "Armed forces"))
+                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", 
+                                                                        "Nonmetallic mineral products", "Primary metals and fabricated metal products", 
+                                                                        "Machinery manufacturing", "Computer and electronic products", 
+                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
+                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", 
+                                                                        "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
+                                                                        "Paper and printing", "Petroleum and coal products", "Chemical manufacturing", 
+                                                                        "Plastics and rubber products", "Wholesale trade", "Retail trade", "Transportation and warehousing", 
+                                                                        "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
+                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", 
+                                                                        "Internet service providers and data processing services", "Other information services", "Finance", 
+                                                                        "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
+                                                                        "Management of companies and enterprises", "Adminitrative and support services", 
+                                                                        "Waste management and remediation services", "Educational services", "Hospitals", 
+                                                                        "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", 
+                                                                        "Accommodation", "Food services and drinking places", "Repair and maintenance", 
+                                                                        "Personal and laundry services", "Membership associations and organizations", "Private households", 
+                                                                        "Public administration", "Armed forces"))
   # PRDTIND2 tells the detailed industry group for the respondent's 2nd job. (There are 52 detailed industry groups.)
   AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
-                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", "Nonmetallic mineral product manufacturing",
-                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", "Computer and electronic product manufacturing", 
-                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", "Wood products", "Furniture and fixtures manufacturing", 
-                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
-                                                                        "Paper and printing", "Petroleum and coal products manufacturing", "Chemical manufacturing", "Plastics and rubber products", "Wholesale trade", 
-                                                                        "Retail trade", "Transportation and warehousing", "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
-                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", "Internet service providers and data processing services", 
-                                                                        "Other information services", "Finance", "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
-                                                                        "Management of companies and enterprises", "Adminitrative and support services", "Waste management and remediation services", "Educational services", 
-                                                                        "Hospitals", "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", "Accommodation", 
-                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", "Membership associations and organizations", 
-                                                                        "Private households", "Public administration", "Armed forces"))
+                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", 
+                                                                        "Nonmetallic mineral products", "Primary metals and fabricated metal products", 
+                                                                        "Machinery manufacturing", "Computer and electronic products", 
+                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
+                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", 
+                                                                        "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
+                                                                        "Paper and printing", "Petroleum and coal products", "Chemical manufacturing", 
+                                                                        "Plastics and rubber products", "Wholesale trade", "Retail trade", "Transportation and warehousing", 
+                                                                        "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
+                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", 
+                                                                        "Internet service providers and data processing services", "Other information services", "Finance", 
+                                                                        "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
+                                                                        "Management of companies and enterprises", "Adminitrative and support services", 
+                                                                        "Waste management and remediation services", "Educational services", "Hospitals", 
+                                                                        "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", 
+                                                                        "Accommodation", "Food services and drinking places", "Repair and maintenance", 
+                                                                        "Personal and laundry services", "Membership associations and organizations", "Private households", 
+                                                                        "Public administration", "Armed forces"))
   
 
   # PRDTOCC1 tells the detailed occupation group for the respondent's 1st job. (There are 23 detailed occupation groups.)
   AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
-                                                                        "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", 
-                                                                        "Architecture and engineering occupations", "Life, physical, and social science occupations", "Community and social service occupations", 
-                                                                        "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", 
-                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", "Protective service occupations", 
-                                                                        "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
-                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
-                                                                        "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Management occupations", "Business and financial operations occupations", 
+                                                                        "Computer and mathematical science occupations", "Architecture and engineering occupations", 
+                                                                        "Life, physical, and social science occupations", "Community and social service occupations", 
+                                                                        "Legal occupations", "Education, training, and library occupations", 
+                                                                        "Arts, design, entertainment, sports, and media occupations", 
+                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", 
+                                                                        "Protective service occupations", "Food preparation and serving related occupations", 
+                                                                        "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", 
+                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", 
+                                                                        "Insatllation, maintenance, and repair occupations", "Production occupations", 
                                                                         "Transportation and material moving occupations", "Armed Forces"))
   # PRDTOCC2 tells the detailed occupation group for the respondent's 2nd job. (There are 23 detailed occupation groups.)
   AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
-                                                                        "Management occupations", "Business and financial operations occupations", "Computer and mathematical science occupations", 
-                                                                        "Architecture and engineering occupations", "Life, physical, and social science occupations", "Community and social service occupations", 
-                                                                        "Legal occupations", "Education, training, and library occupations", "Arts, design, entertainment, sports, and media occupations", 
-                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", "Protective service occupations", 
-                                                                        "Food preparation and serving related occupations", "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
-                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
-                                                                        "Construction and extraction occupations", "Insatllation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Management occupations", "Business and financial operations occupations", 
+                                                                        "Computer and mathematical science occupations", "Architecture and engineering occupations", 
+                                                                        "Life, physical, and social science occupations", "Community and social service occupations", 
+                                                                        "Legal occupations", "Education, training, and library occupations", 
+                                                                        "Arts, design, entertainment, sports, and media occupations", 
+                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", 
+                                                                        "Protective service occupations", "Food preparation and serving related occupations", 
+                                                                        "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", 
+                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", 
+                                                                        "Insatllation, maintenance, and repair occupations", "Production occupations", 
                                                                         "Transportation and material moving occupations", "Armed Forces"))
   # PREMP is a recode for employed respondents that excludes those employed in agriculture and private households.
   AA$premp = factor(AA$premp, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Employed persons (Excluding farm & private households)"))
   # PRMJIND1 tells the major industry group for the respondent's 1st job. (There are 14 major industry groups.)
-  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade", 
-                                                                        "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services", 
+  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", 
+                                                                        "Manufacturing", "Wholesale and retail trade", "Transportation and utilities", "Information", 
+                                                                        "Financial activites", "Professional and business services", "Educational and health services", 
                                                                         "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
   # PRMJIND2 tells the major industry group for the respondent's 2nd job. (There are 14 major industry groups.)
-  AA$prmjind2 = factor(AA$prmjind2, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing", "Wholesale and retail trade",
-                                                                        "Transportation and utilities", "Information", "Financial activites", "Professional and business services", "Educational and health services",
+  AA$prmjind2 = factor(AA$prmjind2, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", 
+                                                                        "Manufacturing", "Wholesale and retail trade", "Transportation and utilities", "Information", 
+                                                                        "Financial activites", "Professional and business services", "Educational and health services",
                                                                         "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
   
   
   # PRMJOCC1 tells the major occupation group for the respondent's 1st job. (There are 11 major occupation groups.)
-  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", 
-                                                                       "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
-                                                                       "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", 
-                                                                       "Transportation and material moving occupations", "Armed Forces"))
+  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", 
+                                                                       "Professional and related occupations", "Service occupations", "Sales and related occupations", 
+                                                                       "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                       "Construction and extraction occupations", "Installation, maintenance, and repair occupations", 
+                                                                       "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
   # PRMJOCC2 tells the major occupation group for the respondent's 2nd job. (There are 11 major occupation groups.)
-  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", 
-                                                                        "Sales and related occupations", "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
-                                                                        "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", 
-                                                                        "Transportation and material moving occupations", "Armed Forces"))
+  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", 
+                                                                       "Professional and related occupations", "Service occupations", "Sales and related occupations", 
+                                                                       "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                       "Construction and extraction occupations", "Installation, maintenance, and repair occupations", 
+                                                                       "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
   # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
-  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
-                                                                       "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
-                                                                       "Arned Forces"))
+  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", 
+                                                                       "Service occupations", "Sales and office occupations", "Farming, forestry, and fishing occupations", 
+                                                                       "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
+                                                                       "Armed Forces"))
   # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
@@ -781,10 +808,10 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
   AA$penlfjh = factor(AA$penlfjh, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Within the last 12 months", "More than 12 months ago", "Never worked"))
   # PENLFRET tells whether the respondent is retired from a job or business. It reports data for all respondents over 50 who are not currently employed (pemlr = 3-7).
   AA$penlfret = factor(AA$penlfret, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
-  # PENLFACT tells what the respondent's is doing if they are not employed and did not answer that they were retired. It reports data for all respondents who have pemlr = 3-7 and either peage = 14-49 or penlfret = 2.
+  # PENLFACT tells what the respondent's is doing if they are not employed and did not answer that they were retired. It reports data for all respondents who have pemlr = 3-7 and either prtage = 14-49 or penlfret = 2.
   AA$penlfact = factor(AA$penlfact, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Disabled", "Ill", "In School", "Taking care of house or family", "In retirement", "Something else/other"))
   # PUNLFCK1-PUNLFCK2 would be here, but were removed at start.
-  # PESCHENR tells if the respondent was enrolled in high school, college, or university (any level of post-secondary education) in the last week. It is asked of all of those people who are classified as "Adult Civilian Houshold Members" and are between 16 and 24 years old (prpertyp = 2 and peage = 16-24).
+  # PESCHENR tells if the respondent was enrolled in high school, college, or university (any level of post-secondary education) in the last week. It is asked of all of those people who are classified as "Adult Civilian Houshold Members" and are between 16 and 24 years old (prpertyp = 2 and prtage = 16-24).
   AA$peschenr = factor(AA$peschenr, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   # PESCHFT tells if the respondent is a full-time or a part-time student. It only reports data for those who report being in high school or college/university (peschlvl = 1-2)
   AA$peschft = factor(AA$peschft, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Full-Time", "Part-Time"))

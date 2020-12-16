@@ -1645,7 +1645,7 @@ ParserJanuary2003 = function(DataIn, DataDictionaryIn) {
                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
   AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", "Professional and related occupations", "Service occupations", "Sales and related occupations", "Office and administrative support occupations",
                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", "Installation, maintenance, and repair occupations", "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
-  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", "Arned Forces"))
+  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", "Armed Forces"))
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   
   
@@ -2469,7 +2469,7 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
   AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
                                                                        "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
-                                                                       "Arned Forces"))
+                                                                       "Armed Forces"))
   # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
@@ -3442,7 +3442,7 @@ ParserAugust2005 = function(DataIn, DataDictionaryIn) {
   # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
   AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
                                                                        "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
-                                                                       "Arned Forces"))
+                                                                       "Armed Forces"))
   # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
@@ -3935,7 +3935,7 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
   AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
   
-  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, with this version. 
+  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, starting with the August 2005 version. 
   # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PEAGE gives the respondent's age. 
   # For anyone who is from 80-84 years old, PEAGE codes as 80. For anyone who is 85+ years old, PEAGE codes as 85.
   AA$peage = factor(AA$peage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
@@ -4475,7 +4475,7 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
   AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
                                                                        "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
-                                                                       "Arned Forces"))
+                                                                       "Armed Forces"))
   # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
@@ -4976,7 +4976,7 @@ ParserJanuary2009 = function(DataIn, DataDictionaryIn) {
   # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
   AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
   
-  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, with this version. 
+  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, starting with the August 2005 version. 
   # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PEAGE gives the respondent's age. 
   # For anyone who is from 80-84 years old, PEAGE codes as 80. For anyone who is 85+ years old, PEAGE codes as 85.
   AA$peage = factor(AA$peage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
@@ -5516,7 +5516,7 @@ ParserJanuary2009 = function(DataIn, DataDictionaryIn) {
   # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
   AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
                                                                        "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
-                                                                       "Arned Forces"))
+                                                                       "Armed Forces"))
   # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
@@ -6057,7 +6057,7 @@ ParserJanuary2010 = function(DataIn, DataDictionaryIn) {
   # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
   AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
   
-  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, with this version. 
+  # PEAGE gives the age of the respondent. This variable has undergone a significant change in the topcoding, starting with the August 2005 version. 
   # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PEAGE gives the respondent's age. 
   # For anyone who is from 80-84 years old, PEAGE codes as 80. For anyone who is 85+ years old, PEAGE codes as 85.
   AA$peage = factor(AA$peage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
@@ -6620,7 +6620,7 @@ ParserJanuary2010 = function(DataIn, DataDictionaryIn) {
   # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
   AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", "Service occupations", "Sales and office occupations", 
                                                                        "Farming, forestry, and fishing occupations", "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
-                                                                       "Arned Forces"))
+                                                                       "Armed Forces"))
   # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
   AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
   # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
@@ -6684,6 +6684,1138 @@ ParserJanuary2010 = function(DataIn, DataDictionaryIn) {
   AA$penlfact = factor(AA$penlfact, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Disabled", "Ill", "In School", "Taking care of house or family", "In retirement", "Something else/other"))
   # PUNLFCK1-PUNLFCK2 would be here, but were removed at start.
   # PESCHENR tells if the respondent was enrolled in high school, college, or university (any level of post-secondary education) in the last week. It is asked of all of those people who are classified as "Adult Civilian Houshold Members" and are between 16 and 24 years old (prpertyp = 2 and peage = 16-24).
+  AA$peschenr = factor(AA$peschenr, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PESCHFT tells if the respondent is a full-time or a part-time student. It only reports data for those who report being in high school or college/university (peschlvl = 1-2)
+  AA$peschft = factor(AA$peschft, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Full-Time", "Part-Time"))
+  
+  # PESCHLVL specifies the level of schooling the respondent is currently in. It reports data only for those who reported being in school (peschenr = 1).
+  AA$peschlvl = factor(AA$peschlvl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "High school", "College or University"))
+  AA$prnlfsch = factor(AA$prnlfsch, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "In school", "Not in school"))
+  # PWFMWGT is the family weighting variable. It is used only to tally family characteristics.
+  AA$pwfmwgt[AA$pwfmwgt <= -1] = NA
+  # PWLGWGT is the longitudinal weighting variable. It is only found on adult records that are matched from month to month, and is used for analyzing gross labor market flows only.
+  AA$pwlgwgt[AA$pwlgwgt <= -1] = NA
+  # PWORWGT is the outgoing rotation weight. It is only found on respondents in the 4th or 8th month in sample. It is used only for tallying info that is collected in those months. 
+  # These include earnings data, 2nd job Occupation and Industry data, and Detailed Not it Labor Force data.
+  AA$pworwgt[AA$pworwgt <= -1] = NA
+  
+  # PWSSWGT is the second-stage or "final weight". It is used in most calculations, and is controlled to independent estimates of population levels for 1) states, 2) origin, sex, and age; and 3) age, race, and sex. 
+  # See the appropriate Cnesus Bureau Technical Papers for details on this procedure.
+  AA$pwsswgt[AA$pwsswgt <= -1] = NA
+  # PWVETWGT is the Veterans wieght. It is used to tally data on veterans and is controlled to an independent estimate of the number of veterans that is supplied by the VA.
+  AA$pwvetwgt[AA$pwvetwgt <= -1] = NA
+  # PRCHLD tells whether the respondent has minor children residing in the household with them.
+  AA$prchld = factor(AA$prchld, levels = c(-3:15), labels = c("Refused", "Don't Know", "NIU (Not a parent)", "No own children under 18 years of age", "All own children 0-2 years of age",
+                                                              "All own children 3-5 years of age", "All own children 6-13 years of age", "All own children 14-17 years of age", 
+                                                              "Own children 0-2 and 3-5 years of age (none 6-17)", "Own children 0-2 and 6-13 years of age (none 3-5 or 14-17)", 
+                                                              "Own children 0-2 and 14-17 years of age (none 3-13)", "Own children 3-5 and 6-13 years of age (none 0-2 or 14-17)", 
+                                                              "Own children 3-5 and 14-17 years of age (none 0-2 or 6-13)", "Own children 6-13 and 14-17 years of age (none 0-5)", 
+                                                              "Own children 0-2, 3-5, and 6-13 years of age (none 14-17)", "Own children 0-2, 3-5, and 14-17 years of age (none 6-13)", 
+                                                              "Own children 0-2, 6-13, and 14-17 years of age (none 3-5)", "Own children 3-5, 6-13, and 14-17 years of age (none 0-2)", "Own children from all age groups"))
+  # PRNMCHLD tells the number of minor children living in the household with the respondent.
+  AA$prnmchld[ AA$prnmchld <= -1] = NA
+  
+  
+  
+  # These functions format the Allocation Flags section
+  # Each allocation flag variable tells whether the related variable has some element that was allocated to fill in a missing record. 
+  # With a few exceptions, the allocation flag has the same name as the original variable, just with the second letter switched from a U or an E or an R to an X. E.G. HXTENURE is the flag for HETENURE. 
+  # Exceptions will be specifically commented on.
+  
+  # PRWERNAL is the allocation flag for PRERNWA.
+  AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  # PRHERNAL is the allocation flag for PRERNHLY.
+  AA$prhernal = factor(AA$prhernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtenure = factor(AA$hxtenure, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtelhhd = factor(AA$hxtelhhd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtelavl = factor(AA$hxtelavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$hxphoneo = factor(AA$hxphoneo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxinusyr = factor(AA$pxinusyr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrrp = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxparent = factor(AA$pxparent, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxage = factor(AA$pxage, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxmaritl = factor(AA$pxmaritl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxspouse = factor(AA$pxspouse, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxsex = factor(AA$pxsex, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafwhn1 = factor(AA$pxafwhn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafnow = factor(AA$pxafnow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxeduca = factor(AA$pxeduca, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrace1 = factor(AA$pxrace1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxnatvty = factor(AA$pxnatvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmntvty = factor(AA$pxmntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxfntvty = factor(AA$pxfntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxhspnon = factor(AA$pxhspnon, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmlr = factor(AA$pxmlr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxret1 = factor(AA$pxret1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxabsrsn = factor(AA$pxabsrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxabspdo = factor(AA$pxabspdo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxmjot = factor(AA$pxmjot, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmjnum = factor(AA$pxmjnum, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrusl1 = factor(AA$pxhrusl1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrusl2 = factor(AA$pxhrusl2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrftpt = factor(AA$pxhrftpt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxhruslt = factor(AA$pxhruslt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrwant = factor(AA$pxhrwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrrsn1 = factor(AA$pxhrrsn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrrsn2 = factor(AA$pxhrrsn2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhract1 = factor(AA$pxhract1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxhract2 = factor(AA$pxhract2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhractt = factor(AA$pxhractt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhrrsn3 = factor(AA$pxhrrsn3, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhravl = factor(AA$pxhravl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlayavl = factor(AA$pxlayavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxlaylk = factor(AA$pxlaylk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlaydur = factor(AA$pxlaydur, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlayfto = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlkm1 = factor(AA$pxlkm1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlkavl = factor(AA$pxlkavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxlkll1o = factor(AA$pxlkll1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlkll2o = factor(AA$pxlkll2o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlklwo = factor(AA$pxlklwo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlkdur = factor(AA$pxlkdur, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlkfto = factor(AA$pxlkfto, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxdwwnto = factor(AA$pxdwwnto, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdwrsn = factor(AA$pxdwrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdwlko = factor(AA$pxdwlko, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdwwk = factor(AA$pxdwwk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdw4wk = factor(AA$pxdw4wk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxdwlkwk = factor(AA$pxdwlkwk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdwavl = factor(AA$pxdwavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdwavr = factor(AA$pxdwavr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxjhwko = factor(AA$pxjhwko, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxjhrsn = factor(AA$pxjhrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxjhwant = factor(AA$pxjhwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxio1cow = factor(AA$pxio1cow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxio1icd = factor(AA$pxio1icd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxio1ocd = factor(AA$pxio1ocd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxio2cow = factor(AA$pxio2cow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxio2icd = factor(AA$pxio2icd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxio2ocd = factor(AA$pxio2ocd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernuot = factor(AA$pxernuot, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernper = factor(AA$pxernper, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernh1o = factor(AA$pxernh1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxernhro = factor(AA$pxernhro, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxern = factor(AA$pxern, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernwkp = factor(AA$pxernwkp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernrt = factor(AA$pxernrt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernhry = factor(AA$pxernhry, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxernh2 = factor(AA$pxernh2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxernlab = factor(AA$pxernlab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxerncov = factor(AA$pxerncov, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxnlfjh = factor(AA$pxnlfjh, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxnlfret = factor(AA$pxnlfret, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  AA$pxnlfact = factor(AA$pxnlfact, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxschenr = factor(AA$pxschenr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxschft = factor(AA$pxschft, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  
+  # This is a last section mainly related to some additional education questions. The section was added at the end starting in January 1998.
+  
+  # QSTNUM provides a unique household identifier that is valid only within the specific month selected.
+  AA$qstnum[AA$qstnum <= -1] = NA
+  # OCCURNUM provides a unique person identifier within the household. It is valid only within the specific month selected.
+  AA$occurnum[AA$occurnum <= -1] = NA
+  # PEDIPGED asks how the respondent got their high school diploma - by graduation from high school or by completing a GED. Only asked of those people whose highest education level was "High School or equivalent".
+  # That is, those with PEEDUCA = 39.
+  # (CHECK THIS)
+  AA$pedipged = factor(AA$pedipged, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't know", "Not in Universe", "Graduation from high school", "GED or other equivalent"))
+  # PEHGCOMP asks what the highest level of schooling the person completed before receiving their GED. Only asked of people with PEDIPGED = 2.
+  AA$pehgcomp = factor(AA$pehgcomp, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1st grade", "1st, 2nd, 3rd, or 4th grade", "5th or 6th grade", "7th or 8th grade", "9th grade", 
+                                                                       "10th grade", "11th grade", "12th grade, NO DIPLOMA"))
+  # PECYC asks how many years of college did the person complete. It is only asked of those whose highest education  level was "Some college but no degree" or an "Associate Degree". That is, PEEDUCA = 40-42.
+  AA$pecyc = factor(AA$pecyc, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't know", "Not in Universe", "Less than 1 year (includes 0 years completed)", "The first, or Freshman year", "The second, or Sophmore year", 
+                                                                 "The third, or Junior year", "Four or more years"))
+  
+  
+  # PEGRPROF, PEGR6COR, and PEMS123 would be here but were removed at the start.
+  # The next three variables are allocation flags for the three variables above.
+  AA$pxdipged = factor(AA$pxdipged, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxhgcomp = factor(AA$pxhgcomp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxcyc = factor(AA$pxcyc, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  #  PXGRPROF, PXGR6COR, and PXMS123 would be here but were removed at the start.
+  
+  # PWCMPWGT is the Composited Final Weight. It is used in producing BLS labor force statistics and is only available for those in the Civilian Noninstitutional Population 16+.
+  # See the appropriate Cnesus Bureau Technical Papers for details on this variable.
+  AA$pwcmpwgt[AA$pwcmpwgt <= -1] = NA
+  
+  # This provides the most detailed industry code for the person's primary job. The four digit code (insert leading 0s as necessary) connects to specific industries in the 2002 Census Industry coding. 
+  # These are aggregated into the 52 detailed groups and 14 major groups that are used in the various above industry variables.
+  AA$peio1icd[AA$peio1icd == -1] = NA
+  # This provides the most detailed occupation code for the respondent's primary job. The four digit code (insert leading 0s as necessary) connects to specific occupations in the 2002 Census Occupation coding. 
+  # These are aggregated into the 23 detailed groups and 11 major groups that are used in the various above occupation variables. 
+  AA$peio1ocd[AA$peio1ocd == -1] = NA
+  # This provides the most detailed industry code for the person's second job. The four digit code (insert leading 0s as necessary) connects to specific industries in the 2002 Census Industry coding. 
+  # These are aggregated into the 52 detailed groups and 14 major groups that are used in the various above industry variables.
+  AA$peio2icd[AA$peio2icd == -1] = NA 
+  # This provides the most detailed occupation code for the respondent's second job. The four digit code (insert leading 0s as necessary) connects to specific occupations in the 2002 Census Occupation coding. 
+  # These are aggregated into the 23 detailed groups and 11 major groups that are used in the various above occupation variables.
+  AA$peio2ocd[AA$peio2ocd == -1] = NA
+  
+  # Actually connecting the specific industry and occupational codes to their titles is a task that will have to wait for later.
+  
+  # These two variables provide intermediate level industry grouping for the respondent's primary and second jobs, respoectively. These are 22 industry groups here.
+  AA$primind1 = factor(AA$primind1, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods", 
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
+                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", 
+                                                                        "Educational services", "Health care and social services", "Arts, entertainment, and recreation", "Accomodation and food services", "Private households", 
+                                                                        "Other services, except private households", "Public administration", "Armed Forces"))
+  AA$primind2 = factor(AA$primind2, levels = c(-3:-1, 1:22), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", "Manufacturing - Durable goods", "Manufacturing - Non-durable goods", 
+                                                                        "Wholesale trade", "Retail trade", "Transportation and warehousing", "Utilities", "Information", "Finance and Insurance",  
+                                                                        "Real estate and rental and leasing", "Professional and technical services", "Management, administrative, and waste manufacturing services", 
+                                                                        "Educational services", "Health care and social services", "Arts, entertainment, and recreation", "Accomodation and food services", "Private households", 
+                                                                        "Other services, except private households", "Public administration", "Armed Forces"))
+  
+  
+  
+  # PEAFWHN1 through PEAFWHN4 provide information about when the respondent served in the military. They only report data for those respondents who had reported serving 
+  # at some point in the armed forces (peafever = 1). PEAFWHN2-PEAFWHN4 are used to report data for those who served in multiple periods.
+  # These replace the variable peafwhen that was used in earlier versions.
+  AA$peafwhn1 = factor(AA$peafwhn1, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  AA$peafwhn2 = factor(AA$peafwhn2, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  AA$peafwhn3 = factor(AA$peafwhn3, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  AA$peafwhn4 = factor(AA$peafwhn4, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                       "September 2001 or Later", "August 1990 to August 2001", "May 1975 to July 1990", 
+                                                                       "Vitenam Era (August 1964 to April 1975)", "February 1955 to July 1964", 
+                                                                       "Korean War (July 1950 to January 1955)", "January 1947 to June 1950", 
+                                                                       "World War II (December 1941 to December 1946)", "November 1941 or earlier"))
+  
+  # PXAFEVER is an allocation flag for peafever that was added along with the updated peafwhn1-peafwhn4
+  AA$pxafever = factor(AA$pxafever, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  # The following sectin was added in January 2007 to provide more information on the respondent's family situations.
+  # PELNDAD gives the line number (from pulineno) of the respondent's father, if the father is present in the household. 
+  # "No father present" only means that the respondent's father is not resident in this household.
+  AA$pelndad = factor(AA$pelndad, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No father present", str_c(1:16, " Line num of father")))
+  # PELNMOM gives the line number (from pulineno) of the respondent's mother, if the mother is present in the household.
+  # "No mother present" only means that the respondent's mother is not resident in this household.
+  AA$pelnmom = factor(AA$pelnmom, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No mother present", str_c(1:16, " Line num of mother")))
+  # PEDADTYP tells the nature of the relationship between the respondent and the person described in pelndad as their father. 
+  # It allows for tracking step-parent and adoptive relationships as well as biological ones.
+  AA$pedadtyp = factor(AA$pedadtyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No father present", "Biological", "Step", "Adopted"))
+  # PEMOMTYP tells the nature of the relationship between the respondent and the person described in pelnmom as their mother. 
+  # It allows for tracking step-parent and adoptive relationships as well as biological ones.
+  AA$pemomtyp = factor(AA$pemomtyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No mother present", "Biological", "Step", "Adopted"))
+  # PPECOHAB gives the line number (from pulineno) of the respondent's cohabitating partner, if that person is present in the household. 
+  # Cohabitating partner refers to a romantic partner who is not the respondent's spouse.
+  AA$pecohab = factor(AA$pecohab, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No partner present", str_c(1:16, " Line num of cohabitating partner" )))
+  
+  # The following are allocation flags for the five immediately proceeding variables.
+  AA$pxlndad = factor(AA$pxlndad, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlnmom = factor(AA$pxlnmom, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdadtyp = factor(AA$pxdadtyp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmomtyp = factor(AA$pxmomtyp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxcohab = factor(AA$pxcohab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  # The following section was added in January 2009 to provide more information on the respondent's disability status.
+  # PEDISEAR gives the respondent's answer to the question "Is [the respondent] deaf or does he have serious difficulty hearing?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisear = factor(AA$pedisear, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent is deaf or has serious hearing difficulty", "No"))
+  # PEDISEYE gives the respondent's answer to the question "Is [the respondent] blind or does he have serious difficulty seeing even when wearing glasses?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pediseye = factor(AA$pediseye, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent is blind or has serious vision difficulty", "No"))
+  # PEDISREM gives the respondent's answer to the question "Because of a physical, mental, or emotional condition, does [the respondent] have serious difficulty concentrating, 
+  # remembering, or making decisions?" It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisrem = factor(AA$pedisrem, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty concentrating, remembering, or making decsions", "No"))
+  # PEDISPHY gives the respondent's answer to the question "Does [the respondent] have serious difficulty walking or climbing stairs?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisphy = factor(AA$pedisphy, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty walking or climbing stairs", "No"))
+  # PEDISDRS gives the respondent's answer to the question "Does [the respondent] have serious difficulty dressing or bathing?" 
+  # It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisdrs = factor(AA$pedisdrs, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty dressing or bathing", "No"))
+  # PEDISEAR gives the respondent's answer to the question "Because of a physical, mental, or emotional condition, does [the respondent] have difficulty doing errands alone 
+  # such as visiting a doctor's office or shopping?" It reports data only for Adult Civilian household members (prpertyp = 2).
+  AA$pedisout = factor(AA$pedisout, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has serious difficulty doing errands alone", "No"))
+  # PRDISFLG is a recode flag that summarizes the prior six questions. If the respondent answered any of those with a yes, then this has a value of 1. 
+  # If they didn't have any then the flag is valued at 2.
+  AA$prdisflg = factor(AA$prdisflg, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Yes, respondent has reported at least one disability via prior questions", "No"))
+  
+  # The following are allocation flags for the seven immediately proceeding variables.
+  AA$pxdisear = factor(AA$pxdisear, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdiseye = factor(AA$pxdiseye, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisrem = factor(AA$pxdisrem, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisphy = factor(AA$pxdisphy, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisdrs = factor(AA$pxdisdrs, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisout = factor(AA$pxdisout, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  # The following is the allocation flag for the HEFAMINC variable, which replaced the HUFAMINC variable from earlier versions.
+  AA$hxfaminc = factor(AA$hxfaminc, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
+  
+  
+  
+  
+  
+  
+  # This returns the dataset back to the main script, ending the function.
+  return(AA)
+}
+
+
+
+ParserMay2012 = function(DataIn, DataDictionaryIn) {
+  
+  # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
+  AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
+  
+  
+  # This adds the variables that the Dictionary says to add, properly applying the formulas to create them.
+  AA = tibble(AA, gtcbsanum = AA$gtcbsa, gtcsanum = AA$gtcsa, gtconum = AA$gtco)
+  # This removes all of the variables that are labelled "Delete" in the dataset. 
+  AA = select(AA, -all_of(filter(DataDictionaryIn, Adjustment == "Delete")$ColName))
+  # This reorders all of the remaining variables to match the Dictionary Order
+  AA = select(AA, filter(filter(DataDictionaryIn, Adjustment != "Remove"), Adjustment != "Delete")$ColName)
+  
+  
+  
+  # These functions format the Household Information section
+  # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
+  AA$hrhhid[AA$hrhhid == -1] = NA
+  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  AA$hrmonth[AA$hrmonth == -1] = NA
+  AA$hryear4[AA$hryear4 == -1] = NA
+  # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
+  AA$hurespli[AA$hurespli <= -1] = NA
+  # HUSPNISH would be here, but was removed at start.
+  # HUFINAL provides info on how the result of the interview attempt.
+  AA$hufinal = factor(AA$hufinal, 
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
+                      labels = c("Refused", "Don't Know", NA, 
+                                 "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
+                                 "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
+                                 "LF complete, supplement DK items incomplete at closeout-ASEC only", "HH occupied entirely by Armed Forces members or all under 15 years of age",
+                                 "CAPI Complete", "Callback needed", "Sufficient partial - Precloseout", "Sufficient partial - At closeout", 
+                                 "Labor force complete, - Suppl. incomplete - CAPI", "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", 
+                                 "Other occupied - Specify", "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", 
+                                 "Vacant regular", "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", 
+                                 "Converted to temp business or storage", "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", 
+                                 "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", 
+                                 "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", "Removed during sub-sampling", 
+                                 "Unit already had a chance of selection"))
+  
+  
+  # HETENURE tells about the household's relation to the ownership of the property
+  AA$hetenure = factor(AA$hetenure, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Owned or being bought by a HH member", "Rented for cash", "Occupied without payment of cash rent"))
+  # HEHOUSUT tells the type of the housing that the household is living in.
+  AA$hehousut = factor(AA$hehousut, levels = -3:12, labels = c("Refused", "Don't Know", NA, 
+                                                               "Other unit", "House, apartment, flat", "HU in nontransient hotel, motel, etc.", "HU permanent in transient hotel, motel",
+                                                               "HU in rooming house", "Mobile home or trailer w/no perm. room added", "Mobile home or trailer w/1 or more perm. rooms added", 
+                                                               "HU not specified above", "Quarters not HU in rooming or brding HS", "Unit not perm. in transient hotl, motl", 
+                                                               "Uoccupied tent site or trlr site", "Student quarters in college dorm", "Other unit not specified above"))
+  # HETELHHD tells whether the household has a telephone at the house.
+  AA$hetelhhd = factor(AA$hetelhhd, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone present in house", "Telephone not present in the house"))
+  # HETELAVL tells whether people who don't have telephones available at home (that is, HETELHHD = 2) have a phone elsewhere that they can use to answer the future months of the survey.
+  AA$hetelavl = factor(AA$hetelavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Telephone elsewhere available for household to use", "Telephone not available eslewhere for household to use"))
+  # HEPHONEO tells whether the respondent is okay  with having telephone interviews for the future months of CPS interviewing. 
+  AA$hephoneo = factor(AA$hephoneo, levels = c(-3:2), labels = c("Refused", "Don't Know", NA, "Unknown", "Telephone interview acceptable", "Telephone interview not acceptable"))
+  
+  
+  # HUFAMINC breaks the family income into one of a number of brackets. Caution is urged in using this variable as it has a high allocation rate. See allocation flag.
+  AA$hefaminc = factor(AA$hefaminc, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", NA, "Less than $5,000", "5,000 to 7,499", "7,500 to 9,999", "10,000 to 12,499", 
+                                                                        "12,500 to 14,999", "15,000 to 19,999", "20,000 to 24,999", "25,000 to 29,999", "30,000 to 34,999", 
+                                                                        "35,000 to 39,999", "40,000 to 49,999", "50,000 to 59,999", "60,000 to 74,999", "75,000 to 99,999",
+                                                                        "100,000 to 149,999", "150,000 or more"))
+  # These three variables provide more detail on why there was a nonresponse for this household. If these are not NA, then the households should have lots of other signs of nonresponse.
+  AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, 
+                                                                     "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", "Language barrier", "Unable to locate",
+                                                                     "Other occupied - Specify"))
+  AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
+                                                                   "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", 
+                                                                   "Unfit or to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                                                   "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
+  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:4,6,8:9), labels = c("Refused", "Don't Know", NA, 
+                                                                         "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage",
+                                                                         "Condemned", "Unused line of listing sheet", "Other - Specify"))
+  # This is the Household Weight. It is used for tallying houshold characteristics.
+  AA$hwhhwgt[AA$hwhhwgt == -1] = NA
+  
+  
+  # This provides the Interview Status of the Household. It should match with the hutypea-hutypc variables.
+  AA$hrintsta = factor(AA$hrintsta, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Interview", "Type A Non-interview", "Type B Non-interview", "Type C Non-interview"))
+  # This provides the number of people living in the household.
+  AA$hrnumhou[AA$hrnumhou == -1] = NA
+  # This provides the household type, detailing the relationships between the component families.
+  AA$hrhtype = factor(AA$hrhtype, levels = c(-3:10), labels = c("Refused", "Don't Know", NA, 
+                                                                "Non-interview household", "Husband/Wife primary family (Neither AF)", "Husb/wife prim. family (Either/both AF)", 
+                                                                "Unmarried civilian male-Prim. fam HHLDer", "Unmarried civ. female-Prim. fam HHLDer", 
+                                                                "Primary family HHLDer-RP in AF, Unmar.", "Civilian male primary individual", 
+                                                                "Civilian female primary individual", "Primary individual HHLD-RP in AF",
+                                                                "Group quarter with family", "Group quarters without family"))
+  # HRMIS gives the month in sample for the household. This is a number from 1 to 8.
+  AA$hrmis[AA$hrmis == -1] = NA
+  # HUINTTYP tells about how the interview was conducted, that is by telephone of in-person.
+  AA$huinttyp = factor(AA$huinttyp, levels = -3:2, labels = c("Refused", "Don't Know", NA, "Noninterview/Indeterminate", "Personal", "Telephone"))
+  
+  
+  # HUPRSCNT gives the number of attempted contacts of the household.
+  AA$huprscnt[AA$huprscnt == -1] = NA
+  # HRLONLK tells whether the record will have a longitudinal link to a previous record. 
+  AA$hrlonglk = factor(AA$hrlonglk, levels = c(-3:-1, 0, 2, 3), labels = c("Refused", "Don't Know", NA, "MIS 1 or replaement HH (No link)", "MIS 2-4 or MIS 6-8", "MIS 5"))
+  # HRHHID2 is the second portion of the household ID used in making longitudinal connections.
+  AA$hrhhid2[AA$hrhhid2 == "-1"] = NA
+  # HUBUS tells if anyone in the household owns a business.
+  AA$hubus = factor(AA$hubus, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Someone in HH has a business/farm", "No one in HH has a business/farm"))
+  
+  
+  # HUBUSL1 through HUBUSL4 list the line numbers, corresponding to the pulineno value, of the respondents in the household that own businesses.
+  AA$hubusl1[AA$hubusl1 <= -1] = NA
+  AA$hubusl2[AA$hubusl2 <= -1] = NA
+  AA$hubusl3[AA$hubusl3 <= -1] = NA
+  AA$hubusl4[AA$hubusl4 <= -1] = NA
+  
+  
+  
+  # These functions format the Geographic Information section
+  # GEREG is the Census Region for the respondent houshold.
+  AA$gereg = factor(AA$gereg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Northeast", "Midwest", "South", "West"))
+  # GESTCEN gives the State Postal Abbreviation for the household's state. 
+  AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95), labels = c("Refused", "Don't Know", NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
+  # GESTFIPS gives the two digit State FIPS code for the household's state. 
+  AA$gestfips[AA$gestfips == -1] = NA
+  # GTCBSA gives a five digit Core-based Statistical Area code that can be linked with the appropriate Metropolitan or Micropolitan Statistical Area for the respondent.
+  AA$gtcbsa = factor(AA$gtcbsa, levels = c(-3:-1, 0, 00460:79600), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(00460:79600, " Specific CBSA Code")))
+  # GTCO gives a state-specific three digit county code for the houshold's county. Most housholds will have "not-identified" here to preserve anonymity.
+  AA$gtco = factor(AA$gtco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  
+  
+  # This tells where the household lives within the CBSA. 
+  AA$gtcbsast = factor(AA$gtcbsast, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Central City", "Balance", "Nonmetropolitan", "Not identified"))
+  # This tells whether the household is in a Metropolitan Statistical Area.
+  AA$gtmetsta = factor(AA$gtmetsta, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Metropolitan", "Nonmetropolitan", "Not identified"))
+  # This gives the code for a specific central city in the Metropolitan Statistical Area the household resides in.
+  AA$gtindvpc = factor(AA$gtindvpc, levels = -3:7, labels = c("Refused", "Don't Know", NA, "Not identified, Nonmetropolitan, or Not a central city", str_c(1:7, " Specific central city code")))
+  # This gives the size of the Metropolitan Statistical Area that the household resides in.
+  AA$gtcbsasz = factor(AA$gtcbsasz, levels = c(-3:-1, 0, 2:7), labels = c("Refused", "Don't Know", NA, 
+                                                                          "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", 
+                                                                          "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
+  # GTCSA gives the Combined Statistical Area if the household happens to live in one.:
+  AA$gtcsa = factor(AA$gtcsa, levels = c(-3:-1, 0, 118:720), labels =  c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(118:720, " Specific CBSA Code")))
+  
+  
+  # These three variables keep the original codes for gtcbsa, gtco, and gtcsa as numerics.
+  AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
+  AA$gtconum[AA$gtconum <= -1] = NA
+  AA$gtcsanum[AA$gtcsanum <= -1] = NA
+  
+  
+  
+  # These functions format the Personal Information Demographic section
+  # PROLDRRP and PUPELIG would be here, but were removed at start.
+  
+  # PERRP gives the relationship of the respondent to the reference person. (The Reference Person is the one answering the survey for the household.)
+  AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, 
+                                                                  "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", 
+                                                                  "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", 
+                                                                  "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", "Unmarried partner w/out Rels.", 
+                                                                  "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", 
+                                                                  "Roomer/Boarder w/out Rels."))
+  
+  # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
+  AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
+  
+  # PRTAGE gives the age of the respondent. In the immediately previous versions, this variable was called PEAGE. 
+  # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PRTAGE gives the respondent's age. 
+  # For anyone who is from 80-84 years old, PRTAGE codes as 80. For anyone who is 85+ years old, PRTAGE codes as 85.
+  AA$prtage = factor(AA$prtage, levels = c(-3:79, 80, 85), labels = c("Refused", "Don't Know", NA, str_c(0:79, " years old"), "80-84 years old", "85+ years old"))
+  # This is a flag that says whether prtage is topcoded.
+  AA$prtfage = factor(AA$prtfage, levels = -3:1, labels = c("Refused", "Don't Know", NA, "No top code", "Top coded value for age"))
+  # This provides the respondent's marital status, including whether the spouse is present.
+  AA$pemaritl = factor(AA$pemaritl, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Married - Spouse present", "Married - Spouse absent", "Widowed", "Divorced", 
+                                                                       "Separated", "Never married"))
+  
+  
+  # PESPOUSE connects the individual respondent with the line number (as recorded by pulineno) of their parent.
+  AA$pespouse[AA$pespouse == -1] = NA
+  # This tells the sex of the respondent.
+  AA$pesex = factor(AA$pesex, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Male", "Female"))
+  # This tells if the respondent reported ever serving in the Armed Forces.
+  AA$peafever = factor(AA$peafever, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Served in the Armed Forces at some point", "Never served in the Armed Forces"))
+  # For those who answered yes to having seerved in the armed forces (puafever = 1), this tells when they served.
+  # PEAFWHEN used to be here, but it's replaced but PEAFWHN1-4 at end of the Parser.
+  # AA$peafwhen = factor(AA$peafwhen, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Vietnam Era (8/64-4/75)", "Korean War (6/50-1/55)", "World War II (9/40-7/47)", "World War I (4/17-11/18)", "Other service (All other persiods)", "Nonveteran"))
+  # This tells if the respondent is currently serving in the armed forces. 
+  AA$peafnow = factor(AA$peafnow, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Currently in Armed Forces", "Not currently in Armed Forces"))
+  
+  
+  # This tells the highest level of education the respondent has received.
+  AA$peeduca = factor(AA$peeduca, levels = c(-3:-1, 31:46), labels = c("Refused", "Don't Know", NA, "Less than 1st grade", "1st, 2nd, 3rd or 4th grade", "5th or 6th grade", 
+                                                                       "7th or 8th grade", "9th grade", "10th grade", "11th grade", "12th grade no diploma", 
+                                                                       "High school grad-diploma or equivalent (GED)", "Some college but no degree", 
+                                                                       "Associate degree-Occupational/Vocational", "Associate degree-Academic program", 
+                                                                       "Bachelor's degree (Ex: BA, AB, BS)", "Master's degree (Ex: MA, MS, MEng, MEd, MSW)", 
+                                                                       "Professional School Deg (Ex: MD, DDS, DVM)", "Doctorate degree (Ex: PhD, EdD)"))
+  
+  # This tells the detailed race of the respondent. The options for this variable have changed significantly over the years from 1995 onwards, 
+  # so check with more detailed documentation.
+  AA$ptdtrace = factor(AA$ptdtrace, levels = c(-3:-1, 1:26), labels = c("Refused", "Don't Know", NA, 
+                                                                        "White Only", "Black Only", "American Indian, Alaskan Native Only", "Asian Only", 
+                                                                        "Hawaiian/Pacific Islander Only", "White-Black", "White-AI", "White-Asian", "White-HP", "Black-AI", 
+                                                                        "Black-Asian", "Black-HP", "AI-Asian",  "AI-HP", "Asian-HP", "W-B-AI", "W-B-A", "W-B-HP", "W-AI-A", 
+                                                                        "W-AI-HP", "W-A-HP", "B-AI-A", "W-B-AI-A", "W-AI-A-HP", "Other 3 Race Combinations", 
+                                                                        "Other 4 and 5 Race Combinations"))
+  
+  # This tells the detailed hispanic ethnicity of the respondent. Only valid for those who state Hispanic ethnicity (pehspnon = 1). he options for this variable have changed significantly over the years from 1995 onwards, so check with more detailed documentation.
+  AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican", "Puerto Rican", "Cuban", "Central/South American", "Other Spanish"))
+  # This describes any changes in the household composition due to the respondent. For example, if the respondent is a new addition to the household, this would be marked here.
+  AA$puchinhh = factor(AA$puchinhh, levels = c(-3:-1, 1:7, 9), labels = c("Refused", "Don't Know", NA, 
+                                                                          "Person added", "Person added - URE", "Person undeleted", "Person died", 
+                                                                          "Deleted for reason other than death", "Person joined Armed Forces", "Person no longer in AF", 
+                                                                          "Change in demographic information"))
+  # PURELFLG would be here, but was removed at start.
+  # This gives the line number of the respondent whose questions are being answered. It's a value from 1-99, and resets for each household.
+  AA$pulineno[AA$pulineno == -1] = NA
+  
+  
+  # This tells which family within the household this respondent is a member of.
+  AA$prfamnum = factor(AA$prfamnum, levels = -3:19, labels = c("Refused", "Don't Know", NA, 
+                                                               "Not a family member", "Primary family member only", "Subfamily No. 2 member", "Subfamily No. 3 member", 
+                                                               "Subfamily No. 4 member", "Subfamily No. 5 member", "Subfamily No. 6 member", "Subfamily No. 7 member", 
+                                                               "Subfamily No. 8 member", "Subfamily No. 9 member", "Subfamily No. 10 member", "Subfamily No. 11 member", 
+                                                               "Subfamily No. 12 member", "Subfamily No. 13 member", "Subfamily No. 14 member", "Subfamily No. 15 member", 
+                                                               "Subfamily No. 16 member", "Subfamily No. 17 member", "Subfamily No. 18 member", "Subfamily No. 19 member"))
+  
+  # This tells the relationship of the respondent to the family, and in particular to the reference person (the reference person is the one answering the questions in the survey).
+  AA$prfamrel = factor(AA$prfamrel, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not a family member", "Reference person", "Spouse", "Child", 
+                                                              "Other relative (Primary Family & Unrel)"))
+  # This tells the relationship of the current respondent's family to the primary family of the household.
+  AA$prfamtyp = factor(AA$prfamtyp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Primary family", "Primary individual", "Related subfamily", "Unrelated subfamily", "Secondary individual"))
+  # This tells whether the respondent identifies as having Hispanic ethnicity.
+  AA$pehspnon = factor(AA$pehspnon, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hispanic", "Non-Hispanic"))
+  # This provides the respondent's marital status.
+  AA$prmarsta = factor(AA$prmarsta, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Married, civilian spouse present", "Married, Armed Forces spouse present", 
+                                                                       "Married, Spouse absent (Exc. Separated)", "Widowed", "Divorced", "Separated", "Never married"))
+  
+  
+  # This tells which population group the respondent is part of - civilian, military, or child.
+  AA$prpertyp = factor(AA$prpertyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Child household member", "Adult civilian household member", "Adult armed forces household member"))
+  # This tells whether the respondent was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
+  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                                    "Person born in United States", "Person born in Guam", "Person born in Puerto Rico", 
+                                                                                                    "Person born in the U.S. Virgin Islands", "Person born in another U.S. Island Area", 
+                                                                                                    str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), 
+                                                                                                    "Person born Abroad, country not known"))
+  
+  # This tells whether the respondent's mother was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
+  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                                    "Person's mother born in United States", "Person's mother born in Guam", 
+                                                                                                    "Person's mother born in Puerto Rico", "Person's mother born in the U.S. Virgin Islands",  
+                                                                                                    "Person's mother born in another U.S. Island Area", 
+                                                                                                    str_c(100:554, " Person's mother born in Foreign Country or at sea - See Code list"), 
+                                                                                                    "Person's mother born Abroad, country not known"))
+  
+  # This tells whether the respondent's father was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
+  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), labels = c("Refused", "Don't Know", NA, 
+                                                                                                    "Person's father born in United States", "Person's father born in Guam", 
+                                                                                                    "Person's father born in Puerto Rico", "Person's father born in the U.S. Virgin Islands",  
+                                                                                                    "Person's father born in another U.S. Island Area", 
+                                                                                                    str_c(100:554, " Person's father born in Foreign Country or at sea - See Code list"), 
+                                                                                                    "Person's father born Abroad, country not known"))
+  
+  # This describes the citizenship status of the respondent. Its options do not include a option to discuss immigration status (legal or otherwise), only current citizenship status.
+  AA$prcitshp = factor(AA$prcitshp, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Native, Born in the United States", "Native, Born in Puerto Rico or Other U.S. Island Area", 
+                                                                       "Native, Born abroad of American parent or parents", "Foreign born, U.S. citizen by naturalization", 
+                                                                       "Foreign born, not a citizen of the United States"))
+  
+  
+  # CHECK THIS. Need to look more into the allocation flag issue for this following variable.
+  # This is an allocation flag for prcitship.
+  AA$prcitflg[AA$prcitflg == -1] = NA
+  # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
+  
+  
+  if (AA$hryear4[1] == 2010) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:21, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2010"))
+    
+  } else if (AA$hryear4[1] == 2011) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:21, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2011"))
+  } else if (AA$hryear4[1] == 2012) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:22, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2012"))
+  }
+  
+  
+  
+  # These functions format the Personal Information Labor Force section
+  # This tells whether the repsondent personally provided information on their labor force status or whether it was collected by a proxy (another household memer answering on their behalf).
+  AA$puslfprx = factor(AA$puslfprx, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Labor Force Info collected by self", "Labor Force info collected by proxy", "Labor Force info collected by both self and proxy"))
+  # PEMLR is the primary labor force status variable. It collates the answers of the respondent into the appropriate categories.
+  AA$pemlr = factor(AA$pemlr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Employed-At work", "Employed-Absent", "Unemployed-On layoff", "Unemployed-Looking", "Not in Labor Force-Retired", "Not in Labor Force-Disabled", "Not in labor force-Other"))
+  # PUWK gives the respondent's answer to the question "Last Week, did you do any work for pay or profit?" 
+  AA$puwk = factor(AA$puwk, levels = c(-3:-1,1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
+  # PUBUS1 gives the respondent's answer to the question "Last week, did you do any unpaid work in the family business or farm?"
+  AA$pubus1 = factor(AA$pubus1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Person did unpaid work on family business/farm", "Person did not do unpaid work on family business/farm"))
+  # PUBUS2OT gives the respondent's answer to the question "Do you receive any payments or profits from the business?"
+  AA$pubus2ot = factor(AA$pubus2ot, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, "Person received payments or profits from the family business", "Person did not receive payments or profits from the family business"))
+  
+  
+  # PUBUSCK1-PUBUSCK4 would be here, but were removed at start.
+  # PURETOT confirms that a respondent who was reported as retired in the previous month is still counted as retired.
+  AA$puretot = factor(AA$puretot, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes, person who was reported retired last month and is retired now", "No, person who was reported retired last month is not retired now", "Person was not retired last month"))
+  # PUDIS confirms that a respondent who was reported as disabled in the previous month is still counted as disabled.
+  AA$pudis = factor(AA$pudis, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes, person who was reported disabled last month and is disabled now", "No, person who was reported disabled last month is not disabled now", "Person was not disabled last month"))
+  # PERET1 asks retired respondents (see the specific universe for the question) whether they currently would like a full-time or part-time job.
+  AA$peret1 = factor(AA$peret1, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes, person who was reported retired last month wants a job (full or part-time)", "No, person who was reported retired last month does not want a job", "Person who was reported retired last month has a job now"))
+  # PUDIS1 asks disabled respondents whether their disability will prevent them from accepting any work in the next six months.
+  AA$pudis1 = factor(AA$pudis1, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes, person's disability prevents person from working in the next 6 months", "No, person's disability does not prevent person from accepting work in the next 6 months"))
+  # PUDIS2 asks respondents if they have a disability that prevents them from accepting any work in the next six months.
+  AA$pudis2 = factor(AA$pudis2, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes, person has a disability that prevents person from working", "No, person does not have a disability that prevents person from working"))
+  
+  
+  # PUABSOT gives the respondent's answer to the question "Last week, did you have a job, either full-time or part-time?"
+  AA$puabsot = factor(AA$puabsot, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes, person had a full/part-time job last week", "No, person didn't have a full/part-time job last week", "Person was retired last week", "Person was disabled last week", "Person was unable to work last week"))
+  # PULAY gives the respondent's answer to the question "Last week, were you on layoff from a job?"
+  AA$pulay = factor(AA$pulay, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes, person is on layoff from a job", "No, person is not on layoff from a job", "Person is retired", "Person is disabled", "Person is unable to work"))
+  # PEABSRSN categorizes the main reason why the respondent was absent from work during the reference week. 
+  AA$peabsrsn = factor(AA$peabsrsn, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "On layoff", "Slack work/Business conditions", "Waiting for a new job to begin", "Vacation/Personal days", "Own illness/Injury/Medical problems", 
+                                                                        "Child care problems", "Other family/Personal obligation", "Maternity/Paternity leave", "Labor dispute", "Weather affected job", 
+                                                                        "School/Training", "Civic/Military Duty", "Does not work in the business", "Other (Specify)"))
+  # PEASBSPDO tells whether the absent worker is being paid for any of the time they were absent. It is only asked of those with peabsrsn = 4-12,14. 
+  AA$peabspdo = factor(AA$peabspdo, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEMJOT gives the answer to the question "Do you have more than one job?" It is only asked of those who are categorized as employed (pemlr = 1 or 2)
+  AA$pemjot = factor(AA$pemjot, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PEMJNUM gives the number of jobs that the respondent has - note that this is topcoded with 4 equalling 4+ jobs. Only asked of those who have pemjot = 1.
+  AA$pemjnum = factor(AA$pemjnum, levels = c(-3:-1, 2:4), labels = c("Refused", "Don't Know", NA, "2 jobs", "3 jobs", "4 or more jobs"))
+  # PEHRUSL1 gives the respondent's usual hours at their first reported job. It is only asked of those reported as employed (pemjot = 1 OR 2 AND pemlr = 1 OR 2)
+  AA$pehrusl1[AA$pehrusl1 == -1] = NA
+  # PEHRUSL1 gives the respondent's usual hours at their other reported jobs. It is only asked of those reported as employed in multiple jobs (pemjot = 1 AND pemlr = 1 OR 2)
+  AA$pehrusl2[AA$pehrusl2 == -1] = NA
+  # PEHRFTPT asks if the person usually works more than 35 hours a week. It is only asked for those who report having variable hours at 1 or more of their jobs (pehrusl1 = -4 or pehrusl2 = -4)
+  AA$pehrftpt = factor(AA$pehrftpt, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Hours vary"))
+  # PEHRUSLT sums the answers in pehrusl1 and pehrusl2 to get the usual total weekly hours worked.
+  AA$pehruslt[AA$pehruslt == -1] = NA
+  
+  
+  # PEHRWANT asks part-time workers (those with <35 weekly hours) if they want full-time employment. This is asked only of part-time workers (pemlr = 1 and pehruslt = 0-34, pehrftpt = 2)
+  AA$pehrwant = factor(AA$pehrwant, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Regular hours are Full-time"))
+  # Note that the following three variables ask similar but not identical questions, and provide similar but not identical responses. Parse them carefully, referring to the more detailed documentation.
+  # PEHRRSN1 gives the respondent's answer to the question "What is your main reason for working part-time?" It is only asked of those who want full-time jobs (pehrwant = 1)
+  AA$pehrrsn1 = factor(AA$pehrrsn1, levels = c(-3:-1, 1:10), labels = c("Refused", "Don't Know", NA, "Slack work/Business conditions", "Could only find Part-time work", "Seasonal work", "Child care problems", "Other family/Personal obligation", "Health/Medical limitations", "School/Training", "Retired/Social security limit on earnings", "Full-time workweek is less than 35 hrs", "Other - Specify"))
+  # PEHRRSN2 gives the respondent's answer to the question "What is your main reason you do not want to work full-time?" It is only asked of those stated that they do not want full-time jobs (pehrwant = 2)
+  AA$pehrrsn2 = factor(AA$pehrrsn2, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Child care problems", "Other family/Personal obligations", "Health/Medical limitations", "School/Training", "Retired/Social Security limit on earnings", "Full-Time workweek less than 35 hours", "Other - Specify"))
+  # PEHRRSN3 gives the respondent's answer to the question "What is your main reason you worked less than 35 hours last week?" It is only asked of those who normally work full-time but whose actual hours in the reference week are less than 35 (pehractt = 1-34, pemlr = 1, and pehruslt = 35+)
+  AA$pehrrsn3 = factor(AA$pehrrsn3, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Slack work/Business conditions", "Seasonal work", "Job started or ended during week", "Vacation/Personal day", "Own illnes/Injury/Medical appointment", "Holiday (Legal or Religious)", "Child care problems", "Other family/Personal obligations", "Labor dispute", "Weather affected job", "School/training", "Civic/Military duty", "Other reason"))
+  # PUHROFF1 gives the respondent's answer to the question "Last week, did you lose or take off any hours from your job for any reason such as illness, slack work, vacation, or holiday?"
+  AA$puhroff1 = factor(AA$puhroff1, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PUHROFF2 tells how many hours the respondent took off if they answered yes to the previous question (puhroff1 = 1)
+  AA$puhroff2[AA$puhroff2 <= -1] = NA
+  # PUHROFF1 gives the respondent's answer to the question "Last week, did you work any overtime or extra hours (at your main job) that you do not usually work?"
+  AA$puhrot1 = factor(AA$puhrot1, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PUHROT2 tells how many additional hours the respondent worked if they answered yes to the previous question (puhrot1 = 1)
+  AA$puhrot2[AA$puhrot2 <= -1] = NA
+  # PEHRACT1 gives the respondent's actual hours worked at their first reported job. It is only asked of those reported as "Employed, at work" (pemlr = 1)
+  AA$pehract1[AA$pehract1 <= -1] = NA
+  # PEHRACT2 gives the respondent's actual hours worked at their other reported jobs. It is only asked of those reported as "Employed, at work" in multiple jobs (pemlr = 1 and pemjot = 1)
+  AA$pehract2[AA$pehract2 <= -1] = NA
+  
+  
+  # PERACTT sums the answers in pehract1 and pehract2 to get the actual total weekly hours worked.
+  AA$pehractt[AA$pehractt <= -1] = NA
+  # PEHRAVL gives the respondent's answer to the question "Last week, could you have worked full-time if the hours had been available?" It is only asked of the employed people who usually work less than 35 hrs and gave a work-related reason why they weren't working full-time (pemlr = 1, pehruslt < 35, and pehrrsn1 = 1,2,3) 
+  AA$pehravl = factor(AA$pehravl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PUHRCK1-PUHRCK7 and PUHRCK12 would be here, but were removed at start.
+  # PULAYDT tells if the respondent's employer has given the respondent a return date. Only asked if the respondent has reported being on temporary layoff.
+  AA$pulaydt = factor(AA$pulaydt, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PULAY6M tells if the respondent's employer has given the respondent any indication that they will be recalled to work in the next six months. Only asked if the respondent has reported being on temporary layoff.
+  AA$pulay6m = factor(AA$pulay6m, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PELAYAVL tells if the respondent would have been available for work last week had they been recalled by their employer. Only asked if the respondent has reported being on temporary layoff.
+  AA$pelayavl = factor(AA$pelayavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PULAYAVR tells why the respondent would not have been available for work last week had they been recalled by their employer. Only asked if the respondent has reported being on temporary layoff.
+  AA$pulayavr = factor(AA$pulayavr, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Own temporary illness", "Going to school", "Other"))
+  # PELAYLK tells whether the respondent has looked for work in the last 4 weeks despite the fact that they are on temporary layoff from their current job.
+  AA$pelaylk = factor(AA$pelaylk, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PELAYDUR tells the duration of the temporary layoff that the respondent is currently in. Only asked if the respondent has reported being on temporary layoff.
+  # Starting in April 2011, this is topcoded at 52 weeks, so a 52 means 52+ weeks on temporary layoff.
+  if((AA$hryear4[1] == 2010)|((AA$hryear4[1] == 2011)&(AA$hrmonth[1] < 4))) {
+    AA$pelaydur = factor(AA$pelaydur, levels = c(-3:-1, 1:260), labels = c("Refused", "Don't Know", NA, str_c(1:260, " weeks on layoff")))
+  } else {
+    AA$pelaydur = factor(AA$pelaydur, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, str_c(1:51, " weeks on layoff"), "52+ weeks on layoff" ))  
+  }
+  
+  # PELAYFTO tells whether the job from which the respondent is on temporary layoff from was a full-time job (no means it was part-time). Only asked if the respondent has reported being on temporary layoff.
+  AA$pelayfto = factor(AA$pelayfto, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PULAYCK1-PULAYCK3 would be here, but were removed at start.
+  # PULK gives the respondent's answer to the question "Have you been doing anything to find work during the last 4 weeks?"
+  AA$pulk = factor(AA$pulk, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Retired", "Disabled", "Unable to work"))
+  
+  # The following variables discuss the ways that an unemployed person is looking for work. There are three tracks of six variables (PELKM1-PULKM6, PULKDK1-PULKDK6, PULKPS1-PULKPS6). 
+  # I am not sure why (I think they come from different questioning tracks). On each track, the second variable should only have a response if the first does, and so on.
+  AA$pelkm1 = factor(AA$pelkm1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                    "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                    "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkm2 = factor(AA$pulkm2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm3 = factor(AA$pulkm3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm4 = factor(AA$pulkm4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  
+  AA$pulkm5 = factor(AA$pulkm5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkm6 = factor(AA$pulkm6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                        "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                        "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk1 = factor(AA$pulkdk1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                      "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                      "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkdk2 = factor(AA$pulkdk2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk3 = factor(AA$pulkdk3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  
+  AA$pulkdk4 = factor(AA$pulkdk4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk5 = factor(AA$pulkdk5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkdk6 = factor(AA$pulkdk6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps1 = factor(AA$pulkps1, levels = c(-3:-1, 1:13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                      "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                      "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Nothing", "Other passive"))
+  AA$pulkps2 = factor(AA$pulkps2, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  
+  AA$pulkps3 = factor(AA$pulkps3, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps4 = factor(AA$pulkps4, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps5 = factor(AA$pulkps5, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  AA$pulkps6 = factor(AA$pulkps6, levels = c(-3:-1, 1:11, 13), labels = c("Refused", "Don't Know", NA, "Contacted employer directly/Interview", "Contacted public employment agency", "Contacted private employment agency", 
+                                                                          "Contacted friends or relatives", "Contacted school/university empl center", "Sent out resumes/filled out application", "Checked union/professional registers", 
+                                                                          "Placed or answered ads", "Other active", "Looked at ads", "Attended job training programs/courses", "Other passive"))
+  
+  
+  # PELKAVL gives the respondent's answer to the question "Last week, could you have started a job if one had been offered?" It is only asked of those who are unemployed and reported looking for work (pelkm1 = 1-13)
+  AA$pelkavl = factor(AA$pelkavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  # PULKAVR tells the reason why the respondent would not have been available to work last week if they had been offered a job.
+  AA$pulkavr = factor(AA$pulkavr, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Waiting for new job to begin", "Own temporary illness", "Going to school", "Other - Specify"))
+  # PELKLL1O tells what the respondent was doing before they started looking for work. It is only asked of those who are unemployed and looking for work (pelkavl = 1-2)
+  AA$pelkll1o = factor(AA$pelkll1o, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Working", "School", "Left military service", "Something else"))
+  # PELKLL2O tells how the respondent was separated from their previous job. It is only asked of those who are unemployed and reported working prior to their unemployment (pelkll1o = 1, 3).
+  AA$pelkll2o = factor(AA$pelkll2o, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Lost job", "Quit job", "Temporary job ended"))
+  # PELKLWO tells when the respondent last worked. Only asked of those who are unemployed and looking for work (pelkll1o = 1-4).
+  AA$pelklwo = factor(AA$pelklwo, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Last worked within the last 12 months", "Last worked more than 12 months ago", "Never worked previously"))
+  # PELKDUR tells how long the respondent has been searching for work in weeks. Only asked of those who are unemployed and looking for work (pelklwo = 1-3). 
+  # As of April 2011, this is topcoded at 119 weeks.
+  if((AA$hryear4[1] == 2010)|((AA$hryear4[1] == 2011)&(AA$hrmonth[1] < 4))) {
+    AA$pelkdur = factor(AA$pelkdur, levels = c(-3:-1, 0:999), labels = c("Refused", "Don't Know", NA, str_c(0:999, " weeks searching for employment")))
+  } else {
+    AA$pelkdur = factor(AA$pelkdur, levels = c(-3:-1, 0:119), labels = c("Refused", "Don't Know", NA, str_c(0:118, " weeks searching for employment"), "119+ weeks searching for employment"))  
+  }
+  
+  
+  
+  
+  # PELKFTO tells whether the respondent is looking for full-time work. Only asked for those who have been looking for work for at most 120 weeks (pelkdur = 1-120). 
+  AA$pelkfto = factor(AA$pelkfto, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Yes", "No", "Doesn't matter"))
+  # PEDWWNTO tells whether the respondent currently wants a job. This is used in finding discouraged workers.
+  AA$pedwwnto = factor(AA$pedwwnto, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Yes, or maybe, it depends", "No", "Retired", "Disabled", "Unable to work"))
+  # PEDWRSN tells the reason the respondent gave for not looking for work in the last 4 weeks.This is used in finding diescouraged workers. 
+  AA$pedwrsn = factor(AA$pedwrsn, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Believes no work available in area of expertise", "Couldn't find any work", "Lacks necessary schooling/training", 
+                                                                      "Employers think too young or too old", "Other types of discrimination", "Can't arrange child care", "Family responsibilities", 
+                                                                      "In school or other training", "Ill-health, physcial disability", "Transportation problems", "Other - Specify"))
+  # PEDWLKO tells whether the respondent has looked for work in the last 12 months. Asked of those who responded that they had not looked in the last 4 weeks (pedwrsn = 1-11)
+  AA$pedwlko = factor(AA$pedwlko, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEDWWK tells whether the respondent has worked any in the last 12 months. Asked only of those who say they have looked for work in the last 12 months (pedwlko = 1)
+  AA$pedwwk = factor(AA$pedwwk, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PEDw4wk tells whether the respondent has worked any in the last 4 weeks. This is asked only of those who said that they have worked in the last 12 months  (pedwwk = 1). It is trying to parse whether this respondent should be counted as "Unemployed" or "Not in the Labor Force".
+  AA$pedw4wk = factor(AA$pedw4wk, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEDWLKWK tells whether the respondent has looked for work since leaving their last job. It is asked only of those who said they had worked in the last twelve months but not in the last four weeks (That is, pedw4wk = 2)
+  AA$pedwlkwk = factor(AA$pedwlkwk, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEDWAVL tells the respondent's answer to the following question "Last week, could you have started a job if one had been offered?" It is asked only of people who have not worked in the last 12 months (pedwwk = 2) or who have said they have looked for work since leaving a job more than 4 weeks and less than 12 months ago (pedlkwk = 1).
+  AA$pedwavl = factor(AA$pedwavl, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEDWAVR tells why the respondent who could not have started a job if one had been offered (pedwavl = 2) would have been unvailable.
+  AA$pedwavr = factor(AA$pedwavr, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Own temporary illness", "Going to school", "Other"))
+  # PUDWCK1-PUDWCK5 would be here, but were removed at the start.
+  
+  
+  # PEJHWKO tells wheter the respondent has worked in the last twelve months. It reports data only for people who are in the Outgoing Rotation Group (hrmis = 4, 8) who are Not in the Labor Force (pemlr = 5-7)
+  AA$pejhwko = factor(AA$pejhwko, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PUJHDP1O tells whether the respondent did any of that work in the last 4 weeks. (I am assuming it is reporting data only for those people with pehjwko = 1, but it does not specifically say.)
+  AA$pujhdp1o = factor(AA$pujhdp1o, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEJHRSN tells why the respondent left their last job. It is asked of only those people with pejhwko = 1.
+  AA$pejhrsn = factor(AA$pejhrsn, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Personal/Family (Including Pregnancy)", "Return to school", "Health", "Retirement or old age", 
+                                                                     "Temp, Seasonal or intermittent job complete", "Slack work/business conditions", "Unsatisfactory work arrangements (Hrs, pay, etc.)", "Other - specify"))
+  # PEJHWANT tells whether the respondent intends to look for work in the next 12 months. It only reports data on those who have pejhwko = 2 or pejhrsn = 1-8.
+  AA$pejhwant = factor(AA$pejhwant, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes, or it depends", "No"))
+  # PUJHCK1-PUJHCK2 would be here, but were removed at the start.
+  # PRABSREA tells the respondent's reason for not being at work in the reference week, as well as their pay status (that is, are they being paid over the absence). It only reports data for those who are recorded as "Employed - Absent from work" (pemlr = 2).
+  AA$prabsrea = factor(AA$prabsrea, levels = c(-3:-1, 1:40), labels = c("Refused", "Don't Know", NA, 
+                                                                        "FT paid-Vacation", "FT paid-Own illness", "FT paid-Child care problems", "FT paid-Other family/Personal oblig.", "FT paid-Maternity/Paternity leave", 
+                                                                        "FT paid-Labor dispute", "FT paid-Weather affected job", "FT paid-School/Training", "FT paid-Civic/Military duty", "FT paid-Other", "FT unpaid-Vacation", 
+                                                                        "FT unpaid-Own illness", "FT unpaid-Child care problems", "FT unpaid-Other fam/Personal obligation", "FT unpaid-Maternity/Paternity leave", 
+                                                                        "FT unpaid-Labor dispute", "FT unpaid-Weather affected job", "FT unpaid-School/Training", "FT unpaid-Civic/Military duty", "FT unpaid-Other", 
+                                                                        "PT paid-Vacation", "PT paid-Own illness", "PT paid-Child care problems", "PT paid-Other family/Personal oblig.", "PT paid-Maternity/Paternity leave", 
+                                                                        "PT paid-Labor dispute", "PT paid-Weather affected job", "PT paid-School/Training", "PT paid-Civic/Military duty", "PT paid-Other", "PT unpaid-Vacation", 
+                                                                        "PT unpaid-Own illness", "PT unpaid-Child care problems", "PT unpaid-Other fam/Personal obligation", "PT unpaid-Maternity/Paternity leave", 
+                                                                        "PT unpaid-Labor dispute", "PT unpaid-Weather affected job", "PT unpaid-School/Training", "PT unpaid-Civic/Military duty", "PT unpaid-Other"))
+  # PRCIVLF is a recode that tells whether the respondent is in the Civilian Labor FOrce. It reports data only for pemlr = 1-7.
+  AA$prcivlf = factor(AA$prcivlf, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "In Civilian Labor Force", "Not in Civilian Labor Force"))
+  
+  
+  # PRDISC is a recode that tells whether the the respondent is considered a discouraged worker.
+  AA$prdisc = factor(AA$prdisc, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Discouraged worker", "Conditionally interested", "Not available"))
+  # PREMPHRS is a recode that summarizes the hours worked if the respondent in employed and at work (pemlr = 1), or the reason the respondent is not at work (pemlr = 2). Only reports data for people with pemlr = 1-7.
+  AA$premphrs = factor(AA$premphrs, levels = -3:22, labels = c("Refused", "Don't Know", NA, "Unemployed and NILF", "W/job, Not at work-Illness", "W/job, not at work-Vacation", "W/job, not at work-Weather affected job",
+                                                               "W/job, not at work-Labor dispute", "W/job, not at work-Child care problems", "W/job, not at work-Fam/Pers obligation", "W/job, not at work-Maternity/Paternity", 
+                                                               "W/job, not at work-School/Training", "W/job, not at work-Civic/Military duty", "W/job, not at work-Does not work in bus", "W/job, not at work-Other", 
+                                                               "At work- 1-4 hrs", "At work- 5-14 hrs", "At work- 15-21 hrs", "At work- 22-29 hrs", "At work- 30-34 hrs", "At work- 35-39 hrs", "At work- 40 hrs",
+                                                               "At work- 41-47 hrs", "At work- 48 hrs", "At work- 49-59 hrs", "At work- 60 hrs or more"))
+  # PREMPNOT is a recode summarizing whether the respondent is Employed (pemlr = 1-2), Unemployed (pemlr 3-4), a Discouraged Worker, or otherwise Not in the Labor FOrce (the last two are both pemlr = 5-7).
+  AA$prempnot = factor(AA$prempnot, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Employed", "Unemployed", "Not in the Labor Force (NILF)-discouraged", "Not in the Labor Force (NILF)-other"))
+  # PREXPLF is a recode that summarizes the employment situation of the "experienced labor force". It only reports data for those who are Employed or who are Unemployed but have worked previously (pemlr =1-4 and pelklwo != 3).
+  AA$prexplf = factor(AA$prexplf, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Employed", "Unemployed"))
+  # PRFTLF is a recode that summarizes whether the respondent is in the "Full Time Labor Force" (that is, they are either a full-time worker or want a full-time job) or the "Part Time Labor Force" (that is, they are either a part-time worker or want a part-time job). Only reports data for pemlr = 1-4.
+  AA$prftlf = factor(AA$prftlf, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Full Time Labor Force", "Part Time Labor Force"))
+  
+  
+  # PRHRUSL is a recode telling the usual hours worked of the respondent. Only reports data for pemlr = 1-2.
+  AA$prhrusl = factor(AA$prhrusl, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "0-20 hrs", "21-34 hrs", "35-39 hrs", "40 hrs", "41-49 hrs", "50 or more hrs", "Varies-Full Time", "Varies-Part Time"))
+  # PRJOBSEA is a recode telling the job search status of the respondent. It only reports data for those who are not in the labor force and have said they want a job (prwntjob = 1).
+  AA$prjobsea = factor(AA$prjobsea, levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Looked in last 12 months, since completing previous job", "Looked and worked in the last 4 weeks", 
+                                                                       "Looked last 4 weeks - Layoff", "Unavailable job seekers", "No recent job search"))
+  # PRPTHRS is a recode that details whether the respondent is part-time for econonmic or non-economic reasons and puts them in an hours bracket. IT only reports data for those with pemlr = 1 and pehractt = 1-34.
+  AA$prpthrs = factor(AA$prpthrs, levels = -3:12, labels = c("Refused", "Don't Know", NA, "Usually FT, PT for Noneconomic reasons", "Usu.FT, PT econ reasons; 1-4 hrs", "Usu.FT, PT econ reasons; 5-14 hrs", 
+                                                             "Usu.FT, PT econ reasons; 15-29 hrs", "Usu.FT, PT econ reasons; 30-34 hrs", "Usu.PT, econ reasons; 1-4 hrs", "Usu.PT, econ reasons; 5-14 hrs", 
+                                                             "Usu.PT, econ reasons 15-29 hrs", "Usu.PT, econ reasons 30-34 hrs", "Usu.PT, non-econ reasons; 1-4 hrs", "Usu.PT, non-econ reasons; 5-14 hrs", 
+                                                             "Usu.PT, non-econ reasons; 15-29 hrs", "Usu.PT, non-econ reasons; 30-34 hrs"))
+  # PRPTREA is a recode that gives the specific reason that the respondent is working part-time. It reports data only for those employed who either usually work less than 35 hours or who actually are working less than 35 hours this week (pemlr = 1, and pehruslt = 0-34 or pehractt = 1-34) 
+  AA$prptrea = factor(AA$prptrea, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, "Usu. FT-Slack work/Business conditions", "Usu. FT-Seasonal work", "Usu. FT-Job started/ended during week", 
+                                                                      "Usu. FT-Vacation/Personal day", "Usu. FT-Own illness/Injury/Medical appointment", "Usu. FT-Holiday (Religious or Legal)", "Usu. FT-Child care problems", 
+                                                                      "Usu. FT-Other fam/Pers obligations", "Usu. FT-Labor dispute", "Usu. FT-Weather affected job", "Usu. FT-School/Training", "Usu. FT-Civic/Military Duty", 
+                                                                      "Usu. FT-Other reason", "Usu. PT-Slack work/Business conditions", "Usu. PT-Could only find PT work", "Usu. PT-Seasonal work", "Usu. PT-Child care problems", 
+                                                                      "Usu. PT-Other fam/Pers obligations", "Usu. PT-Health/Medical Limitations", "Usu. PT-School/Training", "Usu. PT-Retired/S.S. limit on earnings", 
+                                                                      "Usu. PT-Workweek <35 hours", "Usu. PT-Other reason"))
+  # PRUNEDUR is a recode for the number of weeks the respondent has been unemployed. It only reports data for pemlr = 3-4.
+  AA$prunedur[AA$prunedur == -1] = NA
+  
+  if((AA$hryear4[1] == 2010)|((AA$hryear4[1] == 2011)&(AA$hrmonth[1] < 4))) {
+    AA$prunedur = factor(AA$prunedur, levels = c(-3:-1, 0:999), labels = c("Refused", "Don't Know", NA, str_c(0:999, " weeks searching for employment")))
+  } else {
+    AA$prunedur = factor(AA$prunedur, levels = c(-3:-1, 0:119), labels = c("Refused", "Don't Know", NA, str_c(0:118, " weeks searching for employment"), "119+ weeks searching for employment"))  
+  }
+  
+  
+  # PRUNTYPE is a recode summarizing the reason for the respondent's unemployment. 
+  AA$pruntype = factor(AA$pruntype, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Job loser/On layoff", "Other job loser", "Temportary job ended", "Job leaver", "Re-entrant", "New-entrant"))
+  # PRWKSCH is a recode that simplifies the respondent's labor force status down to Employed, Employed Not at Work, Not in the Labor Force, and Unemployed by whether they seek Full-time or Part-time employment.
+  AA$prwksch = factor(AA$prwksch, levels = -3:4, labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "At work", "With job, not at work", "Unemployed, seeks FT", "Unemployed, seeks PT"))
+  # PRWKSTAT is a recode that summarizes the correlation between the respondent's usual hours worked and their actual hours worked, as well as separating the reason for working part time if that is the case.
+  AA$prwkstat = factor(AA$prwkstat, levels = c(-3:-1, 1:12), labels = c("Refused", "Don't Know", NA, "Not in Labor Force", "FT hours (35+), usually FT", "PT for economic reasons, usually FT", 
+                                                                        "PT for non-economic reasons, usually FT", "Not at work, usually FT", "PT hrs, usually PT for economic reasons", 
+                                                                        "PT hrs, usually PT for non-economic reasons", "FT hours, usually PT for economic reasons", "FT hours, usually PT for non-economic reasons", 
+                                                                        "Not at work, usually Part-Time", "Unemployed FT", "Unemployed PT"))
+  # PRWNTJOB is a recode that splits the Not in the Labor Force into those who want a job and those who don't. It only reports data for those with pemlr = 5-7.
+  AA$prwntjob = factor(AA$prwntjob, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Want a job", "Other Not in the Labor Force (NILF)"))
+  # PUJHCK3-PUJHCK5 would be here, but were removed at start.
+  # PUIODP1 tells whether the respondent is working at the same job as they were the previous month. It is presumably not asked of those in the first month in the sample. Specific Employer names will not appear for any respondent.
+  AA$puiodp1 = factor(AA$puiodp1, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PUIODP2 tells whether the respondent's "job activities and duties" have changed since the previous month. It is presumably not asked of those in the first month in the sample.
+  AA$puiodp2 = factor(AA$puiodp2, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PUIODP3 tells whether the respondent's previously recorded occupation and activites accurately describe their current job. It is presumably not asked of those in the first month in the sample. Specific descriptions and responses will not appear for any respondent.
+  AA$puiodp3 = factor(AA$puiodp3, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEIO1COW tells the class of worker for the respondent's first job. The "first job" can be the respondent's last job, if the respondent is not currently employed. The Universe is complicated so see the data dictionary for full details.
+  AA$peio1cow = factor(AA$peio1cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", 
+                                                                       "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay"))
+  # PUIO1MFG gives the respondent's answer to the question of whether the business of their 1st job's employer is mainly manufacturing, trade, or another industry.
+  AA$puio1mfg = factor(AA$puio1mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail trade", "Wholesale trade", "Something else"))
+  # PEIO2COW tells the class of worker for the respondent's second job. It reports data only for those with multiple jobs (pemjot = 1). If the respondent's first job was "Self-employed, unincorporated" (peio1cow = 7) then this should have a response every month. Otherwise, it will only have a response in the Outgoing Rotation Group. 
+  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", "Private, for profit", "Private, nonprofit", 
+                                                                        "Self-employed, incorporated", "Self-employed, unincorporated", "Without pay", "Unknown", "Government, level unknown", "Self-employed, Incorporation status unknown"))
+  
+  
+  # PUIO2MFG gives the respondent's answer to the question of whether the business of their 2nd job's employer is mainly manufacturing, trade, or another industry.
+  AA$puio2mfg = factor(AA$puio2mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
+  # PUIOCK1-PUIOCK3 would be here, but were removed at start.
+  # CHECK THIS
+  # PRIOELG is a flag that describes whether the industry and occupation codes are eligible for an edit of some kind. I want more information on the specifics of this.
+  AA$prioelg = factor(AA$prioelg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not eligible for edit", "Eligible for edit"))
+  # PRAGNA tells whether the respondent's industry is agricultural or not.
+  AA$pragna = factor(AA$pragna, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Agricultural", "Non-agricultural"))
+  
+  # PRCOW1-PRCOW2 are recodes for the respondent that summarizes the class of worker for the respondent's jobs. It reports data only for those who have the appropriate eligibility flag (prioelg = 1).
+  AA$prcow1 = factor(AA$prcow1, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Federal Govt", "State Govt", "Local Govt", "Private (Incl. Self-employed Incorp.)", "Self-employed unincorp.", "Without Pay"))
+  AA$prcow2 = factor(AA$prcow2, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Federal Govt", "State Govt", "Local Govt", "Private (Incl. Self-employed Incorp.)", "Self-employed unincorp.", "Without Pay"))
+  
+  # PRCOWPG is a recode summarizing whether the respondent works in the private sector or for the government.
+  AA$prcowpg = factor(AA$prcowpg, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Private", "Government"))
+  # PRDTCOW1 tells the detailed class of worker status of the respondent for their 1st job. 
+  AA$prdtcow1 = factor(AA$prdtcow1, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid", 
+                                                                        "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local",
+                                                                        "Nonag, Self-employed", "Nonag, unpaid"))
+  # PRDTCOW1 tells the detailed class of worker status of the respondent for their 2nd job.
+  AA$prdtcow2 = factor(AA$prdtcow2, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Agri., Wage & Salary, Private", "Agri., Wage & Salary, Government", "Agri., Self-employed", "Agri., Unpaid",
+                                                                        "Nonag, WS, Private, Private HHLDs", "Nonag, WS, Private, Other Private", "Nonag, WS, Govt, Federal", "Nonag, WS, Govt, State", "Nonag, WS, Govt, Local",
+                                                                        "Nonag, Self-employed", "Nonag, unpaid"))
+  # PRDTIND1 tells the detailed industry group for the respondent's 1st job. (There are 52 detailed industry groups.)
+  AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", 
+                                                                        "Nonmetallic mineral products", "Primary metals and fabricated metal products", 
+                                                                        "Machinery manufacturing", "Computer and electronic products", 
+                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
+                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", 
+                                                                        "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
+                                                                        "Paper and printing", "Petroleum and coal products", "Chemical manufacturing", 
+                                                                        "Plastics and rubber products", "Wholesale trade", "Retail trade", "Transportation and warehousing", 
+                                                                        "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
+                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", 
+                                                                        "Internet service providers and data processing services", "Other information services", "Finance", 
+                                                                        "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
+                                                                        "Management of companies and enterprises", "Adminitrative and support services", 
+                                                                        "Waste management and remediation services", "Educational services", "Hospitals", 
+                                                                        "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", 
+                                                                        "Accommodation", "Food services and drinking places", "Repair and maintenance", 
+                                                                        "Personal and laundry services", "Membership associations and organizations", "Private households", 
+                                                                        "Public administration", "Armed forces"))
+  # PRDTIND2 tells the detailed industry group for the respondent's 2nd job. (There are 52 detailed industry groups.)
+  AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", 
+                                                                        "Nonmetallic mineral products", "Primary metals and fabricated metal products", 
+                                                                        "Machinery manufacturing", "Computer and electronic products", 
+                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
+                                                                        "Wood products", "Furniture and fixtures manufacturing", "Miscellaneous and not specified manufacturing", 
+                                                                        "Food manufacturing", "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
+                                                                        "Paper and printing", "Petroleum and coal products", "Chemical manufacturing", 
+                                                                        "Plastics and rubber products", "Wholesale trade", "Retail trade", "Transportation and warehousing", 
+                                                                        "Utilities", "Publishing industries (except internet)", "Motion picture and sound recording industries", 
+                                                                        "Broadcasting (except internet)", "Internet publishing and broadcasting", "Telecommunications", 
+                                                                        "Internet service providers and data processing services", "Other information services", "Finance", 
+                                                                        "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
+                                                                        "Management of companies and enterprises", "Adminitrative and support services", 
+                                                                        "Waste management and remediation services", "Educational services", "Hospitals", 
+                                                                        "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", 
+                                                                        "Accommodation", "Food services and drinking places", "Repair and maintenance", 
+                                                                        "Personal and laundry services", "Membership associations and organizations", "Private households", 
+                                                                        "Public administration", "Armed forces"))
+  
+  
+  # PRDTOCC1 tells the detailed occupation group for the respondent's 1st job. (There are 23 detailed occupation groups.)
+  AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Management occupations", "Business and financial operations occupations", 
+                                                                        "Computer and mathematical science occupations", "Architecture and engineering occupations", 
+                                                                        "Life, physical, and social science occupations", "Community and social service occupations", 
+                                                                        "Legal occupations", "Education, training, and library occupations", 
+                                                                        "Arts, design, entertainment, sports, and media occupations", 
+                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", 
+                                                                        "Protective service occupations", "Food preparation and serving related occupations", 
+                                                                        "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", 
+                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", 
+                                                                        "Insatllation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Transportation and material moving occupations", "Armed Forces"))
+  # PRDTOCC2 tells the detailed occupation group for the respondent's 2nd job. (There are 23 detailed occupation groups.)
+  AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
+                                                                        "Management occupations", "Business and financial operations occupations", 
+                                                                        "Computer and mathematical science occupations", "Architecture and engineering occupations", 
+                                                                        "Life, physical, and social science occupations", "Community and social service occupations", 
+                                                                        "Legal occupations", "Education, training, and library occupations", 
+                                                                        "Arts, design, entertainment, sports, and media occupations", 
+                                                                        "Healthcare practitioner and technical occupations", "Healthcare support occupations", 
+                                                                        "Protective service occupations", "Food preparation and serving related occupations", 
+                                                                        "Building and grounds cleaning and maintenance occupations", "Personal care and service occupations", 
+                                                                        "Sales and related occupations", "Office and administrative support occupations", 
+                                                                        "Farming, fishing, and forestry occupations", "Construction and extraction occupations", 
+                                                                        "Insatllation, maintenance, and repair occupations", "Production occupations", 
+                                                                        "Transportation and material moving occupations", "Armed Forces"))
+  # PREMP is a recode for employed respondents that excludes those employed in agriculture and private households.
+  AA$premp = factor(AA$premp, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Employed persons (Excluding farm & private households)"))
+  # PRMJIND1 tells the major industry group for the respondent's 1st job. (There are 14 major industry groups.)
+  AA$prmjind1 = factor(AA$prmjind1, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", 
+                                                                        "Manufacturing", "Wholesale and retail trade", "Transportation and utilities", "Information", 
+                                                                        "Financial activites", "Professional and business services", "Educational and health services", 
+                                                                        "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
+  # PRMJIND2 tells the major industry group for the respondent's 2nd job. (There are 14 major industry groups.)
+  AA$prmjind2 = factor(AA$prmjind2, levels = c(-3:-1, 1:14), labels = c("Refused", "Don't Know", NA, "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", 
+                                                                        "Manufacturing", "Wholesale and retail trade", "Transportation and utilities", "Information", 
+                                                                        "Financial activites", "Professional and business services", "Educational and health services",
+                                                                        "Leisure and hospitality", "Other services", "Public administration", "Armed Forces"))
+  
+  
+  # PRMJOCC1 tells the major occupation group for the respondent's 1st job. (There are 11 major occupation groups.)
+  AA$prmjocc1 = factor(AA$prmjocc1, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", 
+                                                                       "Professional and related occupations", "Service occupations", "Sales and related occupations", 
+                                                                       "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                       "Construction and extraction occupations", "Installation, maintenance, and repair occupations", 
+                                                                       "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
+  # PRMJOCC2 tells the major occupation group for the respondent's 2nd job. (There are 11 major occupation groups.)
+  AA$prmjocc2 = factor(AA$prmjocc2, levels = c(-3:-1,1:11), labels = c("Refused", "Don't Know", NA, "Management, business, and financial occupations", 
+                                                                       "Professional and related occupations", "Service occupations", "Sales and related occupations", 
+                                                                       "Office and administrative support occupations", "Farming, fishing, and forestry occupations", 
+                                                                       "Construction and extraction occupations", "Installation, maintenance, and repair occupations", 
+                                                                       "Production occupations", "Transportation and material moving occupations", "Armed Forces"))
+  # PRMJOCGR tells the major occupation category for the respondent. (There are 7 major occupation categories.)
+  AA$prmjocgr = factor(AA$prmjocgr, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Managerial, professional, and related occupations", 
+                                                                       "Service occupations", "Sales and office occupations", "Farming, forestry, and fishing occupations", 
+                                                                       "Construction and maintenance occupations", "Production, transportation, and material moving occupations", 
+                                                                       "Armed Forces"))
+  # PRNAGPWS is a flag saying the respondent is a Non-Agricultural Private Wage & Salary Worker. 
+  AA$prnagpws = factor(AA$prnagpws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Private Wage & Salary workers (excluding private HH)"))
+  # PRAGPWS is a flag saying the respondent is an Agricultural Private Wage & Salary Worker. 
+  AA$prnagws = factor(AA$prnagws, levels = c(-3:-1, 1), labels = c("Refused", "Don't Know", NA, "Non-Ag Wage & Salary workers"))
+  
+  
+  # PRSJMJ is a flag telling whether the respondent holds multiple jobs.
+  AA$prsjmj = factor(AA$prsjmj, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Single jobholder", "Multiple jobholder"))
+  # CHECK THIS
+  # PRERELG is a flag that describes whether the earnings data are eligible for an edit of some kind. I want more information on the specifics of this.
+  AA$prerelg = factor(AA$prerelg, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not eligible for edit", "Eligible for edit"))
+  # PEERNUOT gives the respondent's answer to the question "Do you usually receive overtime pay, tips, or commissions at your job?" It reports data only for those who have the appropriate eligibility flag (prerelg = 1).
+  AA$peernuot = factor(AA$peernuot, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEERNPER tells how it is easiest for the respondent to report their earnings. It reports data only for those who have the appropriate eligibility flag (prerelg = 1).
+  AA$peernper = factor(AA$peernper, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, "Hourly", "Weekly", "Bi-weekly", "Twice monthly", "Monthly", "Annually", "Other - Specify"))
+  # PEERNRT tells whether a respondent is paid hourly even if they answered that it was easiest to report their earnings at a different frequency than "hourly" (peernper = 2-7). 
+  AA$peernrt = factor(AA$peernrt, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  # This is a recode sumarizing whether the respondent is an hourly worker. It reports data only for those who have the appropriate eligibility flag (prerelg = 1).
+  AA$peernhry = factor(AA$peernhry, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Hourly workers", "Nonhourly workers"))
+  # PUERNHR1C gives the base hourly pay rate for the respondent in their first job. It excludes overtime, tips, and commissions. It is topcoded to preserve respondent anonymity.
+  AA$puernh1c[AA$puernh1c <= -1] = NA
+  # PUERNH2 gives the base hourly pay rate for the respondent in their main job. It excludes overtime, tips, and commissions. 
+  # It reports data only for those who have the appropriate eligibility flag (prerelg = 1). It is topcoded to preserve respondent anonymity.
+  AA$peernh2[AA$peernh2 <= -1] = NA
+  # CHECK THIS
+  # PEERNH1O is described as the out variable for the hourly rate of pay. I am not sure exactly what is meant by that. It is topcoded to preserve respondent anonymity.
+  AA$peernh1o[AA$peernh1o <= -1] = NA
+  # PRERNHLY is a recode bringing together the various strands of hourly pay rates. It exists only if peernper = 1 or peernrt = 1.
+  AA$prernhly[AA$prernhly <= -1] = NA
+  
+  
+  # PTHR tells us if all the hourly pay variables (so puernh1c, peernh2, peernh1o, prernhly) are topcoded to preserve respondent anonymity) 
+  AA$pthr = factor(AA$pthr, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
+  # PEERNHRO gives us the usual weekly hours. Used along with the hourly pay prernhly to determine whether to topcode hourly pay variables.
+  AA$peernhro[AA$peernhro <= -1] = NA
+  # PRERNWA is the weekly earnings recode.
+  AA$prernwa[AA$prernwa <= -1] = NA
+  # PTWK tells us if PRERNWA and any other weekly pay variables are topcoded to preserve respondent anonymity. 
+  AA$ptwk = factor(AA$ptwk, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
+  # PEERN and PUERN2 calculate the amount the person earned in overtime in the reference week.
+  AA$peern[AA$peern <= -1] = NA
+  
+  
+  AA$puern2[AA$puern2 <= -1] = NA
+  # PTOT tells if the overtime variables peern and puern2 were topcoded to preserve respondent anonymity.
+  AA$ptot = factor(AA$ptot, levels = -3:1, labels = c("Refused", "Don't Know", NA, "Not topcoded", "Topcoded"))
+  # PEERNWKP tells how many weeks a year the respondent gets paid for. It is asked only of those who get paid Annually (peernper = 6).
+  AA$peernwkp[AA$peernwkp <= -1] = NA
+  # PEERNLAB reports whether the respondent is a member of a labor union or employee association on the main job.
+  AA$peernlab = factor(AA$peernlab, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PEERNCOV reports whether the respondent's job is covered by a union or employee association contract.
+  AA$peerncov = factor(AA$peerncov, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  
+  
+  # PENLFJH tells when the respondent last had a job. It only reports data for those who are not Employed and in the Outgoing Rotation Group.
+  AA$penlfjh = factor(AA$penlfjh, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", NA, "Within the last 12 months", "More than 12 months ago", "Never worked"))
+  # PENLFRET tells whether the respondent is retired from a job or business. It reports data for all respondents over 50 who are not currently employed (pemlr = 3-7).
+  AA$penlfret = factor(AA$penlfret, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
+  # PENLFACT tells what the respondent's is doing if they are not employed and did not answer that they were retired. It reports data for all respondents who have pemlr = 3-7 and either prtage = 14-49 or penlfret = 2.
+  AA$penlfact = factor(AA$penlfact, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "Disabled", "Ill", "In School", "Taking care of house or family", "In retirement", "Something else/other"))
+  # PUNLFCK1-PUNLFCK2 would be here, but were removed at start.
+  # PESCHENR tells if the respondent was enrolled in high school, college, or university (any level of post-secondary education) in the last week. It is asked of all of those people who are classified as "Adult Civilian Houshold Members" and are between 16 and 24 years old (prpertyp = 2 and prtage = 16-24).
   AA$peschenr = factor(AA$peschenr, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Yes", "No"))
   # PESCHFT tells if the respondent is a full-time or a part-time student. It only reports data for those who report being in high school or college/university (peschlvl = 1-2)
   AA$peschft = factor(AA$peschft, levels = c(-3:-1, 1, 2), labels = c("Refused", "Don't Know", NA, "Full-Time", "Part-Time"))
