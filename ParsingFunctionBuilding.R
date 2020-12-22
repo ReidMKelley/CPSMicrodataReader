@@ -1,10 +1,10 @@
-ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2014 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
   
   # This adds the variables that the Dictionary says to add, properly applying the formulas to create them.
-  AA = tibble(AA, gtcbsanum = AA$gtcbsa, gtcsanum = AA$gtcsa, gtconum = AA$gtco)
+  AA = tibble(AA, gestcen = AA$gestfips, gtcbsanum = AA$gtcbsa, gtcsanum = AA$gtcsa, gtconum = AA$gtco)
  
    # This removes all of the variables that are labelled "Delete" in the dataset. 
   AA = select(AA, -all_of(filter(DataDictionaryIn, Adjustment == "Delete")$ColName))
@@ -144,21 +144,24 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   # GEREG is the Census Region for the respondent houshold.
   AA$gereg = factor(AA$gereg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Northeast", "Midwest", "South", "West"))
   
+  # GEDIV is the Census Division for the respondent houshold.
+  AA$gediv = factor(AA$gediv, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, "New England", "Middle Atlantic", "East North Central", "West North Central",
+                                                                 "South Atlantic", "East South Central", "West South Central", "Mountain", "Pacific"))
+  
   # GESTCEN gives the State Postal Abbreviation for the household's state. 
-  AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 11:16, 21:23, 31:35, 41:47, 51:59, 61:64, 71:74, 81:88, 91:95),
-                      labels = c("Refused", "Don't Know", NA, "ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", 
-                                 "SD", "NE", "KS", "DE", "MD", "DC", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX", "MT", "ID", "WY", 
-                                 "CO", "NM", "AZ", "UT", "NV", "WA", "OR", "CA", "AK", "HI"))
+  AA$gestcen = factor(AA$gestcen, levels = c(-3:-1, 1:2, 4:6, 8:13, 15:42, 44:51, 53:56),
+                      labels = c("Refused", "Don't Know", NA, state.abb[1:7], "DC", state.abb[8:50]))
   
   # GESTFIPS gives the two digit State FIPS code for the household's state. 
   AA$gestfips[AA$gestfips == -1] = NA
   
   # GTCBSA gives a five digit Core-based Statistical Area code that can be linked with the appropriate Metropolitan or Micropolitan Statistical Area for the respondent.
-  AA$gtcbsa = factor(AA$gtcbsa, levels = c(-3:-1, 0, 00460:79600), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", 
-                                                                              str_c(00460:79600, " Specific CBSA Code")))
+  XX = sort(unique(AA$gtcbsa))
+  AA$gtcbsa = factor(AA$gtcbsa, levels = c(-3:-1, XX), labels = c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(XX[-1], " Specific CBSA Code")))
   
   # GTCO gives a state-specific three digit county code for the houshold's county. Most housholds will have "not-identified" here to preserve anonymity.
-  AA$gtco = factor(AA$gtco, levels = -3:810, labels = c("Refused", "Don't Know", NA, "Not identified", str_c(1:810, " State-specific County Code")))
+  XX = sort(unique(AA$gtco)) 
+  AA$gtco = factor(AA$gtco, levels = c(-3:-1, XX), labels = c("Refused", "Don't Know", NA, "Not identified", str_c(XX[-1], " State-specific County Code")))
   
   
   # This tells where the household lives within the CBSA. 
@@ -176,10 +179,10 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
                                                                           "Not identified or Nonmetropolitan", "100,000 - 249,999", "250,000 - 499,999", "500,000 - 999,999", 
                                                                           "1,000,000 - 2,499,999", "2,500,000 - 4,999,999", "5,000,000+"))
 
-    # GTCSA gives the Combined Statistical Area if the household happens to live in one.:
-  AA$gtcsa = factor(AA$gtcsa, levels = c(-3:-1, 0, 118:720), labels =  c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", 
-                                                                         str_c(118:720, " Specific CBSA Code")))
-  
+  # GTCSA gives the Combined Statistical Area if the household happens to live in one.
+  XX = sort(unique(AA$gtcsa)) 
+  AA$gtcsa = factor(AA$gtcsa, levels = c(-3:-1, XX), labels =  c("Refused", "Don't Know", NA, "Not identified or Nonmetropolitan", str_c(XX[-1], " Specific CBSA Code")))
+  rm(XX)
   
   # These three variables keep the original codes for gtcbsa, gtco, and gtcsa as numerics.
   AA$gtcbsanum[AA$gtcbsanum <= -1] = NA
@@ -255,8 +258,8 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   
   # This tells the detailed hispanic ethnicity of the respondent. Only valid for those who state Hispanic ethnicity (pehspnon = 1). 
   # The options for this variable have changed significantly over the years from 1995 onwards, so check with more detailed documentation.
-  AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:5), labels = c("Refused", "Don't Know", NA, "Mexican", "Puerto Rican", "Cuban", "Central/South American", 
-                                                                      "Other Spanish"))
+  AA$prdthsp = factor(AA$prdthsp,  levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Mexican", "Puerto Rican", "Cuban", "Dominican", "Salvadoran",
+                                                                      "Central American, excluding Salvadoran", "South American", "Other Spanish"))
   
   # This describes any changes in the household composition due to the respondent. 
   # For example, if the respondent is a new addition to the household, this would be marked here.
@@ -901,10 +904,9 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   # PEIO2COW tells the class of worker for the respondent's second job. It reports data only for those with multiple jobs (pemjot = 1). 
   # If the respondent's first job was "Self-employed, unincorporated" (peio1cow = 7) then this should have a response every month. 
   # Otherwise, it will only have a response in the Outgoing Rotation Group. 
-  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:11), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", 
+  AA$peio2cow = factor(AA$peio2cow, levels = c(-3:-1, 1:8), labels = c("Refused", "Don't Know", NA, "Government - Federal", "Government - State", "Government - Local", 
                                                                         "Private, for profit", "Private, nonprofit", "Self-employed, incorporated", 
-                                                                        "Self-employed, unincorporated", "Without pay", "Unknown", "Government, level unknown", 
-                                                                        "Self-employed, Incorporation status unknown"))
+                                                                        "Self-employed, unincorporated", "Without pay"))
   
   # PUIO2MFG gives the respondent's answer to the question of whether the business of their 2nd job's employer is mainly manufacturing, trade, or another industry.
   AA$puio2mfg = factor(AA$puio2mfg, levels = c(-3:-1, 1:4), labels = c("Refused", "Don't Know", NA, "Manufacturing", "Retail Trade", "Wholesale Trade", "Something else"))
@@ -1200,6 +1202,15 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   # With a few exceptions, the allocation flag has the same name as the original variable, just with the second letter switched from a U or an E or an R to an X. 
   # E.G. HXTENURE is the flag for HETENURE. 
   # Exceptions will be specifically commented on.
+  # As of January 2014, significantly more detail is included in the numbering of the allocation flags.
+  
+  AA$pxpdemp1 = factor(AA$pxpdemp1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
   # PRWERNAL is the allocation flag for PRERNWA.
   AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -1207,111 +1218,711 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   # PRHERNAL is the allocation flag for PRERNHLY.
   AA$prhernal = factor(AA$prhernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  AA$hxtenure = factor(AA$hxtenure, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$hxtelhhd = factor(AA$hxtelhhd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$hxtelavl = factor(AA$hxtelavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtenure = factor(AA$hxtenure, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$hxphoneo = factor(AA$hxphoneo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxinusyr = factor(AA$pxinusyr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxrrp = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxparent = factor(AA$pxparent, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxage = factor(AA$pxage, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtelhhd = factor(AA$hxtelhhd, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxmaritl = factor(AA$pxmaritl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxspouse = factor(AA$pxspouse, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxsex = factor(AA$pxsex, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxafwhn1 = factor(AA$pxafwhn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxafnow = factor(AA$pxafnow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxtelavl = factor(AA$hxtelavl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxeduca = factor(AA$pxeduca, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxrace1 = factor(AA$pxrace1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxnatvty = factor(AA$pxnatvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxmntvty = factor(AA$pxmntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxfntvty = factor(AA$pxfntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  AA$pxhspnon = factor(AA$pxhspnon, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxmlr = factor(AA$pxmlr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxret1 = factor(AA$pxret1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxabsrsn = factor(AA$pxabsrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxabspdo = factor(AA$pxabspdo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$hxphoneo = factor(AA$hxphoneo, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxmjot = factor(AA$pxmjot, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxmjnum = factor(AA$pxmjnum, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrusl1 = factor(AA$pxhrusl1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrusl2 = factor(AA$pxhrusl2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrftpt = factor(AA$pxhrftpt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxinusyr = factor(AA$pxinusyr, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxhruslt = factor(AA$pxhruslt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrwant = factor(AA$pxhrwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrrsn1 = factor(AA$pxhrrsn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrrsn2 = factor(AA$pxhrrsn2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhract1 = factor(AA$pxhract1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxrrp = factor(AA$pxrrp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxhract2 = factor(AA$pxhract2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhractt = factor(AA$pxhractt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhrrsn3 = factor(AA$pxhrrsn3, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhravl = factor(AA$pxhravl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlayavl = factor(AA$pxlayavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxparent = factor(AA$pxparent, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxlaylk = factor(AA$pxlaylk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlaydur = factor(AA$pxlaydur, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlayfto = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlkm1 = factor(AA$pxlkm1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlkavl = factor(AA$pxlkavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxage = factor(AA$pxage, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxlkll1o = factor(AA$pxlkll1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlkll2o = factor(AA$pxlkll2o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlklwo = factor(AA$pxlklwo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlkdur = factor(AA$pxlkdur, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlkfto = factor(AA$pxlkfto, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  AA$pxdwwnto = factor(AA$pxdwwnto, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdwrsn = factor(AA$pxdwrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdwlko = factor(AA$pxdwlko, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdwwk = factor(AA$pxdwwk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdw4wk = factor(AA$pxdw4wk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxmaritl = factor(AA$pxmaritl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxdwlkwk = factor(AA$pxdwlkwk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdwavl = factor(AA$pxdwavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdwavr = factor(AA$pxdwavr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxjhwko = factor(AA$pxjhwko, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxjhrsn = factor(AA$pxjhrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxspouse = factor(AA$pxspouse, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxjhwant = factor(AA$pxjhwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxio1cow = factor(AA$pxio1cow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxio1icd = factor(AA$pxio1icd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxio1ocd = factor(AA$pxio1ocd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxio2cow = factor(AA$pxio2cow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxsex = factor(AA$pxsex, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxio2icd = factor(AA$pxio2icd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxio2ocd = factor(AA$pxio2ocd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernuot = factor(AA$pxernuot, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernper = factor(AA$pxernper, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernh1o = factor(AA$pxernh1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafwhn1 = factor(AA$pxafwhn1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxernhro = factor(AA$pxernhro, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxern = factor(AA$pxern, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernwkp = factor(AA$pxernwkp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernrt = factor(AA$pxernrt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernhry = factor(AA$pxernhry, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxafnow = factor(AA$pxafnow, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxernh2 = factor(AA$pxernh2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxernlab = factor(AA$pxernlab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxerncov = factor(AA$pxerncov, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxnlfjh = factor(AA$pxnlfjh, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxnlfret = factor(AA$pxnlfret, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  AA$pxnlfact = factor(AA$pxnlfact, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxschenr = factor(AA$pxschenr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxschft = factor(AA$pxschft, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxeduca = factor(AA$pxeduca, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxrace1 = factor(AA$pxrace1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxnatvty = factor(AA$pxnatvty, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxmntvty = factor(AA$pxmntvty, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxfntvty = factor(AA$pxfntvty, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  # This was added as of January 2014
+  AA$pxnmemp1 = factor(AA$pxnmemp1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhspnon = factor(AA$pxhspnon, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxmlr = factor(AA$pxmlr, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxret1 = factor(AA$pxret1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                     labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxabsrsn = factor(AA$pxabsrsn, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxabspdo = factor(AA$pxabspdo, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxmjot = factor(AA$pxmjot, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                     labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxmjnum = factor(AA$pxmjnum, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrusl1 = factor(AA$pxhrusl1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrusl2 = factor(AA$pxhrusl2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrftpt = factor(AA$pxhrftpt, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxhruslt = factor(AA$pxhruslt, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrwant = factor(AA$pxhrwant, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrrsn1 = factor(AA$pxhrrsn1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrrsn2 = factor(AA$pxhrrsn2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhract1 = factor(AA$pxhract1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxhract2 = factor(AA$pxhract2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhractt = factor(AA$pxhractt, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhrrsn3 = factor(AA$pxhrrsn3, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhravl = factor(AA$pxhravl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlayavl = factor(AA$pxlayavl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxlaylk = factor(AA$pxlaylk, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlaydur = factor(AA$pxlaydur, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlayfto = factor(AA$pxrrp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlkm1 = factor(AA$pxlkm1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                     labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlkavl = factor(AA$pxlkavl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxlkll1o = factor(AA$pxlkll1o, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlkll2o = factor(AA$pxlkll2o, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlklwo = factor(AA$pxlklwo, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlkdur = factor(AA$pxlkdur, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlkfto = factor(AA$pxlkfto, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxdwwnto = factor(AA$pxdwwnto, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdwrsn = factor(AA$pxdwrsn, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdwlko = factor(AA$pxdwlko, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdwwk = factor(AA$pxdwwk, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                     labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdw4wk = factor(AA$pxdw4wk, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxdwlkwk = factor(AA$pxdwlkwk, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdwavl = factor(AA$pxdwavl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdwavr = factor(AA$pxdwavr, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxjhwko = factor(AA$pxjhwko, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxjhrsn = factor(AA$pxjhrsn, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxjhwant = factor(AA$pxjhwant, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxio1cow = factor(AA$pxio1cow, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxio1icd = factor(AA$pxio1icd, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxio1ocd = factor(AA$pxio1ocd, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxio2cow = factor(AA$pxio2cow, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxio2icd = factor(AA$pxio2icd, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxio2ocd = factor(AA$pxio2ocd, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernuot = factor(AA$pxernuot, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernper = factor(AA$pxernper, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernh1o = factor(AA$pxernh1o, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxernhro = factor(AA$pxernhro, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxern = factor(AA$pxern, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxpdemp2 = factor(AA$pxpdemp2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxnmemp2 = factor(AA$pxnmemp2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernwkp = factor(AA$pxernwkp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernrt = factor(AA$pxernrt, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernhry = factor(AA$pxernhry, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxernh2 = factor(AA$pxernh2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxernlab = factor(AA$pxernlab, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxerncov = factor(AA$pxerncov, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxnlfjh = factor(AA$pxnlfjh, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxnlfret = factor(AA$pxnlfret, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  
+  AA$pxnlfact = factor(AA$pxnlfact, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxschenr = factor(AA$pxschenr, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxschft = factor(AA$pxschft, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxschlvl = factor(AA$pxschlvl, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
   
   # This is a section mainly related to some additional education questions. The section was added at the end starting in January 1998.
   
   # QSTNUM provides a unique household identifier that is valid only within the specific month selected.
+  AA$qstnum = as.integer(AA$qstnum)
   AA$qstnum[AA$qstnum <= -1] = NA
   
   # OCCURNUM provides a unique person identifier within the household. It is valid only within the specific month selected.
+  AA$occurnum = as.integer(AA$occurnum)
   AA$occurnum[AA$occurnum <= -1] = NA
   
   # PEDIPGED asks how the respondent got their high school diploma - by graduation from high school or by completing a GED. 
@@ -1333,10 +1944,31 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   
   
   # PEGRPROF, PEGR6COR, and PEMS123 would be here but were removed at the start.
+  
   # The next three variables are allocation flags for the three variables above.
-  AA$pxdipged = factor(AA$pxdipged, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxhgcomp = factor(AA$pxhgcomp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxcyc = factor(AA$pxcyc, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdipged = factor(AA$pxdipged, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxhgcomp = factor(AA$pxhgcomp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxcyc = factor(AA$pxcyc, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                    labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                               "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                               "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                               "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                               "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                               "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
   #  PXGRPROF, PXGR6COR, and PXMS123 would be here but were removed at the start.
   
@@ -1442,11 +2074,46 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   AA$pecohab = factor(AA$pecohab, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No partner present", str_c(1:16, " Line num of cohabitating partner" )))
   
   # The following are allocation flags for the five immediately proceeding variables.
-  AA$pxlndad = factor(AA$pxlndad, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxlnmom = factor(AA$pxlnmom, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdadtyp = factor(AA$pxdadtyp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxmomtyp = factor(AA$pxmomtyp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxcohab = factor(AA$pxcohab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxlndad = factor(AA$pxlndad, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxlnmom = factor(AA$pxlnmom, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdadtyp = factor(AA$pxdadtyp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxmomtyp = factor(AA$pxmomtyp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxcohab = factor(AA$pxcohab, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                      labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                 "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                 "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                 "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                 "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                 "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
   
   
   # The following section was added in January 2009 to provide more information on the respondent's disability status.
@@ -1483,12 +2150,54 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
                                                                        "Yes, respondent has reported at least one disability via prior questions", "No"))
   
   # The following are allocation flags for the seven immediately proceeding variables.
-  AA$pxdisear = factor(AA$pxdisear, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdiseye = factor(AA$pxdiseye, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdisrem = factor(AA$pxdisrem, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdisphy = factor(AA$pxdisphy, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdisdrs = factor(AA$pxdisdrs, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  AA$pxdisout = factor(AA$pxdisout, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  AA$pxdisear = factor(AA$pxdisear, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdiseye = factor(AA$pxdiseye, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdisrem = factor(AA$pxdisrem, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdisphy = factor(AA$pxdisphy, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdisdrs = factor(AA$pxdisdrs, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxdisout = factor(AA$pxdisout, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
 
   # The following is the allocation flag for the HEFAMINC variable, which replaced the HUFAMINC variable from earlier versions.
   AA$hxfaminc = factor(AA$hxfaminc, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -1497,6 +2206,22 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   AA$prdasian = factor(AA$prdasian, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, 
                                                                        "Asian Indian", "Chinese", "Filipino", "Japanese", "Korean", "Vietnamese", "Other"))
   
+  # PEPDEMP1 gives the respondent's answer to the question "Does this respondent usually have any paid employees?"
+  AA$pepdemp1 = factor(AA$pepdemp1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Yes, this respondent usually has paid employees", 
+                                                                       "No this respondent does not usually have paid employees"))
+  
+  # PTNMEMP1 gives the number of employees the respondent usually employs. It is asked only of those who answered "Yes" to pepdemp1. It is topcoded at 75.
+  AA$ptnmemp1 = factor(AA$ptnmemp1, levels = c(-3:-1, 1:75), labels = c("Refused", "Don't Know", NA, str_c(1:74, " employees"), "75 or more employees"))
+  
+  # PEPDEMP2 gives the respondent's answer to the question "Does this respondent usually have any paid employees?" I am uncertain how it differs from pepdemp1.
+  AA$pepdemp2 = factor(AA$pepdemp2, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                       "Yes, this respondent usually has paid employees", 
+                                                                       "No this respondent does not usually have paid employees"))
+  # PTNMEMP2 gives the number of employees the respondent usually employs. It is asked only of those who answered "Yes" to pepdemp1. It is topcoded at 10.
+  # I am uncertain how it differs from ptnmemp1. It is possible that this and the previous variable shuold be referring back to peio2cow rather than what
+  # the documentation suggests (peio1cow).
+  AA$ptnmemp2 = factor(AA$ptnmemp2, levels = c(-3:-1, 1:10), labels = c("Refused", "Don't Know", NA, str_c(1:9, " employees"), "10 or more employees"))
   
   
   
