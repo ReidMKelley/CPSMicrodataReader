@@ -1,4 +1,4 @@
-ParserJanuary2014 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -339,50 +339,30 @@ ParserJanuary2014 = function(DataIn, DataDictionaryIn) {
   
   # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
   # The complicated If-Else If structure is designed to capture the various possibilities for each potential data file.
-  AA$prinusyr = factor(AA$prinusyr, levels = -3:22, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
-                                                               "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
-                                                               "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
-                                                               "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
-                                                               "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
-                                                               "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
-                                                               "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-                                                               "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
-                                                               "Immigrant entered in 2010-2013"))
-  
-  # I am keeping the basic conditional structure here because it will be used in later versions.
-  # if (AA$hryear4[1] == 2010) {
-  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:21, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-  #                                                                "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2010"))
-  # 
-  # } else if (AA$hryear4[1] == 2011) {
-  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:21, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-  #                                                                "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2011"))
-  # } else if (AA$hryear4[1] == 2012) {
-  #   AA$prinusyr = factor(AA$prinusyr, levels = -3:22, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born", 
-  #                                                                "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964", 
-  #                                                                "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979", 
-  #                                                                "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985", 
-  #                                                                "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991", 
-  #                                                                "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997", 
-  #                                                                "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-  #                                                                "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
-  #                                                                "Immigrant entered in 2010-2012"))
-  # }
-
+  if (AA$hryear4[1] == 2015) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:23, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2015"))
+  } else if(AA$hryear4[1] == 2016) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:24, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2016"))
+  }
 
   
+ 
   # These functions format the Personal Information Labor Force section
   
   # This tells whether the repsondent personally provided information on their labor force status or whether it was collected by a 
