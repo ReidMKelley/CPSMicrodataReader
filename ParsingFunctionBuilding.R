@@ -1,4 +1,4 @@
-ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -339,17 +339,7 @@ ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
   
   # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
   # The complicated If-Else If structure is designed to capture the various possibilities for each potential data file.
-  if (AA$hryear4[1] == 2015) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:23, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
-                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
-                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
-                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
-                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
-                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
-                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
-                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2015"))
-  } else if(AA$hryear4[1] == 2016) {
+  if (AA$hryear4[1] == 2017) {
     AA$prinusyr = factor(AA$prinusyr, levels = -3:24, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
                                                                  "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
                                                                  "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
@@ -358,7 +348,29 @@ ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
                                                                  "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
                                                                  "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
                                                                  "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
-                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2016"))
+                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2017"))
+  } else if(AA$hryear4[1] == 2018) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:25, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2015",
+                                                                 "Immigrant entered in 2016-2018"))
+  } else if(AA$hryear4[1] == 2019) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:25, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2015",
+                                                                 "Immigrant entered in 2016-2019"))
   }
 
   
@@ -2186,6 +2198,8 @@ ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
   AA$prdasian = factor(AA$prdasian, levels = c(-3:-1, 1:7), labels = c("Refused", "Don't Know", NA, 
                                                                        "Asian Indian", "Chinese", "Filipino", "Japanese", "Korean", "Vietnamese", "Other"))
   
+  
+  # The following four variables were added beginning in January 2014. They ask about whether the respondent employs anyone.
   # PEPDEMP1 gives the respondent's answer to the question "Does this respondent usually have any paid employees?"
   AA$pepdemp1 = factor(AA$pepdemp1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
                                                                        "Yes, this respondent usually has paid employees", 
@@ -2203,6 +2217,50 @@ ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
   # the documentation suggests (peio1cow).
   AA$ptnmemp2 = factor(AA$ptnmemp2, levels = c(-3:-1, 1:10), labels = c("Refused", "Don't Know", NA, str_c(1:9, " employees"), "10 or more employees"))
   
+  
+  # The following six variables were added in January 2017, as part of the work relating to asking about certifications and licenses.
+  # PECERT1 gives the respondent's answer to the question "Does the respondent have a currently active professional certification or a state or industry license?
+  # Do not include business licenses, such as a liquor license or vending license." This is asked of all adult civilians (prpertyp == 2).
+  AA$pecert1 = factor(AA$pecert1, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                      "Yes, respondent has an active professional certification or license", 
+                                                                      "No, respondent has no certification or license"))
+  
+  # PECERT2 determines whether any of the certifications or licenses the respondent described in the previous question were 
+  # issued by a government (Federal, State, or Local). It is asked of all respondents who answered the previous question "Yes" (pecert1 == 1).
+  AA$pecert2 = factor(AA$pecert2, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                     "Yes, at least one of the respondent's certifications or licenses were issued by the government",
+                                                                     "No, none of the respondent's certifications or licenses were issued by the government"))
+  
+  # PECERT3 gives the respondent's answer to the question "Is your certification or license required for your a) job?, b) main job?, c) job from which you are on layoff?
+  # d) Job at which you last worked?" This is asked of all respondents who answered the first certification question "Yes" (pecert1 == 1).
+  AA$pecert3 = factor(AA$pecert3, levels = c(-3:-1, 1:2), labels = c("Refused", "Don't Know", NA, 
+                                                                     "Yes, respondent needs the certification or license for their job", 
+                                                                     "No, respondent does not need the certification or license for their job"))
+  
+  # The following are allocation flags for the three immediately proceeding variables. 
+  AA$pxcert1 = factor(AA$pxcert1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxcert2 = factor(AA$pxcert2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
+  
+  AA$pxcert3 = factor(AA$pxcert3, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
+                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
+                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
+                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
+                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
+                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
   
   
