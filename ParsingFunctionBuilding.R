@@ -1,4 +1,4 @@
-ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
+ParserJanuary2020 = function(DataIn, DataDictionaryIn) {
   
   # This eliminates all of the variables in the dataset that are labelled "Remove" in the Dictionary Files.
   AA = select(DataIn, -all_of(filter(DataDictionaryIn, Adjustment == "Remove")$ColName))
@@ -19,7 +19,7 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
    # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
   
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   
@@ -29,21 +29,22 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   
   # HUSPNISH would be here, but was removed at start.
   
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what the result of the interview attempt was.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 217,219, 223:233, 241:243, 246:248, 256:257),
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:245, 247:248, 256:259),
                       labels = c("Refused", "Don't Know", NA, 
                                  "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
                                  "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
                                  "LF complete, supplement DK items incomplete at closeout-ASEC only", 
                                  "HH occupied entirely by Armed Forces members or all under 15 years of age", "CAPI Complete", "Callback needed", 
                                  "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
-                                 "Language barrier", "Unable to locate", "Temporarily absent", "Other occupied - Specify", "Entire Household Armed Forces", 
-                                 "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", 
-                                 "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site", 
-                                 "Permit granted - Construction not started", "Other - Specify", "House or trailer moved", "Outside segment", 
-                                 "Converted to perm. business or storage", "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", 
-                                 "Removed during sub-sampling", "Unit already had a chance of selection"))
+                                 "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", 
+                                 "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", 
+                                 "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                 "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", 
+                                 "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", "Unused serial number or listing sheet", 
+                                 "Other - Specify", "Removed during sub-sampling", "Unit already had a chance of selection", "Unlocatable sample address", 
+                                 "Unit does not exist/out of scope"))
   
   
   # HETENURE tells about the household's relation to the ownership of the property
@@ -67,8 +68,7 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                                                         "Telephone not available eslewhere for household to use"))
   
   # HEPHONEO tells whether the respondent is okay  with having telephone interviews for the future months of CPS interviewing. 
-  AA$hephoneo = factor(AA$hephoneo, levels = c(-3:2), labels = c("Refused", "Don't Know", NA, "Unknown", "Telephone interview acceptable", 
-                                                                 "Telephone interview not acceptable"))
+  AA$hephoneo = factor(AA$hephoneo, levels = c(-3:1), labels = c("Refused", "Don't Know", NA, "Telephone interview not acceptable", "Telephone interview acceptable"))
  
    
   # HUFAMINC breaks the family income into one of a number of brackets. Caution is urged in using this variable as it has a high allocation rate. See allocation flag.
@@ -81,13 +81,13 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   # If these are not NA, then the households should have lots of other signs of nonresponse.
   AA$hutypea = factor(AA$hutypea, levels = c(-3:-1, 1:6), labels = c("Refused", "Don't Know", NA, "No one home (NOH)", "Temporarily absent (TA)", "Refused (Ref)", 
                                                                      "Language barrier", "Unable to locate", "Other occupied - Specify"))
-  AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, 
-                                                                   "Vacant regular", "Temporarily occupied by persons w/ URE", "Vacant-storage of HHLD furniture", 
-                                                                   "Unfit or to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
-                                                                   "Unoccupied tent site or trailer site", "Permit granted construction not started", "Other type B - Specify"))
-  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:6,8:9), labels = c("Refused", "Don't Know", NA, 
-                                                                       "Demolished", "House or trailer moved", "Outside segment", "Converted to perm. business or storage",
-                                                                       "Merged",  "Condemned", "Unused line of listing sheet", "Other - Specify"))
+  AA$hutypb = factor(AA$hutypb, levels = c(-3:-1, 1:9), labels = c("Refused", "Don't Know", NA, "Vacant regular", "Temporarily occupied by persons w/ URE", 
+                                                                   "Vacant-storage of HHLD furniture", "Unfit or to be demolished", "Under construction, not ready", 
+                                                                   "Converted to temp business or storage", "Unoccupied tent site or trailer site", 
+                                                                   "Permit granted construction not started", "Other type B - Specify"))
+  AA$hutypc = factor(AA$hutypc, levels = c(-3:-1, 1:10), labels = c("Refused", "Don't Know", NA, "Demolished", "House or trailer moved", "Outside segment", 
+                                                                    "Converted to perm. business or storage", "Merged",  "Condemned", "Unused line of listing sheet", 
+                                                                    "Unlocatable Sample Address", "Unit does not exist/out of scope", "Other - Specify"))
   
   # This is the Household Weight. It is used for tallying houshold characteristics.
   AA$hwhhwgt[AA$hwhhwgt == -1] = NA
@@ -196,16 +196,20 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   # PROLDRRP and PUPELIG would be here, but were removed at start.
   
   # PERRP gives the relationship of the respondent to the reference person. (The Reference Person is the one answering the survey for the household.)
-  AA$perrp = factor(AA$perrp, levels = c(-3:-1, 1:18), labels = c("Refused", "Don't Know", NA, 
-                                                                  "Reference person w/Rels.", "Reference person w/o Rels.", "Spouse", "Child", "Grandchild", "Parent", 
-                                                                  "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Nonrel. of Ref. person w/Rels.", 
-                                                                  "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", 
-                                                                  "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", 
-                                                                  "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
+  AA$perrp = factor(AA$perrp, levels = c(-3:-1, 40:59), labels = c("Refused", "Don't Know", NA, 
+                                                                  "Reference person w/Rels.", "Reference person w/o Rels.", "Opposite sex spouse", 
+                                                                  "Opposite sex partner with relatives", "Opposite sex partner without relatives", "Same sex spouse", 
+                                                                  "Same sex partner with relatives", "Same sex partner without relatives", "Child", "Grandchild", "Parent", 
+                                                                  "Brother/Sister", "Other Rel. of Reference person", "Foster child", "Housemate/Roommate w/Rels.", 
+                                                                  "Housemate/Roommate w/out Rels.", "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels.", 
+                                                                  "Nonrelative of Reference person w/Rels.", "Nonrelative of Reference person w/out Rels."))
+                                                                  
+                                                                   
+                                                                  # "Not used", "Nonrel. of Ref. person w/o Rels.", "Unmarried partner w/Rels.", 
+                                                                  # "Unmarried partner w/out Rels.", "Housemate/Roommate w/Rels.", "Housemate/Roommate w/out Rels.", 
+                                                                  # "Roomer/Boarder w/ Rels.", "Roomer/Boarder w/out Rels."))
   
-  # PEPARENT connects the individual respondent with the line number (as recorded by pulineno) of their parent. Useful for children, particularly minors.
-  AA$peparent = factor(AA$peparent, levels = c(-3:-1, 1:99), labels = c("Refused", "Don't Know", "No parent", str_c(1:99, " Line Num of parent")))
-  
+
   # PRTAGE gives the age of the respondent. In previous versions, this variable was called PEAGE. 
   # It is topcoded to preserve respondent confidentiality. For anyone who is from 0-79 years old, PRTAGE gives the respondent's age. 
   # For anyone who is from 80-84 years old, PRTAGE codes as 80. For anyone who is 85+ years old, PRTAGE codes as 85.
@@ -306,22 +310,22 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                                                        "Adult armed forces household member"))
   
   # This tells whether the respondent was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), 
-                       labels = c("Refused", "Don't Know", NA, "Person born in United States", "Person born in Guam", "Person born in Puerto Rico", 
-                                  "Person born in the U.S. Virgin Islands", "Person born in another U.S. Island Area", 
+  AA$penatvty = factor(AA$penatvty, levels = c(-3:-1, 57, 60, 66, 73, 78, 96, 100:554, 555), 
+                       labels = c("Refused", "Don't Know", NA, "Person born in United States", "Person born in American Samoa", "Person born in Guam", 
+                                  "Person born in Puerto Rico", "Person born in the U.S. Virgin Islands", "Person born in another U.S. Island Area", 
                                   str_c(100:554, " Person born in Foreign Country or at sea - See Code list"), "Person born Abroad, country not known"))
   
   # This tells whether the respondent's mother was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), 
-                       labels = c("Refused", "Don't Know", NA, "Person's mother born in United States", "Person's mother born in Guam", 
-                                  "Person's mother born in Puerto Rico", "Person's mother born in the U.S. Virgin Islands", 
+  AA$pemntvty = factor(AA$pemntvty, levels = c(-3:-1, 57, 60, 66, 73, 78, 96, 100:554, 555), 
+                       labels = c("Refused", "Don't Know", NA, "Person's mother born in United States", "Person's mother born in American Samoa", 
+                                  "Person's mother born in Guam", "Person's mother born in Puerto Rico", "Person's mother born in the U.S. Virgin Islands", 
                                   "Person's mother born in another U.S. Island Area", str_c(100:554, " Person's mother born in Foreign Country or at sea - See Code list"), 
                                   "Person's mother born Abroad, country not known"))
   
   # This tells whether the respondent's father was born in the United States or a foreign country, and provides a code for which foreign country if necessary.
-  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 66, 73, 78, 96, 100:554, 555), 
-                       labels = c("Refused", "Don't Know", NA, "Person's father born in United States", "Person's father born in Guam",
-                                  "Person's father born in Puerto Rico", "Person's father born in the U.S. Virgin Islands",  
+  AA$pefntvty = factor(AA$pefntvty, levels = c(-3:-1, 57, 60, 66, 73, 78, 96, 100:554, 555), 
+                       labels = c("Refused", "Don't Know", NA, "Person's father born in United States", "Person's mother born in American Samoa", 
+                                  "Person's father born in Guam", "Person's father born in Puerto Rico", "Person's father born in the U.S. Virgin Islands",  
                                   "Person's father born in another U.S. Island Area", str_c(100:554, " Person's father born in Foreign Country or at sea - See Code list"), 
                                   "Person's father born Abroad, country not known"))
   
@@ -339,18 +343,8 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   
   # PRINUSYR tells when the respondent immigrated to the US. It is updated each year the dictionary is active to account for the passing later years.
   # The complicated If-Else If structure is designed to capture the various possibilities for each potential data file.
-  if (AA$hryear4[1] == 2017) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:24, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
-                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
-                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
-                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
-                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
-                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
-                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
-                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
-                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2017"))
-  } else if(AA$hryear4[1] == 2018) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:25, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+  if (AA$hryear4[1] == 2020) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:26, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
                                                                  "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
                                                                  "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
                                                                  "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
@@ -359,9 +353,9 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                                                  "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
                                                                  "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
                                                                  "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2015",
-                                                                 "Immigrant entered in 2016-2018"))
-  } else if(AA$hryear4[1] == 2019) {
-    AA$prinusyr = factor(AA$prinusyr, levels = -3:25, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+                                                                 "Immigrant entered in 2016-2017", "Immigrant entered in 2018-2020"))
+  } else if(AA$hryear4[1] == 2021) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:26, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
                                                                  "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
                                                                  "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
                                                                  "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
@@ -370,7 +364,18 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                                                  "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
                                                                  "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
                                                                  "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2015",
-                                                                 "Immigrant entered in 2016-2019"))
+                                                                 "Immigrant entered in 2016-2017", "Immigrant entered in 2018-2021"))
+  } else if(AA$hryear4[1] == 2022) {
+    AA$prinusyr = factor(AA$prinusyr, levels = -3:27, labels = c("Refused", "Don't Know", "Not in universe (Born in U.S.)", "Not foreign born",
+                                                                 "Immigrant entered before 1950", "Immigrant entered in 1950-1959", "Immigrant entered in 1960-1964",
+                                                                 "Immigrant entered in 1965-1969", "Immigrant entered in 1970-1974", "Immigrant entered in 1975-1979",
+                                                                 "Immigrant entered in 1980-1981", "Immigrant entered in 1982-1983", "Immigrant entered in 1984-1985",
+                                                                 "Immigrant entered in 1986-1987", "Immigrant entered in 1988-1989", "Immigrant entered in 1990-1991",
+                                                                 "Immigrant entered in 1992-1993", "Immigrant entered in 1994-1995", "Immigrant entered in 1996-1997",
+                                                                 "Immigrant entered in 1998-1999", "Immigrant entered in 2000-2001", "Immigrant entered in 2002-2003",
+                                                                 "Immigrant entered in 2004-2005", "Immigrant entered in 2006-2007", "Immigrant entered in 2008-2009",
+                                                                 "Immigrant entered in 2010-2011", "Immigrant entered in 2012-2013", "Immigrant entered in 2014-2015",
+                                                                 "Immigrant entered in 2016-2017", "Immigrant entered in 2018-2019", "Immigrant entered in 2020-2022"))
   }
 
   
@@ -936,57 +941,57 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   
   # PRDTIND1 tells the detailed industry group for the respondent's 1st job. (There are 52 detailed industry groups.)
   AA$prdtind1 = factor(AA$prdtind1, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
-                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", 
-                                                                        "Nonmetallic mineral products", "Primary metals and fabricated metal products", 
-                                                                        "Machinery manufacturing", "Computer and electronic products", 
-                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
-                                                                        "Wood products", "Furniture and fixtures manufacturing", 
-                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", 
-                                                                        "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
-                                                                        "Paper and printing", "Petroleum and coal products", "Chemical manufacturing", 
-                                                                        "Plastics and rubber products", "Wholesale trade", "Retail trade", "Transportation and warehousing", 
-                                                                        "Utilities", "Publishing industries (except internet)", 
+                                                                        "Agriculture", "Forestry, logging, fishing, and hunting", 
+                                                                        "Mining, quarrying, and oil and gas extraction", "Construction", "Nonmetallic mineral products", 
+                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", 
+                                                                        "Computer and electronic products", "Electrical equipment, appliance manufacturing", 
+                                                                        "Transportation equipment manufacturing", "Wood products", "Furniture and fixtures manufacturing", 
+                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products", 
+                                                                        "Textile, apparel, and leather manufacturing", "Paper and printing", "Petroleum and coal products", 
+                                                                        "Chemical manufacturing", "Plastics and rubber products", "Wholesale trade", "Retail trade", 
+                                                                        "Transportation and warehousing", "Utilities", "Publishing industries (except internet)", 
                                                                         "Motion picture and sound recording industries", "Broadcasting (except internet)", 
                                                                         "Internet publishing and broadcasting", "Telecommunications", 
                                                                         "Internet service providers and data processing services", "Other information services", "Finance", 
-                                                                        "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
-                                                                        "Management of companies and enterprises", "Adminitrative and support services", 
-                                                                        "Waste management and remediation services", "Educational services", "Hospitals", 
-                                                                        "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", 
-                                                                        "Accommodation", "Food services and drinking places", "Repair and maintenance", 
-                                                                        "Personal and laundry services", "Membership associations and organizations", "Private households", 
-                                                                        "Public administration", "Armed forces"))
+                                                                        "Insurance", "Real estate", "Rental and leasing service", 
+                                                                        "Professional, scientific, and technical services", "Management of companies and enterprises", 
+                                                                        "Adminitrative and support services", "Waste management and remediation services", 
+                                                                        "Educational services", "Hospitals", "Health care services, except hospitals", 
+                                                                        "Social assistance services", "Arts, entertainment, and recreation", "Accommodation", 
+                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", 
+                                                                        "Membership associations and organizations", "Private households", "Public administration", 
+                                                                        "Armed forces"))
   
   # PRDTIND2 tells the detailed industry group for the respondent's 2nd job. (There are 52 detailed industry groups.)
   AA$prdtind2 = factor(AA$prdtind2, levels = c(-3:-1, 1:52), labels = c("Refused", "Don't Know", NA, 
-                                                                        "Agriculture", "Forestry, logging, fishing, hunting, and trapping", "Mining", "Construction", 
-                                                                        "Nonmetallic mineral products", "Primary metals and fabricated metal products", 
-                                                                        "Machinery manufacturing", "Computer and electronic products", 
-                                                                        "Electrical equipment, appliance manufacturing", "Transportation equipment manufacturing", 
-                                                                        "Wood products", "Furniture and fixtures manufacturing", 
-                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", 
-                                                                        "Beverage and tobacco products", "Textile, apparel, and leather manufacturing", 
-                                                                        "Paper and printing", "Petroleum and coal products", "Chemical manufacturing", 
-                                                                        "Plastics and rubber products", "Wholesale trade", "Retail trade", "Transportation and warehousing", 
-                                                                        "Utilities", "Publishing industries (except internet)", 
+                                                                        "Agriculture", "Forestry, logging, fishing, and hunting", 
+                                                                        "Mining, quarrying, and oil and gas extraction", "Construction", "Nonmetallic mineral products", 
+                                                                        "Primary metals and fabricated metal products", "Machinery manufacturing", 
+                                                                        "Computer and electronic products", "Electrical equipment, appliance manufacturing", 
+                                                                        "Transportation equipment manufacturing", "Wood products", "Furniture and fixtures manufacturing", 
+                                                                        "Miscellaneous and not specified manufacturing", "Food manufacturing", "Beverage and tobacco products", 
+                                                                        "Textile, apparel, and leather manufacturing", "Paper and printing", "Petroleum and coal products", 
+                                                                        "Chemical manufacturing", "Plastics and rubber products", "Wholesale trade", "Retail trade", 
+                                                                        "Transportation and warehousing", "Utilities", "Publishing industries (except internet)", 
                                                                         "Motion picture and sound recording industries", "Broadcasting (except internet)", 
                                                                         "Internet publishing and broadcasting", "Telecommunications", 
                                                                         "Internet service providers and data processing services", "Other information services", "Finance", 
-                                                                        "Insurance", "Real estate", "Rental and leasing service", "Professional and technical services", 
-                                                                        "Management of companies and enterprises", "Adminitrative and support services", 
-                                                                        "Waste management and remediation services", "Educational services", "Hospitals", 
-                                                                        "Health care services, except hospitals", "Social assistance", "Arts, entertainment, and recreation", 
-                                                                        "Accommodation", "Food services and drinking places", "Repair and maintenance", 
-                                                                        "Personal and laundry services", "Membership associations and organizations", "Private households", 
-                                                                        "Public administration", "Armed forces"))
+                                                                        "Insurance", "Real estate", "Rental and leasing service", 
+                                                                        "Professional, scientific, and technical services", "Management of companies and enterprises", 
+                                                                        "Adminitrative and support services", "Waste management and remediation services", 
+                                                                        "Educational services", "Hospitals", "Health care services, except hospitals", 
+                                                                        "Social assistance services", "Arts, entertainment, and recreation", "Accommodation", 
+                                                                        "Food services and drinking places", "Repair and maintenance", "Personal and laundry services", 
+                                                                        "Membership associations and organizations", "Private households", "Public administration", 
+                                                                        "Armed forces"))
   
 
   # PRDTOCC1 tells the detailed occupation group for the respondent's 1st job. (There are 23 detailed occupation groups.)
   AA$prdtocc1 = factor(AA$prdtocc1, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
                                                                         "Management occupations", "Business and financial operations occupations", 
-                                                                        "Computer and mathematical science occupations", "Architecture and engineering occupations", 
+                                                                        "Computer and mathematical occupations", "Architecture and engineering occupations", 
                                                                         "Life, physical, and social science occupations", "Community and social service occupations", 
-                                                                        "Legal occupations", "Education, training, and library occupations", 
+                                                                        "Legal occupations", "Education instruction and library occupations", 
                                                                         "Arts, design, entertainment, sports, and media occupations", 
                                                                         "Healthcare practitioner and technical occupations", "Healthcare support occupations", 
                                                                         "Protective service occupations", "Food preparation and serving related occupations", 
@@ -999,9 +1004,9 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   # PRDTOCC2 tells the detailed occupation group for the respondent's 2nd job. (There are 23 detailed occupation groups.)
   AA$prdtocc2 = factor(AA$prdtocc2, levels = c(-3:-1, 1:23), labels = c("Refused", "Don't Know", NA, 
                                                                         "Management occupations", "Business and financial operations occupations", 
-                                                                        "Computer and mathematical science occupations", "Architecture and engineering occupations", 
+                                                                        "Computer and mathematical occupations", "Architecture and engineering occupations", 
                                                                         "Life, physical, and social science occupations", "Community and social service occupations", 
-                                                                        "Legal occupations", "Education, training, and library occupations", 
+                                                                        "Legal occupations", "Education instruction and library occupations", 
                                                                         "Arts, design, entertainment, sports, and media occupations", 
                                                                         "Healthcare practitioner and technical occupations", "Healthcare support occupations", 
                                                                         "Protective service occupations", "Food preparation and serving related occupations", 
@@ -1258,14 +1263,6 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
                                "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
                                "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
-  
-  AA$pxparent = factor(AA$pxparent, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
-                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
-                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
-                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
-                                  "Blank to Allocated Value Long.", "Don't Know to Allocated Value Long.", "Refused to Allocated Value Long.", 
-                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
-                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
   AA$pxage = factor(AA$pxage, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
                     labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
@@ -1995,9 +1992,10 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                                                         "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", 
                                                                         "Manufacturing - Durable goods", "Manufacturing - Non-durable goods", "Wholesale trade", 
                                                                         "Retail trade", "Transportation and warehousing", "Utilities", "Information", 
-                                                                        "Finance and Insurance", "Real estate and rental and leasing", "Professional and technical services", 
+                                                                        "Finance and Insurance", "Real estate and rental and leasing", 
+                                                                        "Professional, scientific, and technical services", 
                                                                         "Management, administrative, and waste manufacturing services", "Educational services", 
-                                                                        "Health care and social services", "Arts, entertainment, and recreation", 
+                                                                        "Health care and social assistance services", "Arts, entertainment, and recreation", 
                                                                         "Accomodation and food services", "Private households", "Other services, except private households", 
                                                                         "Public administration", "Armed Forces"))
   
@@ -2005,9 +2003,10 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                                                         "Agriculture, forestry, fishing, and hunting", "Mining", "Construction", 
                                                                         "Manufacturing - Durable goods", "Manufacturing - Non-durable goods", "Wholesale trade", 
                                                                         "Retail trade", "Transportation and warehousing", "Utilities", "Information", 
-                                                                        "Finance and Insurance", "Real estate and rental and leasing", "Professional and technical services", 
+                                                                        "Finance and Insurance", "Real estate and rental and leasing", 
+                                                                        "Professional, scientific, and technical services", 
                                                                         "Management, administrative, and waste manufacturing services", "Educational services", 
-                                                                        "Health care and social services", "Arts, entertainment, and recreation", 
+                                                                        "Health care and social assistance services", "Arts, entertainment, and recreation", 
                                                                         "Accomodation and food services", "Private households", "Other services, except private households", 
                                                                         "Public administration", "Armed Forces"))
   
@@ -2044,29 +2043,33 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   AA$pxafever = factor(AA$pxafever, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
   
-  # The following sectin was added in January 2007 to provide more information on the respondent's family situations.
-  # PELNDAD gives the line number (from pulineno) of the respondent's father, if the father is present in the household. 
-  # "No father present" only means that the respondent's father is not resident in this household.
-  AA$pelndad = factor(AA$pelndad, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No father present", str_c(1:16, " Line num of father")))
+  # The following section was added in January 2007 to provide more information on the respondent's family situations.
+  # The section was adapted in January 2020 to account for same-sex parents.
   
-  # PELNMOM gives the line number (from pulineno) of the respondent's mother, if the mother is present in the household.
-  # "No mother present" only means that the respondent's mother is not resident in this household.
-  AA$pelnmom = factor(AA$pelnmom, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No mother present", str_c(1:16, " Line num of mother")))
+  # PEPAR2 (formerly PELNDAD) gives the line number (from pulineno) of the respondent's father, if the father is present in the household. 
+  # Will be female if the parents are same-sex. "No First Parent present" only means that the respondent's first parent is not resident in this household.
+  AA$pepar2 = factor(AA$pepar2, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No First Parent present", str_c(1:16, " Line num of First Parent")))
   
-  # PEDADTYP tells the nature of the relationship between the respondent and the person described in pelndad as their father. 
+  # PEPAR1 (formerly PELNMOM) gives the line number (from pulineno) of the respondent's mother, if the mother is present in the household.
+  # Will be male if the parents are same-sex. "No Second Parent present" only means that the respondent's second parent is not resident in this household.
+  AA$pepar1 = factor(AA$pepar1, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No mother present", str_c(1:16, " Line num of mother")))
+  
+  # PEPAR2TYP (formerly PEDADTYP) tells the nature of the relationship between the respondent and the person described in pepar2 (formerly pelndad) as their first parent. 
   # It allows for tracking step-parent and adoptive relationships as well as biological ones.
-  AA$pedadtyp = factor(AA$pedadtyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No father present", "Biological", "Step", "Adopted"))
   
-  # PEMOMTYP tells the nature of the relationship between the respondent and the person described in pelnmom as their mother. 
+  # There is some confusion about whether PEPAR2TYP refers to pepar1 or pepar2 in the Data Dictionary.
+  AA$pepar2typ = factor(AA$pepar2typ, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No pepar2 present", "Biological", "Step", "Adopted"))
+  
+  # PEPAR2TYP (formerly PEMOMTYP) tells the nature of the relationship between the respondent and the person described in pepar1 (formerly pelnmom) as their second parent.
   # It allows for tracking step-parent and adoptive relationships as well as biological ones.
-  AA$pemomtyp = factor(AA$pemomtyp, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No mother present", "Biological", "Step", "Adopted"))
+  AA$pepar1typ = factor(AA$pepar1typ, levels = c(-3:-1, 1:3), labels = c("Refused", "Don't Know", "No pepar1 present", "Biological", "Step", "Adopted"))
   
   # PPECOHAB gives the line number (from pulineno) of the respondent's cohabitating partner, if that person is present in the household. 
   # Cohabitating partner refers to a romantic partner who is not the respondent's spouse.
   AA$pecohab = factor(AA$pecohab, levels = c(-3:-1, 1:16), labels = c("Refused", "Don't Know", "No partner present", str_c(1:16, " Line num of cohabitating partner" )))
   
   # The following are allocation flags for the five immediately proceeding variables.
-  AA$pxlndad = factor(AA$pxlndad, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+  AA$pxpar2 = factor(AA$pxpar2, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
@@ -2074,7 +2077,7 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxlnmom = factor(AA$pxlnmom, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+  AA$pxpar1 = factor(AA$pxpar1, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
                       labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
                                  "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
                                  "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
@@ -2082,7 +2085,7 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                  "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
                                  "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxdadtyp = factor(AA$pxdadtyp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+  AA$pxpar2typ = factor(AA$pxpar2typ, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
                        labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
                                   "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
                                   "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 
@@ -2090,7 +2093,7 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
                                   "Value to Allocated Value", "Blank to Allocated Value", "Don't Know to Allocated Value", "Refused to Allocated Value", 
                                   "Value to Blank", "Don't Know to Blank", "Refused to Blank"))
   
-  AA$pxmomtyp = factor(AA$pxmomtyp, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
+  AA$pxpar1typ = factor(AA$pxpar1typ, levels = c(-1:3, 10:13, 20:23, 30:33, 40:43, 50, 52:53), 
                        labels = c(NA, "Value: No Change", "Blank: No Change", "Don't Know: No Change", "Refused: No Change", "Value to Value", "Blank to Value", 
                                   "Don't Know to Value", "Refused to Value", "Value to Longitudinal Value", "Blank to Longitudinal Value", 
                                   "Don't Know to Longitudinal Value", "Refused to Longitudinal ValueValue", "Value to Allocated Value Long.", 

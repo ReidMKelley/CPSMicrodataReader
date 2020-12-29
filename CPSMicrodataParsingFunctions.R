@@ -1907,13 +1907,14 @@ ParserMay2004 = function(DataIn, DataDictionaryIn) {
   # These functions format the Household Information section
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
   AA$hurespli[AA$hurespli <= -1] = NA
   # HUSPNISH would be here, but was removed at start.
-  # HUFINAL provides info on how the result of the interview attempt.
+  
+  # HUFINAL provides info on what was the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200, 201, 202, 203, 204, 205, 210, 216, 217, 218, 219, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 240, 241, 242, 243, 244, 245, 246, 247, 248),
                       labels = c("Refused", "Don't Know", NA, "New interview - Not contacted", "Fully complete CATI interview", "Partially completed CATI interview", "Labor force complete, Supplement incomplete - CATI", "HH occupied entirely by Armed Forces members",
@@ -2822,13 +2823,13 @@ ParserAugust2005 = function(DataIn, DataDictionaryIn) {
   # These functions format the Household Information section
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
   AA$hurespli[AA$hurespli <= -1] = NA
   # HUSPNISH would be here, but was removed at start.
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what was the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200:205, 210, 216:219, 224:233, 240:248),
                       labels = c("Refused", "Don't Know", NA, 
@@ -3854,13 +3855,13 @@ ParserJanuary2007 = function(DataIn, DataDictionaryIn) {
   # These functions format the Household Information section
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
   AA$hurespli[AA$hurespli <= -1] = NA
   # HUSPNISH would be here, but was removed at start.
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what was the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 0, 1, 2, 5, 24, 115, 200:205, 210, 216:219, 224:233, 240:248),
                       labels = c("Refused", "Don't Know", NA, 
@@ -4904,13 +4905,13 @@ ParserJanuary2009 = function(DataIn, DataDictionaryIn) {
   # These functions format the Household Information section
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
   AA$hurespli[AA$hurespli <= -1] = NA
   # HUSPNISH would be here, but was removed at start.
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what was the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
@@ -5992,13 +5993,13 @@ ParserJanuary2010 = function(DataIn, DataDictionaryIn) {
   # These functions format the Household Information section
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
   AA$hurespli[AA$hurespli <= -1] = NA
   # HUSPNISH would be here, but was removed at start.
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what was the result of the interview attempt.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
@@ -7106,13 +7107,13 @@ ParserMay2012 = function(DataIn, DataDictionaryIn) {
   # These functions format the Household Information section
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   # HURRESPLI gives the line number (from the variable pulineno) of the respondent who is providing the survey answers for the household. One respondent can answer the survey questions for all members of the household.
   AA$hurespli[AA$hurespli <= -1] = NA
   # HUSPNISH would be here, but was removed at start.
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what the result of the interview attempt was.
   AA$hufinal = factor(AA$hufinal, 
                       levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
@@ -8219,7 +8220,7 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
   
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   
@@ -8229,21 +8230,21 @@ ParserJanuary2013 = function(DataIn, DataDictionaryIn) {
   
   # HUSPNISH would be here, but was removed at start.
   
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what the result of the interview attempt was.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 217,219, 223:233, 241:243, 246:248, 256:257),
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
                                  "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
                                  "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
                                  "LF complete, supplement DK items incomplete at closeout-ASEC only", 
                                  "HH occupied entirely by Armed Forces members or all under 15 years of age", "CAPI Complete", "Callback needed", 
                                  "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
-                                 "Language barrier", "Unable to locate", "Temporarily absent", "Other occupied - Specify", "Entire Household Armed Forces", 
-                                 "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", 
-                                 "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site", 
-                                 "Permit granted - Construction not started", "Other - Specify", "House or trailer moved", "Outside segment", 
-                                 "Converted to perm. business or storage", "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", 
-                                 "Removed during sub-sampling", "Unit already had a chance of selection"))
+                                 "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", 
+                                 "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", 
+                                 "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                 "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", 
+                                 "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 2000", 
+                                 "Unused serial no./listing sheet line", "Other - Specify", "Removed during sub-sampling", "Unit already had a chance of selection"))
   
   
   # HETENURE tells about the household's relation to the ownership of the property
@@ -9733,7 +9734,7 @@ ParserJanuary2014 = function(DataIn, DataDictionaryIn) {
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
   
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   
@@ -9743,21 +9744,21 @@ ParserJanuary2014 = function(DataIn, DataDictionaryIn) {
   
   # HUSPNISH would be here, but was removed at start.
   
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what the result of the interview attempt was.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 217,219, 223:233, 241:243, 246:248, 256:257),
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
                                  "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
                                  "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
                                  "LF complete, supplement DK items incomplete at closeout-ASEC only", 
                                  "HH occupied entirely by Armed Forces members or all under 15 years of age", "CAPI Complete", "Callback needed", 
                                  "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
-                                 "Language barrier", "Unable to locate", "Temporarily absent", "Other occupied - Specify", "Entire Household Armed Forces", 
-                                 "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", 
-                                 "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site", 
-                                 "Permit granted - Construction not started", "Other - Specify", "House or trailer moved", "Outside segment", 
-                                 "Converted to perm. business or storage", "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", 
-                                 "Removed during sub-sampling", "Unit already had a chance of selection"))
+                                 "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", 
+                                 "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", 
+                                 "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                 "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", 
+                                 "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 2000", 
+                                 "Unused serial no./listing sheet line", "Other - Specify", "Removed during sub-sampling", "Unit already had a chance of selection"))
   
   
   # HETENURE tells about the household's relation to the ownership of the property
@@ -11969,7 +11970,7 @@ ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
   
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   
@@ -11979,21 +11980,21 @@ ParserJanuary2015 = function(DataIn, DataDictionaryIn) {
   
   # HUSPNISH would be here, but was removed at start.
   
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what the result of the interview attempt was.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 217,219, 223:233, 241:243, 246:248, 256:257),
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
                                  "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
                                  "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
                                  "LF complete, supplement DK items incomplete at closeout-ASEC only", 
                                  "HH occupied entirely by Armed Forces members or all under 15 years of age", "CAPI Complete", "Callback needed", 
                                  "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
-                                 "Language barrier", "Unable to locate", "Temporarily absent", "Other occupied - Specify", "Entire Household Armed Forces", 
-                                 "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", 
-                                 "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site", 
-                                 "Permit granted - Construction not started", "Other - Specify", "House or trailer moved", "Outside segment", 
-                                 "Converted to perm. business or storage", "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", 
-                                 "Removed during sub-sampling", "Unit already had a chance of selection"))
+                                 "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", 
+                                 "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", 
+                                 "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                 "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", 
+                                 "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 2000", 
+                                 "Unused serial no./listing sheet line", "Other - Specify", "Removed during sub-sampling", "Unit already had a chance of selection"))
   
   
   # HETENURE tells about the household's relation to the ownership of the property
@@ -14185,7 +14186,7 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   # HRHHID gives the Household ID Number. Can be used for longitudinal linking across months of data.
   AA$hrhhid[AA$hrhhid == -1] = NA
   
-  # These two give the month and year of the repspondent's interview. Should be the same across all months.
+  # These two give the month and year of the repspondent's interview. Should be the same across all respondents.
   AA$hrmonth[AA$hrmonth == -1] = NA
   AA$hryear4[AA$hryear4 == -1] = NA
   
@@ -14195,21 +14196,21 @@ ParserJanuary2017 = function(DataIn, DataDictionaryIn) {
   
   # HUSPNISH would be here, but was removed at start.
   
-  # HUFINAL provides info on how the result of the interview attempt.
+  # HUFINAL provides info on what the result of the interview attempt was.
   AA$hufinal = factor(AA$hufinal, 
-                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 217,219, 223:233, 241:243, 246:248, 256:257),
+                      levels = c(-3:-1, 1:6, 20, 201:205, 213:214, 216:219, 223:233, 240:248, 256:257),
                       labels = c("Refused", "Don't Know", NA, 
                                  "Fully complete CATI interview", "Partially completed CATI interview", "Complete but personal visit requested next month", 
                                  "Partial, Not complete at closeout", "Labor force complete, Supplement incomplete - CATI", 
                                  "LF complete, supplement DK items incomplete at closeout-ASEC only", 
                                  "HH occupied entirely by Armed Forces members or all under 15 years of age", "CAPI Complete", "Callback needed", 
                                  "Sufficient partial - Precloseout", "Sufficient partial - At closeout", "Labor force complete, - Suppl. incomplete - CAPI", 
-                                 "Language barrier", "Unable to locate", "Temporarily absent", "Other occupied - Specify", "Entire Household Armed Forces", 
-                                 "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", "Vacant - Storage of HHLD furniture", 
-                                 "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", "Unoccupied tent or trailer site", 
-                                 "Permit granted - Construction not started", "Other - Specify", "House or trailer moved", "Outside segment", 
-                                 "Converted to perm. business or storage", "Built after April 1, 2000", "Unused serial no./listing sheet line", "Other - Specify", 
-                                 "Removed during sub-sampling", "Unit already had a chance of selection"))
+                                 "Language barrier", "Unable to locate", "No one home", "Temporarily absent", "Refused", "Other occupied - Specify", 
+                                 "Entire Household Armed Forces", "Entire household under 15", "Temp. occupied w/persons with URE", "Vacant regular", 
+                                 "Vacant - Storage of HHLD furniture", "Unfit, to be demolished", "Under construction, not ready", "Converted to temp business or storage", 
+                                 "Unoccupied tent or trailer site", "Permit granted - Construction not started", "Other - Specify", "Demolished", "House or trailer moved", 
+                                 "Outside segment", "Converted to perm. business or storage", "Merged", "Condemned", "Built after April 1, 2000", 
+                                 "Unused serial no./listing sheet line", "Other - Specify", "Removed during sub-sampling", "Unit already had a chance of selection"))
   
   
   # HETENURE tells about the household's relation to the ownership of the property
