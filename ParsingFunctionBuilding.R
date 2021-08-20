@@ -476,29 +476,36 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   
   AA$penlfjh = factor(AA$penlfjh, levels = c(-1, 1:3), labels = c(NA, "Within the last 12 months", "More than 12 months ago", "Never worked"))
   AA$penlfret = factor(AA$penlfret, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  
   AA$penlfact = factor(AA$penlfact, levels = c(-1, 1:6), labels = c(NA, "Disabled", "Ill", "In School", "Taking care of house or family", "In retirement", "Something else/other"))
+  
   AA$peschenr = factor(AA$peschenr, levels = c(-1, 1, 2), labels = c(NA, "Yes", "No"))
+  
   AA$peschft = factor(AA$peschft, levels = c(-1, 1, 2), labels = c(NA, "Full-Time", "Part-Time"))
   
-  
   AA$peschlvl = factor(AA$peschlvl, levels = c(-1, 1, 2), labels = c(NA, "High school", "College or University"))
+  
   AA$prnlfsch = factor(AA$prnlfsch, levels = c(-1, 1, 2), labels = c(NA, "In school", "Not in school"))
+  
   AA$pwfmwgt[AA$pwfmwgt == -1] = NA
+  
   AA$pwlgwgt[AA$pwlgwgt == -1] = NA
+  
   AA$pworwgt[AA$pworwgt == -1] = NA
   
-  
   AA$pwsswgt[AA$pwsswgt == -1] = NA
+  
   AA$pwvetwgt[AA$pwvetwgt == -1] = NA
   
   
   # These functions format the Allocation Flags section
+  
+  
   AA$prwernal = factor(AA$prwernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$prhernal = factor(AA$prhernal, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$hxtenure = factor(AA$hxtenure, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$hxtelhhd = factor(AA$hxtelhhd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$hxtelavl = factor(AA$hxtelavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$hxphoneo = factor(AA$hxphoneo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxinusyr = factor(AA$pxinusyr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -506,13 +513,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxparent = factor(AA$pxparent, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxage = factor(AA$pxage, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxmaritl = factor(AA$pxmaritl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxspouse = factor(AA$pxspouse, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxsex = factor(AA$pxsex, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxafwhen = factor(AA$pxafwhen, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxafnow = factor(AA$pxafnow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxeduca = factor(AA$pxeduca, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxrace = factor(AA$pxrace, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -520,13 +525,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxmntvty = factor(AA$pxmntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxfntvty = factor(AA$pxfntvty, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxorigin = factor(AA$pxorigin, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxmlr = factor(AA$pxmlr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxret1 = factor(AA$pxret1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxabsrsn = factor(AA$pxabsrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxabspdo = factor(AA$pxabspdo, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxmjot = factor(AA$pxmjot, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxmjnum = factor(AA$pxmjnum, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -534,13 +537,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxhrusl2 = factor(AA$pxhrusl2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhrftpt = factor(AA$pxhrftpt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxhruslt = factor(AA$pxhruslt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhrwant = factor(AA$pxhrwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhrrsn1 = factor(AA$pxhrrsn1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhrrsn2 = factor(AA$pxhrrsn2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhract1 = factor(AA$pxhract1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxhract2 = factor(AA$pxhract2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxhractt = factor(AA$pxhractt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -548,13 +549,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxhravl = factor(AA$pxhravl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlayavl = factor(AA$pxlayavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxlaylk = factor(AA$pxlaylk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlaydur = factor(AA$pxlaydur, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlayfto = factor(AA$pxrrp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlkm1 = factor(AA$pxlkm1, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlkavl = factor(AA$pxlkavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxlkll1o = factor(AA$pxlkll1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlkll2o = factor(AA$pxlkll2o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -562,13 +561,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxlkdur = factor(AA$pxlkdur, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxlkfto = factor(AA$pxlkfto, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxdwwnto = factor(AA$pxdwwnto, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxdwrsn = factor(AA$pxdwrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxdwlko = factor(AA$pxdwlko, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxdwwk = factor(AA$pxdwwk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxdw4wk = factor(AA$pxdw4wk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxdwlkwk = factor(AA$pxdwlkwk, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxdwavl = factor(AA$pxdwavl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -576,13 +573,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxjhwko = factor(AA$pxjhwko, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxjhrsn = factor(AA$pxjhrsn, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxjhwant = factor(AA$pxjhwant, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxio1cow = factor(AA$pxio1cow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxio1icd = factor(AA$pxio1icd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxio1ocd = factor(AA$pxio1ocd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxio2cow = factor(AA$pxio2cow, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxio2icd = factor(AA$pxio2icd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxio2ocd = factor(AA$pxio2ocd, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -590,13 +585,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxernper = factor(AA$pxernper, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernh1o = factor(AA$pxernh1o, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxernhro = factor(AA$pxernhro, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxern = factor(AA$pxern, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernwkp = factor(AA$pxernwkp, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernrt = factor(AA$pxernrt, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernhry = factor(AA$pxernhry, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
-  
   
   AA$pxernh2 = factor(AA$pxernh2, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxernlab = factor(AA$pxernlab, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
@@ -604,11 +597,11 @@ ParserSeptember1995 = function(DataIn, DataDictionaryIn) {
   AA$pxnlfjh = factor(AA$pxnlfjh, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxnlfret = factor(AA$pxnlfret, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   
-  
   AA$pxnlfact = factor(AA$pxnlfact, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschenr = factor(AA$pxschenr, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschft = factor(AA$pxschft, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
   AA$pxschlvl = factor(AA$pxschlvl, levels = -1:1, labels = c(NA, "No allocation", "One or more components of the recode are allocated"))
+  
   
   
   return(AA)
